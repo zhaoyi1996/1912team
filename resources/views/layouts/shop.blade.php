@@ -84,7 +84,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="/shop/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="/shop/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                                 </div>
                                                 <h4>
                                                     团队消息
