@@ -27,3 +27,11 @@ Route::post("/goods/updatenum","GoodsController@updatenum");
 Route::get("/goods/delete/{id}","GoodsController@delete");
 Route::post("/goods/update/{id}","GoodsController@update");
 Route::get("/goods/upd/{id}","GoodsController@upd");
+Route::get('/', function () {
+    return view('welcome');
+});
+//测试
+Route::get("/test",function(){
+	return view("test");
+});
+
