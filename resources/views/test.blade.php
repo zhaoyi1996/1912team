@@ -1,4 +1,4 @@
- @extends("layouts.shop")
+ @extends("layouts.indexshop")
      @section("title",'商品列表')
      @section('content')
    
