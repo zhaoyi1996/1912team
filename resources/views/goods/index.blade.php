@@ -6,6 +6,7 @@
 </head>
 <body>
 <center>
+    <h2>商品展示</h2>
     <table>
         <tr>
             <td>id</td>

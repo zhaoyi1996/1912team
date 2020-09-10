@@ -139,6 +139,7 @@ class GoodsController extends Controller
             header("refresh:2,url=/goods");
 
             echo "修改成功";
+
         }
     }
 }

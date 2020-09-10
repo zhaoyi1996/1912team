@@ -7,6 +7,7 @@
 </head>
 <body>
 <form>
+    <h2>商品添加</h2>
     <table>
         <tr>
             <td>商品名称</td>
@@ -27,7 +28,7 @@
             <td><input type="text" name="goods_num" id="goods_num"></td>
         </tr>
         <tr>
-            <td><button class="button">提交</button></td>
+            <td><input type="button" value="提交" id="button"></td>
         </tr>
     </table>
 
@@ -35,10 +36,9 @@
 
 </form>
 </body>
-<script src="/jquery.js"></script>
+<script src="/static/jquery.js"></script>
 <script>
-    $(".button").click(function(){
-
+    $("#button").click(function(){
         var goods_name = $("#goods_name").val();
         var goods_price = $("#goods_price").val();
         var goods_content = $("#goods_content").val();
@@ -55,8 +55,9 @@
             data:{goods_name:goods_name,goods_price:goods_price,goods_content:goods_content,goods_num:goods_num},
             success:function(res){
                 if(res.code==0){
+
                     alert(res.msg);
-                    window.location.href = "http://www.1912laravel.com/goods";
+                    window.location.href = "/goods";
                 }else{
                     alert(res.msg);
                 }
