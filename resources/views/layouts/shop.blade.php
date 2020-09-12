@@ -309,7 +309,7 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu"  >
                     <li class="header">菜单</li>
-                    <li id="admin-index"><a href="index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                    <li id="admin-index"><a href="{{url('/admin/index')}}"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
 				    <!-- 菜单 -->
 				    <li class="treeview">
@@ -323,12 +323,12 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="seller_1.html" target="iframe">
+				                <a href="{{url('/admin/seller1')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>商家审核
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="seller.html" target="iframe">
+				                <a href="{{url('/admin/seller')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>商家管理
 				                </a>
 				            </li>
@@ -345,27 +345,27 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="brand.html" target="iframe">
+				                <a href="{{url('/admin/brand')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>品牌管理
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="specification.html" target="iframe">
+				                <a href="{{url('/admin/specification')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>规格管理
 				                </a>
 				            </li>							
 							<li id="admin-login">
-				                <a href="type_template.html" target="iframe">
+				                <a href="{{url('/admin/template')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>模板管理
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="item_cat.html" target="iframe">
+				                <a href="{{url('/admin/cate')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>分类管理
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="goods.html" target="iframe">
+				                <a href="{{url('/admin/goods')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>商品审核
 				                </a>
 				            </li>
@@ -383,12 +383,12 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="content_category.html" target="iframe">
+				                <a href="{{url('/admin/category')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>广告类型管理
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="content.html" target="iframe">
+				                <a href="{{url('/admin/content')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>广告管理
 				                </a>
 				            </li>
