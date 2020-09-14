@@ -56,3 +56,19 @@ Route::get("/admin/seller","Admin\SellerController@index");
 //后台首页
 Route::get("/admin/index","Admin\IndexController@index");
 
+
+
+//商家后台管理首页
+Route::get("/admins/index","Admins\IndexController@index");
+
+//基本管理  修改资料
+Route::get("/admins/seller","Admins\SellerController@index");
+
+//修改密码
+Route::get("/admins/pass","Admins\PassrController@index");
+
+//新增商品
+Route::get("/admins/goods","Admins\GoodsController@index");
+
+//商品管理
+Route::get("/admins/goodslist","Admins\GoodsListController@index");
