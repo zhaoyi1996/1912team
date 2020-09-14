@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 //测试
 Route::get("/test",function(){
-	return view("test");
+	return view("admins.home.index");
 });
 
 /***
@@ -75,3 +75,15 @@ Route::get("/admins/goods","Admins\GoodsController@index");
 
 //商品管理
 Route::get("/admins/goodslist","Admins\GoodsListController@index");
+
+Route::get("/admins/home","Admins\HomeController@index");
+
+//商家入驻申请
+Route::get("/admins/register","Admins\RegisterController@index");
+
+//后台商家登录
+Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
+
+
+
+Route::post("/seller/create","Admins\SellerController@create");

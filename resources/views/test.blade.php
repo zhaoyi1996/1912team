@@ -1,6 +1,6 @@
 
  @extends("layouts.admin")
- @section("title",'商品列表')
+ @section("title",'后台商品列表')
          <!--  -->
  @section('content')
 
