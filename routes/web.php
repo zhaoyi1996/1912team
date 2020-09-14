@@ -33,6 +33,7 @@ Route::prefix('/admin')->group(function(){
 
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
+		Route::post("/template/create","Admin\TemplateController@create");
 
 		//后台模块分类管理
 		Route::get("/cate","Admin\CateController@index");
