@@ -118,7 +118,7 @@
 					                </button>	
 					            </td>
 								<td>
-									<!-- <img  src="{{entity.pic}}" width="200px" height="100px"> -->
+									
 								</td>
 							</tr>						
 						</table>
