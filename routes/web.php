@@ -40,6 +40,7 @@ Route::prefix('/admin')->group(function(){
 		//后台模块商品管理
 		Route::get("/goods","Admin\GoodsController@index");
 
+
 		//后台模块广告类型管理
 		Route::get("/category","Admin\CategoryController@index");
 
