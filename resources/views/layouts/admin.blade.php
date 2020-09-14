@@ -9,7 +9,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <!-- 页面meta /-->
-
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/admin/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/skins/_all-skins.min.css">
@@ -405,7 +405,8 @@
 <script src="/admin/plugins/bootstrap-markdown/js/markdown.js"></script>
 <script src="/admin/plugins/bootstrap-markdown/js/to-markdown.js"></script>
 <script src="/admin/plugins/ckeditor/ckeditor.js"></script>
-
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>
