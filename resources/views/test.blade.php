@@ -1,3 +1,4 @@
+
  @extends("layouts.admin")
  @section("title",'商品列表')
          <!--  -->
@@ -8,4 +9,5 @@
   <b>测试模板布局</b>
  </center>
  <!-- 代码结尾 -->
+
  @endsection
