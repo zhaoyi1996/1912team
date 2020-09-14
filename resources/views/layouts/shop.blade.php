@@ -15,22 +15,23 @@
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/shop/css/style.css">
-    
     <script src="/shop/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/shop/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/shop/plugins/bootstrap/js/bootstrap.min.js"></script>
-  
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/shop/plugins/adminLTE/js/app.min.js"></script>
-    
-    <script type="text/javascript">   
-		 function SetIFrameHeight(){
-		  	  var iframeid=document.getElementById("iframe"); //iframe id
-		  	  if (document.getElementById){
-		  		iframeid.height =document.documentElement.clientHeight;			   	   
-			  }
-		 }
-    
-	</script>    
+
+    <script type="text/javascript">
+        function SetIFrameHeight(){
+            var iframeid=document.getElementById("iframe"); //iframe id
+            if (document.getElementById){
+                iframeid.height =document.documentElement.clientHeight;
+            }
+        }
+
+    </script>
+
  
 </head>
 

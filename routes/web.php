@@ -33,12 +33,14 @@ Route::prefix('/admin')->group(function(){
 
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
+		Route::post("/template/create","Admin\TemplateController@create");
 
 		//后台模块分类管理
 		Route::get("/cate","Admin\CateController@index");
 
 		//后台模块商品管理
 		Route::get("/goods","Admin\GoodsController@index");
+
 
 		//后台模块广告类型管理
 		Route::get("/category","Admin\CategoryController@index");
@@ -77,3 +79,19 @@ Route::prefix('/admin')->group(function(){
 
 
 
+
+
+//商家后台管理首页
+Route::get("/admins/index","Admins\IndexController@index");
+
+//基本管理  修改资料
+Route::get("/admins/seller","Admins\SellerController@index");
+
+//修改密码
+Route::get("/admins/pass","Admins\PassrController@index");
+
+//新增商品
+Route::get("/admins/goods","Admins\GoodsController@index");
+
+//商品管理
+Route::get("/admins/goodslist","Admins\GoodsListController@index");
