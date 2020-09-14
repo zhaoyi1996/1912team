@@ -265,7 +265,7 @@
                                     <img src="/shop/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                       测试用户 - 马小白
+                                       测试用户 - 荣晓霞
                                         <small>最后登录 11:20AM</small>
                                     </p>
                                 </li>
