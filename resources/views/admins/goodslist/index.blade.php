@@ -100,3 +100,7 @@
 
 </body>
 @endsection
+
+<script>
+
+</script>
