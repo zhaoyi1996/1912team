@@ -33,14 +33,12 @@ Route::prefix('/admin')->group(function(){
 
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
-		Route::post("/template/create","Admin\TemplateController@create");
 
 		//后台模块分类管理
 		Route::get("/cate","Admin\CateController@index");
 
 		//后台模块商品管理
 		Route::get("/goods","Admin\GoodsController@index");
-
 
 		//后台模块广告类型管理
 		Route::get("/category","Admin\CategoryController@index");
@@ -56,24 +54,6 @@ Route::prefix('/admin')->group(function(){
 
 		//后台首页
 		Route::get("/index","Admin\IndexController@index");
-
-		/***
-		rbac  
-		***/
-		//权限
-		//权限添加
-		Route::get("/rbac/pow/create","Rbac\PowController@create");
-		//权限列表
-		Route::get("/rbac/pow/list","Rbac\PowController@list");
-		//角色添加
-		Route::get("/rbac/role/create","Rbac\RoleController@create");
-		//角色列表
-		Route::get("/rbac/role/list","Rbac\RoleController@list");
-		//管理员添加
-		Route::get("/rbac/admin/create","Rbac\AdminController@create");
-		//管理员列表
-		Route::get("/rbac/admin/list","Rbac\AdminController@list");
-
 });
 
 
@@ -107,3 +87,4 @@ Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
 
 
 Route::post("/seller/create","Admins\SellerController@create");
+

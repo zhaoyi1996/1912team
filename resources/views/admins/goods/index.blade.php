@@ -33,6 +33,7 @@
             <div class="tab-content">
 
                 <!--表单内容-->
+                <form action="/goods/create" method="post">
                 <div class="tab-pane active" id="home">
                     <div class="row data-type">
                         <div class="col-md-2 title">商品分类</div>
@@ -61,7 +62,7 @@
 
                         <div class="col-md-2 title">商品名称</div>
                         <div class="col-md-10 data">
-                            <input type="text" class="form-control"    placeholder="商品名称" value="">
+                            <input type="text" class="form-control" name="" placeholder="商品名称" value="">
                         </div>
 
                         <div class="col-md-2 title">品牌</div>

@@ -373,7 +373,6 @@
 
 </div>
 
-
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>
@@ -405,8 +404,6 @@
 <script src="/admin/plugins/bootstrap-markdown/js/markdown.js"></script>
 <script src="/admin/plugins/bootstrap-markdown/js/to-markdown.js"></script>
 <script src="/admin/plugins/ckeditor/ckeditor.js"></script>
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>
