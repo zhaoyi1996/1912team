@@ -5,7 +5,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>后台管理系统@yield('title')</title>
+    <title>商家后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <!-- 页面meta /-->
@@ -37,7 +37,7 @@
     <!-- 页面头部 -->
     <header class="main-header">
         <!-- Logo -->
-        <a href="index.html" class="logo">
+        <a href="" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>品优购</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -269,10 +269,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">修改密码</a>
+                                    <a href="{{url('admins/pass')}}" class="btn btn-default btn-flat">修改密码</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">注销</a>
+                                    <a href="{{url('admins/shoplogin')}}" class="btn btn-default btn-flat">登录</a>
                                 </div>
                             </li>
                         </ul>
@@ -295,12 +295,12 @@
                 </div>
                 <div class="pull-left info">
                     <p> chendahai</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                    <a href=""><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>
             <ul class="sidebar-menu"  >
                 <li class="header">菜单</li>
-                <li id="admin-index"><a href="{{url("admins/index")}}"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                <li id="admin-index"><a href="{{url('admins/home')}}"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
                 <!-- 菜单 -->
                 <li class="treeview">
@@ -359,7 +359,6 @@
     <!-- 内容区域 -->
     <div class="content-wrapper">
         @yield('content')
-
     </div>
     <!-- 内容区域 /-->
 

@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("title",'商品列表')
+@section("title",'新增商品')
 @section('content')
 
 <body class="hold-transition skin-red sidebar-mini" >

@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 //测试
 Route::get("/test",function(){
-	return view("test");
+	return view("admins.home.index");
 });
 
 /***
@@ -69,6 +69,36 @@ Route::prefix('/admin')->group(function(){
 
 		//后台首页
 		Route::get("/index","Admin\IndexController@index");
+
+		/***
+		rbac  
+		***/
+		//权限
+		//权限添加
+		Route::get("/rbac/pow/create","Rbac\PowController@create");
+		Route::post("/rbac/pow/store","Rbac\PowController@store");
+		Route::get("/rbac/pow/del/{id}","Rbac\PowController@del");
+		Route::get("/rbac/pow/upd/{id}","Rbac\PowController@upd");
+		Route::post("/rbac/pow/update/{id}","Rbac\PowController@update");
+		//权限列表
+		Route::get("/rbac/pow/list","Rbac\PowController@list");
+		//角色添加
+		Route::get("/rbac/role/create","Rbac\RoleController@create");
+		Route::post("/rbac/role/store","Rbac\RoleController@store");
+		Route::get("/rbac/role/del/{id}","Rbac\RoleController@del");
+		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
+		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
+		//角色列表
+		Route::get("/rbac/role/list","Rbac\RoleController@list");
+		//管理员添加
+		Route::get("/rbac/admin/create","Rbac\AdminController@create");
+		Route::post("/rbac/admin/store","Rbac\AdminController@store");
+		Route::get("/rbac/admin/del/{id}","Rbac\AdminController@del");
+		Route::get("/rbac/admin/upd/{id}","Rbac\AdminController@upd");
+		Route::post("/rbac/admin/update/{id}","Rbac\AdminController@update");
+		//管理员列表
+		Route::get("/rbac/admin/list","Rbac\AdminController@list");
+
 });
 
 
@@ -90,3 +120,15 @@ Route::get("/admins/goods","Admins\GoodsController@index");
 
 //商品管理
 Route::get("/admins/goodslist","Admins\GoodsListController@index");
+
+Route::get("/admins/home","Admins\HomeController@index");
+
+//商家入驻申请
+Route::get("/admins/register","Admins\RegisterController@index");
+
+//后台商家登录
+Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
+
+
+
+Route::post("/seller/create","Admins\SellerController@create");

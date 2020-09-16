@@ -422,6 +422,77 @@
 				            </li>
 				        </ul>                        
 				    </li>
+
+                    <!-- 菜单 -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-folder"></i> 
+                            <span>权限管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                
+                            <li id="admin-login">
+                                <a href="{{url('/admin/rbac/pow/create')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>权限添加
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('/admin/rbac/pow/list')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>权限列表
+                                </a>
+                            </li>
+                        </ul>                        
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-folder"></i> 
+                            <span>角色管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                
+                        
+                            <li id="admin-login">
+                                <a href="{{url('/admin/rbac/role/create')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>角色添加
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('/admin/rbac/role/list')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>角色列表
+                                </a>
+                            </li>
+                        </ul>                        
+                    </li>
+                    
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-folder"></i> 
+                            <span>管理员管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                
+                            <li id="admin-login">
+                                <a href="{{url('/admin/rbac/admin/create')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>管理员添加
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('/admin/rbac/admin/list')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>管理员列表
+                                </a>
+                            </li>
+                        </ul>                        
+                    </li>
+                    <!-- 菜单 /-->
 				    <!-- 菜单 /-->
 
                 </ul>
