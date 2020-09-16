@@ -4,10 +4,11 @@
      @section('content')
    
    <!-- 代码部分 -->
+ {{--<meta http-equiv="refresh" content="5">--}}
 		<body class="hold-transition skin-red sidebar-mini" >
   <!-- .box-body -->                
                     <div class="box-header with-border">
-                        <h3 class="box-title">管理员添加</h3>
+                        <h3 class="box-title">管理员列表</h3>
                     </div>
                     <div class="box-body">
                         <!-- 数据表格 -->
@@ -34,9 +35,7 @@
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
 			                      <thead>
 			                          <tr>
-			                              <th class="" style="padding-right:0px">
-			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
-			                              </th> 
+
 										  <th class="sorting_asc">管理员ID</th>
 									      <th class="sorting">管理员名称</th>	
 									      <th class="sorting">添加时间</th>									     												
@@ -44,24 +43,19 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr >
-			                              <td><input  type="checkbox" ></td>			                              
-				                          <td>1</td>
-									      <td>网络制式</td>
-									      <td>1912-2222-222</td>
-		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">修改</button>                                           
-		                                  </td>
-			                          </tr>
+			                         @foreach($admin as $k=>$v)
 									  <tr >
-			                              <td><input  type="checkbox" ></td>			                              
-				                          <td>2</td>
-									      <td>服装尺码</td>
-									      <td>1912-2222-222</td>
-		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">修改</button>                                           
-		                                  </td>
+
+				                          <td>{{$v->admin_id}}</td>
+									      <td>{{$v->admin_name}}</td>
+									      <td>{{date('Y-m-d H:i:s',$v->admin_add_time)}}</td>
+		                                  <td class="text-center" admin_id="{{$v->admin_id}}">
+											  <a href="{{url('/admin/rbac/admin/upd/'.$v->admin_id)}}" class="btn bg-olive btn-xs" >修改</a>
+											  {{--<button type="button" id="del" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">删除</button>--}}
+											  <a href="{{url('/admin/rbac/admin/del/'.$v->admin_id)}}" class="btn bg-olive btn-xs" >删除</a>
+										  </td>
 			                          </tr>
+										 @endforeach
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->    
@@ -70,5 +64,18 @@
                      </div>
                     <!-- /.box-body -->                    
 </body>
+ <script>
+	 $("#del").click(function(){
+		var admin_id = $(this).parent().attr("admin_id");
+		 $.get('/admin/rbac/admin/del/'+admin_id,function(res){
+			 if(res.code==0){
+				 alert(res.msg)
+			 }
+			 if(res.code==1){
+				 alert(res.msg)
+			 }
+		 },'json');
+	 })
+ </script>
 	<!-- 代码结尾 -->
  @endsection

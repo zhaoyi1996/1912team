@@ -17,16 +17,16 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                       
+ <button><i class="fa fa-file-o"></i> 新建</button>
+										<a  type="button" class="btn btn-default"  data-toggle="modal" data-target="#editModal"  href="">添加</a>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-							                    权限名称：<input  >									
-									<button class="btn btn-default" >查询</button>                                    
+							                    权限名称：<input  >
+									<button class="btn btn-default" >查询</button>
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -35,23 +35,26 @@
 			                      <thead>
 			                          <tr>
 										  <th class="sorting_asc">权限ID</th>
-									      <th class="sorting">节点名称</th>	
-									      <th class="sorting">节点层级</th>									     												
-					                      <th class="text-center">状态</th>
+									      <th class="sorting">节点名称</th>
+										  <th class="text-center">权限url</th>
 					                       <th class="text-center">创建时间</th>
 					                       <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
+
 			                      <tbody>
+								  @foreach($pow as $k=>$v)
 			                          <tr >
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
+			                             <td class="sorting_asc">{{$v->pow_id}}</td>
+			                             <td class="sorting_asc">{{$v->pow_name}}</td>
+			                             <td class="sorting_asc">{{$v->pow_url}}</td>
+			                             <td class="sorting_asc">{{date('Y-m-d H:i:s',$v->pow_add_time)}}</td>
+			                             <td class="sorting_asc">
+											 <a href="{{url('/admin/rbac/pow/del/'.$v->pow_id)}}" class="btn bg-olive btn-xs" >删除</a>
+											 <a href="{{url('/admin/rbac/pow/upd/'.$v->pow_id)}}" class="btn bg-olive btn-xs" >修改</a>
+										 </td>
 			                          </tr>
-									  
+									  @endforeach
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->    

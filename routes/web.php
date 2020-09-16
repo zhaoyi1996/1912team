@@ -63,14 +63,26 @@ Route::prefix('/admin')->group(function(){
 		//权限
 		//权限添加
 		Route::get("/rbac/pow/create","Rbac\PowController@create");
+		Route::post("/rbac/pow/store","Rbac\PowController@store");
+		Route::get("/rbac/pow/del/{id}","Rbac\PowController@del");
+		Route::get("/rbac/pow/upd/{id}","Rbac\PowController@upd");
+		Route::post("/rbac/pow/update/{id}","Rbac\PowController@update");
 		//权限列表
 		Route::get("/rbac/pow/list","Rbac\PowController@list");
 		//角色添加
 		Route::get("/rbac/role/create","Rbac\RoleController@create");
+		Route::post("/rbac/role/store","Rbac\RoleController@store");
+		Route::get("/rbac/role/del/{id}","Rbac\RoleController@del");
+		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
+		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
 		//角色列表
 		Route::get("/rbac/role/list","Rbac\RoleController@list");
 		//管理员添加
 		Route::get("/rbac/admin/create","Rbac\AdminController@create");
+		Route::post("/rbac/admin/store","Rbac\AdminController@store");
+		Route::get("/rbac/admin/del/{id}","Rbac\AdminController@del");
+		Route::get("/rbac/admin/upd/{id}","Rbac\AdminController@upd");
+		Route::post("/rbac/admin/update/{id}","Rbac\AdminController@update");
 		//管理员列表
 		Route::get("/rbac/admin/list","Rbac\AdminController@list");
 
