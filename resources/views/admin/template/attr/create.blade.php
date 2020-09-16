@@ -10,6 +10,7 @@
         <div class="col-sm-10">
             <input type="text" class="form-control" name="attr_name" id="firstname"
                    placeholder="请输入属性名称">
+            <span style="color:red;">{{$errors->first('attr_name')}}</span>
         </div>
     </div>
     <div class="form-group">

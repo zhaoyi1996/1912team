@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Specification;
 use App\Http\Controllers\Controller;
 use App\Models\AttrModel;
 use Illuminate\Http\Request;
+use App\Http\Requests\AttrBlog;
 
 class AttrController extends Controller
 {
@@ -17,8 +18,8 @@ class AttrController extends Controller
     /**
      * 商品属性确认添加
      */
-    public function add(){
-        $data=request()->except('_token');
+    public function add(AttrBlog $request){
+        $data=$request->except('_token');
         $data['add_time']=time();
         $res=AttrModel::insert($data);
         if($res){
@@ -55,8 +56,8 @@ class AttrController extends Controller
      * 商品属性确认修改
      * @param $id
      */
-    public function update( $id ){
-        $data=request()->except('_token');
+    public function update( AttrBlog $request, $id ){
+        $data=$request->except('_token');
         $data['add_time']=time();
         $where=[
             ['attr_id','=',$id]

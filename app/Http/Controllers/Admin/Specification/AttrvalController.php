@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Specification;
 use App\Http\Controllers\Controller;
 use App\Models\AttrvalModel;
 use Illuminate\Http\Request;
+use App\Http\Requests\AttrvalBlog;
 
 class AttrvalController extends Controller
 {
@@ -17,8 +18,8 @@ class AttrvalController extends Controller
     /**
      * 商品属性值确认添加
      */
-    public function add(){
-        $data=request()->except('_token');
+    public function add(AttrvalBlog $request){
+        $data=$request->except('_token');
         $data['add_time']=time();
         $res=AttrvalModel::insert($data);
         if($res){
@@ -57,7 +58,7 @@ class AttrvalController extends Controller
      * 商品属性值确认修改
      * @param $id
      */
-    public function update( $id ){
+    public function update(AttrvalBlog $request, $id ){
         $data=request()->except('_token');
         $data['add_time']=time();
         $where=[
