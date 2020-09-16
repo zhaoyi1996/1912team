@@ -344,15 +344,42 @@
 				   		 	</span>
 				        </a>
 				        <ul class="treeview-menu">
-				
 				            <li id="admin-login">
 				                <a href="{{url('/admin/brand')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>品牌管理
 				                </a>
 				            </li>
-							<li id="admin-login">
-				                <a href="{{url('/admin/specification')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>规格管理
+							<li class="treeview">
+				                <a href="#" target="iframe">
+                                    <span>规格管理</span>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <a href="#" target="iframe">
+                                                <span>属性管理</span>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attr/create')}}">属性添加</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attr/index')}}">属性展示</a>
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#" target="iframe">
+                                                <span>属性值管理</span>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attrval/create')}}">属性值添加</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attrval/index')}}">属性值展示</a>
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </li>
+                                    </ul>
 				                </a>
 				            </li>							
 							<li id="admin-login">
