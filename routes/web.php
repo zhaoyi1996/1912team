@@ -139,12 +139,7 @@ Route::get("/admins/register","Admins\RegisterController@index");
 //后台商家登录
 Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
 
-
-
 Route::post("/seller/create","Admins\SellerController@create");
-
-
-
 
 
 Route::post("/goods/create","Admins\GoodsController@create");
