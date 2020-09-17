@@ -46,6 +46,7 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attrval/edit/{id}","Admin\Specification\AttrvalController@edit");
 		Route::post("/template/attrval/update/{id}","Admin\Specification\AttrvalController@update");
 
+		Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
 
 
 	//后台模块分类管理

@@ -71,4 +71,40 @@ class AttrvalController extends Controller
             return redirect('/admin/template/attrval/edit/'.$id);
         }
     }
+
+    /**
+     ** 实现二维数组的笛卡尔积组合
+     ** $arr 要进行笛卡尔积的二维数组
+     ** $str 最终实现的笛卡尔积组合,可不写
+     ** @return array
+     **/
+    function cartesian( $arr = array(array(1,3,4,5),array(3,5,7,9),array(76,6,1,0)),$str = array()){
+        //去除第一个元素
+        $first = array_shift($arr);
+        //判断是否是第一次进行拼接
+        if(count($str) > 1) {
+            foreach ($str as $k => $val) {
+                foreach ($first as $key => $value) {
+                    //最终实现的格式 1,3,76
+                    //可根据具体需求进行变更
+                    $str2[] = $val.','.$value;
+                }
+            }
+        }else{
+            foreach ($first as $key => $value) {
+                //最终实现的格式 1,3,76
+                //可根据具体需求进行变更
+                $str2[] = $value;
+            }
+        }
+        //递归进行拼接
+        if(count($arr) > 0){
+            $str2 = cartesian($arr,$str2);
+        }
+        //返回最终笛卡尔积
+        return $str2;$cartesian_product = cartesian($arr);
+        print_r($cartesian_product);
+
+    }
+
 }
