@@ -68,7 +68,7 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/seller","Admin\SellerController@index");
 
 		//后台首页
-		Route::get("/index","Admin\IndexController@index");
+		Route::get("/","Admin\IndexController@index");
 
 		/***
 		rbac  
