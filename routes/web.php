@@ -88,3 +88,14 @@ Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
 
 Route::post("/seller/create","Admins\SellerController@create");
 
+<<<<<<< HEAD
+=======
+
+
+Route::post("/goods/create","Admins\GoodsController@create");
+
+Route::any("/goods/checkonly","Admins\GoodsController@checkonly");
+
+//无限极分类
+Route::any("/goods/getres","Admins\GoodsController@getres");
+>>>>>>> tao

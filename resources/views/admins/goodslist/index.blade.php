@@ -1,4 +1,4 @@
-@extends("layouts.admin")
+@extends("layouts.shop")
 @section("title",'商品列表')
 @section('content')
 
@@ -19,7 +19,7 @@
         <div class="pull-left">
             <div class="form-group form-inline">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</button>
+                    <button type="button" class="btn btn-default" title="新建" ><i  class="fa fa-file-o"></i> <a href="{{url('/admins/goods')}}">新建</a></button>
                     <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
                     <button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
                     <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
@@ -50,42 +50,45 @@
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
                 <th class="sorting_asc">商品ID</th>
+                <th class="sorting">商品分类</th>
                 <th class="sorting">商品名称</th>
                 <th class="sorting">商品价格</th>
-                <th class="sorting">一级分类</th>
-                <th class="sorting">二级分类</th>
-                <th class="sorting">三级分类</th>
-                <th class="sorting">状态</th>
+                <th class="sorting">商品标题</th>
+                <th class="sorting">商品介绍</th>
+                <th class="sorting">包装列表</th>
+                <th class="sorting">售后服务</th>
+                <th class="sorting">商品号</th>
+                <th class="sorting">商品数量</th>
+                <th class="sorting">商品图片</th>
+                <th class="sorting">商品相册</th>
+                <th class="sorting">是否展示</th>
+                <th class="sorting">是否热卖</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
             <tbody>
+            @foreach($res as $k=>$v)
             <tr>
                 <td><input  type="checkbox"></td>
-                <td>1</td>
-                <td>小米6S手机</td>
-                <td>1090</td>
-                <td>数码</td>
-                <td>手机</td>
-                <td>国产手机</td>
-                <td>
-		                                  	<span>
-		                                  		未申请
-		                                  	</span>
-		                                  	<span >
-		                                  		申请中
-		                                  	</span>
-		                                  	<span>
-		                                  		审核通过
-		                                  	</span>
-		                                  	<span>
-		                                  		已驳回
-		                                  	</span>
-                </td>
+                <td>{{$v->goods_id}}</td>
+                <td>{{$v->cate_id}}</td>
+                <td>{{$v->goods_name}}</td>
+                <td>{{$v->goods_price}}</td>
+                <td>{{$v->goods_title}}</td>
+                <td>{{$v->goods_desc}}</td>
+                <td>{{$v->goods_packing}}</td>
+                <td>{{$v->goods_sales}}</td>
+                <td>{{$v->goods_sn}}</td>
+                <td>{{$v->goods_store}}</td>
+                <td>@if($v->goods_img)<img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" height="50" with="50">@endif</td>
+                <td>{{$v->goods_imgs}}</td>
+                <td>{{$v->goods_show?'√':'×'}}</td>
+                <td>{{$v->goods_hot?'√':'×'}}</td>
                 <td class="text-center">
                     <button type="button" class="btn bg-olive btn-xs">修改</button>
                 </td>
             </tr>
+                @endforeach
             </tbody>
         </table>
         <!--数据列表/-->

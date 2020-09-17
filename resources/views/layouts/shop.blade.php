@@ -333,6 +333,16 @@
 				                    <i class="fa fa-circle-o"></i>商家管理
 				                </a>
 				            </li>
+                            <li id="admin-login">
+                                <a href="{{url('admins/goods')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i> 新增商品
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('admins/goodslist')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i> 商品管理
+                                </a>
+                            </li>
 				        </ul>                        
 				    </li>
 					<li class="treeview">
@@ -393,6 +403,7 @@
 				                    <i class="fa fa-circle-o"></i>广告管理
 				                </a>
 				            </li>
+
 				        </ul>                        
 				    </li>
 
