@@ -5,11 +5,11 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>后台管理系统@yield('title')</title>
+    <title>商家后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <!-- 页面meta /-->
-
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/admin/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/admin/plugins/adminLTE/css/skins/_all-skins.min.css">
@@ -37,7 +37,7 @@
     <!-- 页面头部 -->
     <header class="main-header">
         <!-- Logo -->
-        <a href="index.html" class="logo">
+        <a href="" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>品优购</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -269,10 +269,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">修改密码</a>
+                                    <a href="{{url('admins/pass')}}" class="btn btn-default btn-flat">修改密码</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">注销</a>
+                                    <a href="{{url('admins/shoplogin')}}" class="btn btn-default btn-flat">登录</a>
                                 </div>
                             </li>
                         </ul>
@@ -295,12 +295,12 @@
                 </div>
                 <div class="pull-left info">
                     <p> chendahai</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                    <a href=""><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>
             <ul class="sidebar-menu"  >
                 <li class="header">菜单</li>
-                <li id="admin-index"><a href="{{url("admins/index")}}"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                <li id="admin-index"><a href="{{url('admins/home')}}"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
                 <!-- 菜单 -->
                 <li class="treeview">
@@ -348,6 +348,25 @@
                     </ul>
                 </li>
 
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder"></i>
+                        <span>属性扩展</span>
+				            <span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				   		 	</span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li id="admin-login">
+                            <a href="{{url('admins/goods')}}" target="iframe">
+                                <i class="fa fa-circle-o"></i> 属性
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <!-- 菜单 /-->
 
             </ul>
@@ -359,7 +378,6 @@
     <!-- 内容区域 -->
     <div class="content-wrapper">
         @yield('content')
-
     </div>
     <!-- 内容区域 /-->
 
@@ -374,12 +392,20 @@
 
 </div>
 
-
+<<<<<<< HEAD
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
+=======
+
+
+
+<script src="/shop/plugins/jQuery/jquery-2.2.3.min.js"></script>
+{{--<script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>--}}
+>>>>>>> tao
 <script>
-    $.widget.bridge('uibutton', $.ui.button);
+//    $.widget.bridge('uibutton', $.ui.button);
 </script>
+<<<<<<< HEAD
 <script src="/admin/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/admin/plugins/raphael/raphael-min.js"></script>
 <script src="/admin/plugins/morris/morris.min.js"></script>
@@ -406,7 +432,34 @@
 <script src="/admin/plugins/bootstrap-markdown/js/markdown.js"></script>
 <script src="/admin/plugins/bootstrap-markdown/js/to-markdown.js"></script>
 <script src="/admin/plugins/ckeditor/ckeditor.js"></script>
-
+=======
+<script src="/shop/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/shop/plugins/raphael/raphael-min.js"></script>
+<script src="/shop/plugins/morris/morris.min.js"></script>
+<script src="/shop/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="/shop/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="/shop/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="/shop/plugins/knob/jquery.knob.js"></script>
+<script src="/shop/plugins/daterangepicker/moment.min.js"></script>
+<script src="/shop/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="/shop/plugins/daterangepicker/daterangepicker.zh-CN.js"></script>
+<script src="/shop/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="/shop/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+<script src="/shop/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="/shop/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/shop/plugins/fastclick/fastclick.js"></script>
+<script src="/shop/plugins/iCheck/icheck.min.js"></script>
+<script src="/shop/plugins/adminLTE/js/app.min.js"></script>
+<script src="/shop/plugins/treeTable/jquery.treetable.js"></script>
+<script src="/shop/plugins/select2/select2.full.min.js"></script>
+<script src="/shop/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="/shop/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js"></script>
+<script src="/shop/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="/shop/plugins/bootstrap-markdown/locale/bootstrap-markdown.zh.js"></script>
+<script src="/shop/plugins/bootstrap-markdown/js/markdown.js"></script>
+<script src="/shop/plugins/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="/shop/plugins/ckeditor/ckeditor.js"></script>
+>>>>>>> tao
 </body>
 
 </html>
