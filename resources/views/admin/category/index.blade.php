@@ -1,12 +1,20 @@
 @extends('layouts.shop')
 @section('title',"商品后台广告类型管理")
 @section('content')
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <body class="hold-transition skin-red sidebar-mini"  >
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
-                        <h3 class="box-title">广告分类管理</h3>
+                        <h3 class="box-title">广告轮播图管理</h3>
                     </div>
 
                     <div class="box-body">
@@ -72,47 +80,49 @@
                     <!-- /.box-body -->
 	            <!-- 分页 -->
 				
-				                
+<form enctype="multipart/form-data" action="{{url('/admin/category/create')}}" method="post">           
 <!-- 编辑窗口 -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">广告分类编辑</h3>
+			<h3 id="myModalLabel">广告轮播图添加</h3>
 		</div>
 		<div class="modal-body">							
 			
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
-		      		<td>分类名称</td>
-		      		<td><input  class="form-control" placeholder="分类名称">  </td>
+		      		<td>轮播图地址</td>
+		      		<td><input  class="form-control" placeholder="轮播图地址" name="sl_name"></td>
 		      	</tr>
 		      	<tr>
-		      		<td>分组</td>
-		      		<td><input  class="form-control" placeholder="分组">  </td>
+		      		<td>轮播图权重</td>
+		      		<td><input  class="form-control" placeholder="轮播图权重" name="sl_weight">  </td>
 		      	</tr>	
 			    <tr>
-		      		<td>KEY</td>
-		      		<td><input  class="form-control" placeholder="KEY">  </td>
+		      		<td>图片</td>
+		      		<td><input type="file" class="form-control" name="sl_log">  </td>
 		      	</tr>		      
 		      	<tr>
-		      		<td>是否有效</td>
+		      		<td>是否展示</td>
 		      		<td>
-		      		 <input type="checkbox" class="icheckbox_square-blue" >
+		      		 <input type="radio" value="1" name="is_show" checked>是
+					 <input type="radio" value="2" name="is_show" >否
 		      		</td>
 		      	</tr>  	
 			 </table>				
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			 <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
 	</div>
 </div>
-
+</form>
     
 </body>
 @endsection
+
