@@ -31,12 +31,12 @@ Route::prefix('/admin')->group(function(){
 		//后台商品规格展示
 		Route::get("/specification","Admin\SpecificationController@index");
 
-<<<<<<< HEAD
+
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
 
 		//后台模块分类管理
-=======
+
 		//后台商品属性管理
 		Route::get("/template/attr/index","Admin\Specification\AttrController@index");
 		Route::get("/template/attr/create","Admin\Specification\AttrController@create");
@@ -55,7 +55,7 @@ Route::prefix('/admin')->group(function(){
 
 
 	//后台模块分类管理
->>>>>>> 8e21607bdd176d10cc2c53092d5579fc7157d532
+
 		Route::get("/cate","Admin\CateController@index");
 
 		//后台模块商品管理
@@ -74,9 +74,9 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/seller","Admin\SellerController@index");
 
 		//后台首页
-<<<<<<< HEAD
+
 		Route::get("/index","Admin\IndexController@index");
-=======
+
 		Route::get("/","Admin\IndexController@index");
 
 		/***
@@ -108,7 +108,7 @@ Route::prefix('/admin')->group(function(){
 		//管理员列表
 		Route::get("/rbac/admin/list","Rbac\AdminController@list");
 
->>>>>>> 8e21607bdd176d10cc2c53092d5579fc7157d532
+
 });
 
 
@@ -143,8 +143,8 @@ Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
 
 Route::post("/seller/create","Admins\SellerController@create");
 
-<<<<<<< HEAD
-=======
+
+
 
 
 Route::post("/goods/create","Admins\GoodsController@create");
@@ -153,4 +153,3 @@ Route::any("/goods/checkonly","Admins\GoodsController@checkonly");
 
 //无限极分类
 Route::any("/goods/getres","Admins\GoodsController@getres");
->>>>>>> tao
