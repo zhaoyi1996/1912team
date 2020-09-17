@@ -14,7 +14,8 @@ class BrandController extends Controller
         $where=[
             ["brand_del","=",1]
         ];
-    	$data=Brand::where($where)->get();
+        $pageSize=config('app.pageSize');
+    	$data=Brand::where($where)->paginate($pageSize);
     	//dd($data);
     	return view("admin.brand.index",['data'=>$data]);
     }

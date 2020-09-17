@@ -66,6 +66,7 @@
 								@endforeach
 			                      </tbody>
 			                  </table>
+			                  {{$data->links()}}
 			                  <!--数据列表/-->                        
 							  
 							 
