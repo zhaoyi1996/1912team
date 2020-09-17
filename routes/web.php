@@ -24,6 +24,16 @@ Route::get("/test",function(){
 /***
 后台
 ***/
+
+//后台品牌管理
+Route::any("/admin/brand","Admin\BrandController@index");
+Route::any("/admin/test","Admin\BrandController@test");
+Route::any("/admin/edit/{id}","Admin\BrandController@edit");
+Route::any("/admin/update/{id}","Admin\BrandController@update");
+Route::any("/admin/delete/{id}","Admin\BrandController@delete");
+Route::any("/admin/img","Admin\BrandController@img");
+
+
 Route::prefix('/admin')->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
@@ -36,6 +46,15 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template","Admin\TemplateController@index");
 
 		//后台模块分类管理
+
+		Route::any("/cate","Admin\CateController@index"); //展示视图
+		Route::get("/cate/create","Admin\CateController@create"); //添加视图
+		Route::post("/cate/getTree","Admin\CateController@getTree");//无限极分类
+		Route::any("/cate/store","Admin\CateController@store");	//执行添加
+		Route::any("/cate/cateup","Admin\CateController@cateup"); //即点即改
+		Route::any("/cate/destroy/{id}","Admin\CateController@destroy"); //逻辑删除
+		Route::post("/cate/update/{id}","Admin\CateController@update");//执行修改
+		Route::any("/cate/edit/{id}","Admin\CateController@edit"); //修改视图
 
 		//后台商品属性管理
 		Route::get("/template/attr/index","Admin\Specification\AttrController@index");
@@ -62,10 +81,10 @@ Route::prefix('/admin')->group(function(){
 		//后台模块商品管理
 		Route::get("/goods","Admin\GoodsController@index");
 
-		//后台模块广告类型管理
+		//后台模块轮播图管理
 		Route::get("/category","Admin\CategoryController@index");
 
-		//后台模块广告管理
+		//后台模块公告管理
 		Route::get("/content","Admin\ContentController@index");
 
 		//后台模块商家审核
@@ -125,6 +144,7 @@ Route::get("/admins/seller","Admins\SellerController@index");
 
 //修改密码
 Route::get("/admins/pass","Admins\PassrController@index");
+
 
 //新增商品
 Route::get("/admins/goods","Admins\GoodsController@index");
