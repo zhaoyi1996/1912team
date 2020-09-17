@@ -35,23 +35,23 @@
 			                      <thead>
 			                          <tr>
 										  <th class="sorting_asc">角色ID</th>
-									      <th class="sorting">节点名称</th>	
-									      <th class="sorting">节点层级</th>									     												
-					                      <th class="text-center">状态</th>
-					                       <th class="text-center">创建时间</th>
+									      <th class="sorting">角色名称</th>
+									      <th class="sorting">角色添加时间</th>
 					                       <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr >
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
-			                             <td></td>
+									@foreach($ro as $k=>$v)
+			                          <tr>
+			                             <td>{{$v->ro_id}}</td>
+			                             <td>{{$v->ro_name}}</td>
+			                             <td>{{date('Y-m-d H:i:s',$v->ro_add_time)}}</td>
+			                             <td>
+											 <a href="{{url('/admin/rbac/role/del/'.$v->ro_id)}}" class="btn bg-olive btn-xs" >删除</a>
+											 <a href="{{url('/admin/rbac/role/upd/'.$v->ro_id)}}" class="btn bg-olive btn-xs" >修改</a>
+										 </td>
 			                          </tr>
-									  
+									  @endforeach
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->    

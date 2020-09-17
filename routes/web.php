@@ -31,10 +31,31 @@ Route::prefix('/admin')->group(function(){
 		//后台商品规格展示
 		Route::get("/specification","Admin\SpecificationController@index");
 
+<<<<<<< HEAD
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
 
 		//后台模块分类管理
+=======
+		//后台商品属性管理
+		Route::get("/template/attr/index","Admin\Specification\AttrController@index");
+		Route::get("/template/attr/create","Admin\Specification\AttrController@create");
+		Route::post("/template/attr/add","Admin\Specification\AttrController@add");
+		Route::get("/template/attr/del/{id}","Admin\Specification\AttrController@del");
+		Route::get("/template/attr/edit/{id}","Admin\Specification\AttrController@edit");
+		Route::post("/template/attr/update/{id}","Admin\Specification\AttrController@update");
+		//后台商品属性值管理
+		Route::get("/template/attrval/index","Admin\Specification\AttrvalController@index");
+		Route::get("/template/attrval/create","Admin\Specification\AttrvalController@create");
+		Route::post("/template/attrval/add","Admin\Specification\AttrvalController@add");
+		Route::get("/template/attrval/del/{id}","Admin\Specification\AttrvalController@del");
+		Route::get("/template/attrval/edit/{id}","Admin\Specification\AttrvalController@edit");
+		Route::post("/template/attrval/update/{id}","Admin\Specification\AttrvalController@update");
+
+
+
+	//后台模块分类管理
+>>>>>>> 8e21607bdd176d10cc2c53092d5579fc7157d532
 		Route::get("/cate","Admin\CateController@index");
 
 		//后台模块商品管理
@@ -53,7 +74,41 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/seller","Admin\SellerController@index");
 
 		//后台首页
+<<<<<<< HEAD
 		Route::get("/index","Admin\IndexController@index");
+=======
+		Route::get("/","Admin\IndexController@index");
+
+		/***
+		rbac  
+		***/
+		//权限
+		//权限添加
+		Route::get("/rbac/pow/create","Rbac\PowController@create");
+		Route::post("/rbac/pow/store","Rbac\PowController@store");
+		Route::get("/rbac/pow/del/{id}","Rbac\PowController@del");
+		Route::get("/rbac/pow/upd/{id}","Rbac\PowController@upd");
+		Route::post("/rbac/pow/update/{id}","Rbac\PowController@update");
+		//权限列表
+		Route::get("/rbac/pow/list","Rbac\PowController@list");
+		//角色添加
+		Route::get("/rbac/role/create","Rbac\RoleController@create");
+		Route::post("/rbac/role/store","Rbac\RoleController@store");
+		Route::get("/rbac/role/del/{id}","Rbac\RoleController@del");
+		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
+		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
+		//角色列表
+		Route::get("/rbac/role/list","Rbac\RoleController@list");
+		//管理员添加
+		Route::get("/rbac/admin/create","Rbac\AdminController@create");
+		Route::post("/rbac/admin/store","Rbac\AdminController@store");
+		Route::get("/rbac/admin/del/{id}","Rbac\AdminController@del");
+		Route::get("/rbac/admin/upd/{id}","Rbac\AdminController@upd");
+		Route::post("/rbac/admin/update/{id}","Rbac\AdminController@update");
+		//管理员列表
+		Route::get("/rbac/admin/list","Rbac\AdminController@list");
+
+>>>>>>> 8e21607bdd176d10cc2c53092d5579fc7157d532
 });
 
 
