@@ -26,11 +26,11 @@
             <div class="tab-content">
 
                 <!--表单内容-->
-<<<<<<< HEAD
+
                 <form action="/goods/create" method="post">
-=======
+
                 <form action="/goods/create" method="post" enctype="multipart/form-data">
->>>>>>> tao
+
                 <div class="tab-pane active" id="home">
                     <div class="row data-type">
                         <div class="col-md-2 title">商品分类</div>
@@ -51,12 +51,12 @@
 
                         <div class="col-md-2 title">商品名称</div>
                         <div class="col-md-10 data">
-<<<<<<< HEAD
+
                             <input type="text" class="form-control" name="" placeholder="商品名称" value="">
-=======
+
                             <input type="text" class="form-control" name="goods_name" id="goods_name" placeholder="商品名称" value="">
                             <b style="color:red">{{$errors->first('goods_name')}}</b>
->>>>>>> tao
+
                         </div>
 
                         <div class="col-md-2 title">品牌</div>
