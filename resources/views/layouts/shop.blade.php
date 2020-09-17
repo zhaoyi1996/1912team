@@ -9,19 +9,22 @@
     <title>团队开发后台模板@yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-  
-
+    <link rel="stylesheet" href="/uploadify/uploadify.css">
     <link rel="stylesheet" href="/shop/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/shop/css/style.css">
-    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+
     <script src="/shop/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/shop/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/shop/plugins/bootstrap/js/bootstrap.min.js"></script>
   
     <script src="/shop/plugins/adminLTE/js/app.min.js"></script>
-    
+     <script src="/uploadify/jquery.uploadify.js"></script>
     <script type="text/javascript">   
 		 function SetIFrameHeight(){
 		  	  var iframeid=document.getElementById("iframe"); //iframe id

@@ -27,7 +27,13 @@ Route::get("/test",function(){
 后台
 ***/
 //后台品牌管理
-Route::get("/admin/brand","Admin\BrandController@index");
+Route::any("/admin/brand","Admin\BrandController@index");
+Route::any("/admin/test","Admin\BrandController@test");
+Route::any("/admin/edit/{id}","Admin\BrandController@edit");
+Route::any("/admin/update/{id}","Admin\BrandController@update");
+Route::any("/admin/delete/{id}","Admin\BrandController@delete");
+Route::any("/admin/img","Admin\BrandController@img");
+
 
 //后台商品规格展示
 Route::get("/admin/specification","Admin\SpecificationController@index");
