@@ -25,10 +25,10 @@
         </div>
         <div class="box-tools pull-right">
             <div class="has-feedback">
-                {{--<form>--}}
-                    {{--商品名称<input type="text" name="goods_name" placeholder="请输入商品关键字">--}}
-                    {{--<button>搜索</button>--}}
-                {{--</form>--}}
+                <form>
+                    商品名称<input type="text" name="goods_name" placeholder="请输入商品关键字">
+                    <button>搜索</button>
+                </form>
             </div>
         </div>
         <!--工具栏/-->
@@ -37,9 +37,6 @@
         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
             <thead>
             <tr>
-                <th class="" style="padding-right:0px">
-                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                </th>
                 <th class="sorting_asc">商品ID</th>
                 <th class="sorting">商品分类</th>
                 <th class="sorting">商品名称</th>
@@ -54,13 +51,13 @@
                 {{--<th class="sorting">商品相册</th>--}}
                 <th class="sorting">是否展示</th>
                 <th class="sorting">是否热卖</th>
+                <th class="sorting">添加时间</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
             <tbody>
             @foreach($res as $k=>$v)
             <tr>
-                <td><input  type="checkbox"></td>
                 <td>{{$v->goods_id}}</td>
                 <td>{{$v->cate_id}}</td>
                 <td>{{$v->goods_name}}</td>
@@ -75,12 +72,14 @@
                 {{--<td>{{$v->goods_imgs}}</td>--}}
                 <td>{{$v->goods_show?'√':'×'}}</td>
                 <td>{{$v->goods_hot?'√':'×'}}</td>
+                <td>{{date('Y-m-d H:i:s',$v->goods_add_time)}}</td>
                 <td class="text-center">
                     <a href="javascript:void[0]" id="id" goods_id="{{$v->goods_id}}" class="btn bg-olive btn-xs">删除</a>
                     <a href="{{url('/goods/edit/'.$v->goods_id)}}" class="btn bg-olive btn-xs">编辑</a>
                 </td>
             </tr>
                 @endforeach
+            <tr><td colspan="6">{{$res->appends($query)->links()}}</td></tr>
             </tbody>
         </table>
         <!--数据列表/-->

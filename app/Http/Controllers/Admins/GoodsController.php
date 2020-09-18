@@ -111,21 +111,24 @@ static $info=[];
 //    ajax接收值执行添加
     public function img(Request $request){
         $data=$request->all();
-//        dd($data);
-//        dd($data);die;
+//        添加时间
+        $data['goods_add_time']=time();
+
     // 非空，字节长度
-    $request->validate([
-            'goods_name' => 'required|max:60',
-            'goods_price'=>'required',
-            'goods_title'=>'required'
-        ],[
-            'goods_name.max' => "字节长度不得超过60位！",
-            'goods_name.required' => "商品名称不能为空！",
-            'goods_price.required' => "商品价格不能为空！",
-            'goods_title.required' => "商品标题不能为空！"
-        ]);
-//    $res=GoodsModel::all();
+//    $request->validate([
+//            'goods_name' => 'required|max:60',
+//            'goods_name'=>'unique',
+//            'goods_price'=>'required',
+//            'goods_title'=>'required'
+//        ],[
+//            'goods_name.max' => "字节长度不得超过60位！",
+//            'goods_name.required' => "商品名称不能为空！",
+//            'goods_name.unique' => "商品名称也存在！",
+//            'goods_price.required' => "商品价格不能为空！",
+//            'goods_title.required' => "商品标题不能为空！"
+//        ]);
     $goods=GoodsModel::insert($data);
+
     if($goods){
         return (['code'=>0000,'msg'=>'添加成功']);
     }else{

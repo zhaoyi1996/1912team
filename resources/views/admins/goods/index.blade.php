@@ -120,6 +120,7 @@
                             <textarea name="goods_desc" style="width:800px;height:400px;" ></textarea>
                         </div>
 
+
                         <div class="col-md-2 title rowHeight2x">包装列表</div>
                         <div class="col-md-10 data rowHeight2x">
 
@@ -166,7 +167,7 @@
                 </div>
                     {{--<button   id="click_up" >保存</button>--}}
     <div class="btn-toolbar list-toolbar">
-        <button   id="button" >保存</button>
+        <button  id="button" >保存</button>
     </div>
 
 
@@ -208,6 +209,24 @@
         var goods_img=   $("input[name='img_path']").val();
         var is_show= $("input[name='is_show']").val();
         var is_hot= $("input[name='is_hot']").val();
+        if(goods_name==""){
+            alert("商品名称不能为空");die;
+        }
+        if(goods_title==""){
+            alert("商品标题不能为空");die;
+        }
+        if(goods_price==""){
+            alert("商品价格不能为空");die;
+        }
+        if(goods_desc==""){
+            alert("商品介绍不能为空");die;
+        }
+        if(goods_store==""){
+            alert("商品数量不能为空");die;
+        }
+        if(goods_sn==""){
+            alert("商品号不能为空");die;
+        }
         $.ajax({
             url:"/goods/img",
             data:{cate_id:cate_id,goods_name:goods_name,brand_id:brand_id,goods_title:goods_title,goods_price:goods_price,goods_desc:goods_desc,goods_packing:goods_packing,
@@ -222,5 +241,6 @@
             }
         })
     })
+
 </script>
 </html>
