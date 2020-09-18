@@ -53,6 +53,7 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attr/del/{id}","Admin\Specification\AttrController@del");
 		Route::get("/template/attr/edit/{id}","Admin\Specification\AttrController@edit");
 		Route::post("/template/attr/update/{id}","Admin\Specification\AttrController@update");
+
 		//后台商品属性值管理
 		Route::get("/template/attrval/index","Admin\Specification\AttrvalController@index");
 		Route::get("/template/attrval/create","Admin\Specification\AttrvalController@create");
@@ -60,7 +61,6 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attrval/del/{id}","Admin\Specification\AttrvalController@del");
 		Route::get("/template/attrval/edit/{id}","Admin\Specification\AttrvalController@edit");
 		Route::post("/template/attrval/update/{id}","Admin\Specification\AttrvalController@update");
-
 		Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
 
 
@@ -72,10 +72,18 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/goods","Admin\GoodsController@index");
 
 		//后台模块轮播图管理
-		Route::get("/category","Admin\CategoryController@index");
+		Route::get("/category","Admin\CategoryController@index"); //轮播图展示
+		Route::any("/category/create","Admin\CategoryController@create"); //轮播图添加展示
+		Route::any("/category/story","Admin\CategoryController@story"); //执行添加
+		Route::any("/category/getsun","Admin\CategoryController@getsun"); //接收图片并返回视图
+		Route::any("/category/destroy/{id}","Admin\CategoryController@destroy");	//逻辑删除
+		Route::any("/category/edit/{id}","Admin\CategoryController@edit");	//执行修改
+		Route::any("/category/update","Admin\CategoryController@update");	//执行修改
 
 		//后台模块公告管理
-		Route::get("/content","Admin\ContentController@index");
+		Route::get("/content","Admin\ContentController@index"); //公告展示
+		Route::any("/content/create","Admin\ContentController@create"); //公告添加展示
+		Route::any("/content/story","Admin\ContentController@story"); //公告执行添加
 
 		//后台模块商家审核
 		Route::get("/seller1","Admin\Seller1Controller@index");
