@@ -12,19 +12,17 @@
          </div>
          <div class="modal-body">
              <table class="table table-bordered table-striped"  width="800px">
+                
                  <tr>
-                     <td>角色名称</td>
-                         <td><input  class="form-control" id="role_name" name="role_name" placeholder="角色名称" >
-                     </td>
-                 </tr>
-                 <!-- <tr>
                      <td>角色权限</td>
                      <td>
                          @foreach($pow as $k=>$v)
                          <input type="checkbox" value="{{$v->pow_id}}" name="role_names"> {{$v->pow_name}}
                          @endforeach
                      </td>
-                 </tr> -->
+            
+                 </tr>
+                 <input type="hidden" value="{{$id}}" id="ro_id">
              </table>
          </div>
          <div class="modal-footer">
@@ -34,32 +32,30 @@
          </div>
      </div>
 
- <script>
-     $("#button").click(function(){
-         var role_name = $("#role_name").val();
-         // var checkboxarr=[];
-         // $(".modal-body").find("input[name='role_names']:checked").each(function(){
-               // var id = $(this).val();
-               // checkboxarr.push(id);
-         // });
-        
-         $.ajax({
-             url:'/admin/rbac/role/store',
-             type:'post',
-             dataType:'json',
-             data:{role_name:role_name},
-             success:function(res){
-                 if(res.code==0){
+<script>
+    $("#button").click(function(){
+        var checkboxarr=[];
+        var ro_id =  $("#ro_id").val();
+
+        $(".modal-body").find("input[name='role_names']:checked").each(function(){
+            var id = $(this).val();
+            checkboxarr.push(id);
+        });
+        // alert(checkboxarr);
+        $.ajax({
+            url:"/admin/rbac/role/fus2",
+            type:'post',
+            dataType:'json',
+            data:{checkboxarr:checkboxarr,ro_id:ro_id},
+            success:function(res){
+                if(res.code==1){
                     alert(res.msg)
-                     window.location.href='http://www.1912team.com/admin/rbac/role/list';
-                 }
-                 if(res.code==1){
-                     alert(res.msg)
-                 }
-                 // alert(res);    
-             }
-         })
-     })
- </script>
+                    window.location.href="http://www.1912team.com/admin/rbac/role/list";
+                }
+                
+            }
+        })
+})
+</script>
 	<!-- 代码结尾 -->
  @endsection
