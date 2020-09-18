@@ -34,7 +34,10 @@ class LoginController extends Controller
     		echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
     	}
 
+		session(['userInfo'=>$user->user_id]);
+
     	echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
 
     }
+    
 }
