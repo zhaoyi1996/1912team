@@ -203,5 +203,10 @@ Route::prefix('/index')->group(function(){
 	Route::get("/login","Index\LoginController@login");
 	//前台执行登录
 	Route::post("/logindo","Index\LoginController@logindo");
+	// 前台注册+执行注册
+	Route::get("/reg","Index\LoginController@reg");
+	Route::post("/regdo","Index\LoginController@regdo");
+	//获取邮箱验证码
+	Route::post("/sendEmail","Index\LoginController@sendEmail");
 });
 
