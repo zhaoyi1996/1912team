@@ -140,12 +140,26 @@ Route::get("/admins/register","Admins\RegisterController@index");
 //后台商家登录
 Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
 
+//修改资料
 Route::post("/seller/create","Admins\SellerController@create");
 
-
-Route::post("/goods/create","Admins\GoodsController@create");
-
-Route::any("/goods/checkonly","Admins\GoodsController@checkonly");
+//商品添加执行
+//Route::any("/goods/create","Admins\GoodsController@create");
 
 //无限极分类
 Route::any("/goods/getres","Admins\GoodsController@getres");
+
+//ajax删除
+Route::get('/goods/delete/{id}','Admins\GoodsController@delete');
+//上传图片
+Route::any('/goods/uploads','Admins\GoodsController@uploads');
+
+//商品修改视图
+Route::get('/goods/edit/{id}','Admins\GoodsController@edit');
+
+//商品修改
+Route::post('/goods/update/{id}','Admins\GoodsController@update');
+
+//ajax添加
+Route::post('/goods/img','Admins\GoodsController@img');
+
