@@ -50,11 +50,21 @@ class RoleController extends Controller
     // rbac角色展示
     public function list(){
 
+
+        //接受搜索的值
+        $ro_name = request()->ro_name;
+
+        // 拼接搜索where条件
+        $where = [];
+        if($ro_name){
+            $where[] = ["ro_name","like","%$ro_name%"];
+        }
+
         // $ro = ShopRoleModel::leftjoin('shop_rolepower','shop_role.ro_id','=','shop_rolepower.ro_id')
         //             ->leftjoin('shop_power','shop_rolepower.pow_id','=','shop_power.pow_id')
         //             ->get();
                    // dd($ro);
-        $ro = ShopRoleModel::orderBy("ro_add_time","desc")->get();
+        $ro = ShopRoleModel::where($where)->orderBy("ro_add_time","desc")->paginate(5);
         // $ro=ShopRoleModel::get();
         // $rp=[];
         // foreach ($ro as $k => $v) {
@@ -100,7 +110,7 @@ class RoleController extends Controller
         // $array = (object)$array;
         // dd($array);
         
-    	return view("rbac.role.list",['ro'=>$ro,'ros'=>$ros]);
+    	return view("rbac.role.list",['ro'=>$ro,'ros'=>$ros,"ro_name"=>$ro_name]);
 
     }
     public function upd($id){

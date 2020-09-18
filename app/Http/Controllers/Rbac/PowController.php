@@ -33,9 +33,18 @@ class PowController extends Controller
     }
     // 权限展示
     public function list(){
+        // 接受搜索的值
+        $pow_name = request()->pow_name;
+        // 拼接搜索where条件
+        $where = [];
+        if($pow_name){
+            $where[] = ["pow_name","like","%$pow_name%"];
+        }
+
+
         //查询数据根据添加时间倒序展示
-        $pow = ShopPowerModel::orderBy('pow_add_time','desc')->paginate(5);
-    	return view("rbac.pow.list",['pow'=>$pow]);
+        $pow = ShopPowerModel::where($where)->orderBy('pow_add_time','desc')->paginate(5);
+    	return view("rbac.pow.list",['pow'=>$pow,'pow_name'=>$pow_name]);
     }
     public function del($id){
         $res = ShopPowerModel::where('pow_id',$id)->delete();

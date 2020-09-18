@@ -25,10 +25,14 @@
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
-                                <!-- <div class="has-feedback">
-							                    管理员名称：<input  >									
-									<button class="btn btn-default" >查询</button>                                    
-                                </div> -->
+                                <div class="has-feedback">
+                                	<form action="">
+                                		 管理员名称：<input  type="text" name="admin_name" value="{{$admin_name}}">									
+									<!-- <button >查询</button>    -->
+									<input class="btn btn-default"  type="submit" value="查询"> 
+                                	</form>
+							                                                    
+                                </div>
                             </div>
                             <!--工具栏/-->
 			                  <!--数据列表-->
@@ -59,6 +63,7 @@
 										 @endforeach
 			                      </tbody>
 			                  </table>
+			                  <td colspan="4" align="center">{{$admin->appends(['admin_name'=>$admin_name])->links()}}</td>
 			                  <!--数据列表/-->    
                         </div>
                         <!-- 数据表格 /--> 
