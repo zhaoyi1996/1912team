@@ -51,6 +51,7 @@
                 {{--<th class="sorting">商品相册</th>--}}
                 <th class="sorting">是否展示</th>
                 <th class="sorting">是否热卖</th>
+                <th class="sorting">添加时间</th>
                 <th class="text-center">操作</th>
             </tr>
             </thead>
@@ -71,6 +72,7 @@
                 {{--<td>{{$v->goods_imgs}}</td>--}}
                 <td>{{$v->goods_show?'√':'×'}}</td>
                 <td>{{$v->goods_hot?'√':'×'}}</td>
+                <td>{{date('Y-m-d H:i:s',$v->goods_add_time)}}</td>
                 <td class="text-center">
                     <a href="javascript:void[0]" id="id" goods_id="{{$v->goods_id}}" class="btn bg-olive btn-xs">删除</a>
                     <a href="{{url('/goods/edit/'.$v->goods_id)}}" class="btn bg-olive btn-xs">编辑</a>

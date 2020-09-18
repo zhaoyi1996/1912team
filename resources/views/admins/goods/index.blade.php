@@ -120,6 +120,7 @@
                             <textarea name="goods_desc" style="width:800px;height:400px;" ></textarea>
                         </div>
 
+
                         <div class="col-md-2 title rowHeight2x">包装列表</div>
                         <div class="col-md-10 data rowHeight2x">
 
