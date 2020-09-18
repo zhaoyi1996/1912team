@@ -182,3 +182,12 @@ Route::any("/goods/checkonly","Admins\GoodsController@checkonly");
 
 //无限极分类
 Route::any("/goods/getres","Admins\GoodsController@getres");
+
+
+Route::prefix('/index')->group(function(){
+	//前台登录
+	Route::get("/login","Index\LoginController@login");
+	//前台执行登录
+	Route::post("/logindo","Index\LoginController@logindo");
+});
+
