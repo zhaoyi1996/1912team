@@ -9,18 +9,34 @@
     <title>团队开发后台模板@yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-  
-
+    <link rel="stylesheet" href="/uploadify/uploadify.css">
     <link rel="stylesheet" href="/shop/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/shop/css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+
     <script src="/shop/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/shop/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/shop/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/shop/plugins/adminLTE/js/app.min.js"></script>
+
+     <script src="/uploadify/jquery.uploadify.js"></script>
+    <script type="text/javascript">   
+		 function SetIFrameHeight(){
+		  	  var iframeid=document.getElementById("iframe"); //iframe id
+		  	  if (document.getElementById){
+		  		iframeid.height =document.documentElement.clientHeight;			   	   
+			  }
+		 }
+    
+	</script>    
 
     <script type="text/javascript">
         function SetIFrameHeight(){
@@ -31,6 +47,7 @@
         }
 
     </script>
+
 
  
 </head>
@@ -333,6 +350,16 @@
 				                    <i class="fa fa-circle-o"></i>商家管理
 				                </a>
 				            </li>
+                            <li id="admin-login">
+                                <a href="{{url('admins/goods')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i> 新增商品
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('admins/goodslist')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i> 商品管理
+                                </a>
+                            </li>
 				        </ul>                        
 				    </li>
 					<li class="treeview">
@@ -344,15 +371,42 @@
 				   		 	</span>
 				        </a>
 				        <ul class="treeview-menu">
-				
 				            <li id="admin-login">
 				                <a href="{{url('/admin/brand')}}" target="iframe">
 				                    <i class="fa fa-circle-o"></i>品牌管理
 				                </a>
 				            </li>
-							<li id="admin-login">
-				                <a href="{{url('/admin/specification')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>规格管理
+							<li class="treeview">
+				                <a href="#" target="iframe">
+                                    <span>规格管理</span>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <a href="#" target="iframe">
+                                                <span>属性管理</span>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attr/create')}}">属性添加</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attr/index')}}">属性展示</a>
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#" target="iframe">
+                                                <span>属性值管理</span>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attrval/create')}}">属性值添加</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{url('/admin/template/attrval/index')}}">属性值展示</a>
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </li>
+                                    </ul>
 				                </a>
 				            </li>							
 							<li id="admin-login">
@@ -385,14 +439,15 @@
 				
 				            <li id="admin-login">
 				                <a href="{{url('/admin/category')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>广告类型管理
+				                    <i class="fa fa-circle-o"></i>广告轮播图管理
 				                </a>
 				            </li>
 							<li id="admin-login">
 				                <a href="{{url('/admin/content')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>广告管理
+				                    <i class="fa fa-circle-o"></i>公告管理
 				                </a>
 				            </li>
+
 				        </ul>                        
 				    </li>
 

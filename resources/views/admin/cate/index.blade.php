@@ -10,19 +10,7 @@
                        	</h3>
                     </div>
 
-                    <div class="box-body">
-                  			 <ol class="breadcrumb">	                        	
-                        		<li>
-		                        	<a href="#" >顶级分类列表</a> 
-		                        </li>
-		                        <li>
-		                       		<a href="#" >珠宝</a>
-		                        </li>
-		                        <li>
-		                        	<a href="#" >银饰</a>
-		                        </li>
-	                        </ol>
-
+           
                         <!-- 数据表格 -->
                         <div class="table-box">
 							
@@ -30,9 +18,8 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-check"></i> 刷新</button>
+									<a href="/admin/cate/create/"> <button type="button" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i>新建</button></a>
+									<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新<button>
                                        
                                     </div>
                                 </div>
@@ -49,47 +36,30 @@
 										  <th class="sorting_asc">分类ID</th>
 									      <th class="sorting">分类名称</th>									   
 									      <th class="sorting">类型模板ID</th>
-									     						
+										  <th class="sorting" class="cateValue" field="cate_show">是否显示</th>	
+										   <th class="sorting" class="cateValue" field="cate_nav_show">是否导航显示</th>	
+										   <th class="sorting">添加时间</th>	 
+										   <!-- <th class="sorting">修改时间</th>	 						 -->
 					                      <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr >
-			                              <td><input  type="checkbox" ></td>			                              
-				                          <td>982</td>
-									      <td>吊坠/项链</td>									    
-									      <td>
-									      	11    
-									      </td>									      
-		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" >查询下级</button> 		                                     
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
-		                                  </td>
-			                          </tr>
-									  <tr >
+								  @foreach($res as $v)
+									  <tr cate_id="{{$v->cate_id}}">
 			                              <td><input  type="checkbox"> </td>			                              
-				                          <td>983</td>
-									      <td>手镯/手链/脚链</td>									    
-									      <td>
-									      	11    
-									      </td>									      
+				                          <td>{{$v->cate_id}}</td>
+									      <td>{{str_repeat('|--',$v->level)}}{{$v->cate_name}}</td>									    
+										  <td>{{$v->pid}}</td>
+										  <td field="cate_show" class="cateValue">@if($v->cate_show==1)√@else × @endif</td>	
+										  <td field="cate_nav_show" class="cateValue">{{$v->cate_nav_show==1?'√':'×'}}</td>	
+										  <td>{{date("Y-m-d H:i:s",$v->add_time)}}</td>	
+										  <!-- <td>{{date("Y-m-d H:i:s",$v->upd_time)}}</td>									       -->
 		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" >查询下级</button> 		                                     
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
+		                                      <a href="{{url('/admin/cate/destroy/'.$v->cate_id)}}"><button type="button" class="btn bg-olive btn-xs" >删除</button></a> 	                                     
+		                                 	  <a href="{{url('/admin/cate/edit/'.$v->cate_id)}}"> <button type="button" class="btn bg-olive btn-xs"   >修改</button>   </a>                                        
 		                                  </td>
 			                          </tr>
-									  <tr >
-			                              <td><input  type="checkbox" ></td>			                              
-				                          <td>984</td>
-									      <td>戒指/耳饰</td>									    
-									      <td>
-									      	11    
-									      </td>									      
-		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" >查询下级</button> 		                                     
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
-		                                  </td>
-			                          </tr>
+									 @endforeach
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->                      
@@ -97,13 +67,9 @@
                         </div>
                         <!-- 数据表格 /-->
                         
-                        
-                        
-                        
                      </div>
                     <!-- /.box-body -->
               
-                                
 <!-- 编辑窗口 -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
@@ -143,3 +109,69 @@
 </div>
 </body>
 @endsection
+
+<script src="/jquery.js"></script>
+<script>
+	// 页面加载事件
+	$(document).ready(function(){
+		//对错号的即点即改
+		// 绑定点击事件
+		$(".cateValue").click(function(){	
+			// alert("123 ");
+			// false;		
+			//获取这个对象
+			var _this=$(this);
+			// console.log(_this);
+			// 获取分类id  cate_id  自定义属性的值
+			var cate_id=_this.parent().attr("cate_id");
+			// console.log(cate_id);
+			//获取text 纯文本 √ ×是纯文本 所以我们使用 对象.text()来获取√ ×
+			var sign=_this.text();
+			// console.log(sign);
+			//获取要修改的字段
+			var field=_this.attr("field");
+			// console.log(field);
+			//获取值 如果获取到的是对号   将值赋值为 2 2表示的是×
+			if(sign=="√"){
+				var _value="2";
+				// console.log(_value);
+			}else{
+				var _value="1";
+				// console.log(_value);
+			}
+			// console.log(sign);
+			// alert(_value);
+
+			// // 使用ajax将cate_id将 字段 filed   传给后台php
+			$.ajax({
+				url:"/admin/cate/cateup",
+				type:"post",
+				data:{cate_id:cate_id,field:field,_value:_value},
+				async:true,
+				dataType:'json',
+				//回调函数
+				success:function(res){
+					// console.log(res);//后台响应过来的数据
+					if(res.code=='0000'){
+						if(_value==2){
+							console.log(111);
+							_this.text("×");
+						}else{
+							console.log(123);
+							_this.text("√");
+						}
+					}
+				}
+
+			})	
+
+
+
+		})
+
+
+	})
+
+
+
+</script>
