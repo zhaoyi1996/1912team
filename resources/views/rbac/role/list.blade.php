@@ -24,10 +24,13 @@
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
-                                <!-- <div class="has-feedback">
-							                    角色名称：<input  >									
-									<button class="btn btn-default" >查询</button>                                    
-                                </div> -->
+                                <div class="has-feedback">
+							        	<form action="">
+							        		<input type="text" name="ro_name" value="{{$ro_name}}">
+							        		<input type="submit" value="查询">
+							        	</form>
+							                                              
+                                </div>
                             </div>
                             <!--工具栏/-->
 			                  <!--数据列表-->
@@ -55,6 +58,7 @@
 									  @endforeach
 			                      </tbody>
 			                  </table>
+			                  <td colepan="4" alian="center">{{$ro->appends(['ro_name'=>$ro_name])->links()}}</td>
 			                  <!--数据列表/-->    
                         </div>
                         <!-- 数据表格 /--> 
