@@ -24,10 +24,10 @@
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
-                                <div class="has-feedback">
+                               <!--  <div class="has-feedback">
 							                    权限名称：<input  >
 									<button class="btn btn-default" >查询</button>
-                                </div>
+                                </div> -->
                             </div>
                             <!--工具栏/-->
 			                  <!--数据列表-->
