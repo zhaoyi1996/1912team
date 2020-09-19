@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\GoodsModel;
+use Illuminate\Support\Facades\Redis;
 class GoodsListController extends Controller
 {
     public function index(){
@@ -16,6 +17,7 @@ class GoodsListController extends Controller
             $where[]=['goods_name','like',"%$goods_name%"];
         }
         $pageSize=config('app.pageSize');
+
         $res=GoodsModel::where($where)->orderby('goods_id','desc')->paginate($pageSize);
 
         // ajax分页
