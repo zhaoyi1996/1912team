@@ -92,8 +92,7 @@ input{
  
  
     <div id="login">
-        <h1>Login</h1><b><a href="/index/reg" class="but" style="width:30px;hight:40px">注册</a></b>
-
+        <h1>Reg</h1><b><a class="but" style="width:30px;hight:40px" href="/index/login">登录</a></b>
         <!-- <form method="post" action="{{url('/index/logindo')}}"> -->
 
             <table>
@@ -103,8 +102,18 @@ input{
                 <tr>
                     <td><input type="password" required="required" placeholder="密码" id="user_pwd" name="user_pwd"></input></td>
                 </tr>
+               
                 <tr>
-                    <td><button id="button" class="but" type="submit">登录</button>
+                    <td><input type="text" required="required" id="user_email" placeholder="邮箱">
+                           <button class="but" id="sendcode">获取验证码</button>
+                    </td>
+                     
+                </tr>
+                <tr>
+                    <td><input type="text" required="required" id="user_code" placeholder="邮箱验证码"></td>
+                </tr>
+                <tr>
+                    <td><button id="button" class="but" type="submit">注册</button>
                 
                     </td>
                 </tr>
@@ -123,22 +132,72 @@ input{
 <!-- sakura shader -->
 <script src="/jquery.js"></script>
 <script>
+    //
+    $("#sendcode").click(function(){
+        var user_email = $("#user_email").val();
+        var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
+        if(user_email==""){
+            alert("邮箱不可为空");
+            return false;
+        }else if(!reg.test(user_email)){
+            alert("邮箱格式不正确");
+            return false; 
+        }
+        // 定时器
+            $("#sendcode").text("60s");
+            // 清除定时器
+            $("#sendcode").css("pointer-events","none");
+            // 秒数-1
+            set=setInterval(goTime,1000);
+
+        //将获取到的邮箱传递给后台
+        $.ajax({
+            type:'post',
+            url:'/index/sendEmail',
+            dataType:'json',
+            data:{user_email:user_email},
+            success:function(res){
+                if(res.code==1){
+                    alert(res.msg)
+                }
+                if(res.code==0){
+                    alert(res.msg)
+                }
+            }
+        })
+    })
+
+    // 定时器
+        function goTime(){
+            // 获取秒数的值
+            var sec= parseInt($("#sendcode").text());
+            // console.log(typeof sec);
+            if(sec<=0){
+                $("#sendcode").text("获取");
+                clearInterval(set);//清除定时器
+                // 按钮生效
+                $("#sendcode").css("pointer-events","auto");
+            }else{
+            // 秒数减一
+            sec=sec-1;
+            // 吧减后的秒数放回去
+            $("#sendcode").text(sec+"s");
+            // 按钮失效
+            $("#sendcode").css("pointer-events","none");
+            }
+            
+        }
      $("#button").click(function(){
             var user_name = $("#user_name").val();
             var user_pwd = $("#user_pwd").val();
+            var user_email = $("#user_email").val();
+            var user_code = $("#user_code").val();
             $.ajax({
-                url:"/index/logindo",
+                url:'/index/regdo',
                 type:'post',
-                dataType:'json',
-                data:{user_name:user_name,user_pwd:user_pwd},
+                data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd,user_code:user_code},
                 success:function(res){
-                    if(res.code==1){
-                        alert(res.msg)
-                    }
-                    if(res.code==0){
-                        alert(res.msg)
-                        window.location.href="http://www.1912team.com";
-                    }
+                    console.log(res)
                 }
             })
     })
