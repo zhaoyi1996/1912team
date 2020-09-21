@@ -380,6 +380,9 @@
 				                <a href="#" target="iframe">
                                     <span>规格管理</span>
                                     <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{url('/admin/template/repertory/create')}}">规格添加</a>
+                                        </li>
                                         <li class="treeview">
                                             <a href="#" target="iframe">
                                                 <span>属性管理</span>
