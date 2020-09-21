@@ -92,7 +92,7 @@ input{
  
  
     <div id="login">
-        <h1>Login</h1><b><a href="/index/reg" class="but" style="width:30px;hight:40px">注册</a></b>
+        <h1>Login</h1><b><!-- <a href="/index/reg" class="but" style="width:30px;hight:40px">注册</a></b> -->
 
         <!-- <form method="post" action="{{url('/index/logindo')}}"> -->
 
@@ -127,18 +127,20 @@ input{
             var user_name = $("#user_name").val();
             var user_pwd = $("#user_pwd").val();
             $.ajax({
-                url:"/index/logindo",
+                url:"/admin/logindo",
                 type:'post',
                 dataType:'json',
                 data:{user_name:user_name,user_pwd:user_pwd},
                 success:function(res){
-                    if(res.code==1){
-                        alert(res.msg)
-                    }
-                    if(res.code==0){
-                        alert(res.msg)
-                        window.location.href="http://www.1912team.com";
-                    }
+                     if(res.code==1){
+                         alert(res.msg)
+                     }
+                     if(res.code==0){
+                         alert(res.msg)
+                         window.location.href="http://www.1912team.com/admin/brand";
+                     }
+
+
                 }
             })
     })
