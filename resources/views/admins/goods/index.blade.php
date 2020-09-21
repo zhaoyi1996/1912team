@@ -36,12 +36,6 @@
                 <li class="active">
                     <a href="#home" data-toggle="tab">商品基本信息</a>
                 </li>
-                <li >
-                    <a href="#customAttribute" data-toggle="tab">扩展属性</a>
-                </li>
-                <li >
-                    <a href="#spec" data-toggle="tab" >规格</a>
-                </li>
             </ul>
             <!--tab头/-->
 

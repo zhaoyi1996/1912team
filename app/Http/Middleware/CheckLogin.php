@@ -16,10 +16,10 @@ class CheckLogin
     public function handle($request, Closure $next)
     {
         //取出session值
-        $user = session("userInfo");
-        if(!$user){
-            return redirect("/admin/login");
-        }
+//        $user = session("userInfo");
+//        if(!$user){
+//            return redirect("/admin/login");
+//        }
         return $next($request);
     }
 }
