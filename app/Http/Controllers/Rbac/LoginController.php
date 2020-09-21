@@ -44,4 +44,13 @@ class LoginController extends Controller
 
     	echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
     }
+//	退出登录
+	public function loginout(){
+		$user = session(["userInfo"=>null]);
+		if($user){
+			return redirect("/admin/login");
+		}else{
+			return redirect("/admin/login");
+		}
+	}
 }

@@ -36,7 +36,8 @@ Route::any("/admin/img","Admin\BrandController@img");
 //登录后台
 Route::get("/admin/login","Rbac\LoginController@login");
 Route::post("/admin/logindo","Rbac\LoginController@logindo");
-
+//退出登录
+Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
 Route::prefix('/admin')->middleware("islogin")->group(function(){
