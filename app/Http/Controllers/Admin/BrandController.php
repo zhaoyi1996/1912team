@@ -21,7 +21,7 @@ class BrandController extends Controller
     }
     public function test(){
     	$data=request()->all();
-    	//dd($data);	
+    	dd($data);
     	$res=new Brand;
 
           // 文件上传判断
@@ -96,7 +96,6 @@ class BrandController extends Controller
      */
     public function img( Request $request){
         $fileinfo=$_FILES['Filedata'];
-    // dd($fileinfo);
     $tmpname=$fileinfo['tmp_name'];
     $ext=explode(".", $fileinfo['name'])[1];
     // dd($ext);

@@ -50,11 +50,21 @@ class RoleController extends Controller
     // rbac角色展示
     public function list(){
 
+
+        //接受搜索的值
+        $ro_name = request()->ro_name;
+
+        // 拼接搜索where条件
+        $where = [];
+        if($ro_name){
+            $where[] = ["ro_name","like","%$ro_name%"];
+        }
+
         // $ro = ShopRoleModel::leftjoin('shop_rolepower','shop_role.ro_id','=','shop_rolepower.ro_id')
         //             ->leftjoin('shop_power','shop_rolepower.pow_id','=','shop_power.pow_id')
         //             ->get();
                    // dd($ro);
-        $ro = ShopRoleModel::orderBy("ro_add_time","desc")->get();
+        $ro = ShopRoleModel::where($where)->orderBy("ro_add_time","desc")->paginate(5);
         // $ro=ShopRoleModel::get();
         // $rp=[];
         // foreach ($ro as $k => $v) {
@@ -100,7 +110,7 @@ class RoleController extends Controller
         // $array = (object)$array;
         // dd($array);
         
-    	return view("rbac.role.list",['ro'=>$ro,'ros'=>$ros]);
+    	return view("rbac.role.list",['ro'=>$ro,'ros'=>$ros,"ro_name"=>$ro_name]);
 
     }
     public function upd($id){
@@ -126,19 +136,19 @@ class RoleController extends Controller
         if($res!==false){
             return redirect("/admin/rbac/role/list");
         }
-
     }
     public function fus($id){
-        
         $pow = ShopPowerModel::get();
+
+//        $rolepow = ShopRolepowerModel::where("ro_id",$id)->first();
+//dd($rolepow['data']);
+//        $rolepowid = $rolepow->pow_id;
 
         return view("rbac.role.fus",['pow'=>$pow,'id'=>$id]);
     }
     public function fus2(){
         $check = request()->post("checkboxarr");
         $ro_id = request()->post("ro_id");
-
-
         foreach($check as $k=>$v){
             $rolepower = new ShopRolepowerModel();
             $rolepower->pow_id=$v;
@@ -150,5 +160,13 @@ class RoleController extends Controller
             echo json_encode(['code'=>1,'msg'=>'ok']);
         }
    
+    }
+    public function fusdel($id){
+        $res = ShopRolepowerModel::where('ropo_id',$id)->delete();
+        if($res){
+            return redirect("/admin/rbac/role/list");
+        }else{
+            return redirect("/admin/rbac/role/list");
+        }
     }
 }

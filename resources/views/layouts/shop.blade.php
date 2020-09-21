@@ -298,7 +298,7 @@
                                         <a href="#" class="btn btn-default btn-flat">修改密码</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">注销</a>
+                                        <a href="{{url('/admin/loginout')}}" class="btn btn-default btn-flat">注销</a>
                                     </div>
                                 </li>
                             </ul>
@@ -384,6 +384,9 @@
 				                <a href="#" target="iframe">
                                     <span>规格管理</span>
                                     <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{url('/admin/template/repertory/create')}}">规格添加</a>
+                                        </li>
                                         <li class="treeview">
                                             <a href="#" target="iframe">
                                                 <span>属性管理</span>

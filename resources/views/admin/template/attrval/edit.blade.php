@@ -3,12 +3,12 @@
 @section("content")
     <center><h3>属性值添加</h3></center>
     <a href="/admin/template/attrval/index"><button type="button" class="btn btn-default" title="展示" data-toggle="modal" data-target="#editModal" >去展示</button></a>
-    <form class="form-horizontal" method="post" action="{{url('/admin/template/attr/update/'.$attr_info->attr_id)}}"   role="form">
+    <form class="form-horizontal" method="post" action="{{url('/admin/template/attrval/update/'.$attrval_info->attrval_id)}}"   role="form">
         @csrf
         <div class="form-group">
             <label for="firstname" class="col-sm-2 control-label">属性值名称</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="attrval_name" value="{{$attr_info->attrval_name}}" id="firstname"
+                <input type="text" class="form-control" name="attrval_name" value="{{$attrval_info->attrval_name}}" id="firstname"
                        placeholder="请输入属性值名称">
                 <span style="color:red;">{{$errors->first('attrval_name')}}</span>
             </div>

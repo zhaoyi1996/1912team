@@ -24,10 +24,13 @@
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
-                                <!-- <div class="has-feedback">
-							                    角色名称：<input  >									
-									<button class="btn btn-default" >查询</button>                                    
-                                </div> -->
+                                <div class="has-feedback">
+							        	<form action="">
+							        		<input type="text" name="ro_name" value="{{$ro_name}}">
+							        		<input type="submit" value="查询">
+							        	</form>
+							                                              
+                                </div>
                             </div>
                             <!--工具栏/-->
 			                  <!--数据列表-->
@@ -55,6 +58,7 @@
 									  @endforeach
 			                      </tbody>
 			                  </table>
+			                  <td colepan="4" alian="center">{{$ro->appends(['ro_name'=>$ro_name])->links()}}</td>
 			                  <!--数据列表/-->    
                         </div>
                         <!-- 数据表格 /--> 
@@ -96,14 +100,12 @@
 			                      <tbody>
 									@foreach($ros as $k=>$v)
 			                          <tr>
-			                             
 			                             <td>{{$v->ro_name}}</td>
 			                             <td>{{$v->pow_name}}</td>
 			                             <td>{{date('Y-m-d H:i:s',$v->ro_add_time)}}</td>
-			                             <td class="text-center">
-											 <a href="{{url('/admin/rbac/role/del/'.$v->ro_id)}}" class="btn bg-olive btn-xs" >删除</a>
-											 	
-											 <a href="{{url('/admin/rbac/role/upd/'.$v->ro_id)}}" class="btn bg-olive btn-xs" >修改</a>
+			                             <td class="text-center" ropo_id="{{$v->ropo_id}}">
+											 <a href="{{url('/admin/rbac/role/fusdel/'.$v->ropo_id)}}" class="btn bg-olive btn-xs">删除</a>
+											 <!-- {{--<a href="{{url('/admin/rbac/role/fusdel/'.$v->ro_id)}}" class="btn bg-olive btn-xs" >删除</a>--}} -->
 										 </td>
 			                          </tr>
 									  @endforeach
@@ -115,5 +117,8 @@
                      </div>
                     <!-- /.box-body -->                    
 </body>
+ <script>
+
+ </script>
 	<!-- 代码结尾 -->
  @endsection

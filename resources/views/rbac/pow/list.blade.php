@@ -24,10 +24,14 @@
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
-                               <!--  <div class="has-feedback">
-							                    权限名称：<input  >
-									<button class="btn btn-default" >查询</button>
-                                </div> -->
+                                <div class="has-feedback">
+                                	<form action="">
+                                		权限名称<input type="text" name="pow_name" value="{{$pow_name}}">
+                                		<input type="submit" value="查询">
+
+                                	</form>
+							        
+                                </div>
                             </div>
                             <!--工具栏/-->
 			                  <!--数据列表-->
@@ -58,6 +62,7 @@
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->    
+			                  <td colspan="5" align="center">{{$pow->appends(['pow_name'=>$pow_name])->links()}}</td>
                         </div>
                         <!-- 数据表格 /--> 
                      </div>
