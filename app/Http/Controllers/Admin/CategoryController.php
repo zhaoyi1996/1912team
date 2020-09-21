@@ -9,8 +9,16 @@ class CategoryController extends Controller
 {
     //后台模块广告类型管理
     public function index(){
-        $slide = Slide::where("is_del",1)->get();
-    	return view("admin.category.index",['slide'=>$slide]);
+         // 接搜索值
+         $sl_url = request()->sl_url;
+         $where = [];
+         if($sl_url){
+              $where[] = ['sl_url','like',"%$sl_url%"];
+         }
+         $where[] = ['is_del','=',1];
+         $slide = Slide::where($where)->paginate(2);
+         $query = request()->all();
+    	return view("admin.category.index",['slide'=>$slide,'query'=>$query]);
     }
 
     // 轮播图添加展示
@@ -38,7 +46,9 @@ class CategoryController extends Controller
         echo $newFilePath;
     }
 
+    // 执行添加
     public function story(request $request){
+        // echo 1234;
      // 接Id 
         $sl_url=Request()->sl_url;
         $sl_weight=Request()->sl_weight;
@@ -55,7 +65,7 @@ class CategoryController extends Controller
         // dd($post);
         $post['add_time']=time(); //添加时间
         $res = Slide::insert($post);
-        // dd($res);
+        
         if($res){
             return ['code'=>0000,'msg'=>'添加成功'];
         }else{
@@ -96,6 +106,7 @@ class CategoryController extends Controller
        
     }
 
+    // 逻辑删除
     public function destroy($id){
         $data = New Slide;
         $data = Slide::find($id);

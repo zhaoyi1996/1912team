@@ -81,6 +81,8 @@ class AttrvalController extends Controller
     function cartesian( $arr = array(array(1,3,4,5),array(3,5,7,9),array(76,6,1,0)),$str = array()){
         //去除第一个元素
         $first = array_shift($arr);
+//        dd($first);
+        dd($arr);
         //判断是否是第一次进行拼接
         if(count($str) > 1) {
             foreach ($str as $k => $val) {
@@ -99,11 +101,11 @@ class AttrvalController extends Controller
         }
         //递归进行拼接
         if(count($arr) > 0){
-            $str2 = cartesian($arr,$str2);
+            $str2 = $this->cartesian($arr,$str2);
         }
         //返回最终笛卡尔积
-        return $str2;$cartesian_product = cartesian($arr);
-        print_r($cartesian_product);
+        return $str2;$cartesian_product = $this->cartesian($arr);
+//        print_r($cartesian_product);
 
     }
 

@@ -25,7 +25,10 @@
                             </div>
                             
                             <!--工具栏/-->
-
+							<form action="">
+								<input type="text" name="sl_url">
+								<input type="submit" value="地址搜索">
+							</form>
 			                  <!--数据列表-->
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
 			                      <thead>
@@ -56,6 +59,9 @@
 		                                  </td>
 			                          </tr>
 									  @endforeach
+									  <td>
+										<td colspan="6">{{$slide->appends($query)->links()}}</td>
+									</td>
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/--> 
