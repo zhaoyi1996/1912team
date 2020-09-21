@@ -1,5 +1,5 @@
 @extends("layouts.shop")
-@section("title",'商品列表')
+@section("title",'商品修改')
 @section('content')
 
 
