@@ -60,9 +60,9 @@
             @foreach($res as $k=>$v)
             <tr>
                 <td>{{$v->goods_id}}</td>
-                <td>{{$v->cate_id}}</td>
+                <td>{{$v->cate_name}}</td>
                 <td>{{$v->goods_name}}</td>
-                <td>{{$v->brand_id}}</td>
+                <td>{{$v->brand_name}}</td>
                 <td>{{$v->goods_price}}</td>
                 <td>{{$v->goods_title}}</td>
                 <td>{{$v->goods_desc}}</td>
