@@ -71,7 +71,17 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attrval/edit/{id}","Admin\Specification\AttrvalController@edit");
 		Route::post("/template/attrval/update/{id}","Admin\Specification\AttrvalController@update");
 
-		Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
+		//后台商品规格管理
+		Route::get("/template/repertory/index","Admin\Repertory\RepertoryController@index");
+		Route::get("/template/repertory/create","Admin\Repertory\RepertoryController@create");
+		Route::post("/template/repertory/add","Admin\Repertory\RepertoryController@add");
+		Route::post("/template/repertory/adds","Admin\Repertory\RepertoryController@adds");
+
+	Route::post("/template/repertory/specification","Admin\Repertory\RepertoryController@specification");
+
+
+
+	Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
 
 
 	//后台模块分类管理
