@@ -49,7 +49,7 @@
 
                                     <option value="0">--顶级分类--</option>
                                     @foreach($cate as $v)
-                                        <option value="{{$v->cate_id}}">
+                                        <option value="{{$v->cate_id}}" @if($res->cate_id=="$v->cate_id")selected @endif>
                                             {{str_repeat('|-',$v->level)}}{{$v->cate_name}}
                                         </option>
                                     @endforeach
@@ -71,7 +71,7 @@
                                 <select class="form-control" name="brand_id" id="">
                                     <option value="0">--请选择--</option>
                                     @foreach($brand as $v)
-                                        <option value="{{$v->brand_id}}">{{$v->brand_name}}</option>
+                                        <option value="{{$v->brand_id}}" @if($res->brand_id=="$v->brand_id") selected @endif>{{$v->brand_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -122,18 +122,23 @@
 
                             </div>
 
-
+                            {{--<div class="col-md-2 title rowHeight2x">商品相册</div>--}}
+                            {{--<div class="col-md-10 data rowHeight2x total_imgs_path">--}}
+                                {{--<img src="{{env('UPLOADS_URL')}}{{$res->goods_imgs}}" width="60" height="60">--}}
+                                {{--<input type="file" id="uploadifys" name="goods_imgs">--}}
+                                {{--<span class="showimgs"></span>--}}
+                            {{--</div>--}}
 
                             <div class="col-md-2 title rowHeight2x">是否展示</div>
                             <div class="col-md-10 data rowHeight2x">
-                                <input type="radio" checked name="is_show" value="1">是
-                                <input type="radio" name="is_show" value="2">否
+                                <input type="radio" name="is_show" value="1" @if($res->is_show=="1")checked @endif>是
+                                <input type="radio" name="is_show" value="2" @if($res->is_show=="2")checked @endif>否
                             </div>
 
                             <div class="col-md-2 title rowHeight2x">是否热卖</div>
                             <div class="col-md-10 data rowHeight2x">
-                                <input type="radio" name="is_hot" value="1">是
-                                <input type="radio" checked name="is_hot" value="2">否
+                                <input type="radio" name="is_hot" value="1" @if($res->is_hot=="1")checked @endif>是
+                                <input type="radio" name="is_hot" value="2" @if($res->is_hot=="2")checked @endif>否
                             </div>
                         </div>
                     </div>
@@ -145,4 +150,15 @@
 
 </body>
     @endsection
+
+
+
+
+
+
+{{--@foreach($cates as $v)--}}
+    {{--<option value="{{$v->cate_id}}"@if($cate->pid=="$v->pid")selected @endif>--}}
+        {{--{{str_repeat('|-',$v->level)}}{{$v->cate_name}}--}}
+    {{--</option>--}}
+{{--@endforeach--}}
 

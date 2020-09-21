@@ -185,8 +185,12 @@ Route::any("/goods/getres","Admins\GoodsController@getres");
 
 //ajax删除
 Route::get('/goods/delete/{id}','Admins\GoodsController@delete');
+
 //上传图片
 Route::any('/goods/uploads','Admins\GoodsController@uploads');
+
+//多图片上传
+Route::any('/goods/uploadss','Admins\GoodsController@uploadss');
 
 //商品修改视图
 Route::get('/goods/edit/{id}','Admins\GoodsController@edit');

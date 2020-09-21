@@ -40,6 +40,7 @@
                 <th class="sorting_asc">商品ID</th>
                 <th class="sorting">商品分类</th>
                 <th class="sorting">商品名称</th>
+                <th class="sorting">商品品牌</th>
                 <th class="sorting">商品价格</th>
                 <th class="sorting">商品标题</th>
                 <th class="sorting">商品介绍</th>
@@ -48,7 +49,7 @@
                 <th class="sorting">商品号</th>
                 <th class="sorting">商品数量</th>
                 <th class="sorting">商品图片</th>
-                {{--<th class="sorting">商品相册</th>--}}
+                <th class="sorting">商品相册</th>
                 <th class="sorting">是否展示</th>
                 <th class="sorting">是否热卖</th>
                 <th class="sorting">添加时间</th>
@@ -61,6 +62,7 @@
                 <td>{{$v->goods_id}}</td>
                 <td>{{$v->cate_id}}</td>
                 <td>{{$v->goods_name}}</td>
+                <td>{{$v->brand_id}}</td>
                 <td>{{$v->goods_price}}</td>
                 <td>{{$v->goods_title}}</td>
                 <td>{{$v->goods_desc}}</td>
@@ -69,9 +71,16 @@
                 <td>{{$v->goods_sn}}</td>
                 <td>{{$v->goods_store}}</td>
                 <td><img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" width="60" hight="60" alt=""></td>
-                {{--<td>{{$v->goods_imgs}}</td>--}}
-                <td>{{$v->goods_show?'√':'×'}}</td>
-                <td>{{$v->goods_hot?'√':'×'}}</td>
+                <td>
+                    @if($v->goods_imgs)
+                        @php $goods_imgs=explode('|',$v->goods_imgs);  @endphp
+                        @foreach($goods_imgs as $vv)
+                            <img src="{{env('UPLOADS_URL')}}{{$vv}}" height="50" with="50">
+                        @endforeach
+                    @endif
+                </td>
+                <td>{{$v->is_show?'√':'×'}}</td>
+                <td>{{$v->is_hot?'√':'×'}}</td>
                 <td>{{date('Y-m-d H:i:s',$v->goods_add_time)}}</td>
                 <td class="text-center">
                     <a href="javascript:void[0]" id="id" goods_id="{{$v->goods_id}}" class="btn bg-olive btn-xs">删除</a>

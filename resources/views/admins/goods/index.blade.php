@@ -85,7 +85,6 @@
                         <div class="col-md-10 data">
 
                             <input type="text" class="form-control" name="goods_name" id="goods_name" placeholder="商品名称" value="">
-                            <b style="color:red">{{$errors->first('goods_name')}}</b>
 
                         </div>
 
@@ -103,7 +102,7 @@
                         <div class="col-md-2 title">商品标题</div>
                         <div class="col-md-10 data">
                             <input type="text" class="form-control" name="goods_title"  placeholder="商品标题" value="">
-                            <b style="color:red">{{$errors->first('goods_title')}}</b>
+
                         </div>
 
                         <div class="col-md-2 title">价格</div>
@@ -111,7 +110,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon">¥</span>
                                 <input type="text" class="form-control" id="goods_price" name="goods_price" placeholder="价格" value="">
-                                <b style="color:red">{{$errors->first('goods_price')}}</b>
+
                             </div>
                         </div>
 
@@ -147,10 +146,13 @@
                             <span class="showimg"></span>
                         </div>
 
-                        {{--<div class="col-md-2 title rowHeight2x">商品相册</div>--}}
-                        {{--<div class="col-md-10 data rowHeight2x">--}}
-                            {{--<input type="file"  name="goods_imgs[]" multiple="multiple">--}}
-                        {{--</div>--}}
+                        <div class="col-md-2 title rowHeight2x">商品相册</div>
+                        <div class="col-md-10 data rowHeight2x total_imgs_path">
+                            <input type="file" id="uploadifys" name="goods_imgs">
+                            {{--<input type="hidden" name="img_paths">--}}
+                            {{--<input type="hidden" name="img_paths">--}}
+                            <span class="showimgs"></span>
+                        </div>
 
                         <div class="col-md-2 title rowHeight2x">是否展示</div>
                         <div class="col-md-10 data rowHeight2x">
@@ -194,6 +196,26 @@
         });
     });
 </script>
+
+{{--图片相册--}}
+<script>
+    $(document).ready(function(){
+        $("#uploadifys").uploadify({
+            uploader: "/goods/uploadss",
+            swf: "/js/uploadify/uploadify.swf",
+            onUploadSuccess:function(res,data,msg){
+                var imgPath  = data;
+                var imgstr = "<img src='"+imgPath+"'>";
+                $(".showimgs").append(imgstr);
+
+                var path_input="<input type='hidden' class='imgs_path' value='"+imgPath+"'>";
+                $(".total_imgs_path").append(path_input);
+
+
+            }
+        });
+    });
+</script>
 <script>
     $(document).on("click","#button",function(){
         var cate_id= $("select[name='cate_id']").val();
@@ -207,30 +229,36 @@
         var goods_sn= $("input[name='goods_sn']").val();
         var goods_store= $("input[name='goods_store']").val();
         var goods_img=   $("input[name='img_path']").val();
+        var goods_imgs=[];
+
+        $(document).find(".imgs_path").each(function(){
+            var img_path = $(this).val();
+            goods_imgs.push(img_path);
+        });
+    //console.log(goods_imgs);
+
         var is_show= $("input[name='is_show']").val();
         var is_hot= $("input[name='is_hot']").val();
-        if(goods_name==""){
-            alert("商品名称不能为空");die;
-        }
-        if(goods_title==""){
-            alert("商品标题不能为空");die;
-        }
-        if(goods_price==""){
-            alert("商品价格不能为空");die;
-        }
-        if(goods_desc==""){
-            alert("商品介绍不能为空");die;
-        }
-        if(goods_store==""){
-            alert("商品数量不能为空");die;
-        }
-        if(goods_sn==""){
-            alert("商品号不能为空");die;
-        }
+
+        var data={};
+        data.cate_id=cate_id;
+        data.goods_name=goods_name;
+        data.brand_id=brand_id;
+        data.goods_title=goods_title;
+        data.goods_price=goods_price;
+        data.goods_desc=goods_desc;
+        data.goods_packing=goods_packing;
+        data.goods_sales=goods_sales;
+        data.goods_sn=goods_sn;
+        data.goods_store=goods_store;
+        data.is_show=is_show;
+        data.is_hot=is_hot;
+        data.goods_img=goods_img;
+        data.goods_imgs=goods_imgs;
+//        console.log(data);
         $.ajax({
             url:"/goods/img",
-            data:{cate_id:cate_id,goods_name:goods_name,brand_id:brand_id,goods_title:goods_title,goods_price:goods_price,goods_desc:goods_desc,goods_packing:goods_packing,
-            goods_sales:goods_sales,goods_sn:goods_sn,goods_store:goods_store,is_show:is_show,is_hot:is_hot,goods_img:goods_img},
+            data:data,
             type:'post',
             success:function(res){
                 if(res.code=='0000'){
