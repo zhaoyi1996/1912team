@@ -5,10 +5,19 @@
 <!--规格-->
 <div class="tab-pane" id="spec">
     <div class="row data-type">
+        <div>
+
+        </div>
         <div class="col-md-2 title">是否启用规格</div>
         <div class="col-md-10 data">
-            <input type="checkbox" >
-            <button type="button" class="btn btn-default" title="自定义规格" data-target="#mySpecModal"  data-toggle="modal"  ><i class="fa fa-file-o"></i> 自定义规格</button>
+            {{--<input type="checkbox" >--}}
+            添加商品库存：<select name="goods_id" id="goods_id">
+                <option value="">--请选择--</option>
+                @foreach($goods_data as $v)
+                    <option value="{{$v->goods_id}}">{{$v->goods_name}}</option>
+                @endforeach
+            </select>
+            {{--<button type="button" class="btn btn-default" title="自定义规格" data-target="#mySpecModal"  data-toggle="modal"  ><i class="fa fa-file-o"></i> 自定义规格</button>--}}
         </div>
     </div>
     <p>
@@ -62,6 +71,12 @@
             let attrval_id=$("input[name='checkout[]']:checked");
 //            console.log(attrval_id);
             let id='';
+            //获取商品id
+            let goods_id=$('#goods_id option:selected').val();
+            if(goods_id == ''){
+                alert('请选择商品');
+                return ;
+            }
             //当选中时，拿到它的value值，并拼起来
             //需要注意的是，这样拼出来的id字符串，是以 ","结尾的，所以在使用的时候，应先将 ","去掉，也可在if中做判断
             // 当为最后一个时，拼的时候不加 ","
@@ -73,10 +88,11 @@
             $.ajax({
                 url:'/admin/template/repertory/specification',
                 type:'post',
-                data:{id:id},
+                data:{id:id,goods_id:goods_id},
                 success:function(res){
                     //属性处理
                     var attr_htmls="";
+                    attr_htmls+="<th class='sorting'>商品</th>"
                     for (let i = 0; i <res.attr_data.length; i++) {
 //                        console.log(res.attr_data[i]['attr_name']);
                         attr_htmls += '<th class="sorting">'+res.attr_data[i]['attr_name']+'</th>';
@@ -87,11 +103,13 @@
                     var attrval_htmls="";
                     var attrval_td="";
                     var attrval_ids="";
+
                     var pinjie_id='';
                     //多个规格保存使用
                     var pinjie_ids='';
-
                     for( let i = 0; i <res.data.length; i++ ){
+                        //商品处理
+                        attrval_td += "<td class='goods_id' goods_id='"+goods_id+"'>"+res.goods_data.goods_name+"</td>";
                         for( let is = 0; is < res.data[i].length; is++ ){
                             attrval_ids=res.data[i][is]['attrval_id'];
                             pinjie_id+=res.data[i][is]['attrval_id']+',';
@@ -128,13 +146,23 @@
             var pinjie_id=$(this).attr('pinjie_id');
             //获取库存数量
             var num = $('input[name="num"]').val();
+            if(num == ''){
+                alert('请输入选择数量');
+                return ;
+            }
             //获取价格
             var price= $('input[name="price"]').val();
+            if(price == ''){
+                alert('请输入商品价格');
+                return ;
+            }
+            //获取商品id
+            window.goods_id=$('.goods_id').attr('goods_id');
             //用ajax传到控制器
             $.ajax({
                 url:'/admin/template/repertory/add' ,
                 type:'post',
-                data:{pinjie_id:pinjie_id,num:num,price:price},
+                data:{pinjie_id:pinjie_id,num:num,price:price,goods_id:goods_id},
                 success:function(res){
                     alert(res.msg);
                 }
@@ -146,6 +174,7 @@
         $(document).on('click','.btn-primary',function(){
             //获取属性值
             var pinjie_id=_id;
+
             //获取购买数量
             var num='';
             var name=document.getElementsByName('num');
@@ -170,15 +199,16 @@
                 }
 
             }
+            //获取商品id
+            var goods_id=goods_id=$('.goods_id').attr('goods_id');
             price = price.substring(0,price.length-1);
             //通过ajax将数据传入控制器
             $.ajax({
                url:"/admin/template/repertory/adds",
                 type:'post',
-                data:{pinjie_id:pinjie_id,num:num,price:price},
+                data:{pinjie_id:pinjie_id,num:num,price:price,goods_id:goods_id},
                 success:function(res){
                     alert(res.msg);
-
                 }
             });
 

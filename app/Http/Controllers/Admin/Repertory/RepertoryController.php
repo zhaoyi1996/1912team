@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Repertory;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttrvalBlog;
+use App\Model\GoodsModel;
 use App\Models\AttrModel;
 use App\Models\AttrvalModel;
 use App\Models\RepModel;
@@ -19,13 +20,18 @@ class RepertoryController extends Controller
         $attr_data=AttrModel::where('is_del',1)->get();
         #查询商品属性值
         $attrval_data=AttrvalModel::where('is_del',1)->get();
-        return view('admin.repertory.create',['attr_data'=>$attr_data,'attrval_data'=>$attrval_data]);
+        #获取下拉商品
+        $goods_data=GoodsModel::select('goods_id','goods_name')->get();
+//        dd($goods_data);
+        return view('admin.repertory.create',['attr_data'=>$attr_data,'attrval_data'=>$attrval_data,'goods_data'=>$goods_data]);
     }
     /**
      * 库存确认添加
      */
     public function add(){
         $data=request()->post();
+        $goods_id=request()->goods_id;
+//        $goods_id=request()->goods_id;
         $data['attrval_id']=explode(',',$data['pinjie_id']);
         $attrval_data=AttrvalModel::whereIn('attrval_id',$data['attrval_id'])->leftjoin('shop_attr','shop_attrval.attr_id','=','shop_attr.attr_id')->get()->toArray();
         $rep_data=[];
@@ -35,6 +41,7 @@ class RepertoryController extends Controller
             $rep_data['attr']=json_encode($pinjie,true);
 //            $pinjie='';
         }
+        $rep_data['goods_id']=$goods_id;
         $rep_data['add_time']=time();
         $rep_data['goods_store']=$data['num'];
         $rep_data['goods_price']=$data['price'];
@@ -50,8 +57,9 @@ class RepertoryController extends Controller
      * 库存确认添加----多条数据
      */
     public function adds(){
-        $data=request()->post();
-
+        $data=request()->except('goods_id');
+//        dd($data);
+        $goods_id=request()->goods_id;
         $attrval_id=[];
         $attrval_data=[];
         $num=[];
@@ -78,16 +86,18 @@ class RepertoryController extends Controller
         $id=[];
         for($i=0;$i<count($attrval_data);$i++){
             foreach($attrval_data as $k=>$v){
-                        if($k==$i){
-                            foreach($v as $kk=>$vv){
-                                $pinjie_id.=$vv['attr_id'].":".$vv['attrval_id'].',';
-                                $id[$kk]=$pinjie_id;
-                                $pinjie_id='';
-                            }
-                        }
+                if($k==$i){
+                    foreach($v as $kk=>$vv){
+                        $pinjie_id.=$vv['attr_id'].":".$vv['attrval_id'].',';
+                        $id[$kk]=$pinjie_id;
+                        $pinjie_id='';
                     }
+                }
+            }
+//            dd($goods_id);
             $time[$i]=time();
             $attr=json_encode($id,true);
+            $rep_data['goods_id']=$goods_id;
             $rep_data['attr']=$attr;
             $rep_data['add_time']=time();
             $rep_data['goods_store']=$num[$i];
@@ -119,7 +129,7 @@ class RepertoryController extends Controller
 //            $rep_data['goods_price'].=[$vals];
 //        }
 
-        dd($rep_data);
+//        dd($rep_data);
 //        $res=RepModel::insert($rep_data);
 //            if($res){
 //                return ['code'=>'0000','msg'=>'库存添加成功'];
@@ -157,10 +167,16 @@ class RepertoryController extends Controller
      *
      */
     public function specification( Request $request){
-        $id=$request->post();
-        $id=$id['id'];
+        $id=$request->id;
+//        dd($id);
+        $goods_id=$request->goods_id;
+//        dd($goods_id);
+//        $id=$id['id'];
         $id=rtrim($id,',');
         $id=explode(',',$id);
+        #获取商品数据
+        $goods_data=GoodsModel::select('goods_id','goods_name')->where('goods_id',$goods_id)->first()->toArray();
+//        dd($goods_data);
         $attrval_data=AttrvalModel::whereIn('attrval_id',$id)->get()->toArray();
 
         $attr_id=[];
@@ -238,8 +254,8 @@ class RepertoryController extends Controller
             $v=explode(',',$v);
             $data[]=AttrvalModel::whereIn('attrval_id',$v)->get()->toArray();
         }
-//        dd($data);
-        return ['attr_data'=>$attr_data,'data'=>$data];
+//        dd($goods_data);
+        return ['attr_data'=>$attr_data,'data'=>$data,'goods_data'=>$goods_data];
 
 //
 //        //拼接属性
