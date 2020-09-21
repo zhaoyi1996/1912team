@@ -109,11 +109,10 @@
 									      <td>{{$v->admin_name}}</td>
 									      <td>{{$v->ro_name}}</td>
 									      <td>{{date('Y-m-d H:i:s',$v->admin_add_time)}}</td>
-		                                  <td class="text-center" admin_id="{{$v->admin_id}}">
-											  <!-- <a href="{{url('/admin/rbac/admin/upd/'.$v->admin_id)}}" class="btn bg-olive btn-xs" >修改</a> -->
-											  <a href="{{url('/admin/rbac/admin/del/'.$v->admin_id)}}" class="btn bg-olive btn-xs" >删除</a>
-											  <!-- <a href="{{url('/admin/rbac/admin/fus/'.$v->admin_id)}}" class="btn bg-olive btn-xs" >添加角色</a> -->
-										  </td>
+		                                  <td class="text-center" admin_user_role_id="{{$v->admin_user_role_id}}">
+											  <a href="{{url('/admin/rbac/admin/fus/del/'.$v->admin_user_role_id)}}" class="btn bg-olive btn-xs" >删除</a>
+										 	{{--<button class="btn bg-olive btn-xs" id="button">删除</button>--}}
+										  	 </td>
 			                          </tr>
 										 @endforeach
 			                      </tbody>
@@ -136,6 +135,17 @@
 			 }
 		 },'json');
 	 })
+//	 $("#button").click(function(){
+//		 var admin_user_role_id = $(this).parent().attr("admin_user_role_id");
+//		 $.get('/admin/rbac/admin/fus/del/'+admin_user_role_id,function(res){
+//			 if(res.code==0){
+//				 alert(res.msg)
+//			 }
+//			 if(res.code==1){
+//				 alert(res.msg)
+//			 }
+//		 },'json');
+//	 })
  </script>
 	<!-- 代码结尾 -->
  @endsection

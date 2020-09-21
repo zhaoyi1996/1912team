@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use App\Mail\sendCode;
 use Illuminate\Support\Facades\Mail;
 use App\Model\ShopUserModel;
+use iscms\Alisms\SendsmsPusher as Sms;
 use Symfony\Component\HttpFoundation\Session\Session;
 class LoginController extends Controller
 {
+    public function __construct(Sms $sms)
+         {
+          $this->sms=$sms;
+         }
     //前台登录
     public function login(){
     	return view("index.login.login");
@@ -109,37 +114,59 @@ class LoginController extends Controller
     //获取邮箱  发送邮箱验证码
     public function sendEmail(){
         $user_email = request()->post("user_email");
-        // 判断邮箱非空  格式   唯一性
-        $reg = '/^[0-9a-z]{5,}@[0-9a-z]{2,5}\.com$/';
-        if(empty($user_email)){
-            echo json_encode(['code'=>1,'msg'=>"邮箱不可为空"]);die;
-        }else if(preg_match($reg,$user_email)<1){
-            echo json_encode(['code'=>1,'msg'=>"输入邮箱格式有误"]);die;
-        }else{
-            //查询数据库查看是否已存在
-            $res = ShopUserModel::where("user_email",$user_email)->count();
-            if($res>0){
-                echo json_encode(['code'=>1,'msg'=>"邮箱已存在"]);die;
-            }
-        }
-        // 发送邮件
-        $code=rand(100000,999999);
-        
-        // echo $res;
-        
-            // 将值存入cookie 
-            // cookie("sendInfo",['user_email'=>$user_email,"user_code"=>$code,"user_time"=>time()]);
-             // ['user_email'=>$user_email,"user_code"=>$code,"user_time"=>time()];
-            
-            // request()->session()->put('sessionInfo',$user_email);
 
+        if(strpos($user_email,"@")){
+            // 邮箱注册
+            // 判断邮箱非空  格式   唯一性
+            $reg = '/^[0-9a-z]{5,}@[0-9a-z]{2,5}\.com$/';
+            if(empty($user_email)){
+                echo json_encode(['code'=>1,'msg'=>"邮箱不可为空"]);die;
+            }else if(preg_match($reg,$user_email)<1){
+                echo json_encode(['code'=>1,'msg'=>"输入邮箱格式有误"]);die;
+            }else{
+                //查询数据库查看是否已存在
+                $res = ShopUserModel::where("user_email",$user_email)->count();
+                if($res>0){
+                    echo json_encode(['code'=>1,'msg'=>"邮箱已存在"]);die;
+                }
+            }
+            // 发送邮件
+            $code=rand(100000,999999);
             $session = new Session;
             $session->set("user_code",$code);
-
             Mail::to($user_email)->send(new sendCode($code));
             echo json_encode(['code'=>0,'msg'=>"发送成功"]);die;
-        
+        }else{
+            // 手机号注册
+            // 判断 手机号 非空 唯一性 格式
+            //格式
+
+            $tel_reg="/^1[0-9]{10}$/";
+            if(empty($user_email)){
+                echo json_encode(['code'=>1,'msg'=>"手机号不可为空"]);die;
+            }else if(preg_match($tel_reg,$user_email)<1){
+                echo json_encode(['code'=>1,'msg'=>"手机号格式不正确"]);die;
+            }else{
+                // 验证唯一性
+                // 实例化model
+                $user_model=new ShopUserModel();
+                $count = $user_model->where("user_email",$user_email)->count();
+                if($count>0){
+                    echo json_encode(['code'=>1,'msg'=>"手机号已存在"]);die;
+                }
+            }
+            $code = rand(100000,999999);
+            $name = "宇豪影视";
+            $content = [
+                'code'=>$code
+            ];
+            $res=$this->sms->send($user_email,$name,$content,$code);
+            var_dump($res);
+        }
+
+
     }
+
 
 
     // //邮箱

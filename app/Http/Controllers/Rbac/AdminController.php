@@ -89,6 +89,8 @@ class AdminController extends Controller
     public function fus($id){
         // echo $id;
         $role = ShopRoleModel::get();
+//        $admin_role = ShopAdminRoleModel::get();
+//        dd($admin_role);
         return view("rbac.admin.fus",['role'=>$role,'admin_id'=>$id]);
     }
     public function fus2(){
@@ -104,6 +106,15 @@ class AdminController extends Controller
         }
         if($res){
             echo json_encode(['code'=>1,'msg'=>'ok']);
+        }
+    }
+    public function fusdel($id){
+        $res = ShopAdminRoleModel::where('admin_user_role_id',$id)->delete();
+        if($res){
+            return redirect("/admin/rbac/admin/list");
+        }else{
+            return redirect("/admin/rbac/admin/list");
+//            echo json_encode(['code'=>0,'msg'=>'删除失败']);die;
         }
     }
 }

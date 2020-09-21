@@ -15,7 +15,7 @@
                    <tr>
                        <td>用户角色</td>
                         @foreach($role as $k=>$v)
-                       <td><input type="checkbox" value="{{$v->ro_id}}" id="ro_id" name="role_names">{{$v->ro_name}}</td>
+                       <td><input type="checkbox" value="{{$v->ro_id}}"  id="ro_id" name="role_names">{{$v->ro_name}}</td>
                        @endforeach
                    </tr>
                     <input type="hidden" value="{{$admin_id}}" id="admin_id">

@@ -136,19 +136,19 @@ class RoleController extends Controller
         if($res!==false){
             return redirect("/admin/rbac/role/list");
         }
-
     }
     public function fus($id){
-        
         $pow = ShopPowerModel::get();
+
+//        $rolepow = ShopRolepowerModel::where("ro_id",$id)->first();
+//dd($rolepow['data']);
+//        $rolepowid = $rolepow->pow_id;
 
         return view("rbac.role.fus",['pow'=>$pow,'id'=>$id]);
     }
     public function fus2(){
         $check = request()->post("checkboxarr");
         $ro_id = request()->post("ro_id");
-
-
         foreach($check as $k=>$v){
             $rolepower = new ShopRolepowerModel();
             $rolepower->pow_id=$v;
@@ -160,5 +160,13 @@ class RoleController extends Controller
             echo json_encode(['code'=>1,'msg'=>'ok']);
         }
    
+    }
+    public function fusdel($id){
+        $res = ShopRolepowerModel::where('ropo_id',$id)->delete();
+        if($res){
+            return redirect("/admin/rbac/role/list");
+        }else{
+            return redirect("/admin/rbac/role/list");
+        }
     }
 }

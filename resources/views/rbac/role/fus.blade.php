@@ -17,7 +17,7 @@
                      <td>角色权限</td>
                      <td>
                          @foreach($pow as $k=>$v)
-                         <input type="checkbox" value="{{$v->pow_id}}" name="role_names"> {{$v->pow_name}}
+                         <input type="checkbox" value="{{$v->pow_id}}"  name="role_names"> {{$v->pow_name}}
                          @endforeach
                      </td>
             
@@ -28,6 +28,7 @@
          <div class="modal-footer">
 
              <!-- <a >添加</a> -->
+
              <button  type="submit" id="button" value="添加" class="btn btn-success" data-dismiss="modal" aria-hidden="true">添加</button>
          </div>
      </div>

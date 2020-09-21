@@ -33,8 +33,14 @@ Route::any("/admin/update/{id}","Admin\BrandController@update");
 Route::any("/admin/delete/{id}","Admin\BrandController@delete");
 Route::any("/admin/img","Admin\BrandController@img");
 
+//登录后台
+Route::get("/admin/login","Rbac\LoginController@login");
+Route::post("/admin/logindo","Rbac\LoginController@logindo");
+//退出登录
+Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
-Route::prefix('/admin')->group(function(){
+//后台模块
+Route::prefix('/admin')->middleware("islogin")->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
@@ -104,8 +110,6 @@ Route::prefix('/admin')->group(function(){
 
 		Route::get("/index","Admin\IndexController@index");
 
-		//登录
-		Route::get("/login","Rbac\LoginController@login");
 
 
 		Route::get("/","Admin\IndexController@index");
@@ -131,12 +135,14 @@ Route::prefix('/admin')->group(function(){
 		Route::post("/rbac/role/fus2","Rbac\RoleController@fus2");
 		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
 		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
-		//角色列表
+	    Route::get("/rbac/role/fusdel/{id}","Rbac\RoleController@fusdel");
+	 	//角色列表
 		Route::get("/rbac/role/list","Rbac\RoleController@list");
 		//管理员添加
 		Route::get("/rbac/admin/create","Rbac\AdminController@create");
 		Route::post("/rbac/admin/store","Rbac\AdminController@store");
 		Route::get("/rbac/admin/del/{id}","Rbac\AdminController@del");
+		Route::get("/rbac/admin/fus/del/{id}","Rbac\AdminController@fusdel");
 		Route::get("/rbac/admin/fus/{id}","Rbac\AdminController@fus");
 		Route::post("/rbac/admin/fus2","Rbac\AdminController@fus2");
 		Route::get("/rbac/admin/upd/{id}","Rbac\AdminController@upd");

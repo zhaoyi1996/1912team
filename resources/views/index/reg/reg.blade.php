@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
  <HEAD>
-  <TITLE> 极星五组后台登录 </TITLE>
+  <TITLE> 注册 </TITLE>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <META NAME="Generator" CONTENT="EditPlus">
   <META NAME="Author" CONTENT="">
@@ -104,13 +104,15 @@ input{
                 </tr>
                
                 <tr>
-                    <td><input type="text" required="required" id="user_email" placeholder="邮箱">
-                           <button class="but" id="sendcode">获取验证码</button>
+                    <td><input type="text" required="required" id="user_email" placeholder="qq邮箱/手机号">
+                        <!-- <button class="but"  id="sendcode">获取验证码</button> -->
                     </td>
-                     
+
+                    <td><button class="but" style="width:120px;height:40px" id="sendcode">获取验证码</button></td>
                 </tr>
+        
                 <tr>
-                    <td><input type="text" required="required" id="user_code" placeholder="邮箱验证码"></td>
+                    <td><input type="text" required="required" id="user_code" placeholder="验证码"></td>
                 </tr>
                 <tr>
                     <td><button id="button" class="but" type="submit">注册</button>
@@ -135,14 +137,14 @@ input{
     //
     $("#sendcode").click(function(){
         var user_email = $("#user_email").val();
-        var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
-        if(user_email==""){
-            alert("邮箱不可为空");
-            return false;
-        }else if(!reg.test(user_email)){
-            alert("邮箱格式不正确");
-            return false; 
-        }
+        // var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
+        // if(user_email==""){
+        //     alert("邮箱不可为空");
+        //     return false;
+        // }else if(!reg.test(user_email)){
+        //     alert("邮箱格式不正确");
+        //     return false; 
+        // }
         // 定时器
             $("#sendcode").text("60s");
             // 清除定时器
@@ -154,15 +156,16 @@ input{
         $.ajax({
             type:'post',
             url:'/index/sendEmail',
-            dataType:'json',
+            // dataType:'json',
             data:{user_email:user_email},
             success:function(res){
-                if(res.code==1){
-                    alert(res.msg)
-                }
-                if(res.code==0){
-                    alert(res.msg)
-                }
+                // if(res.code==1){
+                    // alert(res.msg)
+                // }
+                // if(res.code==0){
+                    // alert(res.msg)
+                // }
+                console.log(res)
             }
         })
     })
