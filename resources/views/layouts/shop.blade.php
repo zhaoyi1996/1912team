@@ -9,6 +9,7 @@
     <title>团队开发后台模板@yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
     <link rel="stylesheet" href="/uploadify/uploadify.css">
     <link rel="stylesheet" href="/shop/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/shop/plugins/adminLTE/css/AdminLTE.css">
@@ -21,11 +22,15 @@
    
 
     <script src="/shop/plugins/jQuery/jquery-2.2.3.min.js"></script>
+ 
+
     <script src="/shop/plugins/jQueryUI/jquery-ui.min.js"></script>
     <script src="/shop/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/shop/plugins/adminLTE/js/app.min.js"></script>
+
+	<script src="/js/uploadify/jquery.uploadify.js"></script>
+ 
 
      <script src="/uploadify/jquery.uploadify.js"></script>
     <script type="text/javascript">   
@@ -37,7 +42,6 @@
 		 }
     
 	</script>    
-
     <script type="text/javascript">
         function SetIFrameHeight(){
             var iframeid=document.getElementById("iframe"); //iframe id
@@ -294,7 +298,7 @@
                                         <a href="#" class="btn btn-default btn-flat">修改密码</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">注销</a>
+                                        <a href="{{url('/admin/loginout')}}" class="btn btn-default btn-flat">注销</a>
                                     </div>
                                 </li>
                             </ul>
@@ -380,6 +384,9 @@
 				                <a href="#" target="iframe">
                                     <span>规格管理</span>
                                     <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{url('/admin/template/repertory/create')}}">规格添加</a>
+                                        </li>
                                         <li class="treeview">
                                             <a href="#" target="iframe">
                                                 <span>属性管理</span>
@@ -409,14 +416,22 @@
                                     </ul>
 				                </a>
 				            </li>							
-							<li id="admin-login">
-				                <a href="{{url('/admin/template')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>模板管理
+							
+                            <li class="treeview">
+				                <a href="#" target="iframe">
+                                    <span>分类管理</span>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <a href="#" target="iframe">
+                                                <a href="{{url('/admin/cate/create')}}"><span>分类添加</span></a>
+                                                <a href="{{url('/admin/cate')}}"><span>分类展示</span></a>
+                                                  
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
 				                </a>
-				            </li>
-							<li id="admin-login">
-				                <a href="{{url('/admin/cate')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>分类管理
+				            </li>	
 				                </a>
 				            </li>
 							<li id="admin-login">
@@ -437,14 +452,46 @@
 				        </a>
 				        <ul class="treeview-menu">
 				
-				            <li id="admin-login">
-				                <a href="{{url('/admin/category')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>广告轮播图管理
+                        <li class="treeview">
+				                <a href="#" target="iframe">
+                                    <span>广告轮播图管理</span>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <a href="#" target="">  
+                                                <a href="{{url('/admin/category/create')}}"><span>轮播图添加</span></a>
+                                                <a href="{{url('/admin/category')}}"><span>轮播图展示</span></a>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
+				                </a>
+				            </li>	
+							<li id="admin-login">
+                            <a href="#" target="iframe">
+                                    <span>公告管理</span>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <a href="#" target="">  
+                                                <a href="{{url('/admin/content/create')}}"><span>公告添加</span></a>
+                                                <a href="{{url('/admin/content')}}"><span>公告展示</span></a>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
 				                </a>
 				            </li>
-							<li id="admin-login">
-				                <a href="{{url('/admin/content')}}" target="iframe">
-				                    <i class="fa fa-circle-o"></i>公告管理
+                            <li id="admin-login">
+                            <a href="#" target="iframe">
+                                    <span>小广告管理</span>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <a href="#" target="">  
+                                                <a href="{{url('/admin/ladver/create')}}"><span>小广告添加</span></a>
+                                                <a href="{{url('/admin/ladver')}}"><span>小广告展示</span></a>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
 				                </a>
 				            </li>
 
@@ -516,6 +563,50 @@
                             <li id="admin-login">
                                 <a href="{{url('/admin/rbac/admin/list')}}" target="iframe">
                                     <i class="fa fa-circle-o"></i>管理员列表
+                                </a>
+                            </li>
+                        </ul>                        
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-folder"></i> 
+                            <span>友情链接</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                
+                            <li id="admin-login">
+                                <a href="{{url('/admin/foot/create')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>友情链接添加
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('/admin/foot')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>友情链接列表
+                                </a>
+                            </li>
+                        </ul>                        
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-folder"></i> 
+                            <span>导航</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                
+                            <li id="admin-login">
+                                <a href="{{url('/admin/nav/create')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>导航添加
+                                </a>
+                            </li>
+                            <li id="admin-login">
+                                <a href="{{url('/admin/nav')}}" target="iframe">
+                                    <i class="fa fa-circle-o"></i>导航列表
                                 </a>
                             </li>
                         </ul>                        

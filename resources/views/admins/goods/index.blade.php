@@ -1,7 +1,23 @@
-@extends("layouts.shop")
-@section("title",'新增商品')
-@section('content')
-    <link rel="stylesheet" href="/js/uploadify/uploadify.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品添加</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="/admin/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="/admin/plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/admin/css/style.css">
+
+
+    <!-- 富文本编辑器 -->
+    <link rel="stylesheet" href="/admin/plugins/kindeditor/themes/default/default.css" />
+
+</head>
 
 <body class="hold-transition skin-red sidebar-mini" >
 
@@ -18,7 +34,6 @@
                 <li class="active">
                     <a href="#home" data-toggle="tab">商品基本信息</a>
                 </li>
-
             </ul>
             <!--tab头/-->
 
@@ -27,9 +42,18 @@
 
                 <!--表单内容-->
 
-                <form action="/goods/create" method="post">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                <form action="/goods/create" method="post" enctype="multipart/form-data">
+
+                {{--<form action="/goods/create" method="post">--}}
 
                 <div class="tab-pane active" id="home">
                     <div class="row data-type">
@@ -52,10 +76,7 @@
                         <div class="col-md-2 title">商品名称</div>
                         <div class="col-md-10 data">
 
-                            <input type="text" class="form-control" name="" placeholder="商品名称" value="">
-
                             <input type="text" class="form-control" name="goods_name" id="goods_name" placeholder="商品名称" value="">
-                            <b style="color:red">{{$errors->first('goods_name')}}</b>
 
                         </div>
 
@@ -63,7 +84,7 @@
                         <div class="col-md-10 data">
 
                             <select class="form-control" name="brand_id" id="">
-                                <option value="0">--请选择--</option>
+                                <option value="">--请选择--</option>
                                 @foreach($brand as $v)
                                 <option value="{{$v->brand_id}}">{{$v->brand_name}}</option>
                                 @endforeach
@@ -73,6 +94,7 @@
                         <div class="col-md-2 title">商品标题</div>
                         <div class="col-md-10 data">
                             <input type="text" class="form-control" name="goods_title"  placeholder="商品标题" value="">
+
                         </div>
 
                         <div class="col-md-2 title">价格</div>
@@ -80,6 +102,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon">¥</span>
                                 <input type="text" class="form-control" id="goods_price" name="goods_price" placeholder="价格" value="">
+
                             </div>
                         </div>
 
@@ -87,6 +110,7 @@
                         <div class="col-md-10 data editer">
                             <textarea name="goods_desc" style="width:800px;height:400px;" ></textarea>
                         </div>
+
 
                         <div class="col-md-2 title rowHeight2x">包装列表</div>
                         <div class="col-md-10 data rowHeight2x">
@@ -110,46 +134,52 @@
                         <div class="col-md-2 title rowHeight2x">商品图片</div>
                         <div class="col-md-10 data rowHeight2x">
                            <input type="file" id="uploadify" name="goods_img">
+                            <input type="hidden" name="img_path">
+                            <span class="showimg"></span>
                         </div>
 
                         <div class="col-md-2 title rowHeight2x">商品相册</div>
-                        <div class="col-md-10 data rowHeight2x">
-                            <input type="file"  name="goods_imgs[]" multiple="multiple">
+                        <div class="col-md-10 data rowHeight2x total_imgs_path">
+                            <input type="file" id="uploadifys" name="goods_imgs">
+                            {{--<input type="hidden" name="img_paths">--}}
+                            {{--<input type="hidden" name="img_paths">--}}
+                            <span class="showimgs"></span>
                         </div>
 
                         <div class="col-md-2 title rowHeight2x">是否展示</div>
                         <div class="col-md-10 data rowHeight2x">
-                            <input type="radio" name="is_show" value="1">是
+                            <input type="radio" name="is_show" value="1" checked>是
                             <input type="radio" name="is_show" value="2">否
                         </div>
 
                         <div class="col-md-2 title rowHeight2x">是否热卖</div>
                         <div class="col-md-10 data rowHeight2x">
-                            <input type="radio" name="is_hot" value="1">是
+                            <input type="radio" name="is_hot" value="1" checked>是
                             <input type="radio" name="is_hot" value="2">否
                         </div>
                     </div>
                 </div>
                     {{--<button   id="click_up" >保存</button>--}}
     <div class="btn-toolbar list-toolbar">
-        <button   id="button" >保存</button>
+        <button  id="button" >保存</button>
     </div>
 
 
 </body>
-</form>
-@endsection
+{{--</form>--}}
+{{--@endsection--}}
+
 <script src="/js/uploadify/jquery.js"></script>
-{{--<script src="/js/uploadify/jquery.uploadify.js"></script>--}}
+<script src="/js/uploadify/jquery.uploadify.js"></script>
 <script>
     $(document).ready(function(){
         $("#uploadify").uploadify({
-            uploader: "/uploads",
+            uploader: "/goods/uploads",
             swf: "/js/uploadify/uploadify.swf",
             onUploadSuccess:function(res,data,msg){
-                console.log(res);
-                console.log(data);
-                console.log(msg);
+//                console.log(res);
+//                console.log(data);
+//                console.log(msg);
                 var imgPath  = data;
                 var imgstr = "<img src='"+imgPath+"'>";
                 $("input[name='img_path']").val(imgPath);
@@ -157,31 +187,97 @@
             }
         });
     });
+</script>
+
+{{--图片相册--}}
+<script>
+    $(document).ready(function(){
+        $("#uploadifys").uploadify({
+            uploader: "/goods/uploadss",
+            swf: "/js/uploadify/uploadify.swf",
+            onUploadSuccess:function(res,data,msg){
+                var imgPath  = data;
+                var imgstr = "<img src='"+imgPath+"'>";
+                $(".showimgs").append(imgstr);
+
+                var path_input="<input type='hidden' class='imgs_path' value='"+imgPath+"'>";
+                $(".total_imgs_path").append(path_input);
 
 
-//        $(document).on('#click_up','click',function(){
-//            alert(111);
-//            return false;
-//            var goods_name=$("#goods_name").val();
-//
-//            var goods_name=$("#goods_price").val();
-//            $.ajax({
-//                url:'/admins/goods/',
-//                type:'post',
-//                dataType:'json',
-//                data:{goods_name:goods_name,goods_price:goods_price},
-//                success: function (res) {
-//                    if(res.code==0){
-//                        alert(res.msg);
-//                        window.location.href="http://www.1912.com/admins/goodslist/index";
-//                    }
-//                    if(res.code==1){
-//                        alert(res.msg);
-//                    }
-//                }
-//            })
-//        })
+            }
+        });
+    });
+</script>
+<script>
+    $(document).on("click","#button",function(){
+        var cate_id= $("select[name='cate_id']").val();
+        var goods_name= $("input[name='goods_name']").val();
+        var brand_id= $("select[name='brand_id']").val();
+        var goods_title= $("input[name='goods_title']").val();
+        var goods_price= $("input[name='goods_price']").val();
+        var goods_desc =$("textarea[name='goods_desc']").val();
+        var goods_packing= $("textarea[name='goods_packing']").val();
+        var goods_sales= $("textarea[name='goods_sales']").val();
+        var goods_sn= $("input[name='goods_sn']").val();
+        var goods_store= $("input[name='goods_store']").val();
+        var goods_img=   $("input[name='img_path']").val();
+        var goods_imgs=[];
 
+        if(goods_name==""){
+            alert("商品名称不能为空");die;
+        }
+        if(goods_title==""){
+            alert("商品标题不能为空");die;
+        }
+        if(goods_price==""){
+            alert("商品价格不能为空");die;
+        }
+        if(goods_store==""){
+            alert("商品数量不能为空");die;
+        }
+        if(goods_desc==""){
+            alert("商品介绍不能为空");die;
+        }
+        $(document).find(".imgs_path").each(function(){
+            var img_path = $(this).val();
+            goods_imgs.push(img_path);
+        });
+    //console.log(goods_imgs);
 
+        var is_show= $("input[name='is_show']").val();
+        var is_hot= $("input[name='is_hot']").val();
+
+        var data={};
+        data.cate_id=cate_id;
+        data.goods_name=goods_name;
+        data.brand_id=brand_id;
+        data.goods_title=goods_title;
+        data.goods_price=goods_price;
+        data.goods_desc=goods_desc;
+        data.goods_packing=goods_packing;
+        data.goods_sales=goods_sales;
+        data.goods_sn=goods_sn;
+        data.goods_store=goods_store;
+        data.is_show=is_show;
+        data.is_hot=is_hot;
+        data.goods_img=goods_img;
+        data.goods_imgs=goods_imgs;
+
+//        console.log(data);
+        $.ajax({
+            url:"/goods/img",
+            data:data,
+            type:'post',
+            success:function(res){
+                if(res.code=='0000'){
+                   location.href="/admins/goodslist";
+                }else{
+                    alert("跳转失败");
+                }
+            }
+        })
+    })
 
 </script>
+
+</html>

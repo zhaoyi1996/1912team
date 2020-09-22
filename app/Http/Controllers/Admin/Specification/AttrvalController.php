@@ -50,8 +50,8 @@ class AttrvalController extends Controller
         $where=[
             ['attrval_id','=',$id]
         ];
-        $attr_info=AttrvalModel::where($where)->first();
-        return view('admin.template.attrval.edit',['attr_info'=>$attr_info]);
+        $attrval_info=AttrvalModel::where($where)->first();
+        return view('admin.template.attrval.edit',['attrval_info'=>$attrval_info]);
     }
 
     /**
@@ -71,6 +71,21 @@ class AttrvalController extends Controller
             return redirect('/admin/template/attrval/edit/'.$id);
         }
     }
+    /**
+     * 商品属性逻辑删除
+     * @param $id
+     */
+    public function del( $id ){
+        $where=[
+            ['attrval_id','=',$id]
+        ];
+        $data=AttrvalModel::where($where)->update(['is_del'=>2]);
+        if($data){
+            return redirect('/admin/template/attrval/index');
+        }else{
+            return redirect('/admin/template/attrval/index');
+        }
+    }
 
     /**
      ** 实现二维数组的笛卡尔积组合
@@ -81,6 +96,8 @@ class AttrvalController extends Controller
     function cartesian( $arr = array(array(1,3,4,5),array(3,5,7,9),array(76,6,1,0)),$str = array()){
         //去除第一个元素
         $first = array_shift($arr);
+//        dd($first);
+        dd($arr);
         //判断是否是第一次进行拼接
         if(count($str) > 1) {
             foreach ($str as $k => $val) {
@@ -99,11 +116,11 @@ class AttrvalController extends Controller
         }
         //递归进行拼接
         if(count($arr) > 0){
-            $str2 = cartesian($arr,$str2);
+            $str2 = $this->cartesian($arr,$str2);
         }
         //返回最终笛卡尔积
-        return $str2;$cartesian_product = cartesian($arr);
-        print_r($cartesian_product);
+        return $str2;$cartesian_product = $this->cartesian($arr);
+//        print_r($cartesian_product);
 
     }
 

@@ -4,7 +4,7 @@
      @section('content')
    
    <!-- 代码部分 -->
- {{--<form action="" method="post">--}}
+
      <div class="modal-content">
          <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -17,6 +17,14 @@
                          <td><input  class="form-control" id="role_name" name="role_name" placeholder="角色名称" >
                      </td>
                  </tr>
+                 <!-- <tr>
+                     <td>角色权限</td>
+                     <td>
+                         @foreach($pow as $k=>$v)
+                         <input type="checkbox" value="{{$v->pow_id}}" name="role_names"> {{$v->pow_name}}
+                         @endforeach
+                     </td>
+                 </tr> -->
              </table>
          </div>
          <div class="modal-footer">
@@ -25,10 +33,16 @@
              <button  type="submit" id="button" value="添加" class="btn btn-success" data-dismiss="modal" aria-hidden="true">添加</button>
          </div>
      </div>
- {{--</form>--}}
+
  <script>
      $("#button").click(function(){
          var role_name = $("#role_name").val();
+         // var checkboxarr=[];
+         // $(".modal-body").find("input[name='role_names']:checked").each(function(){
+               // var id = $(this).val();
+               // checkboxarr.push(id);
+         // });
+        
          $.ajax({
              url:'/admin/rbac/role/store',
              type:'post',
@@ -42,6 +56,7 @@
                  if(res.code==1){
                      alert(res.msg)
                  }
+                 // alert(res);    
              }
          })
      })

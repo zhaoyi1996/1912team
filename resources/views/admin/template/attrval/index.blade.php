@@ -19,12 +19,12 @@
                     </div>
                 </div>
             </div>
-            <div class="box-tools pull-right">
-                <div class="has-feedback">
-                    分类模板名称：<input  >
-                    <button class="btn btn-default">查询</button>
-                </div>
-            </div>
+            {{--<div class="box-tools pull-right">--}}
+                {{--<div class="has-feedback">--}}
+                    {{--分类模板名称：<input  >--}}
+                    {{--<button class="btn btn-default">查询</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <!--工具栏/-->
 
             <!--数据列表-->

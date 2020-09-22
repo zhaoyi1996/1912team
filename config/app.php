@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        iscms\Alisms\AlidayuServiceProvider::class
     ],
 
     /*
@@ -228,6 +228,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-    'pageSize'=>2
+    'pageSize'=>5
 
 ];
