@@ -16,8 +16,6 @@
 
     <!-- 富文本编辑器 -->
     <link rel="stylesheet" href="/admin/plugins/kindeditor/themes/default/default.css" />
-    <link rel="stylesheet" href="/js/uploadify/uploadify.css">
-
 
 </head>
 

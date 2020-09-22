@@ -164,58 +164,44 @@ Route::prefix('/admin')->group(function(){
 });
 
 
+Route::prefix('/admins')->group(function(){
+	//商家后台管理首页
+	Route::get("/index","Admins\IndexController@index");
+	//基本管理  修改资料
+	Route::get("/seller","Admins\SellerController@index");
+	//修改密码
+	Route::get("/pass","Admins\PassrController@index");
+	//新增商品
+	Route::get("/goods","Admins\GoodsController@index");
+	//商品管理
+	Route::get("/goodslist","Admins\GoodsListController@index");
 
-//商家后台管理首页
-Route::get("/admins/index","Admins\IndexController@index");
-
-//基本管理  修改资料
-Route::get("/admins/seller","Admins\SellerController@index");
-
-//修改密码
-Route::get("/admins/pass","Admins\PassrController@index");
-
-
-//新增商品
-Route::get("/admins/goods","Admins\GoodsController@index");
-
-//商品管理
-Route::get("/admins/goodslist","Admins\GoodsListController@index");
-
-Route::get("/admins/home","Admins\HomeController@index");
-
-//商家入驻申请
-Route::get("/admins/register","Admins\RegisterController@index");
-
-//后台商家登录
-Route::get("/admins/shoplogin","Admins\ShopLoginController@index");
-
-//修改资料
-Route::post("/seller/create","Admins\SellerController@create");
-
-//商品添加执行
-//Route::any("/goods/create","Admins\GoodsController@create");
-
-//无限极分类
-Route::any("/goods/getres","Admins\GoodsController@getres");
+	Route::get("/home","Admins\HomeController@index");
+	//商家入驻申请
+	Route::get("/register","Admins\RegisterController@index");
+	//后台商家登录
+	Route::get("/shoplogin","Admins\ShopLoginController@index");
+});
 
 
-//ajax删除
-Route::get('/goods/delete/{id}','Admins\GoodsController@delete');
 
-//上传图片
-Route::any('/goods/uploads','Admins\GoodsController@uploads');
+Route::prefix('/goods')->group(function(){
+	//ajax删除
+	Route::get('/delete/{id}','Admins\GoodsController@delete');
+	//上传图片
+	Route::any('/uploads','Admins\GoodsController@uploads');
+	//多图片上传
+	Route::any('/uploadss','Admins\GoodsController@uploadss');
+	//商品修改视图
+	Route::get('/edit/{id}','Admins\GoodsController@edit');
+	//商品修改
+	Route::post('/update/{id}','Admins\GoodsController@update');
+	//ajax添加
+	Route::post('/img','Admins\GoodsController@img');
+	//无限极分类
+	Route::any("/getres","Admins\GoodsController@getres");
+});
 
-//多图片上传
-Route::any('/goods/uploadss','Admins\GoodsController@uploadss');
-
-//商品修改视图
-Route::get('/goods/edit/{id}','Admins\GoodsController@edit');
-
-//商品修改
-Route::post('/goods/update/{id}','Admins\GoodsController@update');
-
-//ajax添加
-Route::post('/goods/img','Admins\GoodsController@img');
 
 
 Route::prefix('/index')->group(function(){
