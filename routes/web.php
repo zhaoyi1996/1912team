@@ -295,7 +295,7 @@ Route::any("/goods/getres","Admins\GoodsController@getres");
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
-	Route::any("/index/index","Index\IndexController@index");
+	Route::any("/","Index\IndexController@index");
 	//商品详情页
 	Route::any("/index/item","Index\ItemController@index");
 //登录
