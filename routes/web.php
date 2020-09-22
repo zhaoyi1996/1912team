@@ -257,10 +257,13 @@ Route::prefix('/index')->group(function(){
 });
 
 //无限极分类
-Route::any("/goods/getres","Admins\GoodsController@getres");
+	Route::any("/goods/getres","Admins\GoodsController@getres");
 
 
 //前台展示
+	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
+	Route::any("/index/index","Index\IndexController@index");//全部商品
+	
 
 //订单展示
 	Route::any("/index/order_info","Index\OrderController@index");
@@ -302,7 +305,7 @@ Route::any("/goods/getres","Admins\GoodsController@getres");
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
-	Route::any("/index/index","Index\IndexController@index");
+	Route::any("/","Index\IndexController@index");
 	//商品详情页
 	Route::any("/index/item","Index\ItemController@index");
 //登录

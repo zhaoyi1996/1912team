@@ -637,7 +637,7 @@
 						</div>
 					</div>
 					<div class="ads">
-						<img src="/indexshop/img/ad1.png" />
+						<a href="{{$ladver_data->la_url}}"><img src="{{env('APP_URL')}}{{$ladver_data->la_img}}" width="160px"  /></a>
 					</div>
 				</div>
 			</div>
@@ -653,18 +653,11 @@
 						<h3>今日推荐</h3>
 					</div>
 				</li>
+				@foreach($recom_data as $v)
 				<li class="yui3-u-5-24">
-					<a href="list.html" target="_blank"><img src="/indexshop/img/today01.png" /></a>
+					<a href="{{url('/index/item/'.$v->goods_id)}}" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}"  width="180" height="163"/></a>
 				</li>
-				<li class="yui3-u-5-24">
-					<img src="/indexshop/img/today02.png" />
-				</li>
-				<li class="yui3-u-5-24">
-					<img src="/indexshop/img/today03.png" />
-				</li>
-				<li class="yui3-u-5-24">
-					<img src="/indexshop/img/today04.png" />
-				</li>
+				@endforeach
 			</ul>
 		</div>
 	</div>
