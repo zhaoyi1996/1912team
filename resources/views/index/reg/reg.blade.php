@@ -21,7 +21,11 @@
 		</div>
 		<!--register-->
 		<div class="registerArea">
+<<<<<<< HEAD
 			<h3>注册新用户<span class="go">我有账号，去<a href="login.html" target="_blank">登陆</a></span></h3>
+=======
+			<h3>注册新用户<span class="go">我有账号，去<a href="{{url('/index/login')}}" target="_blank">登陆</a></span></h3>
+>>>>>>> heyuhao
 			<div class="info">
 				<form class="sui-form form-horizontal" onsubmit="javascript:return check()">
 				<!-- <div ></div> -->
@@ -54,6 +58,7 @@
 						<label for="inputPassword" class="control-label">邮箱验证码：</label>
 						<div class="controls">
 							<input type="text" placeholder="短信验证码"  class="input-xfat input-xlarge">  
+							<input type="text" placeholder="短信验证码" id="user_code" class="input-xfat input-xlarge">  
 							<button class="but" id="sendcode">获取邮箱验证码</button>
 						</div>
 					</div>
@@ -100,9 +105,18 @@
 <script type="text/javascript" src="/indexshop/js/pages/register.js"></script>
 <script>
 // 阻止表单提交
+<<<<<<< HEAD
 	$("form").submit(function(){
 		return false;
 	})
+=======
+    function check(){
+        return false;
+    }
+	// $("form").submit(function(){
+	// 	return false;
+	// })
+>>>>>>> heyuhao
 	$("#sendcode").click(function(){
 		var user_email = $("#user_email").val();
         var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
@@ -127,13 +141,12 @@
             // dataType:'json',
             data:{user_email:user_email},
             success:function(res){
-                // if(res.code==1){
-                    // alert(res.msg)
-                // }
-                // if(res.code==0){
-                    // alert(res.msg)
-                // }
-                console.log(res)
+                if(res.code==1){
+                    alert(res.msg)
+                }
+                if(res.code==0){
+                    alert(res.msg)
+                }
             }
         })
     })
@@ -165,10 +178,51 @@
         	var user_pwds = $("#user_pwds").val();
         	var user_pwd = $("#user_pwd").val();
         	var user_email = $("#user_email").val();
+<<<<<<< HEAD
+=======
+            var user_code = $("#user_code").val();
+>>>>>>> heyuhao
         	if(user_name==''){
         		alert("用户姓名不可为空");
         		return false;
         	}
+<<<<<<< HEAD
+=======
+            if(user_pwd==''){
+                alert("用户名密码不可为空");
+                return false;
+            }
+            if(user_pwds==''){
+                alert("确认密码不可为空");
+                return false;
+            }
+            if(user_pwd!==user_pwds){
+                alert("密码与确认密码不同");
+                return false;
+            }
+            if(user_email==''){
+                alert("邮箱不可为空");
+                return false;
+            }
+            if(user_code==''){
+                alert("验证码不可为空");
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url:"/index/regdo",
+                data:{user_name:user_name,user_pwd:user_pwd,user_pwds:user_pwds,user_email:user_email,user_code:user_code},
+                success:function(res){
+                    if(res.code==1){
+                        alert(res.msg)
+                    }
+                    if(res.code==0){
+                        alert(res.msg)
+                        // window.location.href="http://www.1912team.com/index/login";
+                    }
+                }
+            })
+>>>>>>> heyuhao
         })
 	
 </script>
