@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Slide extends Model
+class ShopSlideModel extends Model
 {
     protected $table = "shop_slide";
-    protected $primaryKey = "sli_id";
+    protected $primaryKey = "sl_id";
      
     public $timestamps =  false;
      // 黑名单 所有都允许添加

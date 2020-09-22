@@ -33,7 +33,8 @@ class LoginController extends Controller
     	}
 
     	$user = ShopUserModel::where('user_name',$user_name)->first();
-    	if(!$user){
+		
+		if(!$user){
     		echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
     	}
     	if($user_pwd!==decrypt($user->user_pwd)){

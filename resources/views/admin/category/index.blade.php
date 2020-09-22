@@ -1,15 +1,7 @@
 @extends('layouts.shop')
-@section('title',"商品后台广告类型管理")
+@section('title',"商品后台广告轮播图管理")
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
 <body class="hold-transition skin-red sidebar-mini"  >
   <!-- .box-body -->
                 
@@ -25,52 +17,51 @@
                             <!--工具栏-->
                             <div class="pull-left">
                                 <div class="form-group form-inline">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="toAdd()"><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
-                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
-                                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                                    <div clas="btn-group">
+									<a href="/admin/category/create/"><button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#AddModal"><i class="fa fa-file-o"></i> 新建</button></a>
+                                      <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新<button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="box-tools pull-right">
-                                <div class="has-feedback">
-							        名称：<input >	<button class="btn btn-default" >查询</button>                                    
-                                </div>
-                            </div>
+                            
                             <!--工具栏/-->
-
+							<form action="">
+								<input type="text" name="sl_url">
+								<input type="submit" value="地址搜索">
+							</form>
 			                  <!--数据列表-->
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
 			                      <thead>
 			                          <tr>
-			                              <th class="" style="padding-right:0px">
-			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
-			                              </th> 
-										  <th class="sorting_asc">分类ID</th>
-									      <th class="sorting">分类名称</th>
-									      <th class="sorting">分组</th>
-									      <th class="sorting">KEY</th>
-									      <th class="sorting">状态</th>								      							
+			                             
+										  <th class="sorting_asc">ID</th>
+									      <th class="sorting">轮播图地址</th>
+									      <th class="sorting">轮播图权重</th>
+									      <th class="sorting">轮播图-图片</th>
+										  <th class="sorting">添加时间</th>
+									      <th class="sorting">是否展示</th>								      							
 					                      <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
+								  @foreach($slide as $v)
 			                          <tr>
-			                              <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>			                              
-				                          <td>1</td>
-									      <td>首页轮播广告</td>
-									      <td>首页广告</td>
-									      <td>index</td>
-		                                  <td>
-			                                 <span>无效</span>	
-										     <span>有效</span>										                                    
-		                                  </td>
+			                              			                              
+				                          <td>{{$v->sl_id}}</td>
+									      <td>{{$v->sl_url}}</td>
+									      <td>{{$v->sl_weight}}</td>
+									      <td><img src="{{env('APP_URL')}}{{$v->sl_log}}" width="80" hight="80" alt=""></td>
+										  <th>{{date("Y-m-d H:i:s",$v->add_time)}}</th>
+		                                  <td>@if($v->is_show==1)是@else 否 @endif</td>
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
+		                                 	<a href="{{url('/admin/category/edit/'.$v->sl_id)}}"> <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button> </a>                                          
+											<a href="{{url('/admin/category/destroy/'.$v->sl_id)}}"> <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >删除</button> </a>                                          
 		                                  </td>
 			                          </tr>
+									  @endforeach
+									  <td>
+										<td colspan="6">{{$slide->appends($query)->links()}}</td>
+									</td>
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/--> 
@@ -80,49 +71,4 @@
                     <!-- /.box-body -->
 	            <!-- 分页 -->
 				
-<form enctype="multipart/form-data" action="{{url('/admin/category/create')}}" method="post">           
-<!-- 编辑窗口 -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" >
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">广告轮播图添加</h3>
-		</div>
-		<div class="modal-body">							
-			
-			<table class="table table-bordered table-striped"  width="800px">
-		      	<tr>
-		      		<td>轮播图地址</td>
-		      		<td><input  class="form-control" placeholder="轮播图地址" name="sl_name"></td>
-		      	</tr>
-		      	<tr>
-		      		<td>轮播图权重</td>
-		      		<td><input  class="form-control" placeholder="轮播图权重" name="sl_weight">  </td>
-		      	</tr>	
-			    <tr>
-		      		<td>图片</td>
-		      		<td><input type="file" class="form-control" name="sl_log">  </td>
-		      	</tr>		      
-		      	<tr>
-		      		<td>是否展示</td>
-		      		<td>
-		      		 <input type="radio" value="1" name="is_show" checked>是
-					 <input type="radio" value="2" name="is_show" >否
-		      		</td>
-		      	</tr>  	
-			 </table>				
-			
-		</div>
-		<div class="modal-footer">						
-			 <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
-			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
-		</div>
-	  </div>
-	</div>
-</div>
-</form>
-    
-</body>
 @endsection
-

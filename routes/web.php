@@ -74,6 +74,7 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attr/del/{id}","Admin\Specification\AttrController@del");
 		Route::get("/template/attr/edit/{id}","Admin\Specification\AttrController@edit");
 		Route::post("/template/attr/update/{id}","Admin\Specification\AttrController@update");
+
 		//后台商品属性值管理
 		Route::get("/template/attrval/index","Admin\Specification\AttrvalController@index");
 		Route::get("/template/attrval/create","Admin\Specification\AttrvalController@create");
@@ -81,6 +82,7 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attrval/del/{id}","Admin\Specification\AttrvalController@del");
 		Route::get("/template/attrval/edit/{id}","Admin\Specification\AttrvalController@edit");
 		Route::post("/template/attrval/update/{id}","Admin\Specification\AttrvalController@update");
+		Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
 
 		//后台商品规格管理
 		Route::get("/template/repertory/index","Admin\Repertory\RepertoryController@index");
@@ -92,28 +94,59 @@ Route::prefix('/admin')->group(function(){
 
 
 
-	Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
-
-
+	
 	//后台模块分类管理
 
 		Route::get("/cate","Admin\CateController@index");
 		//后台模块商品管理
 		Route::get("/goods","Admin\GoodsController@index");
 
-		//后台模块广告类型管理
-		Route::get("/category","Admin\CategoryController@index");
-		//后台模块广告管理
-
-
 		//后台模块轮播图管理
-		Route::get("/category","Admin\CategoryController@index");
+		Route::get("/category","Admin\CategoryController@index"); //轮播图展示
+		Route::any("/category/create","Admin\CategoryController@create"); //轮播图添加展示
+		Route::any("/category/story","Admin\CategoryController@story"); //执行添加
+		Route::any("/category/getsun","Admin\CategoryController@getsun"); //接收图片并返回视图
+		Route::any("/category/destroy/{id}","Admin\CategoryController@destroy");	//逻辑删除
+		Route::any("/category/edit/{id}","Admin\CategoryController@edit");	//执行修改
+		Route::any("/category/update","Admin\CategoryController@update");	//执行修改
 
 		//后台模块公告管理
+		Route::get("/content","Admin\ContentController@index"); //公告展示
+		Route::any("/content/create","Admin\ContentController@create"); //公告添加展示
+		Route::any("/content/story","Admin\ContentController@story"); //公告执行添加
+		Route::any("/content/edit/{id}","Admin\ContentController@edit"); //修改视图
+		Route::any("/content/update","Admin\ContentController@update"); //执行修改
+		Route::any("/content/destroy/{id}","Admin\ContentController@destroy"); //逻辑删除
 
-		Route::get("/content","Admin\ContentController@index");
+		// 小广告模块
+		Route::get("/ladver","Admin\LadverController@index"); //小广告展示
+		Route::any("/ladver/create","Admin\LadverController@create"); //小广告添加视图
+		Route::any("/ladver/story","Admin\LadverController@story");//小广告执行添加
+		Route::any("/ladver/getsun","Admin\LadverController@getsun");//接收图片返回视图
+		Route::any("/ladver/edit/{id}","Admin\LadverController@edit"); //修改视图
+		Route::any("/ladver/update","Admin\LadverController@update"); //执行修改
+		Route::any("/ladver/destroy/{id}","Admin\LadverController@destroy"); //逻辑删除
+		Route::any("/ladver/ajaxdel","Admin\LadverController@ajaxdel"); //ajax删除 -直接删除-
+
+		// 底部友情链接
+		Route::get("/foot","Admin\FootController@index"); //底部友情链接展示
+		Route::any("/foot/create","Admin\FootController@create"); //添加视图
+		Route::any("/foot/story","Admin\FootController@story"); //执行添加
+		Route::any("/foot/destroy/{id}","Admin\FootController@destroy");	//逻辑删除
+		Route::any("/foot/edit/{id}","Admin\FootController@edit");	//修改视图
+		Route::any("/foot/update","Admin\FootController@update");	//执行修改
+
+		// 导航
+		Route::get("/nav","Admin\NavController@index"); //导航展示
+		Route::any("/nav/create","Admin\NavController@create"); //添加视图
+		Route::any("/nav/story","Admin\NavController@story"); //执行添加
+		Route::any("/nav/destroy/{id}","Admin\NavController@destroy");	//逻辑删除
+		Route::any("/nav/edit/{id}","Admin\NavController@edit");	//修改视图
+		Route::any("/nav/update","Admin\NavController@update");	//执行修改
+
 		//后台模块商家审核
 		Route::get("/seller1","Admin\Seller1Controller@index");
+
 		//后台模块商家管理
 		Route::get("/seller","Admin\SellerController@index");
 		//后台首页

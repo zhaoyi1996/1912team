@@ -124,8 +124,11 @@ input{
 <script src="/jquery.js"></script>
 <script>
      $("#button").click(function(){
+        //  alert(123);
+        //  return false;
             var user_name = $("#user_name").val();
             var user_pwd = $("#user_pwd").val();
+        
             $.ajax({
                 url:"/admin/logindo",
                 type:'post',
