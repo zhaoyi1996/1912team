@@ -34,7 +34,7 @@
 			                  <!--数据列表-->
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
 			                  	<form action="">
-									<input type="text" name="brand_name" value="{{$brand_name}}">
+									<input type="text" name="name" value="{{$name}}">
 									<input type="submit" value="搜索">
 								</form>
 
@@ -71,7 +71,7 @@
 								@endforeach
 			                      </tbody>
 			                  </table>
-			                  {{$data->appends(["brand_name"=>$brand_name])->links()}}
+			                  {{$data->appends(["name"=>$name])->links()}}
 			                  <!--数据列表/-->                        
 							  
 							 
@@ -97,18 +97,18 @@
 			<table class="table table-bordered table-striped" enctype="multipart/form-data"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>
-		      		<td><input  class="form-control" placeholder="品牌名称" name="brand_name">  </td>
+		      		<td><input class="form-control" placeholder="品牌名称" name="brand_name">  </td>
 		      	</tr>		      	
 		      	<tr>
 		      		<td>品牌图片</td>
-		      		<td><input  type="file" class="form-control" id="uploadify"  placeholder="品牌图片" name="brand_img">  
+		      		<td><input  type="file"  class="form-control" id="uploadify"  placeholder="品牌图片" name="brand_img">  
 		      			<input type="hidden" name="brand_img">
 		      			<!-- <span class="showimg"></span> -->
 					</td>
 		      	</tr>	
 		      	<tr>
 		      		<td>品牌URL</td>
-		      		<td><input  class="form-control" placeholder="品牌URL" name="brand_url">  </td>
+		      		<td><input class="form-control" placeholder="品牌URL" name="brand_url">  </td>
 		      	</tr>	
 		      	<tr>
 		      		<td>首字母</td>
@@ -127,12 +127,12 @@
 </body>
 <script>
 	$("#test").click(function(){
-		//alert(111);
+		// alert(111);
 		var brand_name=$("input[name='brand_name']").val();
 		var brand_img=$("input[name='brand_img']").val();
 		var brand_url=$("input[name='brand_url']").val();
 		var brand_story=$("input[name='brand_story']").val();
-		// console.log(brand_img)
+		
 		// return false
 		$.ajax({
 			url:"test",

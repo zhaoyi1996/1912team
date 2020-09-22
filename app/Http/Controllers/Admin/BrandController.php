@@ -12,12 +12,12 @@ class BrandController extends Controller
     public function index(Request $request){
     	//$res=new Brand;
          // 接搜索值
-        $brand_name = request()->brand_name;
+        $name = request()->name;
         $where=[
             ["brand_del","=",1]
         ];
-        if($brand_name){
-            $where[] = ["brand_name","like","%$brand_name%"];
+        if($name){
+            $where[] = ["brand_name","like","%$name%"];
         }
 
         
@@ -25,11 +25,22 @@ class BrandController extends Controller
     	$data=Brand::where($where)->paginate($pageSize);
 
     	//dd($data);
-    	return view("admin.brand.index",['data'=>$data,"brand_name"=>$brand_name]);
+    	return view("admin.brand.index",['data'=>$data,"name"=>$name]);
     }
 
     // 添加
-    public function test(){
+    public function test(Request $request){
+        // 接ajax传来第的值
+        // $brand_name = Request()->brand_name;
+        // $brand_img = Request()->brand_img;
+        // $brand_url = Request()->brand_url;
+        // $brand_story = Request()->brand_story;
+        // $data = [
+        //     'brand_name'=>$brand_name,
+        //     'brand_img' =>$brand_img,
+        //     'brand_url' =>$brand_url,
+        //     'brand_story' =>$brand_story
+        // ];
     	$data=request()->all();
     	//dd($data);	
     	$res=new Brand;
@@ -48,8 +59,9 @@ class BrandController extends Controller
       // dd($res);
     	//添加入库
     	// dd($data);
+        //添加
     	$result=$res->save();
-    	// dd($result);
+    	//dd($result);
     	//判断
     	if($result){
     		return['code'=>'0','msg'=>'成功'];
@@ -95,7 +107,7 @@ class BrandController extends Controller
         return redirect('/admin/brand');
     }
 
-       public function upload($img){
+    public function upload($img){
         if(request()->file($img)->isValid()){
             $file=request()->$img;
             $store_result=$file->store('uploads');
