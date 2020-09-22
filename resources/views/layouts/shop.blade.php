@@ -435,7 +435,7 @@
 				                </a>
 				            </li>
 							<li id="admin-login">
-				                <a href="{{url('/admin/goods')}}" target="iframe">
+				                <a href="#" target="iframe">
 				                    <i class="fa fa-circle-o"></i>商品审核
 				                </a>
 				            </li>
