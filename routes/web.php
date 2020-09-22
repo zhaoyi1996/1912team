@@ -254,10 +254,13 @@ Route::prefix('/index')->group(function(){
 });
 
 //无限极分类
-Route::any("/goods/getres","Admins\GoodsController@getres");
+	Route::any("/goods/getres","Admins\GoodsController@getres");
 
 
 //前台展示
+	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
+	Route::any("/index/index","Index\IndexController@index");//全部商品
+	
 
 //订单展示
 	Route::any("/index/order_info","Index\OrderController@index");
