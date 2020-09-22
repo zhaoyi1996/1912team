@@ -287,6 +287,8 @@
             success:function(res){
                 if(res.code=='0000'){
                    location.href="/admins/goodslist";
+                }else if(res.code=='1111'){
+                    alert(res.msg);
                 }else{
                     alert("跳转失败");
                 }
