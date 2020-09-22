@@ -240,17 +240,20 @@ Route::prefix('/goods')->group(function(){
 });
 
 
-
 Route::prefix('/index')->group(function(){
 	//前台登录
 	Route::get("/login","Index\LoginController@login");
 	//前台执行登录
 	Route::post("/logindo","Index\LoginController@logindo");
 	// 前台注册+执行注册
-	Route::get("/reg","Index\LoginController@reg");
-	Route::post("/regdo","Index\LoginController@regdo");
+	// Route::get("/reg","Index\LoginController@reg");
+	// Route::post("/regdo","Index\LoginController@regdo");
 	//获取邮箱验证码
 	Route::post("/sendEmail","Index\LoginController@sendEmail");
+
+	//前台注册
+	Route::get("/reg","Index\RegController@reg");
+	Route::post("/regdo","Index\RegController@regdo");
 });
 
 //无限极分类
@@ -302,7 +305,7 @@ Route::prefix('/index')->group(function(){
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
-	Route::any("/index/index","Index\IndexController@index");
+	Route::any("/","Index\IndexController@index");
 	//商品详情页
 	Route::any("/index/item","Index\ItemController@index");
 //登录

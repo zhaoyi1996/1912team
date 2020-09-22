@@ -16,6 +16,8 @@
 
     <!-- 富文本编辑器 -->
     <link rel="stylesheet" href="/admin/plugins/kindeditor/themes/default/default.css" />
+    <script charset="utf-8" src="/admin/plugins/kindeditor/kindeditor-min.js"></script>
+    <script charset="utf-8" src="/admin/plugins/kindeditor/lang/zh_CN.js"></script>
 
 </head>
 
@@ -209,6 +211,17 @@
     });
 </script>
 <script>
+
+    var goods_desc;
+    KindEditor.ready(function(K) {
+        goods_desc = K.create('textarea[name="goods_desc"]', {
+            allowFileManager : true
+        });
+    });
+
+</script>
+<script>
+
     $(document).on("click","#button",function(){
         var cate_id= $("select[name='cate_id']").val();
         var goods_name= $("input[name='goods_name']").val();
@@ -240,10 +253,7 @@
             alert("商品数量不能为空");
             return false;
         }
-        if(goods_desc==""){
-            alert("商品介绍不能为空");
-            return false;
-        }
+
         $(document).find(".imgs_path").each(function(){
             var img_path = $(this).val();
             goods_imgs.push(img_path);
