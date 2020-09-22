@@ -236,7 +236,6 @@ Route::prefix('/goods')->group(function(){
 });
 
 
-
 Route::prefix('/index')->group(function(){
 	//前台登录
 	Route::get("/login","Index\LoginController@login");
