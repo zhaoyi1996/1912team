@@ -149,8 +149,8 @@ Route::prefix('/admin')->group(function(){
 
 		//后台模块商家管理
 		Route::get("/seller","Admin\SellerController@index");
-		//后台首页
 
+		//后台首页
 		Route::get("/index","Admin\IndexController@index");
 
 
@@ -168,8 +168,10 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/rbac/pow/del/{id}","Rbac\PowController@del");
 		Route::get("/rbac/pow/upd/{id}","Rbac\PowController@upd");
 		Route::post("/rbac/pow/update/{id}","Rbac\PowController@update");
+
 		//权限列表
 		Route::get("/rbac/pow/list","Rbac\PowController@list");
+
 		//角色添加
 		Route::get("/rbac/role/create","Rbac\RoleController@create");
 		Route::post("/rbac/role/store","Rbac\RoleController@store");
@@ -178,9 +180,11 @@ Route::prefix('/admin')->group(function(){
 		Route::post("/rbac/role/fus2","Rbac\RoleController@fus2");
 		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
 		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
-	    Route::get("/rbac/role/fusdel/{id}","Rbac\RoleController@fusdel");
+		Route::get("/rbac/role/fusdel/{id}","Rbac\RoleController@fusdel");
+		
 	 	//角色列表
 		Route::get("/rbac/role/list","Rbac\RoleController@list");
+
 		//管理员添加
 		Route::get("/rbac/admin/create","Rbac\AdminController@create");
 		Route::post("/rbac/admin/store","Rbac\AdminController@store");

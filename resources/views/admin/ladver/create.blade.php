@@ -72,8 +72,17 @@
         $("#button").click(function(){
             // 获取需要传递的值
         var la_name=$("#la_name").val();
+        if(la_name==""){
+            alert("小广告名称不能为空");
+            return;
+        }
         var la_img=$("#la_img").val();
+        
         var la_url=$("#la_url").val();  
+        if(la_url==""){
+            alert("小广告跳转地址");
+            return;
+        }
         // console.log(la_img);
       // 通过ajax技术传给控制器
       $.ajax({
@@ -96,8 +105,6 @@
     });
 });
 </script> 
-
-
 
 
 @endsection

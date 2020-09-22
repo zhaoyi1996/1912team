@@ -70,10 +70,26 @@
         $("#button").click(function(){
             // 获取需要传递的值
         var an_name=$("#an_name").val();
+        if(an_name==""){
+            alert("公告名称不能为空");
+            return;
+        }
         var an_url=$("#an_url").val();
+        if(an_url==""){
+            alert("公告跳转地址不能为空");
+            return;
+        }
         var an_desc=$("#an_desc").val();  
         var an_st_price=$("#an_st_price").val(); 
-        var an_st_num=$("#an_st_num").val();    
+        if(an_st_price==""){
+            alert("折扣价格不能为空");
+            return;
+        }
+        var an_st_num=$("#an_st_num").val();  
+        if(an_st_num==""){
+            alert("折扣销售数量不能为空");
+            return;
+        }  
         // console.log(an_st_num);
       // 通过ajax技术传给控制器
       $.ajax({

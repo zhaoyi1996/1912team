@@ -84,6 +84,10 @@
         $("#button").click(function(){
             // 获取需要传递的值
         var sl_url=$("#sl_url").val();
+        if(sl_url==""){
+            alert("轮播图跳转不能为空");
+            return;
+        }
         var sl_weight=$("#sl_weight").val();
         var sl_log=$("#sl_log").val();  
         var is_show=$("#is_show").val();    
