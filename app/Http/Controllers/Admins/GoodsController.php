@@ -130,8 +130,7 @@ static $info=[];
 
 //    ajax接收值执行添加
     public function img(Request $request){
-        $data=$request->all();
-
+        $data=$request->except('_token');
 //        添加时间
         $data['goods_add_time']=time();
         $data['goods_imgs']=implode('|',$data['goods_imgs']);
@@ -144,4 +143,5 @@ static $info=[];
         return (['code'=>0001,'msg'=>'添加失败']);
     }
     }
+
 }

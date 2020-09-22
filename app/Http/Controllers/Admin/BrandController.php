@@ -11,17 +11,38 @@ class BrandController extends Controller
     //商品品牌展示
     public function index(Request $request){
     	//$res=new Brand;
+         // 接搜索值
+        $name = request()->name;
         $where=[
             ["brand_del","=",1]
         ];
+        if($name){
+            $where[] = ["brand_name","like","%$name%"];
+        }
+
+        
         $pageSize=config('app.pageSize');
     	$data=Brand::where($where)->paginate($pageSize);
+
     	//dd($data);
-    	return view("admin.brand.index",['data'=>$data]);
+    	return view("admin.brand.index",['data'=>$data,"name"=>$name]);
     }
-    public function test(){
+
+    // 添加
+    public function test(Request $request){
+        // 接ajax传来第的值
+        // $brand_name = Request()->brand_name;
+        // $brand_img = Request()->brand_img;
+        // $brand_url = Request()->brand_url;
+        // $brand_story = Request()->brand_story;
+        // $data = [
+        //     'brand_name'=>$brand_name,
+        //     'brand_img' =>$brand_img,
+        //     'brand_url' =>$brand_url,
+        //     'brand_story' =>$brand_story
+        // ];
     	$data=request()->all();
-    	//dd($data);	
+    	dd($data);
     	$res=new Brand;
 
           // 文件上传判断
@@ -38,8 +59,9 @@ class BrandController extends Controller
       // dd($res);
     	//添加入库
     	// dd($data);
+        //添加
     	$result=$res->save();
-    	// dd($result);
+    	//dd($result);
     	//判断
     	if($result){
     		return['code'=>'0','msg'=>'成功'];
@@ -49,6 +71,7 @@ class BrandController extends Controller
     }
 
 
+    // 修改试图
     public function edit($id){
     	$res=Brand::where('brand_id',$id)->first();
     	// dd($res);
@@ -57,7 +80,7 @@ class BrandController extends Controller
 
 
 
-
+    // 执行修改
     public function update($id){
 
     	$all=request()->all();
@@ -75,6 +98,7 @@ class BrandController extends Controller
     	}
     }
 
+// 逻辑删除
     public function delete($id){
         $data=new  Brand;
         $data=Brand::find($id);
@@ -83,7 +107,7 @@ class BrandController extends Controller
         return redirect('/admin/brand');
     }
 
-       public function upload($img){
+    public function upload($img){
         if(request()->file($img)->isValid()){
             $file=request()->$img;
             $store_result=$file->store('uploads');
@@ -94,9 +118,8 @@ class BrandController extends Controller
     /**
      * 图片处理
      */
-    public function img( Request $request){
+    public function img(Request $request){
         $fileinfo=$_FILES['Filedata'];
-    // dd($fileinfo);
     $tmpname=$fileinfo['tmp_name'];
     $ext=explode(".", $fileinfo['name'])[1];
     // dd($ext);

@@ -30,9 +30,9 @@
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
 			                      <thead>
 			                          <tr>
-			                              <th class="" style="padding-right:0px">
+			                              <!-- <th class="" style="padding-right:0px">
 			                                  <input type="checkbox" class="icheckbox_square-blue">
-			                              </th> 
+			                              </th>  -->
 										  <th class="sorting_asc">分类ID</th>
 									      <th class="sorting">分类名称</th>									   
 									      <th class="sorting">类型模板ID</th>
@@ -46,7 +46,7 @@
 			                      <tbody>
 								  @foreach($res as $v)
 									  <tr cate_id="{{$v->cate_id}}">
-			                              <td><input  type="checkbox"> </td>			                              
+			                              <!-- <td><input  type="checkbox"> </td>			                               -->
 				                          <td>{{$v->cate_id}}</td>
 									      <td>{{str_repeat('|--',$v->level)}}{{$v->cate_name}}</td>									    
 										  <td>{{$v->pid}}</td>

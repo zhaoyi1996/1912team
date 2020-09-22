@@ -50,8 +50,8 @@ class AttrvalController extends Controller
         $where=[
             ['attrval_id','=',$id]
         ];
-        $attr_info=AttrvalModel::where($where)->first();
-        return view('admin.template.attrval.edit',['attr_info'=>$attr_info]);
+        $attrval_info=AttrvalModel::where($where)->first();
+        return view('admin.template.attrval.edit',['attrval_info'=>$attrval_info]);
     }
 
     /**
@@ -69,6 +69,21 @@ class AttrvalController extends Controller
             return redirect('/admin/template/attrval/index');
         }else{
             return redirect('/admin/template/attrval/edit/'.$id);
+        }
+    }
+    /**
+     * 商品属性逻辑删除
+     * @param $id
+     */
+    public function del( $id ){
+        $where=[
+            ['attrval_id','=',$id]
+        ];
+        $data=AttrvalModel::where($where)->update(['is_del'=>2]);
+        if($data){
+            return redirect('/admin/template/attrval/index');
+        }else{
+            return redirect('/admin/template/attrval/index');
         }
     }
 

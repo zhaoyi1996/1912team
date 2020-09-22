@@ -4,6 +4,14 @@ namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Brand;
+
+class LoginController extends Controller
+{
+    //商品品牌展示
+    public function index(Request $request){
+    	return view("index.login");
+    }
 use App\Mail\sendCode;
 use Illuminate\Support\Facades\Mail;
 use App\Model\ShopUserModel;
@@ -33,7 +41,8 @@ class LoginController extends Controller
     	}
 
     	$user = ShopUserModel::where('user_name',$user_name)->first();
-    	if(!$user){
+		
+		if(!$user){
     		echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
     	}
     	if($user_pwd!==decrypt($user->user_pwd)){
@@ -194,7 +203,6 @@ class LoginController extends Controller
     // public function sendByEmail($email,$code){
     //     Mail::to($email)->send(new SendCode($code));
     // }
-
 
 
 }

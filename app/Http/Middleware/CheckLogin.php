@@ -129,6 +129,12 @@ class CheckLogin
         }else{
             echo "<script>alert('你没有权限');window.history.go(-1);</script>";
         }
+        //取出session值
+//        $user = session("userInfo");
+//        if(!$user){
+//            return redirect("/admin/login");
+//        }
+        return $next($request);
     }
 }
 }

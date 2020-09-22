@@ -24,6 +24,7 @@
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label" >品牌图片</label>
 		<div class="col-sm-10">
+			<img src="{{env('UPLOADS_URL')}}{{$res->brand_img}}" alt="">
 			<input type="file"  class="form-control" id="uploadify" 
 				    name="brand_img"  value="{{$res->brand_img}}">
 				    <input type="hidden" name="brand_img">
@@ -49,7 +50,7 @@
  <script>
 	$(document).ready(function(){
 		$("#uploadify").uploadify({
-			uploader: "/admin/img",
+			uploader: "/admin/brand/img",
 			swf: "/uploadify/uploadify.swf",
 			onUploadSuccess:function(res,data,msg){
 				// console.log(res);

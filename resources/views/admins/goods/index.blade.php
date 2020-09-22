@@ -16,8 +16,8 @@
 
     <!-- 富文本编辑器 -->
     <link rel="stylesheet" href="/admin/plugins/kindeditor/themes/default/default.css" />
-    <link rel="stylesheet" href="/js/uploadify/uploadify.css">
-
+    <script charset="utf-8" src="/admin/plugins/kindeditor/kindeditor-min.js"></script>
+    <script charset="utf-8" src="/admin/plugins/kindeditor/lang/zh_CN.js"></script>
 
 </head>
 
@@ -35,12 +35,6 @@
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#home" data-toggle="tab">商品基本信息</a>
-                </li>
-                <li >
-                    <a href="#customAttribute" data-toggle="tab">扩展属性</a>
-                </li>
-                <li >
-                    <a href="#spec" data-toggle="tab" >规格</a>
                 </li>
             </ul>
             <!--tab头/-->
@@ -217,6 +211,17 @@
     });
 </script>
 <script>
+
+    var goods_desc;
+    KindEditor.ready(function(K) {
+        goods_desc = K.create('textarea[name="goods_desc"]', {
+            allowFileManager : true
+        });
+    });
+
+</script>
+<script>
+
     $(document).on("click","#button",function(){
         var cate_id= $("select[name='cate_id']").val();
         var goods_name= $("input[name='goods_name']").val();
@@ -230,6 +235,24 @@
         var goods_store= $("input[name='goods_store']").val();
         var goods_img=   $("input[name='img_path']").val();
         var goods_imgs=[];
+
+        if(goods_name==""){
+            alert("商品名称不能为空");
+            return false;
+        }
+
+        if(goods_title==""){
+            alert("商品标题不能为空");
+            return false;
+        }
+        if(goods_price==""){
+            alert("商品价格不能为空");
+            return false;
+        }
+        if(goods_store==""){
+            alert("商品数量不能为空");
+            return false;
+        }
 
         $(document).find(".imgs_path").each(function(){
             var img_path = $(this).val();
@@ -255,6 +278,7 @@
         data.is_hot=is_hot;
         data.goods_img=goods_img;
         data.goods_imgs=goods_imgs;
+
 //        console.log(data);
         $.ajax({
             url:"/goods/img",

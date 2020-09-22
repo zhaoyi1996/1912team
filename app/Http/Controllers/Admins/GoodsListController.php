@@ -18,7 +18,9 @@ class GoodsListController extends Controller
         }
         $pageSize=config('app.pageSize');
 
-        $res=GoodsModel::where($where)->orderby('goods_id','desc')->paginate($pageSize);
+        $res=GoodsModel::leftjoin("shop_category","shop_category.cate_id","=","shop_goods.cate_id")
+                        ->leftjoin("shop_brand","shop_brand.brand_id","=","shop_goods.brand_id")
+                        ->where($where)->orderby('goods_id','desc')->paginate($pageSize);
 
         // ajax分页
         if(request()->ajax()){
