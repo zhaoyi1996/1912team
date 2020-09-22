@@ -17,8 +17,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
- <button><i class="fa fa-file-o"></i> 新建</button>
-										<a  type="button" class="btn btn-default"  data-toggle="modal" data-target="#editModal"  href="">添加</a>
+										<a   class="btn btn-default"   href="{{url('/admin/rbac/pow/create')}}">添加</a>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -28,7 +27,6 @@
                                 	<form action="">
                                 		权限名称<input type="text" name="pow_name" value="{{$pow_name}}">
                                 		<input type="submit" value="查询">
-
                                 	</form>
 							        
                                 </div>

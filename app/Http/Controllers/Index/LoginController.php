@@ -6,12 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Brand;
 
-class LoginController extends Controller
-{
-    //商品品牌展示
-    public function index(Request $request){
-    	return view("index.login");
-    }
 use App\Mail\sendCode;
 use Illuminate\Support\Facades\Mail;
 use App\Model\ShopUserModel;
@@ -20,9 +14,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class LoginController extends Controller
 {
     public function __construct(Sms $sms)
-         {
-          $this->sms=$sms;
-         }
+    {
+        $this->sms=$sms;
+    }
     //前台登录
     public function login(){
     	return view("index.login.login");
