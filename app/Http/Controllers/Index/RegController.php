@@ -15,9 +15,7 @@ class RegController extends Controller
     	return view("index.reg.reg");
     }
     //
-    public function reg(){
-    	return view("index.reg.reg");
-    }
+   
     public function regdo(Request $request){
     	//接值
     	$user_name = $request->post("user_name");

@@ -40,7 +40,7 @@ Route::post("/admin/logindo","Rbac\LoginController@logindo");
 Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
-Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware("islogin")->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
@@ -305,8 +305,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
 	Route::any("/index/item","Index\ItemController@index");
-//登录
-	Route::any("/index/login","Index\LoginController@index");
+
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页
