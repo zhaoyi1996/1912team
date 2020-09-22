@@ -75,7 +75,7 @@ class CheckLogin
             }else{
                 $user_url=$user_url;
             }
-           // dd($user_url);
+           echo $user_url;
            // echo $user_url;die;
             if($user_url == "http://www.1912team.com/admin/list"){
                 return $next($request);
@@ -129,12 +129,7 @@ class CheckLogin
         }else{
             echo "<script>alert('你没有权限');window.history.go(-1);</script>";
         }
-        //取出session值
-//        $user = session("userInfo");
-//        if(!$user){
-//            return redirect("/admin/login");
-//        }
-        return $next($request);
+
     }
 }
 }
