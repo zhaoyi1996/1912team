@@ -524,19 +524,21 @@
 					    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					    <li data-target="#myCarousel" data-slide-to="1"></li>
 					    <li data-target="#myCarousel" data-slide-to="2"></li>
+						  <li data-target="#myCarousel" data-slide-to="3"></li>
+						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
 					  <div class="carousel-inner">
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
 					    <div class="active item">
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="200" height="100"  />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="500px;" />
 					      </a>
 					    </div>
 					    @else
 								  <div class="item">
 						 <a href="{{$v->sl_url}}">
-						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="500" height="200" />
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="400px;" />
 					     </a>
 					    </div>
 							  @endif

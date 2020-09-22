@@ -14,9 +14,7 @@ class IndexController extends Controller
 {
 
     public function index(){
-        $slide=ShopSlideModel::all();
-        //dd($slide);
-    	return view("index.index",['slide'=>$slide]);
+        $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
         #查询小广告信息
         $LadverWhere=[
             ['la_del','=',1]
@@ -24,7 +22,7 @@ class IndexController extends Controller
         $ladver_data=ShopLadverModel::where($LadverWhere)->first();
         #查询今日推荐     ----排序方法是最近存入库的几件商品
         $recom_data=GoodsModel::orderBy('goods_add_time','desc')->limit(4)->get();
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data]);
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'slide'=>$slide]);
     }
 
 }
