@@ -655,7 +655,7 @@
 				</li>
 				@foreach($recom_data as $v)
 				<li class="yui3-u-5-24">
-					<a href="{{url('/index/item/'.$v->goods_id)}}" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}"  width="180" height="163"/></a>
+					<a href="{{url('/index/item/'.$v->goods_id)}}" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}"  width="160" height="163"/></a>
 				</li>
 				@endforeach
 			</ul>
@@ -1066,18 +1066,11 @@
 	<div class="brand">
 		<div class="py-container">
 			<ul class="Brand-list blockgary">
+				@foreach($brand_data as $v)
 				<li class="Brand-item">
-					<img src="/indexshop/img/brand_21.png" />
+					<a href="{{$v->brand_url}}"><img src="{{env('APP_URL')}}{{$v->brand_img}}" width="220" /></a>
 				</li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_03.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_05.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_07.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_09.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_11.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_13.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_15.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_17.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_19.png" /></li>
+				@endforeach
 			</ul>
 		</div>
 	</div>

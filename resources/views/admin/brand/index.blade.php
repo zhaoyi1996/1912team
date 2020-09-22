@@ -149,12 +149,7 @@
 		})
 	})
 </script>
-
-
- <script src="/uploadify/jquery.js"></script>
- <link rel="stylesheet" href="/uploadify/uploadify.css">
- <script src="/uploadify/jquery.uploadify.js"></script>
- <script>
+<script>
 	$(document).ready(function(){
 		$("#uploadify").uploadify({
 			uploader: "/admin/brand/img",
@@ -168,13 +163,18 @@
 				var imgstr = "<img src='"+imgPath+"'>";
 				$("input[name='brand_img']").val(imgPath);
 				// $(".showimg").append(imgstr);
-				
+
 				// var video_str = "<video src='"+imgPath+"' controls='controls' style='width:400px;height:200px;'>";
 				// $(".showimg").append(video_str);
 			}
 		});
 	});
 </script>
+	 @endsection
+ <script src="/uploadify/jquery.js"></script>
+ <link rel="stylesheet" href="/uploadify/uploadify.css">
+ <script src="/uploadify/jquery.uploadify.js"></script>
 
-  @endsection
+
+
  
