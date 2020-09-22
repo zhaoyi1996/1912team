@@ -223,6 +223,21 @@
         var goods_img=   $("input[name='img_path']").val();
         var goods_imgs=[];
 
+        if(goods_name==""){
+            alert("商品名称不能为空");die;
+        }
+        if(goods_title==""){
+            alert("商品标题不能为空");die;
+        }
+        if(goods_price==""){
+            alert("商品价格不能为空");die;
+        }
+        if(goods_store==""){
+            alert("商品数量不能为空");die;
+        }
+        if(goods_desc==""){
+            alert("商品介绍不能为空");die;
+        }
         $(document).find(".imgs_path").each(function(){
             var img_path = $(this).val();
             goods_imgs.push(img_path);
@@ -247,6 +262,7 @@
         data.is_hot=is_hot;
         data.goods_img=goods_img;
         data.goods_imgs=goods_imgs;
+
 //        console.log(data);
         $.ajax({
             url:"/goods/img",
