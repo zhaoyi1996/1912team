@@ -252,9 +252,6 @@ Route::prefix('/index')->group(function(){
 	Route::post("/sendEmail","Index\LoginController@sendEmail");
 });
 
-//无限极分类
-Route::any("/goods/getres","Admins\GoodsController@getres");
-
 
 //前台展示
 

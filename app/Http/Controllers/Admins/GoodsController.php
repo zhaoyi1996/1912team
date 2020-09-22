@@ -56,7 +56,7 @@ static $info=[];
 
 //    删除
     public function delete($id){
-        $res=GoodsModel::where('goods_id',$id)->delete();
+        $res=GoodsModel::where('goods_id',$id)->update(['del_id'=>2]);
         if($res){
             echo json_encode(['code'=>0,'msg'=>'删除成功']);
         }
@@ -134,7 +134,10 @@ static $info=[];
 //        添加时间
         $data['goods_add_time']=time();
         $data['goods_imgs']=implode('|',$data['goods_imgs']);
-
+        $res=GoodsModel::where(['goods_name'=>$data['goods_name']])->first();
+        if($res){
+            return (['code'=>1111,'msg'=>'商品名称已存在']);
+        }
         $goods=GoodsModel::insert($data);
 
       if($goods){
