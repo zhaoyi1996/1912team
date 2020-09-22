@@ -526,22 +526,21 @@
 					    <li data-target="#myCarousel" data-slide-to="2"></li>
 					  </ol>
 					  <div class="carousel-inner">
+						  @foreach($slide as $k=>$v)
+							  @if($k==0)
 					    <div class="active item">
-					    <a href="http://baidu2.wypxj.com/">
-					    	<img src="/indexshop/img/banner1.jpg"  />
+					    <a href="{{$v->sl_url}}">
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="200" height="100"  />
 					      </a>
 					    </div>
-					    <div class="item">
-						 <a href="http://baidu2.wypxj.com/">
-						<img src="/indexshop/img/banner2.jpg"  />
+					    @else
+								  <div class="item">
+						 <a href="{{$v->sl_url}}">
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="500" height="200" />
 					     </a>
 					    </div>
-					    <div class="item">
-						 <a href="http://baidu2.wypxj.com/">
-						<img src="/indexshop/img/banner3.jpg"  />
-						</a>
-					     
-					    </div>
+							  @endif
+						@endforeach
 					  </div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
 					</div>
 				</div>

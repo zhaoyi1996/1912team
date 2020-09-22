@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
+
 use App\Model\BrandModel;
+use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
 use App\Brand;
 use Illuminate\Support\Facades\Redis;
 
+use App\Model\ShopSlideModel;
 class IndexController extends Controller
 {
 
     public function index(){
+        $slide=ShopSlideModel::all();
+        //dd($slide);
+    	return view("index.index",['slide'=>$slide]);
         #查询小广告信息
         $LadverWhere=[
             ['la_del','=',1]
@@ -37,7 +43,6 @@ class IndexController extends Controller
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
-
     	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'brand_data'=>$brand_data]);
     }
 
