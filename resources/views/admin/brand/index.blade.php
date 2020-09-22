@@ -33,6 +33,11 @@
 
 			                  <!--数据列表-->
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                  	<form action="">
+									<input type="text" name="name" value="{{$name}}">
+									<input type="submit" value="搜索">
+								</form>
+
 			                      <thead>
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
@@ -66,7 +71,7 @@
 								@endforeach
 			                      </tbody>
 			                  </table>
-			                  {{$data->links()}}
+			                  {{$data->appends(["name"=>$name])->links()}}
 			                  <!--数据列表/-->                        
 							  
 							 
@@ -87,22 +92,23 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">品牌编辑</h3>
 		</div>
-		<div class="modal-body">		
+		<div class="modal-body">
+			
 			<table class="table table-bordered table-striped" enctype="multipart/form-data"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>
-		      		<td><input  class="form-control" placeholder="品牌名称" name="brand_name">  </td>
+		      		<td><input class="form-control" placeholder="品牌名称" name="brand_name">  </td>
 		      	</tr>		      	
 		      	<tr>
 		      		<td>品牌图片</td>
-		      		<td><input  type="file" class="form-control" id="uploadify"  placeholder="品牌图片" name="brand_img">  
+		      		<td><input  type="file"  class="form-control" id="uploadify"  placeholder="品牌图片" name="brand_img">  
 		      			<input type="hidden" name="brand_img">
 		      			<!-- <span class="showimg"></span> -->
 					</td>
 		      	</tr>	
 		      	<tr>
 		      		<td>品牌URL</td>
-		      		<td><input  class="form-control" placeholder="品牌URL" name="brand_url">  </td>
+		      		<td><input class="form-control" placeholder="品牌URL" name="brand_url">  </td>
 		      	</tr>	
 		      	<tr>
 		      		<td>首字母</td>
@@ -121,12 +127,12 @@
 </body>
 <script>
 	$("#test").click(function(){
-		//alert(111);
+		// alert(111);
 		var brand_name=$("input[name='brand_name']").val();
 		var brand_img=$("input[name='brand_img']").val();
 		var brand_url=$("input[name='brand_url']").val();
 		var brand_story=$("input[name='brand_story']").val();
-		// console.log(brand_img)
+		
 		// return false
 		$.ajax({
 			url:"test",
@@ -144,14 +150,14 @@
 	})
 </script>
 
- @endsection
+
  <script src="/uploadify/jquery.js"></script>
  <link rel="stylesheet" href="/uploadify/uploadify.css">
  <script src="/uploadify/jquery.uploadify.js"></script>
  <script>
 	$(document).ready(function(){
 		$("#uploadify").uploadify({
-			uploader: "/admin/img",
+			uploader: "/admin/brand/img",
 			swf: "/uploadify/uploadify.swf",
 			onUploadSuccess:function(res,data,msg){
 				// console.log(res);
@@ -170,5 +176,5 @@
 	});
 </script>
 
- 
+  @endsection
  
