@@ -11,14 +11,24 @@ class BrandController extends Controller
     //商品品牌展示
     public function index(Request $request){
     	//$res=new Brand;
+         // 接搜索值
+        $brand_name = request()->brand_name;
         $where=[
             ["brand_del","=",1]
         ];
+        if($brand_name){
+            $where[] = ["brand_name","like","%$brand_name%"];
+        }
+
+        
         $pageSize=config('app.pageSize');
     	$data=Brand::where($where)->paginate($pageSize);
+
     	//dd($data);
-    	return view("admin.brand.index",['data'=>$data]);
+    	return view("admin.brand.index",['data'=>$data,"brand_name"=>$brand_name]);
     }
+
+    // 添加
     public function test(){
     	$data=request()->all();
     	//dd($data);	
@@ -49,6 +59,7 @@ class BrandController extends Controller
     }
 
 
+    // 修改试图
     public function edit($id){
     	$res=Brand::where('brand_id',$id)->first();
     	// dd($res);
@@ -57,7 +68,7 @@ class BrandController extends Controller
 
 
 
-
+    // 执行修改
     public function update($id){
 
     	$all=request()->all();
@@ -75,6 +86,7 @@ class BrandController extends Controller
     	}
     }
 
+// 逻辑删除
     public function delete($id){
         $data=new  Brand;
         $data=Brand::find($id);
@@ -94,7 +106,7 @@ class BrandController extends Controller
     /**
      * 图片处理
      */
-    public function img( Request $request){
+    public function img(Request $request){
         $fileinfo=$_FILES['Filedata'];
     // dd($fileinfo);
     $tmpname=$fileinfo['tmp_name'];

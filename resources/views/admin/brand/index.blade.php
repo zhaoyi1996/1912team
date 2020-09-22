@@ -33,6 +33,11 @@
 
 			                  <!--数据列表-->
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                  	<form action="">
+									<input type="text" name="brand_name" value="{{$brand_name}}">
+									<input type="submit" value="搜索">
+								</form>
+
 			                      <thead>
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
@@ -66,7 +71,7 @@
 								@endforeach
 			                      </tbody>
 			                  </table>
-			                  {{$data->links()}}
+			                  {{$data->appends(["brand_name"=>$brand_name])->links()}}
 			                  <!--数据列表/-->                        
 							  
 							 
@@ -87,7 +92,8 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">品牌编辑</h3>
 		</div>
-		<div class="modal-body">		
+		<div class="modal-body">
+			
 			<table class="table table-bordered table-striped" enctype="multipart/form-data"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>
@@ -144,14 +150,14 @@
 	})
 </script>
 
- @endsection
+
  <script src="/uploadify/jquery.js"></script>
  <link rel="stylesheet" href="/uploadify/uploadify.css">
  <script src="/uploadify/jquery.uploadify.js"></script>
  <script>
 	$(document).ready(function(){
 		$("#uploadify").uploadify({
-			uploader: "/admin/img",
+			uploader: "/admin/brand/img",
 			swf: "/uploadify/uploadify.swf",
 			onUploadSuccess:function(res,data,msg){
 				// console.log(res);
@@ -170,5 +176,5 @@
 	});
 </script>
 
- 
+  @endsection
  

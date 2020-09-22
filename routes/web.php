@@ -31,7 +31,7 @@ Route::any("/admin/test","Admin\BrandController@test");
 Route::any("/admin/edit/{id}","Admin\BrandController@edit");
 Route::any("/admin/update/{id}","Admin\BrandController@update");
 Route::any("/admin/delete/{id}","Admin\BrandController@delete");
-Route::any("/admin/img","Admin\BrandController@img");
+Route::any("/admin/brand/img","Admin\BrandController@img");
 
 
 Route::prefix('/admin')->group(function(){
@@ -169,3 +169,63 @@ Route::any("/goods/checkonly","Admins\GoodsController@checkonly");
 
 //无限极分类
 Route::any("/goods/getres","Admins\GoodsController@getres");
+
+
+//前台展示
+
+//订单展示
+	Route::any("/index/order_info","Index\OrderController@index");
+	//收银台
+	Route::any("/index/finall","Index\FinallController@index");
+	//支付页失败页面
+	Route::any("/index/payfinall","Index\FinallController@payfinall");
+	//支付成功页面
+	Route::any("/index/paysuccess","Index\FinallController@paysuccess");
+	//购物车页面
+	Route::any("/index/cate","Index\CateController@index");
+	//招商合作页面
+	Route::any("/index/cooperation","Index\CooperationController@index");
+	Route::any("/index/sampling","Index\CooperationController@sampling");
+//订单中心
+	//我的订单
+	Route::any("/index/homeIndex","Index\HomeIndexController@index");
+	//待付款
+	Route::any("/index/homeOrderPay","Index\HomeIndexController@homeOrderPay");
+	//待发货
+	Route::any("/index/homeOrderSend","Index\HomeIndexController@homeOrderSend");
+	//待收货
+	Route::any("/index/homeOrderReceive","Index\HomeIndexController@homeOrderReceive");
+	//待评价
+	Route::any("/index/homeOrderEvaluate","Index\HomeIndexController@homeOrderEvaluate");
+//我的中心
+	//我的收藏
+	Route::any("/index/homePersonCollect","Index\HomeIndexController@homePersonCollect");
+	//我的足迹
+	Route::any("/index/homePersonFootmark","Index\HomeIndexController@homePersonFootmark");
+
+//物理消息----
+
+//设置
+	//个人信息
+	Route::any("/index/homeSettingInfo","Index\HomeIndexController@homeSettingInfo");
+	//地址管理
+	Route::any("/index/homeSettingAddress","Index\HomeIndexController@homeSettingAddress");
+	//安全管理
+	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
+//首页
+	Route::any("/index/index","Index\IndexController@index");
+	//商品详情页
+	Route::any("/index/item","Index\ItemController@index");
+//登录
+	Route::any("/index/login","Index\LoginController@index");
+	//个人注册
+	Route::any("/index/register","Index\RegisterController@index");
+//产品列表页
+	Route::any("/index/search","Index\SearchController@index");
+//正品秒杀
+    Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+
+ //我的店铺
+ 	
+	Route::any("/index/shop","Index\ShopController@index");
+	
