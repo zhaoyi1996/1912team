@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Index;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Brand;
-
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;

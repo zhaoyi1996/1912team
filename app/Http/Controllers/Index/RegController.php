@@ -24,7 +24,7 @@ class RegController extends Controller
     	$user_pwds = $request->post("user_pwds");
     	$user_code = $request->post("user_code");
     	//PHP验证
-        dd($user_email);
+//        dd($user_email);
     	if($user_name==''){
     		echo json_encode(['code'=>1,'msg'=>'用户名不可为空']);die;
     	}
@@ -66,7 +66,7 @@ class RegController extends Controller
         // }
         $key="1912team";
         $iv="aaaabbbbccccdddd";
-        $user_pwd=openssl_encrypt($user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv);
+        $user_pwd=md5(openssl_encrypt($user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv));
 
 //        $user_pwd = encrypt($user_pwd);
         $user = new ShopUserModel();
