@@ -276,8 +276,6 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/payfinall","Index\FinallController@payfinall");
 	//支付成功页面
 	Route::any("/index/paysuccess","Index\FinallController@paysuccess");
-	//购物车页面
-	Route::any("/index/cate","Index\CateController@index");
 	//招商合作页面
 	Route::any("/index/cooperation","Index\CooperationController@index");
 	Route::any("/index/sampling","Index\CooperationController@sampling");
@@ -326,4 +324,6 @@ Route::prefix('/index')->group(function(){
  	
 	Route::any("/index/shop","Index\ShopController@index");
 	
-
+//购物车页面
+Route::any("/index/cart","Index\CartController@index");
+Route::post("/index/cartAdd","Index\CartController@cartAdd");//添加购物车

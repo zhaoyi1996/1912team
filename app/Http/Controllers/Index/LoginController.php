@@ -73,7 +73,6 @@ class LoginController extends Controller
             }
 //            $key="1912team";
 //            $iv="aaaabbbbccccdddd";
-
             if(!password_verify($user_pwd,$user->user_pwd)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }

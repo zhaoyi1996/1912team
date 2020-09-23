@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
+use App\Model\CartModel;
 use Illuminate\Http\Request;
 use App\Brand;
 
