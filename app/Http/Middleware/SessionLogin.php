@@ -15,7 +15,7 @@ class SessionLogin
      */
     public function handle($request, Closure $next)
     {
-        $session=session('userInfo');
+        $session=session('User_Info');
         if(empty($session)){
             return redirect('/index/login');
         }else{

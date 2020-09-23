@@ -41,20 +41,21 @@ class LoginController extends Controller
                 echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
             }
             $user = ShopUserModel::where('user_email',$user_name)->first();
-                
+
             if(!$user){
                 echo json_encode(['code'=>1,'msg'=>'管理员邮箱不存在']); die;
             }
-            $key="1912team";
-            $iv="aaaabbbbccccdddd";
-            if($user_pwd!==md5(openssl_encrypt($user->user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv))){
+//            $key="1912team";
+//            $iv="aaaabbbbccccdddd";
+            if(password_verify($user_pwd,$user->user_pwd)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
             session(['User_Info'=>$user]);
 
-            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']);
 
             }else{
+
             // echo "用户名登录";die;
             if(!$user_name){
                     echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
@@ -62,13 +63,21 @@ class LoginController extends Controller
             if(!$user_pwd){
                 echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
             }
-            $user = ShopUserModel::where('user_name',$user_name)->first();
-            if(!$user){
+            $userWhere=[
+                ['user_name','=',$user_name]
+            ];
+            $user = ShopUserModel::where($userWhere)->first();
+//            dd($user);
+            if(empty($user)){
                 echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
             }
-            if($user_pwd!==decrypt($user->user_pwd)){
+//            $key="1912team";
+//            $iv="aaaabbbbccccdddd";
+
+            if(!password_verify($user_pwd,$user->user_pwd)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
+//            dd($user_pwd);
             session(['User_Info'=>$user]);
 //            dd(session("User_Info"));
             // dd(session("User_Info"));

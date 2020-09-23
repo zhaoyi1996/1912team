@@ -66,14 +66,16 @@ class RegController extends Controller
         // }
         $key="1912team";
         $iv="aaaabbbbccccdddd";
-        $user_pwd=md5(openssl_encrypt($user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv));
-
+//        $user_pwd=openssl_encrypt($user_pwd,'AES-256-CBC',$key,OPENSSL_RAW_DATA,$iv);
+//        $user_pwd='n'.$user_pwd;
+        $user_pwd=password_hash($user_pwd,PASSWORD_ARGON2ID);
 //        $user_pwd = encrypt($user_pwd);
         $user = new ShopUserModel();
         $user->user_name=$user_name;
         $user->user_add_time = time();
         $user->user_pwd=$user_pwd;
         $user->user_email=$user_email;
+//        dd($user);
         if($user->save()){
             echo json_encode(['code'=>0,"msg"=>'注册成功，请跳转登录页面']);die;
         }
