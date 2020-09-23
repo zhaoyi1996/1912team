@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Brand;
 
+use AlibabaCloud\Client\AlibabaCloud;
+use AlibabaCloud\Client\Exception\ClientException;
+use AlibabaCloud\Client\Exception\ServerException;
 use App\Mail\sendCode;
 use Illuminate\Support\Facades\Mail;
 use App\Model\ShopUserModel;
 use iscms\Alisms\SendsmsPusher as Sms;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 class LoginController extends Controller
 {
   //   public function __construct(Sms $sms)
@@ -20,35 +24,68 @@ class LoginController extends Controller
   //   //前台登录
     public function login(){
         // echo "123";
-    	return view("index.reg.login");
+        $url = env("APP_INDEX_LOGIN_URL");
+    	return view("index.reg.login",['url'=>$url]);
     }
-  //   //前台执行登录
-  //   public function logindo(Request $request){
-  //   	//接值
-  //   	$user_name = $request->post("user_name");
-  //   	$user_pwd = $request->post("user_pwd");
+    //前台执行登录
+    public function logindo(Request $request){
+    	//接值
+    	$user_name = $request->post("user_name");
+    	$user_pwd = $request->post("user_pwd");
 
-  //   	if(!$user_name){
-  //   		echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
-  //   	}
-  //   	if(!$user_pwd){
-  //   		echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
-  //   	}
 
-  //   	$user = ShopUserModel::where('user_name',$user_name)->first();
-		
-		// if(!$user){
-  //   		echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
-  //   	}
-  //   	if($user_pwd!==decrypt($user->user_pwd)){
-  //   		echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
-  //   	}
+        
+        // echo $url;
+        $str = strpos($user_name,"@");
+        if($str){
+            // echo "邮箱登录";die;
+            // echo $user_name;
+            if(!$user_name){
+                    echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
+            }
+            if(!$user_pwd){
+                echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
+            }
+            $user = ShopUserModel::where('user_email',$user_name)->first();
+                
+            if(!$user){
+                echo json_encode(['code'=>1,'msg'=>'管理员邮箱不存在']); die;
+            }
+            if($user_pwd!==decrypt($user->user_pwd)){
+                echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
+            }
+            session(['User_Info'=>$user]);
 
-		// session(['userInfo'=>$user->user_id]);
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
 
-  //   	echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
+            }else{
+            // echo "用户名登录";die;
+            if(!$user_name){
+                    echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
+            }
+            if(!$user_pwd){
+                echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
+            }
 
-  //   }
+            $user = ShopUserModel::where('user_name',$user_name)->first();
+                
+            if(!$user){
+                echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
+            }
+            if($user_pwd!==decrypt($user->user_pwd)){
+                echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
+            }
+
+            session(['User_Info'=>$user]);
+            dd(session("User_Info"));
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
+
+            }
+        }
+        
+
+
+    	
     
    
     // //执行注册
@@ -109,8 +146,7 @@ class LoginController extends Controller
 
 
 
-
-
+    
     // }
     //获取邮箱  发送邮箱验证码
     public function sendEmail(){
@@ -161,14 +197,45 @@ class LoginController extends Controller
             $content = [
                 'code'=>$code
             ];
-            $res=$this->sms->send($user_email,$name,$content,$code);
+            $res=$this->SendByMobile($user_email,$code);
             var_dump($res);
         }
-
+        
 
     }
 
 
+    public function SendByMobile($mobile,$code){
+            // Download：https://github.com/aliyun/openapi-sdk-php
+            // Usage：https://github.com/aliyun/openapi-sdk-php/blob/master/README.md
+            AlibabaCloud::accessKeyClient('LTAI4Fpn8d2VBz4Tx5BVApqV', '3DGzDSaCcyYcYxH80LJapEgDjSobh5')
+                                    ->regionId('cn-hangzhou')
+                                    ->asDefaultClient();
+            try {
+                $result = AlibabaCloud::rpc()
+                                      ->product('Dysmsapi')
+                                      // ->scheme('https') // https | http
+                                      ->version('2017-05-25')
+                                      ->action('SendSms')
+                                      ->method('POST')
+                                      ->host('dysmsapi.aliyuncs.com')
+                                      ->options([
+                                                      'query' => [
+                                                      'RegionId' => "cn-hangzhou",
+                                                      'PhoneNumbers' => $mobile,
+                                                      'SignName' => "宇豪影视",
+                                                      'TemplateCode' => "SMS_185241548",
+                                                      'TemplateParam' => "{code:$code}",
+                                                    ],
+                                                ])
+                                      ->request();
+                return $result->toArray();
+            } catch (ClientException $e) {
+                return $e->getErrorMessage() . PHP_EOL;
+            } catch (ServerException $e) {
+                return $e->getErrorMessage() . PHP_EOL;
+            }
+        }
 
     // //邮箱
     // public function sendEmail(Request $request){

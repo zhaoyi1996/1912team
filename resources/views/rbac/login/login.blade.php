@@ -140,7 +140,7 @@ input{
                      }
                      if(res.code==0){
                          alert(res.msg)
-                         window.location.href="http://www.1912team.com/admin/index";
+                         window.location.href="{{$appurl}}";
                      }
 
 

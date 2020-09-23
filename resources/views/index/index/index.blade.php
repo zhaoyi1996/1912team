@@ -1,129 +1,6 @@
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<title>品优购，优质！优质！</title>
-	 <link rel="icon" href="assets//indexshop/img/favicon.ico">
-
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-JD-index.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-jquery.autocomplete.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
-</head>
-
-<body>
-	<!-- 头部栏位 -->
-	<!--页面顶部-->
-<div id="nav-bottom">
-	<!--顶部-->
-	<div class="nav-top">
-		<div class="top">
-			<div class="py-container">
-				<div class="shortcut">
-					<ul class="fl">
-						<li class="f-item">品优购欢迎您！</li>
-						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
-					</ul>
-					<ul class="fr">
-						<li class="f-item">我的订单</li>
-						<li class="f-item space"></li>
-						<li class="f-item"><a href="home.html" target="_blank">我的品优购</a></li>
-						<li class="f-item space"></li>
-						<li class="f-item">品优购会员</li>
-						<li class="f-item space"></li>
-						<li class="f-item">企业采购</li>
-						<li class="f-item space"></li>
-						<li class="f-item">关注品优购</li>
-						<li class="f-item space"></li>
-						<li class="f-item" id="service">
-							<span>客户服务</span>
-							<ul class="service">
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="shoplogin.html" target="_blank">商家后台</a></li>
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="#">商家后台</a></li>
-							</ul>
-						</li>
-						<li class="f-item space"></li>
-						<li class="f-item">网站导航</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!--头部-->
-		<div class="header">
-			<div class="py-container">
-				<div class="yui3-g Logo">
-					<div class="yui3-u Left logoArea">
-						<a class="logo-bd" title="品优购" href="JD-index.html" target="_blank"></a>
-					</div>
-					<div class="yui3-u Center searchArea">
-						<div class="search">
-							<form action="" class="sui-form form-inline">
-								<!--searchAutoComplete-->
-								<div class="input-append">
-									<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
-								</div>
-							</form>
-						</div>
-						<div class="hotwords">
-							<ul>
-								<li class="f-item">品优购首发</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">每满99减30</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">办公用品</li>
-
-							</ul>
-						</div>
-					</div>
-					<div class="yui3-u Right shopArea">
-						<div class="fr shopcar">
-							<div class="show-shopcar" id="shopcar">
-								<span class="car"></span>
-								<a class="sui-btn btn-default btn-xlarge" href="/index/cate" target="_blank">
-									<span>我的购物车</span>
-									<i class="shopnum">0</i>
-								</a>
-								<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="yui3-g NavList">
-					<div class="yui3-u Left all-sort">
-						<h4>全部商品分类</h4>
-					</div>
-					<div class="yui3-u Center navArea">
-						<ul class="nav">
-							<li class="f-item">服装城</li>
-							<li class="f-item">美妆馆</li>
-							<li class="f-item">品优超市</li>
-							<li class="f-item">全球购</li>
-							<li class="f-item">闪购</li>
-							<li class="f-item">团购</li>
-							<li class="f-item">有趣</li>
-							<li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
-						</ul>
-					</div>
-					<div class="yui3-u Right"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+@extends("layouts.index")
+@section("title","商品前台")
+@section("content")
 
 	<!--列表-->
 	<div class="sort">
@@ -131,390 +8,23 @@
 			<div class="yui3-g SortList ">
 				<div class="yui3-u Left all-sort-list">
 					<div class="all-sort-list2">
+					@foreach($res as $v)
 						<div class="item bo">
-							<h3><a href="">图书、音像、数字商品</a></h3>
+							<h3><a href="{{url('/index/item/'.'?'.$v['cate_id'])}}">{{$v["cate_name"]}}</a></h3>
 							<div class="item-list clearfix">
 								<div class="subitem">
+								@foreach($v['son'] as $kk=>$vv)
 									<dl class="fore1">
-										<dt><a href="">电子书</a></dt>
-										<dd><a href="">免费</a><a href="">小说</a></em><a href="">励志与成功</a><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
+										<dt><a href="{{url('/index/item/'.'?'.$vv['cate_id'])}}">{{$vv['cate_name']}}</a></dt>
+										@foreach($vv['son'] as $kkk=>$vvv)
+										<dd><em><a href="{{url('/index/item/'.'?'.$vvv['cate_id'])}}">{{$vvv["cate_name"]}}</a></em></dd>
+										@endforeach
 									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
+								@endforeach
 								</div>
 							</div>
 						</div>
-						<div class="item">
-							<h3><a href="">家用电器</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书1</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
-									<dl class="fore8">
-										<dt>科技</dt>
-										<dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-									</dl>
-									<dl class="fore9">
-										<dt>少儿</dt>
-										<dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">手机、数码</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书2</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">电脑、办公</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书3</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
-									<dl class="fore8">
-										<dt>科技</dt>
-										<dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-									</dl>
-									<dl class="fore9">
-										<dt>少儿</dt>
-										<dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-									</dl>
-									<dl class="fore10">
-										<dt>教育</dt>
-										<dd><em><a href="">教材教辅</a></em><em><a href="">考试</a></em><em><a href="">外语学习</a></em></dd>
-									</dl>
-									<dl class="fore11">
-										<dt>其它</dt>
-										<dd><em><a href="">英文原版书</a></em><em><a href="">港台图书</a></em><em><a href="">工具书</a></em><em><a href="">套装书</a></em><em><a href="">杂志/期刊</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">家居、家具、家装、厨具</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书4</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
-									<dl class="fore8">
-										<dt>科技</dt>
-										<dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-									</dl>
-									<dl class="fore9">
-										<dt>少儿</dt>
-										<dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">服饰内衣</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书5</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
-									<dl class="fore8">
-										<dt>科技</dt>
-										<dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">个护化妆</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书6</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
-									<dl class="fore8">
-										<dt>科技</dt>
-										<dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-									</dl>
-									<dl class="fore9">
-										<dt>少儿</dt>
-										<dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-									</dl>
-									<dl class="fore10">
-										<dt>教育</dt>
-										<dd><em><a href="">教材教辅</a></em><em><a href="">考试</a></em><em><a href="">外语学习</a></em></dd>
-									</dl>
-									<dl class="fore11">
-										<dt>其它</dt>
-										<dd><em><a href="">英文原版书</a></em><em><a href="">港台图书</a></em><em><a href="">工具书</a></em><em><a href="">套装书</a></em><em><a href="">杂志/期刊</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">运动健康</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书7</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-								</div>
-								<div class="cat-right">
-									<dl class="categorys-brands" clstag="homepage|keycount|home2013|0601d">
-										<dt>推荐品牌出版商</dt>
-										<dd>
-											<ul>
-												<li>
-													<a href="">中华书局</a>
-												</li>
-												<li>
-													<a href="">人民邮电出版社</a>
-												</li>
-											</ul>
-										</dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">汽车用品</a></h3>
-							<div class="item-list clearfix">
-								<div class="subitem">
-									<dl class="fore1">
-										<dt><a href="">电子书8</a></dt>
-										<dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
-									<dl class="fore8">
-										<dt>科技</dt>
-										<dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-									</dl>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<h3><a href="">彩票、旅行</a></h3>
-						</div>
-						<div class="item">
-							<h3><a href="">理财、众筹</a></h3>
-						</div>
-						<div class="item">
-							<h3><a href="">母婴、玩具</a></h3>
-						</div>
-						<div class="item">
-							<h3><a href="">箱包</a></h3>
-						</div>
-						<div class="item">
-							<h3><a href="">运动户外</a></h3>
-						</div>
-						<div class="item">
-							<h3><a href="">箱包</a></h3>
-						</div>
+					@endforeach
 					</div>
 				</div>
 				<div class="yui3-u Center banerArea">
@@ -543,29 +53,31 @@
 					    </div>
 							  @endif
 						@endforeach
-					  </div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
-					</div>
+					</div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
 				</div>
+			</div>
+			<div class="yui3-u Right">
+				<div class="news">
+					<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
+					<div class="clearix"></div>
+					<ul class="news-list unstyled">
+						<li>
+							<span class="bold">[特惠]</span>备战开学季 全民半价购数码
 				<div class="yui3-u Right">
 					<div class="news">
 						<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
 						<div class="clearix"></div>
 						<ul class="news-list unstyled">
+							@foreach($res2 as $k=>$v)
 							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
+									<a href="{{$v->an_url}}">
+										<span class="bold">[公告]</span>
+										<span>{{$v->an_name}}</span>
+									</a>
+								
 							</li>
-							<li>
-								<span class="bold">[公告]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[公告]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
+							@endforeach
+							
 						</ul>
 					</div>
 					<ul class="yui3-g Lifeservice">
@@ -601,49 +113,96 @@
 							<i class="list-item list-item-8"></i>
 							<span class="service-intro">火车票</span>
 						</li>
-						<li class="yui3-u-1-4 life-item  notab-item">
-							<i class="list-item list-item-9"></i>
-							<span class="service-intro">众筹</span>
+						<li>
+							<span class="bold">[公告]</span>备战开学季 全民半价购数码
 						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-10"></i>
-							<span class="service-intro">理财</span>
+						<li>
+							<span class="bold">[特惠]</span>备战开学季 全民半价购数码
 						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-11"></i>
-							<span class="service-intro">礼品卡</span>
+						<li>
+							<span class="bold">[公告]</span>备战开学季 全民半价购数码
 						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-12"></i>
-							<span class="service-intro">白条</span>
+						<li>
+							<span class="bold">[特惠]</span>备战开学季 全民半价购数码
 						</li>
 					</ul>
-					<div class="life-item-content">
-						<div class="life-detail">
-							<i class="close">关闭</i>
-							<p>话费充值</p>
-							<form action="" class="sui-form form-horizontal">
-								号码：<input type="text" id="inputphoneNumber" placeholder="输入你的号码" />
-							</form>
-							<button class="sui-btn btn-danger">快速充值</button>
-						</div>
-						<div class="life-detail">
-							<i class="close">关闭</i> 机票
-						</div>
-						<div class="life-detail">
-							<i class="close">关闭</i> 电影票
-						</div>
-						<div class="life-detail">
-							<i class="close">关闭</i> 游戏
-						</div>
+				</div>
+				<ul class="yui3-g Lifeservice">
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-1"></i>
+						<span class="service-intro">话费</span>
+					</li>
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-2"></i>
+						<span class="service-intro">机票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-3"></i>
+						<span class="service-intro">电影票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-4"></i>
+						<span class="service-intro">游戏</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-5"></i>
+						<span class="service-intro">彩票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-6"></i>
+						<span class="service-intro">加油站</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-7"></i>
+						<span class="service-intro">酒店</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-8"></i>
+						<span class="service-intro">火车票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item  notab-item">
+						<i class="list-item list-item-9"></i>
+						<span class="service-intro">众筹</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-10"></i>
+						<span class="service-intro">理财</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-11"></i>
+						<span class="service-intro">礼品卡</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-12"></i>
+						<span class="service-intro">白条</span>
+					</li>
+				</ul>
+				<div class="life-item-content">
+					<div class="life-detail">
+						<i class="close">关闭</i>
+						<p>话费充值</p>
+						<form action="" class="sui-form form-horizontal">
+							号码：<input type="text" id="inputphoneNumber" placeholder="输入你的号码" />
+						</form>
+						<button class="sui-btn btn-danger">快速充值</button>
 					</div>
-					<div class="ads">
-						<a href="{{$ladver_data->la_url}}"><img src="{{env('APP_URL')}}{{$ladver_data->la_img}}" width="160px"  /></a>
+					<div class="life-detail">
+						<i class="close">关闭</i> 机票
 					</div>
+					<div class="life-detail">
+						<i class="close">关闭</i> 电影票
+					</div>
+					<div class="life-detail">
+						<i class="close">关闭</i> 游戏
+					</div>
+				</div>
+				<div class="ads">
+					<a href="{{$ladver_data->la_url}}"><img src="{{env('APP_URL')}}{{$ladver_data->la_img}}" width="160px"  /></a>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 	<!--推荐-->
 	<div class="show">
 		<div class="py-container">
@@ -888,137 +447,7 @@
 		</div>
 	</div>
 	<!-- 底部栏位 -->
-	<!--页面底部-->
-<div class="clearfix footer">
-	<div class="py-container">
-		<div class="footlink">
-			<div class="Mod-service">
-				<ul class="Mod-Service-list">
-					<li class="grid-service-item intro  intro1">
 
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item  intro intro2">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item intro  intro3">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item  intro intro4">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item intro intro5">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix Mod-list">
-				<div class="yui3-g">
-					<div class="yui3-u-1-6">
-						<h4>购物指南</h4>
-						<ul class="unstyled">
-							<li>购物流程</li>
-							<li>会员介绍</li>
-							<li>生活旅行/团购</li>
-							<li>常见问题</li>
-							<li>购物指南</li>
-						</ul>
-
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>配送方式</h4>
-						<ul class="unstyled">
-							<li>上门自提</li>
-							<li>211限时达</li>
-							<li>配送服务查询</li>
-							<li>配送费收取标准</li>
-							<li>海外配送</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>支付方式</h4>
-						<ul class="unstyled">
-							<li>货到付款</li>
-							<li>在线支付</li>
-							<li>分期付款</li>
-							<li>邮局汇款</li>
-							<li>公司转账</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>售后服务</h4>
-						<ul class="unstyled">
-							<li>售后政策</li>
-							<li>价格保护</li>
-							<li>退款说明</li>
-							<li>返修/退换货</li>
-							<li>取消订单</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>特色服务</h4>
-						<ul class="unstyled">
-							<li>夺宝岛</li>
-							<li>DIY装机</li>
-							<li>延保服务</li>
-							<li>品优购E卡</li>
-							<li>品优购通信</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>帮助中心</h4>
-						<img src="/indexshop/img/wx_cz.jpg">
-					</div>
-				</div>
-			</div>
-			<div class="Mod-copyright">
-				<ul class="helpLink">
-					<li>关于我们<span class="space"></span></li>
-					<li>联系我们<span class="space"></span></li>
-					<li>关于我们<span class="space"></span></li>
-					<li>商家入驻<span class="space"></span></li>
-					<li>营销中心<span class="space"></span></li>
-					<li>友情链接<span class="space"></span></li>
-					<li>关于我们<span class="space"></span></li>
-					<li>营销中心<span class="space"></span></li>
-					<li>友情链接<span class="space"></span></li>
-					<li>关于我们</li>
-				</ul>
-				<p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</p>
-				<p>京ICP备08001421号京公网安备110108007702</p>
-			</div>
-		</div>
-	</div>
-</div>
 <!--页面底部END-->
 	<!-- 楼层位置 -->
 	<div id="floor-index" class="floor-index">
@@ -1179,32 +608,6 @@
 		</div>
 	</div>
 </script>
-<!--侧栏面板结束-->
-<script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#service").hover(function(){
-		$(".service").show();
-	},function(){
-		$(".service").hide();
-	});
-	$("#shopcar").hover(function(){
-		$("#shopcarlist").show();
-	},function(){
-		$("#shopcarlist").hide();
-	});
-
-})
-</script>
-<script type="text/javascript" src="/indexshop/js/model/cartModel.js"></script>
-<script type="text/javascript" src="/indexshop/js/czFunction.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/jquery.easing/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="/indexshop/js/pages/index.js"></script>
-<script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
-<script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
-<script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
-</body>
 
 
-</html>
+@endsection
