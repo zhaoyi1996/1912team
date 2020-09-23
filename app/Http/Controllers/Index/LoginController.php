@@ -77,14 +77,14 @@ class LoginController extends Controller
             }
 
             session(['User_Info'=>$user]);
-            dd(session("User_Info"));
+            // dd(session("User_Info"));
             echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
 
             }
         }
         
 
-
+        
     	
     
    

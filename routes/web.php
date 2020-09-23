@@ -255,6 +255,8 @@ Route::prefix('/index')->group(function(){
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
 
+	//地址管理
+	Route::get("/homeSettingAddress","Index\AddressController@index");
 	
 });
 
@@ -300,9 +302,12 @@ Route::prefix('/index')->group(function(){
 
 //设置
 	//个人信息
-	Route::any("/index/homeSettingInfo","Index\HomeIndexController@homeSettingInfo");
-	//地址管理
-	Route::any("/index/homeSettingAddress","Index\HomeIndexController@homeSettingAddress");
+	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
+
+
+	
+
+
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
