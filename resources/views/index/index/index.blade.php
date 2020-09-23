@@ -546,6 +546,10 @@
 					  </div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
 					</div>
 				</div>
+
+			</div>
+
+
 				<div class="yui3-u Right">
 					<div class="news">
 						<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
@@ -568,6 +572,7 @@
 							</li>
 						</ul>
 					</div>
+
 					<ul class="yui3-g Lifeservice">
 						<li class="yui3-u-1-4 life-item tab-item">
 							<i class="list-item list-item-1"></i>
@@ -636,6 +641,73 @@
 						<div class="life-detail">
 							<i class="close">关闭</i> 游戏
 						</div>
+
+
+				<ul class="yui3-g Lifeservice">
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-1"></i>
+						<span class="service-intro">话费</span>
+					</li>
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-2"></i>
+						<span class="service-intro">机票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-3"></i>
+						<span class="service-intro">电影票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item tab-item">
+						<i class="list-item list-item-4"></i>
+						<span class="service-intro">游戏</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-5"></i>
+						<span class="service-intro">彩票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-6"></i>
+						<span class="service-intro">加油站</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-7"></i>
+						<span class="service-intro">酒店</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-8"></i>
+						<span class="service-intro">火车票</span>
+					</li>
+					<li class="yui3-u-1-4 life-item  notab-item">
+						<i class="list-item list-item-9"></i>
+						<span class="service-intro">众筹</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-10"></i>
+						<span class="service-intro">理财</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-11"></i>
+						<span class="service-intro">礼品卡</span>
+					</li>
+					<li class="yui3-u-1-4 life-item notab-item">
+						<i class="list-item list-item-12"></i>
+						<span class="service-intro">白条</span>
+					</li>
+				</ul>
+				<div class="life-item-content">
+					<div class="life-detail">
+						<i class="close">关闭</i>
+						<p>话费充值</p>
+						<form action="" class="sui-form form-horizontal">
+							号码：<input type="text" id="inputphoneNumber" placeholder="输入你的号码" />
+						</form>
+						<button class="sui-btn btn-danger">快速充值</button>
+					</div>
+					<div class="life-detail">
+						<i class="close">关闭</i> 机票
+					</div>
+					<div class="life-detail">
+						<i class="close">关闭</i> 电影票
+
 					</div>
 					<div class="ads">
 						<a href="{{$ladver_data->la_url}}"><img src="{{env('APP_URL')}}{{$ladver_data->la_img}}" width="160px"  /></a>
@@ -1163,6 +1235,7 @@
 		</div>
 	</div>
 </script>
+
 <!--侧栏面板结束-->
 <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript">
@@ -1192,3 +1265,4 @@ $(function(){
 
 
 </html>
+@endsection

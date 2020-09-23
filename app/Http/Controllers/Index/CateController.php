@@ -8,9 +8,13 @@ use App\Brand;
 
 class CateController extends Controller
 {
-    //商品品牌展示
+    //购物车展示
     public function index(Request $request){
-    	return view("index.cate");
+        $user_pwd='111111';
+
+        dd($user_pwd);
+
+    	return view("index.cate.cate");
     }
 
 }

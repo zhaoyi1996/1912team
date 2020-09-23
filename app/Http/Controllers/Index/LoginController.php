@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Index;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Brand;
-
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;
@@ -32,9 +29,6 @@ class LoginController extends Controller
     	//接值
     	$user_name = $request->post("user_name");
     	$user_pwd = $request->post("user_pwd");
-
-
-        
         // echo $url;
         $str = strpos($user_name,"@");
         if($str){
@@ -47,18 +41,21 @@ class LoginController extends Controller
                 echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
             }
             $user = ShopUserModel::where('user_email',$user_name)->first();
-                
+
             if(!$user){
                 echo json_encode(['code'=>1,'msg'=>'管理员邮箱不存在']); die;
             }
-            if($user_pwd!==decrypt($user->user_pwd)){
+//            $key="1912team";
+//            $iv="aaaabbbbccccdddd";
+            if(password_verify($user_pwd,$user->user_pwd)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
             session(['User_Info'=>$user]);
 
-            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']);
 
             }else{
+
             // echo "用户名登录";die;
             if(!$user_name){
                     echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
@@ -66,25 +63,30 @@ class LoginController extends Controller
             if(!$user_pwd){
                 echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
             }
-
-            $user = ShopUserModel::where('user_name',$user_name)->first();
-                
-            if(!$user){
+            $userWhere=[
+                ['user_name','=',$user_name]
+            ];
+            $user = ShopUserModel::where($userWhere)->first();
+//            dd($user);
+            if(empty($user)){
                 echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
             }
-            if($user_pwd!==decrypt($user->user_pwd)){
+//            $key="1912team";
+//            $iv="aaaabbbbccccdddd";
+
+            if(!password_verify($user_pwd,$user->user_pwd)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
-
+//            dd($user_pwd);
             session(['User_Info'=>$user]);
-            dd(session("User_Info"));
-            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
-
+//            dd(session("User_Info"));
+            // dd(session("User_Info"));
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']);
             }
         }
         
 
-
+        
     	
     
    
@@ -200,8 +202,6 @@ class LoginController extends Controller
             $res=$this->SendByMobile($user_email,$code);
             var_dump($res);
         }
-        
-
     }
 
 
