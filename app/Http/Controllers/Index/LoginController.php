@@ -47,7 +47,7 @@ class LoginController extends Controller
             }
             $key="1912team";
             $iv="aaaabbbbccccdddd";
-            if($user_pwd!==openssl_encrypt($user->user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv)){
+            if($user_pwd!==md5(openssl_encrypt($user->user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv))){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
             session(['User_Info'=>$user]);
@@ -62,25 +62,22 @@ class LoginController extends Controller
             if(!$user_pwd){
                 echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
             }
-
             $user = ShopUserModel::where('user_name',$user_name)->first();
-                
             if(!$user){
                 echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
             }
             if($user_pwd!==decrypt($user->user_pwd)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
-
             session(['User_Info'=>$user]);
 //            dd(session("User_Info"));
-            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
-
+            // dd(session("User_Info"));
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']);
             }
         }
         
 
-
+        
     	
     
    
@@ -196,8 +193,6 @@ class LoginController extends Controller
             $res=$this->SendByMobile($user_email,$code);
             var_dump($res);
         }
-        
-
     }
 
 
