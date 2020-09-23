@@ -5,7 +5,7 @@
 
 <body>
 <center><h3>品牌修改</h3></center>
-<form class="form-horizontal" role="form" action="{{url('/admin/update/'.$res->brand_id)}}" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" action="{{url('/admin/brand/update/'.$res->brand_id)}}" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">品牌名称</label>
 		<div class="col-sm-10">

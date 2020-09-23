@@ -26,13 +26,13 @@ Route::get("/test",function(){
 ***/
 
 //后台品牌管理
-Route::any("/admin/brand","Admin\BrandController@index");
-Route::any("/admin/test","Admin\BrandController@test");
-Route::any("/admin/edit/{id}","Admin\BrandController@edit");
-Route::any("/admin/update/{id}","Admin\BrandController@update");
-Route::any("/admin/delete/{id}","Admin\BrandController@delete");
+Route::any("/admin/brand/brand","Admin\BrandController@index");
+Route::any("/admin/brand/test","Admin\BrandController@test");
+Route::any("/admin/brand/edit/{id}","Admin\BrandController@edit");
+Route::any("/admin/brand/update/{id}","Admin\BrandController@update");
+Route::any("/admin/brand/delete/{id}","Admin\BrandController@delete");
 Route::any("/admin/brand/img","Admin\BrandController@img");
-
+Route::any("/admin/brand/create","Admin\BrandController@create");
 //登录后台
 Route::get("/admin/login","Rbac\LoginController@login");
 Route::post("/admin/logindo","Rbac\LoginController@logindo");
@@ -40,7 +40,7 @@ Route::post("/admin/logindo","Rbac\LoginController@logindo");
 Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
-Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware("islogin")->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
@@ -254,12 +254,16 @@ Route::prefix('/index')->group(function(){
 	//前台注册
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
+
+	
 });
 
 
 //前台展示
 	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
 	Route::any("/index/index","Index\IndexController@index");//全部商品
+	Route::any("/index/cateInfo","Index\IndexController@cateInfo");
+	Route::any("/index/getIndexInfo","Index\IndexController@getIndexInfo");//接收上一个	
 	
 
 //订单展示
@@ -305,8 +309,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
 	Route::any("/index/item","Index\ItemController@index");
-//登录
-	Route::any("/index/login","Index\LoginController@index");
+
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页

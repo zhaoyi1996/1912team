@@ -137,7 +137,6 @@ input{
     //
     $("#sendcode").click(function(){
         var user_email = $("#user_email").val();
-<<<<<<< HEAD
         // var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
         // if(user_email==""){
         //     alert("邮箱不可为空");
@@ -146,7 +145,6 @@ input{
         //     alert("邮箱格式不正确");
         //     return false; 
         // }
-=======
         var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
         if(user_email==""){
             alert("邮箱不可为空");
@@ -155,7 +153,6 @@ input{
             alert("邮箱格式不正确");
             return false; 
         }
->>>>>>> heyuhao
         // 定时器
             $("#sendcode").text("60s");
             // 清除定时器

@@ -21,17 +21,13 @@
 		</div>
 		<!--register-->
 		<div class="registerArea">
-<<<<<<< HEAD
-			<h3>注册新用户<span class="go">我有账号，去<a href="login.html" target="_blank">登陆</a></span></h3>
-=======
 			<h3>注册新用户<span class="go">我有账号，去<a href="{{url('/index/login')}}" target="_blank">登陆</a></span></h3>
->>>>>>> heyuhao
 			<div class="info">
 				<form class="sui-form form-horizontal" onsubmit="javascript:return check()">
 				<!-- <div ></div> -->
 					<div class="control-group">
 						<label class="control-label">用户名：</label>
-						<div class="controls">
+						<div class="controls">    
 							<input type="text" placeholder="请输入你的用户名" name="user_name" id="user_name" class="input-xfat input-xlarge">
 						</div>
 					</div>
@@ -57,7 +53,7 @@
 					<div class="control-group">
 						<label for="inputPassword" class="control-label">邮箱验证码：</label>
 						<div class="controls">
-							<input type="text" placeholder="短信验证码"  class="input-xfat input-xlarge">  
+							<!-- <input type="text" placeholder="短信验证码"  class="input-xfat input-xlarge">   -->
 							<input type="text" placeholder="短信验证码" id="user_code" class="input-xfat input-xlarge">  
 							<button class="but" id="sendcode">获取邮箱验证码</button>
 						</div>
@@ -105,18 +101,15 @@
 <script type="text/javascript" src="/indexshop/js/pages/register.js"></script>
 <script>
 // 阻止表单提交
-<<<<<<< HEAD
 	$("form").submit(function(){
 		return false;
 	})
-=======
     function check(){
         return false;
     }
 	// $("form").submit(function(){
 	// 	return false;
 	// })
->>>>>>> heyuhao
 	$("#sendcode").click(function(){
 		var user_email = $("#user_email").val();
         var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
@@ -178,16 +171,11 @@
         	var user_pwds = $("#user_pwds").val();
         	var user_pwd = $("#user_pwd").val();
         	var user_email = $("#user_email").val();
-<<<<<<< HEAD
-=======
             var user_code = $("#user_code").val();
->>>>>>> heyuhao
         	if(user_name==''){
         		alert("用户姓名不可为空");
         		return false;
         	}
-<<<<<<< HEAD
-=======
             if(user_pwd==''){
                 alert("用户名密码不可为空");
                 return false;
@@ -222,7 +210,6 @@
                     }
                 }
             })
->>>>>>> heyuhao
         })
 	
 </script>
