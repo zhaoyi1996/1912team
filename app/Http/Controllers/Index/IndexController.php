@@ -19,6 +19,9 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
+
+//        轮播图
+
         //公告
         $res2=AnnouModel::leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
         // 调用无限极分类
@@ -81,14 +84,18 @@ class IndexController extends Controller
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2]);
+
+//        查询分类
+        $cates=CategoryModel::where('pid','0')->get();
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'cates'=>$cates]);
+
 
  }
 
     // 无限极分类
     public function getCate($array,$pid=0){
         static $info=[];
-        $info[$pid]=$pidgatCate3;
+        $info[$pid]=$pid;
         foreach ($array as $key=>$value){
             if ($value['pid']==$pid) {
                 $this->getCate($array,$value['cate_id']);

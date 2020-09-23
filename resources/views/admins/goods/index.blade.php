@@ -160,9 +160,8 @@
                         </div>
                     </div>
                 </div>
-                    {{--<button   id="click_up" >保存</button>--}}
     <div class="btn-toolbar list-toolbar">
-        <button  id="button" >保存</button>
+        <button id="button"class="btn btn-success">保存</button>
     </div>
 
 
