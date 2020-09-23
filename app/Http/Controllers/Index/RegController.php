@@ -34,7 +34,6 @@ class RegController extends Controller
         }else if(!preg_match($pwd,$user_pwd)){
             echo json_encode(['code'=>1,'msg'=>'密码格式有误']);die;
         }
-
     	if($user_pwds==''){
     		echo json_encode(['code'=>1,'msg'=>'用户确认密码不可为空']);die;
     	}
@@ -64,7 +63,11 @@ class RegController extends Controller
         // if($user_code!==$usercode){
         // 	echo json_encode(['code'=>1,'msg'=>'验证码错误']);die;
         // }
-        $user_pwd = encrypt($user_pwd);
+        $key="1912team";
+        $iv="aaaabbbbccccdddd";
+        $user_pwd=openssl_encrypt($user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv);
+
+//        $user_pwd = encrypt($user_pwd);
         $user = new ShopUserModel();
         $user->user_name=$user_name;
         $user->user_add_time = time();

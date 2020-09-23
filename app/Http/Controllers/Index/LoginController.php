@@ -27,9 +27,6 @@ class LoginController extends Controller
     	//接值
     	$user_name = $request->post("user_name");
     	$user_pwd = $request->post("user_pwd");
-
-
-
         $str = strpos($user_name,"@");
         if($str){
             // echo "邮箱登录";die;
@@ -45,7 +42,9 @@ class LoginController extends Controller
             if(!$user){
                 echo json_encode(['code'=>1,'msg'=>'管理员邮箱不存在']); die;
             }
-            if($user_pwd!==decrypt($user->user_pwd)){
+            $key="1912team";
+            $iv="aaaabbbbccccdddd";
+            if($user_pwd!==openssl_encrypt($user->user_pwd,'AES-192-CBC',$key,OPENSSL_RAW_DATA,$iv)){
                 echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
             }
             session(['userInfo'=>$user]);
