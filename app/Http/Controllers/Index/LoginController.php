@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Brand;
 
+use AlibabaCloud\Client\AlibabaCloud;
+use AlibabaCloud\Client\Exception\ClientException;
+use AlibabaCloud\Client\Exception\ServerException;
 use App\Mail\sendCode;
 use Illuminate\Support\Facades\Mail;
 use App\Model\ShopUserModel;
@@ -74,7 +77,7 @@ class LoginController extends Controller
             }
 
             session(['User_Info'=>$user]);
-
+            dd(session("User_Info"));
             echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
 
             }
