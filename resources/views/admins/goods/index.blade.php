@@ -15,9 +15,8 @@
 
 
     <!-- 富文本编辑器 -->
-    <link rel="stylesheet" href="/admin/plugins/kindeditor/themes/default/default.css" />
-    <script charset="utf-8" src="/admin/plugins/kindeditor/kindeditor-min.js"></script>
-    <script charset="utf-8" src="/admin/plugins/kindeditor/lang/zh_CN.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/uploaded/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/uploaded/ueditor.all.js"></script>
 
 </head>
 
@@ -110,7 +109,7 @@
 
                         <div class="col-md-2 title editer">商品介绍</div>
                         <div class="col-md-10 data editer">
-                            <textarea name="goods_desc" style="width:800px;height:400px;" ></textarea>
+                            <textarea name="goods_desc" id="goods_desc" ></textarea>
                         </div>
 
 
@@ -210,17 +209,28 @@
         });
     });
 </script>
-<script>
 
-    var goods_desc;
-    KindEditor.ready(function(K) {
-        goods_desc = K.create('textarea[name="goods_desc"]', {
-            allowFileManager : true
+<script type="text/javascript" charset="utf-8">//初始化编辑器
+    window.UEDITOR_HOME_URL = "/ueditor/";//配置路径设定为UEditor所放的位置
+    window.onload=function(){
+        window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+        window.UEDITOR_CONFIG.initialFrameWidth=750;//编辑器的宽度
+        var editor = new UE.ui.Editor({
+            imageUrl : '',
+            fileUrl : '',
+            imagePath : '',
+            filePath : '',
+            imageManagerUrl:'', //图片在线管理的处理地址
+            imageManagerPath:'__ROOT__/'
         });
-    });
+        editor.render("goods_desc");//此处的EditorId与<textarea name="content" id="EditorId">的id值对应 </textarea>
 
+    }
 </script>
+
 <script>
+
+
 
     $(document).on("click","#button",function(){
         var cate_id= $("select[name='cate_id']").val();
@@ -228,7 +238,7 @@
         var brand_id= $("select[name='brand_id']").val();
         var goods_title= $("input[name='goods_title']").val();
         var goods_price= $("input[name='goods_price']").val();
-        var goods_desc =$("textarea[name='goods_desc']").val();
+        var goods_desc = UE.getEditor('goods_desc').getContent();
         var goods_packing= $("textarea[name='goods_packing']").val();
         var goods_sales= $("textarea[name='goods_sales']").val();
         var goods_sn= $("input[name='goods_sn']").val();
@@ -287,6 +297,8 @@
             success:function(res){
                 if(res.code=='0000'){
                    location.href="/admins/goodslist";
+                }else if(res.code=='1111'){
+                    alert(res.msg);
                 }else{
                     alert("跳转失败");
                 }

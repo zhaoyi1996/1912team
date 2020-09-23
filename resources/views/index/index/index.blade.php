@@ -161,24 +161,25 @@
 					    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					    <li data-target="#myCarousel" data-slide-to="1"></li>
 					    <li data-target="#myCarousel" data-slide-to="2"></li>
+						  <li data-target="#myCarousel" data-slide-to="3"></li>
+						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
 					  <div class="carousel-inner">
+						  @foreach($slide as $k=>$v)
+							  @if($k==0)
 					    <div class="active item">
-					    <a href="http://baidu2.wypxj.com/">
-					    	<img src="/indexshop/img/banner1.jpg"  />
+					    <a href="{{$v->sl_url}}">
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="500px;" />
 					      </a>
 					    </div>
-					    <div class="item">
-						 <a href="http://baidu2.wypxj.com/">
-						<img src="/indexshop/img/banner2.jpg"  />
+					    @else
+								  <div class="item">
+						 <a href="{{$v->sl_url}}">
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="400px;" />
 					     </a>
 					    </div>
-					    <div class="item">
-						 <a href="http://baidu2.wypxj.com/">
-						<img src="/indexshop/img/banner3.jpg"  />
-						</a>
-					     
-					    </div>
+							  @endif
+						@endforeach
 					  </div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
 					</div>
 				</div>
@@ -292,7 +293,7 @@
 				</li>
 				@foreach($recom_data as $v)
 				<li class="yui3-u-5-24">
-					<a href="{{url('/index/item/'.$v->goods_id)}}" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}"  width="180" height="163"/></a>
+					<a href="{{url('/index/item/'.$v->goods_id)}}" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}"  width="160" height="163"/></a>
 				</li>
 				@endforeach
 			</ul>
@@ -703,18 +704,11 @@
 	<div class="brand">
 		<div class="py-container">
 			<ul class="Brand-list blockgary">
+				@foreach($brand_data as $v)
 				<li class="Brand-item">
-					<img src="/indexshop/img/brand_21.png" />
+					<a href="{{$v->brand_url}}"><img src="{{env('APP_URL')}}{{$v->brand_img}}" width="220" /></a>
 				</li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_03.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_05.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_07.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_09.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_11.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_13.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_15.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_17.png" /></li>
-				<li class="Brand-item"><img src="/indexshop/img/brand_19.png" /></li>
+				@endforeach
 			</ul>
 		</div>
 	</div>
