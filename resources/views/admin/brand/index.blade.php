@@ -18,7 +18,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" id="click_up" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-file-o"></i> 新建</button>
+                                        <a href="/admin/brand/create"><button type="button" id="click_up" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal"  ><i class="fa fa-file-o"></i> 新建</button></a>
                                                 
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -61,9 +61,9 @@
 									      <td>{{$v->brand_url}}</td>		     
 		                                  <td>{{$v->brand_story}}</td>		                                 
 		                                  <td class="text-center"> 
-		                                  	<a href="{{url('/admin/edit/'.$v->brand_id)}}">
+		                                  	<a href="{{url('/admin/brand/edit/'.$v->brand_id)}}">
                     						<button type="button" class="btn btn-primary">修改</button></a>
-                    						<a href="{{url('/admin/delete/'.$v->brand_id)}}">
+                    						<a href="{{url('/admin/brand/delete/'.$v->brand_id)}}">
                     						<button type="button" class="btn btn-primary">删除</button></a>
                                                        
 		                                  </td>
@@ -85,47 +85,8 @@
                     <!-- /.box-body -->
          
 <!-- 编辑窗口 -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" >
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">品牌编辑</h3>
-		</div>
-		<div class="modal-body">
-			
-			<table class="table table-bordered table-striped" enctype="multipart/form-data"  width="800px">
-		      	<tr>
-		      		<td>品牌名称</td>
-		      		<td><input class="form-control" placeholder="品牌名称" name="brand_name">  </td>
-		      	</tr>		      	
-		      	<tr>
-		      		<td>品牌图片</td>
-		      		<td><input  type="file"  class="form-control" id="uploadify"  placeholder="品牌图片" name="brand_img">  
-		      			<input type="hidden" name="brand_img">
-		      			<!-- <span class="showimg"></span> -->
-					</td>
-		      	</tr>	
-		      	<tr>
-		      		<td>品牌URL</td>
-		      		<td><input class="form-control" placeholder="品牌URL" name="brand_url">  </td>
-		      	</tr>	
-		      	<tr>
-		      		<td>首字母</td>
-		      		<td><input  class="form-control" placeholder="首字母" name="brand_story">  </td>
-		      	</tr>		      	
-			 </table>				
-		</div>
-		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="test">保存</button>
-			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
-		</div>
-	  </div>
-	</div>
-</div>
-   
-</body>
-<script>
+
+<!-- <script>
 	$("#test").click(function(){
 		// alert(111);
 		var brand_name=$("input[name='brand_name']").val();
@@ -148,10 +109,10 @@
 			}
 		})
 	})
-</script>
+</script> -->
 
-
- <script src="/uploadify/jquery.js"></script>
+ @endsection
+ <!-- <script src="/uploadify/jquery.js"></script>
  <link rel="stylesheet" href="/uploadify/uploadify.css">
  <script src="/uploadify/jquery.uploadify.js"></script>
  <script>
@@ -160,21 +121,14 @@
 			uploader: "/admin/brand/img",
 			swf: "/uploadify/uploadify.swf",
 			onUploadSuccess:function(res,data,msg){
-				// console.log(res);
-				// console.log(data);
-				// console.log(msg);
-				// return  false
 				var imgPath  = data;
 				var imgstr = "<img src='"+imgPath+"'>";
 				$("input[name='brand_img']").val(imgPath);
-				// $(".showimg").append(imgstr);
 				
-				// var video_str = "<video src='"+imgPath+"' controls='controls' style='width:400px;height:200px;'>";
-				// $(".showimg").append(video_str);
 			}
 		});
 	});
-</script>
+</script> -->
 
-  @endsection
+ 
  
