@@ -14,7 +14,11 @@ class LoginController extends Controller
     // }
 
     public function login(){
-    	return view("rbac.login.login");
+
+        // echo env("APP_URL");
+        $appurl = env("APP_LOGIN_URL");
+
+    	return view("rbac.login.login",['appurl'=>$appurl]);
     }
 
     public function logindo(Request $request){

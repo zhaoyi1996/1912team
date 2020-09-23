@@ -22,33 +22,64 @@ class LoginController extends Controller
         // echo "123";
     	return view("index.reg.login");
     }
-  //   //前台执行登录
-  //   public function logindo(Request $request){
-  //   	//接值
-  //   	$user_name = $request->post("user_name");
-  //   	$user_pwd = $request->post("user_pwd");
+    //前台执行登录
+    public function logindo(Request $request){
+    	//接值
+    	$user_name = $request->post("user_name");
+    	$user_pwd = $request->post("user_pwd");
 
-  //   	if(!$user_name){
-  //   		echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
-  //   	}
-  //   	if(!$user_pwd){
-  //   		echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
-  //   	}
 
-  //   	$user = ShopUserModel::where('user_name',$user_name)->first();
-		
-		// if(!$user){
-  //   		echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
-  //   	}
-  //   	if($user_pwd!==decrypt($user->user_pwd)){
-  //   		echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
-  //   	}
 
-		// session(['userInfo'=>$user->user_id]);
+        $str = strpos($user_name,"@");
+        if($str){
+            // echo "邮箱登录";die;
+            // echo $user_name;
+            if(!$user_name){
+                    echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
+            }
+            if(!$user_pwd){
+                echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
+            }
+            $user = ShopUserModel::where('user_name',$user_name)->first();
+                
+            if(!$user){
+                echo json_encode(['code'=>1,'msg'=>'管理员邮箱不存在']); die;
+            }
+            if($user_pwd!==decrypt($user->user_pwd)){
+                echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
+            }
+            session(['userInfo'=>$user]);
 
-  //   	echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
 
-  //   }
+            }else{
+            // echo "用户名登录";die;
+            if(!$user_name){
+                    echo json_encode(['code'=>1,'msg'=>'请填写管理员名称']);die;
+            }
+            if(!$user_pwd){
+                echo json_encode(['code'=>1,'msg'=>'请填写管理员密码']);die;
+            }
+
+            $user = ShopUserModel::where('user_name',$user_name)->first();
+                
+            if(!$user){
+                echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
+            }
+            if($user_pwd!==decrypt($user->user_pwd)){
+                echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
+            }
+
+            session(['userInfo'=>$user]);
+
+            echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
+
+            }
+        }
+        
+
+
+    	
     
    
     // //执行注册
@@ -164,7 +195,7 @@ class LoginController extends Controller
             $res=$this->sms->send($user_email,$name,$content,$code);
             var_dump($res);
         }
-
+        
 
     }
 
