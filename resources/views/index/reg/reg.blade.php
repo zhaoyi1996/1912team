@@ -21,7 +21,6 @@
 		</div>
 		<!--register-->
 		<div class="registerArea">
-			<h3>注册新用户<span class="go">我有账号，去<a href="login.html" target="_blank">登陆</a></span></h3>
 			<h3>注册新用户<span class="go">我有账号，去<a href="{{url('/index/login')}}" target="_blank">登陆</a></span></h3>
 			<div class="info">
 				<form class="sui-form form-horizontal" onsubmit="javascript:return check()">

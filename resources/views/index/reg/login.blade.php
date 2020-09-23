@@ -42,20 +42,21 @@
 						<div id="profile" class="tab-pane  active">
 							<form class="sui-form"  onsubmit="javascript:return check()">
 								<div class="input-prepend"><span class="add-on loginname"></span>
-									<input id="prependedInput" type="text" placeholder="邮箱/用户名" id="user_name" name="user_name" class="span2 input-xfat">
+									<input  type="text" placeholder="邮箱/用户名" id="user_name" name="user_name" class="span2 input-xfat">
 								</div>
 								<div class="input-prepend"><span class="add-on loginpwd"></span>
-									<input id="prependedInput" type="password" placeholder="请输入密码" id="user_pwd" name="user_pwd" class="span2 input-xfat">
+									<input  type="password" placeholder="请输入密码" id="user_pwd" name="user_pwd" class="span2 input-xfat">
 								</div>
 								<div class="setting">
 									<label class="checkbox inline">
-          <input name="m1" type="checkbox" value="2" checked=""> 
+          <input name="m1" type="checkbox" value="2" checked="">
           自动登录
         </label>
 									<span class="forget">忘记密码？</span>
 								</div>
 								<div class="logined">
-									<button class="sui-btn btn-block btn-xlarge btn-danger" id="button"  >登&nbsp;&nbsp;录</button>
+									<button class="sui-btn btn-block btn-xlarge btn-danger" id="button"  >登&nbsp;&nbsp;录
+									</button>
 								</div>
 							</form>
 							<div class="otherlogin">
@@ -103,6 +104,7 @@
 	}
 	$("#button").click(function(){
 		var user_name = $("#user_name").val();
+		// alert(user_name);
 		var user_pwd = $("#user_pwd").val();
 		if(user_name==''){
 			alert("用户名不可为空");
@@ -112,7 +114,20 @@
 			alert("用户密码不可为空");
 			return false;
 		}
-		
+		$.ajax({
+			url:"/index/logindo",
+			type:"post",
+			dataType:"json",
+			data:{user_name:user_name,user_pwd:user_pwd},
+			success:function(res){
+				if(res.code==1){
+					alert(res.msg)
+				}
+				if(res.code==0){
+					alert(res.msg)
+				}
+			}
+		})
 	})
 </script>
 </body>
