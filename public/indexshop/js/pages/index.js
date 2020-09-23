@@ -22,7 +22,7 @@ $(function() {
 
 /*楼层导航*/
 function scrollFloorView(){
-	var ling = $(document).scrollTop(); //获得窗口滚动上去的距离	
+	var ling = $(document).scrollTop(); //获得窗口滚动上去的距离
 	if(ling > 1200) {
 		$("#floor-index").show(); //如果滚动的距离大于1200，滚动框显示出来
 	}

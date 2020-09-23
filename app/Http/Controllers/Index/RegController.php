@@ -25,6 +25,7 @@ class RegController extends Controller
     	$user_code = $request->post("user_code");
     	//PHP验证
         // dd($user_email);
+//        dd($user_email);
     	if($user_name==''){
     		echo json_encode(['code'=>1,'msg'=>'用户名不可为空']);die;
     	}
@@ -35,7 +36,6 @@ class RegController extends Controller
         }else if(!preg_match($pwd,$user_pwd)){
             echo json_encode(['code'=>1,'msg'=>'密码格式有误']);die;
         }
-
     	if($user_pwds==''){
     		echo json_encode(['code'=>1,'msg'=>'用户确认密码不可为空']);die;
     	}
@@ -65,12 +65,18 @@ class RegController extends Controller
         // if($user_code!==$usercode){
         // 	echo json_encode(['code'=>1,'msg'=>'验证码错误']);die;
         // }
-        $user_pwd = encrypt($user_pwd);
+        $key="1912team";
+        $iv="aaaabbbbccccdddd";
+//        $user_pwd=openssl_encrypt($user_pwd,'AES-256-CBC',$key,OPENSSL_RAW_DATA,$iv);
+//        $user_pwd='n'.$user_pwd;
+        $user_pwd=password_hash($user_pwd,PASSWORD_ARGON2ID);
+//        $user_pwd = encrypt($user_pwd);
         $user = new ShopUserModel();
         $user->user_name=$user_name;
         $user->user_add_time = time();
         $user->user_pwd=$user_pwd;
         $user->user_email=$user_email;
+//        dd($user);
         if($user->save()){
             echo json_encode(['code'=>0,"msg"=>'注册成功，请跳转登录页面']);die;
         }
