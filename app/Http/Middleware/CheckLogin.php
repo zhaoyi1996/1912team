@@ -75,7 +75,7 @@ class CheckLogin
             }else{
                 $user_url=$user_url;
             }
-           echo $user_url;
+           // echo $user_url;
            // echo $user_url;die;
             if($user_url == "http://www.1912team.com/admin/list"){
                 return $next($request);

@@ -125,6 +125,7 @@
 				}
 				if(res.code==0){
 					alert(res.msg)
+					window.location.href="{{$url}}";
 				}
 			}
 		})
