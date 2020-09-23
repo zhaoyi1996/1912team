@@ -26,13 +26,13 @@ Route::get("/test",function(){
 ***/
 
 //后台品牌管理
-Route::any("/admin/brand","Admin\BrandController@index");
-Route::any("/admin/test","Admin\BrandController@test");
-Route::any("/admin/edit/{id}","Admin\BrandController@edit");
-Route::any("/admin/update/{id}","Admin\BrandController@update");
-Route::any("/admin/delete/{id}","Admin\BrandController@delete");
+Route::any("/admin/brand/brand","Admin\BrandController@index");
+Route::any("/admin/brand/test","Admin\BrandController@test");
+Route::any("/admin/brand/edit/{id}","Admin\BrandController@edit");
+Route::any("/admin/brand/update/{id}","Admin\BrandController@update");
+Route::any("/admin/brand/delete/{id}","Admin\BrandController@delete");
 Route::any("/admin/brand/img","Admin\BrandController@img");
-
+Route::any("/admin/brand/create","Admin\BrandController@create");
 //登录后台
 Route::get("/admin/login","Rbac\LoginController@login");
 Route::post("/admin/logindo","Rbac\LoginController@logindo");

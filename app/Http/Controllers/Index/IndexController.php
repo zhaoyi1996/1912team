@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 
 use App\Model\BrandModel;
-use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
 
+use App\Model\AnnouModel;
 use App\Model\CategoryModel;
-
 use Illuminate\Support\Facades\Redis;
 
 use App\Model\ShopSlideModel;
@@ -20,7 +19,8 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
-
+        //公告
+        $res2=AnnouModel::leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
         // 调用无限极分类
         $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // dd($cateAll);
@@ -56,20 +56,14 @@ class IndexController extends Controller
         //    $max_price=$goods_model->where($where)->value('max(goods_price)');
         //    // echo  $goods_model->getLastsql();die;
         //    $priceInfo=$this->getPriceSection($max_price);
-   
-
-
-        //查询小广告信息
-        $cateInfo = Cate::all();
 
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
+        #查询小广告信息
        $LadverWhere=[
             ['la_del','=',1]
         ];
         $ladver_data=ShopLadverModel::where($LadverWhere)->first();
         #查询今日推荐     ----排序方法是最近存入库的几件商品
-        $recom_data=GoodsModel::orderBy('goods_add_time','desc')->limit(4)->get();
-
         $recomWhere=[
             ['del_id','=',1]
         ];
@@ -87,7 +81,7 @@ class IndexController extends Controller
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide]);
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2]);
 
  }
 
@@ -103,6 +97,7 @@ class IndexController extends Controller
         return $info;
     }
 
+
     // 父级id--子级分类
     public function gatCate3($array,$pid=0){
         $info=[];
@@ -114,8 +109,6 @@ class IndexController extends Controller
         }
         return $info;
     }
-
-
 
 
 }
