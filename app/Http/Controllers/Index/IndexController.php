@@ -19,9 +19,7 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
-
-//        轮播图
-
+$goods_id=request()->goods_id;
         //公告
         $res2=AnnouModel::leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
         // 调用无限极分类
@@ -60,6 +58,7 @@ class IndexController extends Controller
         //    // echo  $goods_model->getLastsql();die;
         //    $priceInfo=$this->getPriceSection($max_price);
 
+        //   轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
         #查询小广告信息
        $LadverWhere=[
@@ -85,9 +84,18 @@ class IndexController extends Controller
 //        dd($brand_data);
         #猜你喜欢
 
-//        查询分类
-        $cates=CategoryModel::where('pid','0')->get();
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'cates'=>$cates]);
+        //查询分类
+        $tao_data=CategoryModel::get();
+        //调用获取id的方法
+        $tao_info=$this->gatCate4($tao_data);
+
+        $tao_2ji=[];
+        foreach($tao_info as $k=>$v){
+            $tao_2ji[$v->cate_id]=$v->son;
+        }
+//        dd($tao_2ji);
+//        dd($tao_data);
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji]);
 
 
  }
@@ -115,6 +123,17 @@ class IndexController extends Controller
             }
         }
         return $info;
+    }
+    // 父级id--子级分类
+    public function gatCate4($array,$pid=0){
+        $tao_info=[];
+        foreach ($array as $k =>$v) {
+            if ($v['pid']==$pid) {
+                $v['son']=$this->gatCate4($array,$v['cate_id']);
+                $tao_info[]=$v;
+            }
+        }
+        return $tao_info;
     }
 
 
