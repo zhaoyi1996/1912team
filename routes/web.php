@@ -257,7 +257,14 @@ Route::prefix('/index')->group(function(){
 
 	//地址管理
 	Route::get("/homeSettingAddress","Index\AddressController@index");
-	
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
+	//设置为默认收货地址
+	Route::get("/homeaddress/moren/{id}","Index\AddressController@moren");
+	//收货地会添加
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	//收货地址修改
+	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
 });
 
 

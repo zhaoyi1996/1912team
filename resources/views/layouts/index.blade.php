@@ -128,7 +128,13 @@
         </div>
     </div>
 
+
+
+
     @yield('content')
+
+
+
             <!--页面底部-->
     <div class="clearfix footer">
         <div class="py-container">
