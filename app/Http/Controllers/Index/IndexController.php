@@ -84,11 +84,18 @@ $goods_id=request()->goods_id;
 //        dd($brand_data);
         #猜你喜欢
 
-//        查询分类
-        $cates=CategoryModel::get()->toArray();
-        $catetao=$this->gatCate3($cates);
-//        dd($catetao);die;
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'catetao'=>$catetao]);
+        //查询分类
+        $tao_data=CategoryModel::get();
+        //调用获取id的方法
+        $tao_info=$this->gatCate4($tao_data);
+
+        $tao_2ji=[];
+        foreach($tao_info as $k=>$v){
+            $tao_2ji[$v->cate_id]=$v->son;
+        }
+//        dd($tao_2ji);
+//        dd($tao_data);
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji]);
 
 
  }
@@ -116,6 +123,17 @@ $goods_id=request()->goods_id;
             }
         }
         return $info;
+    }
+    // 父级id--子级分类
+    public function gatCate4($array,$pid=0){
+        $tao_info=[];
+        foreach ($array as $k =>$v) {
+            if ($v['pid']==$pid) {
+                $v['son']=$this->gatCate4($array,$v['cate_id']);
+                $tao_info[]=$v;
+            }
+        }
+        return $tao_info;
     }
 
 
