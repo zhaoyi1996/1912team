@@ -10,12 +10,9 @@ class CateController extends Controller
 {
     //购物车展示
     public function index(Request $request){
-        #判断用户是否登录
-        $session=session('userInfo');
-        dd($session);
-        if(empty($session)){
-            return redirect('/index/login');
-        }
+        $user_pwd='111111';
+
+        dd($user_pwd);
 
     	return view("index.cate.cate");
     }

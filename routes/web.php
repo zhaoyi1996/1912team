@@ -267,7 +267,7 @@ Route::prefix('/index')->group(function(){
 	
 
 //订单展示
-	Route::any("/index/order_info","Index\OrderController@index");
+	Route::any("/index/order_info","Index\OrderController@index")->middleware('SessionLogin');
 	//收银台
 	Route::any("/index/finall","Index\FinallController@index");
 	//支付页失败页面
