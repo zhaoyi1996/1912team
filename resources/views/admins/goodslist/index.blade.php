@@ -65,7 +65,7 @@
                 <td>{{$v->brand_name}}</td>
                 <td>{{$v->goods_price}}</td>
                 <td>{{$v->goods_title}}</td>
-                <td>{{$v->goods_desc}}</td>
+                <td>{!! $v->goods_desc !!}</td>
                 <td>{{$v->goods_packing}}</td>
                 <td>{{$v->goods_sales}}</td>
                 <td>{{$v->goods_sn}}</td>

@@ -68,8 +68,20 @@
         $("#button").click(function(){
             // 获取需要传递的值
         var nav_name=$("#nav_name").val();
+        if(nav_name==""){
+            alert("导航名称不能为空");
+            return;
+        }
         var nav_url=$("#nav_url").val();
+        if(nav_url==""){
+            alert("导航跳转地址不能为空");
+            return;
+        }
         var nav_weight=$("#nav_weight").val();    
+        if(nav_weight==""){
+            alert("导航权重不能为空");
+            return;
+        }
         var nav_show=$("#nav_show").val();
         // console.log(nav_weight);
       // 通过ajax技术传给控制器

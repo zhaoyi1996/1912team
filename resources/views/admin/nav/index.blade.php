@@ -83,9 +83,9 @@
                     <!-- /.box-body -->
 			</div>
 		  </body>
- @endsection
+ 
 
- <script>
+ <script type="text/javascript">
 	$(document).on('click','.del',function(){
 		alert(1234);
 		var id=""
@@ -117,3 +117,4 @@
 
 </script>
 
+@endsection

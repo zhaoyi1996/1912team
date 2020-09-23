@@ -84,51 +84,13 @@
                      </div>
                     <!-- /.box-body -->
          
-<!-- 编辑窗口 -->
 
-<!-- <script>
-	$("#test").click(function(){
-		// alert(111);
-		var brand_name=$("input[name='brand_name']").val();
-		var brand_img=$("input[name='brand_img']").val();
-		var brand_url=$("input[name='brand_url']").val();
-		var brand_story=$("input[name='brand_story']").val();
-		
-		// return false
-		$.ajax({
-			url:"test",
-			data:{brand_name:brand_name,brand_img:brand_img,brand_url:brand_url,brand_story:brand_story},
-			type:"post",
-			dataType:"json",
-			success:function(res){
-				if(res.code=='0'){
-					location.href="brand";
-				}else{
-					alert("跳转失败");
-				}
-			}
-		})
-	})
-</script> -->
 
  @endsection
- <!-- <script src="/uploadify/jquery.js"></script>
- <link rel="stylesheet" href="/uploadify/uploadify.css">
- <script src="/uploadify/jquery.uploadify.js"></script>
- <script>
-	$(document).ready(function(){
-		$("#uploadify").uploadify({
-			uploader: "/admin/brand/img",
-			swf: "/uploadify/uploadify.swf",
-			onUploadSuccess:function(res,data,msg){
-				var imgPath  = data;
-				var imgstr = "<img src='"+imgPath+"'>";
-				$("input[name='brand_img']").val(imgPath);
-				
-			}
-		});
-	});
-</script> -->
 
- 
+
+
+
+
+
  

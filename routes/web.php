@@ -40,7 +40,7 @@ Route::post("/admin/logindo","Rbac\LoginController@logindo");
 Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
-Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware("islogin")->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
@@ -149,8 +149,8 @@ Route::prefix('/admin')->group(function(){
 
 		//后台模块商家管理
 		Route::get("/seller","Admin\SellerController@index");
-		//后台首页
 
+		//后台首页
 		Route::get("/index","Admin\IndexController@index");
 
 
@@ -168,8 +168,10 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/rbac/pow/del/{id}","Rbac\PowController@del");
 		Route::get("/rbac/pow/upd/{id}","Rbac\PowController@upd");
 		Route::post("/rbac/pow/update/{id}","Rbac\PowController@update");
+
 		//权限列表
 		Route::get("/rbac/pow/list","Rbac\PowController@list");
+
 		//角色添加
 		Route::get("/rbac/role/create","Rbac\RoleController@create");
 		Route::post("/rbac/role/store","Rbac\RoleController@store");
@@ -178,9 +180,11 @@ Route::prefix('/admin')->group(function(){
 		Route::post("/rbac/role/fus2","Rbac\RoleController@fus2");
 		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
 		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
-	    Route::get("/rbac/role/fusdel/{id}","Rbac\RoleController@fusdel");
+		Route::get("/rbac/role/fusdel/{id}","Rbac\RoleController@fusdel");
+		
 	 	//角色列表
 		Route::get("/rbac/role/list","Rbac\RoleController@list");
+
 		//管理员添加
 		Route::get("/rbac/admin/create","Rbac\AdminController@create");
 		Route::post("/rbac/admin/store","Rbac\AdminController@store");
@@ -236,24 +240,27 @@ Route::prefix('/goods')->group(function(){
 });
 
 
-
 Route::prefix('/index')->group(function(){
 	//前台登录
 	Route::get("/login","Index\LoginController@login");
 	//前台执行登录
 	Route::post("/logindo","Index\LoginController@logindo");
 	// 前台注册+执行注册
-	Route::get("/reg","Index\LoginController@reg");
-	Route::post("/regdo","Index\LoginController@regdo");
+	// Route::get("/reg","Index\LoginController@reg");
+	// Route::post("/regdo","Index\LoginController@regdo");
 	//获取邮箱验证码
 	Route::post("/sendEmail","Index\LoginController@sendEmail");
-});
 
-//无限极分类
-Route::any("/goods/getres","Admins\GoodsController@getres");
+	//前台注册
+	Route::get("/reg","Index\RegController@reg");
+	Route::post("/regdo","Index\RegController@regdo");
+});
 
 
 //前台展示
+	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
+	Route::any("/index/index","Index\IndexController@index");//全部商品
+	
 
 //订单展示
 	Route::any("/index/order_info","Index\OrderController@index");
@@ -295,11 +302,10 @@ Route::any("/goods/getres","Admins\GoodsController@getres");
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
-	Route::any("/index/index","Index\IndexController@index");
+	Route::any("/","Index\IndexController@index");
 	//商品详情页
 	Route::any("/index/item","Index\ItemController@index");
-//登录
-	Route::any("/index/login","Index\LoginController@index");
+
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页

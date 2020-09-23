@@ -58,8 +58,20 @@
         $("#button").click(function(){
             // 获取需要传递的值
         var foot_name=$("#foot_name").val();
+        if(foot_name==""){
+            alert("友情连接名称不能为空");
+            return;
+        } 
         var foot_url=$("#foot_url").val();
-        var foot_weight=$("#foot_weight").val();    
+        if(foot_url==""){
+            alert("友情连接跳转地址不能为空！");
+            return;            
+        }
+        var foot_weight=$("#foot_weight").val();
+        if(foot_weight==""){
+            alert("友情连接权重不能为空！");
+            return;            
+        }    
         // console.log(foot_weight);
       // 通过ajax技术传给控制器
       $.ajax({
