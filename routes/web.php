@@ -262,6 +262,8 @@ Route::prefix('/index')->group(function(){
 //前台展示
 	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
 	Route::any("/index/index","Index\IndexController@index");//全部商品
+	Route::any("/index/cateInfo","Index\IndexController@cateInfo");
+	Route::any("/index/getIndexInfo","Index\IndexController@getIndexInfo");//接收上一个	
 	
 
 //订单展示
