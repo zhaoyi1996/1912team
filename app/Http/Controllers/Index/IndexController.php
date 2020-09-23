@@ -11,6 +11,7 @@ use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
 use App\Model\AnnouModel;
 use App\Model\CategoryModel;
+
 use Illuminate\Support\Facades\Redis;
 
 use App\Model\ShopSlideModel;
@@ -62,10 +63,9 @@ class IndexController extends Controller
 
 
         //查询小广告信息
-        $cateInfo = Cate::all();
 
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
-       $LadverWhere=[
+       $LadverWhere=[''
             ['la_del','=',1]
         ];
         $ladver_data=ShopLadverModel::where($LadverWhere)->first();
@@ -119,6 +119,6 @@ class IndexController extends Controller
         }
         return $info;
     }
-
+   
 
 }

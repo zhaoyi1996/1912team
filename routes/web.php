@@ -314,6 +314,9 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页
 	Route::any("/index/search","Index\SearchController@index");
+	Route::any("/index/goods_list","Index\SearchController@goods_list");
+	//收藏
+	Route::any("/index/collect","Index\SearchController@collect");
 //正品秒杀
     Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
 
