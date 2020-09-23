@@ -8,9 +8,16 @@ use App\Brand;
 
 class CateController extends Controller
 {
-    //商品品牌展示
+    //购物车展示
     public function index(Request $request){
-    	return view("index.cate");
+        #判断用户是否登录
+        $session=session('userInfo');
+        dd($session);
+        if(empty($session)){
+            return redirect('/index/login');
+        }
+
+    	return view("index.cate.cate");
     }
 
 }

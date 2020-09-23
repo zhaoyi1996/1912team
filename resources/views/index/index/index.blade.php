@@ -56,13 +56,7 @@
 					</div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
 				</div>
 			</div>
-			<div class="yui3-u Right">
-				<div class="news">
-					<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
-					<div class="clearix"></div>
-					<ul class="news-list unstyled">
-						<li>
-							<span class="bold">[特惠]</span>备战开学季 全民半价购数码
+
 				<div class="yui3-u Right">
 					<div class="news">
 						<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
@@ -80,53 +74,7 @@
 							
 						</ul>
 					</div>
-					<ul class="yui3-g Lifeservice">
-						<li class="yui3-u-1-4 life-item tab-item">
-							<i class="list-item list-item-1"></i>
-							<span class="service-intro">话费</span>
-						</li>
-						<li class="yui3-u-1-4 life-item tab-item">
-							<i class="list-item list-item-2"></i>
-							<span class="service-intro">机票</span>
-						</li>
-						<li class="yui3-u-1-4 life-item tab-item">
-							<i class="list-item list-item-3"></i>
-							<span class="service-intro">电影票</span>
-						</li>
-						<li class="yui3-u-1-4 life-item tab-item">
-							<i class="list-item list-item-4"></i>
-							<span class="service-intro">游戏</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-5"></i>
-							<span class="service-intro">彩票</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-6"></i>
-							<span class="service-intro">加油站</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-7"></i>
-							<span class="service-intro">酒店</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-8"></i>
-							<span class="service-intro">火车票</span>
-						</li>
-						<li>
-							<span class="bold">[公告]</span>备战开学季 全民半价购数码
-						</li>
-						<li>
-							<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-						</li>
-						<li>
-							<span class="bold">[公告]</span>备战开学季 全民半价购数码
-						</li>
-						<li>
-							<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-						</li>
-					</ul>
-				</div>
+
 				<ul class="yui3-g Lifeservice">
 					<li class="yui3-u-1-4 life-item tab-item">
 						<i class="list-item list-item-1"></i>
@@ -796,6 +744,4 @@
 		</div>
 	</div>
 </script>
-
-
 @endsection
