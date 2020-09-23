@@ -13,10 +13,12 @@ use App\Brand;
 use Illuminate\Support\Facades\Redis;
 
 use App\Model\ShopSlideModel;
+use App\Model\CategoryModel;
 class IndexController extends Controller
 {
 
     public function index(){
+//        轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
         #查询小广告信息
         $LadverWhere=[
@@ -43,7 +45,11 @@ class IndexController extends Controller
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'brand_data'=>$brand_data,'slide'=>$slide]);
+
+//        查询分类
+        $cate=CategoryModel::where('pid','2')->get();
+        $cates=CategoryModel::where('pid','0')->get();
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'brand_data'=>$brand_data,'slide'=>$slide,'cate'=>$cate,'cates'=>$cates]);
 
     }
 

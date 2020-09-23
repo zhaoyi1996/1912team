@@ -842,8 +842,9 @@
 	<!--楼层-->
 	<div id="floor-1" class="floor">
 		<div class="py-container">
+			@foreach($cates as $k=>$v)
 			<div class="title floors">
-				<h3 class="fl">家用电器</h3>
+				<h3 class="fl">{{$v->cate_name}}</h3>
 				<div class="fr">
 					<ul class="sui-nav nav-tabs">
 						<li class="active">
@@ -870,199 +871,10 @@
 					</ul>
 				</div>
 			</div>
-			<div class="clearfix  tab-content floor-content">
-				<div id="tab1" class="tab-pane active">
-					<div class="yui3-g Floor-1">
-						<div class="yui3-u Left blockgary">
-							<ul class="jd-list">
-								<li>节能补贴</li>
-								<li>4K电视</li>
-								<li>空气净化器</li>
-								<li>IH电饭煲</li>
-								<li>滚筒洗衣机</li>
-								<li>电热水器</li>
-							</ul>
-							<img src="/indexshop/img/floor-1-1.png" />
-						</div>
-						<div class="yui3-u row-330 floorBanner">
-							<div id="floorCarousel" data-ride="carousel" data-interval="4000" class="sui-carousel slide">
-								<ol class="carousel-indicators">
-									<li data-target="#floorCarousel" data-slide-to="0" class="active"></li>
-									<li data-target="#floorCarousel" data-slide-to="1"></li>
-									<li data-target="#floorCarousel" data-slide-to="2"></li>
-								</ol>
-								<div class="carousel-inner">
-									<div class="active item">
-										<img src="/indexshop/img/floor-1-b01.png">
-									</div>
-									<div class="item">
-										<img src="/indexshop/img/floor-1-b02.png">
-									</div>
-									<div class="item">
-										<img src="/indexshop/img/floor-1-b03.png">
-									</div>
-								</div>
-								<a href="#floorCarousel" data-slide="prev" class="carousel-control left">‹</a>
-								<a href="#floorCarousel" data-slide="next" class="carousel-control right">›</a>
-							</div>
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-2.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-3.png" />
-							</div>
-						</div>
-						<div class="yui3-u row-218 split">
-							<img src="/indexshop/img/floor-1-4.png" />
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-5.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-6.png" />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="tab2" class="tab-pane">
-					<p>第二个</p>
-				</div>
-				<div id="tab3" class="tab-pane">
-					<p>第三个</p>
-				</div>
-				<div id="tab4" class="tab-pane">
-					<p>第4个</p>
-				</div>
-				<div id="tab5" class="tab-pane">
-					<p>第5个</p>
-				</div>
-				<div id="tab6" class="tab-pane">
-					<p>第6个</p>
-				</div>
-				<div id="tab7" class="tab-pane">
-					<p>第7个</p>
-				</div>
-			</div>
+@endforeach
 		</div>
 	</div>
-	<div id="floor-2" class="floor">
-		<div class="py-container">
-			<div class="title floors">
-				<h3 class="fl">手机通讯</h3>
-				<div class="fr">
-					<ul class="sui-nav nav-tabs">
-						<li class="active">
-							<a href="#tab8" data-toggle="tab">热门</a>
-						</li>
-						<li>
-							<a href="#tab9" data-toggle="tab">品质优选</a>
-						</li>
-						<li>
-							<a href="#tab10" data-toggle="tab">新机尝鲜</a>
-						</li>
-						<li>
-							<a href="#tab11" data-toggle="tab">高性价比</a>
-						</li>
-						<li>
-							<a href="#tab12" data-toggle="tab">合约机</a>
-						</li>
-						<li>
-							<a href="#tab13" data-toggle="tab">手机卡</a>
-						</li>
-						<li>
-							<a href="#tab14" data-toggle="tab">手机配件</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="clearfix  tab-content floor-content">
-				<div id="tab8" class="tab-pane active">
-					<div class="yui3-g Floor-1">
-						<div class="yui3-u Left blockgary">
-							<ul class="jd-list">
-								<li>节能补贴</li>
-								<li>4K电视</li>
-								<li>空气净化器</li>
-								<li>IH电饭煲</li>
-								<li>滚筒洗衣机</li>
-								<li>电热水器</li>
-							</ul>
-							<img src="/indexshop/img/floor-1-1.png" />
-						</div>
-						<div class="yui3-u row-330 floorBanner">
-							<div id="floorCarousell" data-ride="carousel" data-interval="4000" class="sui-carousel slide">
-								<ol class="carousel-indicators">
-									<li data-target="#floorCarousell" data-slide-to="0" class="active"></li>
-									<li data-target="#floorCarousell" data-slide-to="1"></li>
-									<li data-target="#floorCarousell" data-slide-to="2"></li>
-								</ol>
-								<div class="carousel-inner">
-									<div class="active item">
-										<img src="/indexshop/img/floor-1-b01.png">
-									</div>
-									<div class="item">
-										<img src="/indexshop/img/floor-1-b02.png">
-									</div>
-									<div class="item">
-										<img src="/indexshop/img/floor-1-b03.png">
-									</div>
-								</div>
-								<a href="#floorCarousell" data-slide="prev" class="carousel-control left">‹</a>
-								<a href="#floorCarousell" data-slide="next" class="carousel-control right">›</a>
-							</div>
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-2.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-3.png" />
-							</div>
-						</div>
-						<div class="yui3-u row-218 split">
-							<img src="/indexshop/img/floor-1-4.png" />
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-5.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="/indexshop/img/floor-1-6.png" />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="tab2" class="tab-pane">
-					<p>第二个</p>
-				</div>
-				<div id="tab9" class="tab-pane">
-					<p>第三个</p>
-				</div>
-				<div id="tab10" class="tab-pane">
-					<p>第4个</p>
-				</div>
-				<div id="tab11" class="tab-pane">
-					<p>第5个</p>
-				</div>
-				<div id="tab12" class="tab-pane">
-					<p>第6个</p>
-				</div>
-				<div id="tab13" class="tab-pane">
-					<p>第7个</p>
-				</div>
-				<div id="tab14" class="tab-pane">
-					<p>第8个</p>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<!--商标-->
 	<div class="brand">
 		<div class="py-container">
@@ -1210,28 +1022,28 @@
 <!--页面底部END-->
 	<!-- 楼层位置 -->
 	<div id="floor-index" class="floor-index">
-		<ul>
-			<li>
-				<a class="num" href="javascript:;" style="display: none;">1F</a>
-				<a class="word" href="javascript;;" style="display: block;">家用电器</a>
-			</li>
-			<li>
-				<a class="num" href="javascript:;" style="display: none;">2F</a>
-				<a class="word" href="javascript;;" style="display: block;">手机通讯</a>
-			</li>
-			<li>
-				<a class="num" href="javascript:;" style="display: none;">3F</a>
-				<a class="word" href="javascript;;" style="display: block;">电脑办公</a>
-			</li>
-			<li>
-				<a class="num" href="javascript:;" style="display: none;">4F</a>
-				<a class="word" href="javascript;;" style="display: block;">家居家具</a>
-			</li>
-			<li>
-				<a class="num" href="javascript:;" style="display: none;">5F</a>
-				<a class="word" href="javascript;;" style="display: block;">运动户外</a>
-			</li>
-		</ul>
+		{{--<ul>--}}
+			{{--<li>--}}
+				{{--<a class="num" href="javascript:;" style="display: none;">1F</a>--}}
+				{{--<a class="word" href="javascript;;" style="display: block;">家用电器</a>--}}
+			{{--</li>--}}
+			{{--<li>--}}
+				{{--<a class="num" href="javascript:;" style="display: none;">2F</a>--}}
+				{{--<a class="word" href="javascript;;" style="display: block;">手机通讯</a>--}}
+			{{--</li>--}}
+			{{--<li>--}}
+				{{--<a class="num" href="javascript:;" style="display: none;">3F</a>--}}
+				{{--<a class="word" href="javascript;;" style="display: block;">电脑办公</a>--}}
+			{{--</li>--}}
+			{{--<li>--}}
+				{{--<a class="num" href="javascript:;" style="display: none;">4F</a>--}}
+				{{--<a class="word" href="javascript;;" style="display: block;">家居家具</a>--}}
+			{{--</li>--}}
+			{{--<li>--}}
+				{{--<a class="num" href="javascript:;" style="display: none;">5F</a>--}}
+				{{--<a class="word" href="javascript;;" style="display: block;">运动户外</a>--}}
+			{{--</li>--}}
+		{{--</ul>--}}
 	</div>
 	<!--侧栏面板开始-->
 <div class="J-global-toolbar">
