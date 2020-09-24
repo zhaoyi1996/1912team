@@ -144,7 +144,7 @@
                     </div>
                     {{--<button   id="click_up" >保存</button>--}}
                     <div class="btn-toolbar list-toolbar">
-                        <button   id="button" >修改</button>
+                        <button   id="button" class="btn btn-success" >修改</button>
                     </div>
                 </form>
 

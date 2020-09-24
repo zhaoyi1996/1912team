@@ -33,6 +33,7 @@ class SearchController extends Controller
     //收藏
     public function collect(){
     	$goods_id=request()->post();
+    	// dd($goods_id);
     	// $session=session('');
     	// dd($goods_id);
        //user_id给固定的值   接收商品ID  时间

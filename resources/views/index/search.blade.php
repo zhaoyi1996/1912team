@@ -805,12 +805,13 @@
 			type:"post",
 			dataType:"json",
 			success:function(res){
-				if(res.code=='111'){
-					alert(res.msg);
-					location.href=""
-				}else{
-					alert(res.msg);
-				}
+				alert(res);
+				// if(res.code=='111'){
+				// 	alert(res.msg);
+				// 	location.href=""
+				// }else{
+				// 	alert(res.msg);
+				// }
 			}
 		})
 

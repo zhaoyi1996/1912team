@@ -10,7 +10,8 @@ class OrderController extends Controller
 {
     
     public function index(Request $request){
-    	return view("index.order_info");
+
+    	return view("index.order.order_info");
     }
 
 }

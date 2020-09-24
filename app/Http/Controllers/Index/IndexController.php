@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 
 use App\Model\BrandModel;
-use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
+
 use App\Model\AnnouModel;
 use App\Model\CategoryModel;
 
@@ -20,10 +20,9 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
-
+        $goods_id=request()->goods_id;
         //公告
         $res2=AnnouModel::leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
-
         // 调用无限极分类
         $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // dd($cateAll);
@@ -64,14 +63,16 @@ class IndexController extends Controller
 
         //查询小广告信息
 
+
+        //   轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
-       $LadverWhere=[''
+
+        #查询小广告信息
+       $LadverWhere=[
             ['la_del','=',1]
         ];
         $ladver_data=ShopLadverModel::where($LadverWhere)->first();
         #查询今日推荐     ----排序方法是最近存入库的几件商品
-        $recom_data=GoodsModel::orderBy('goods_add_time','desc')->limit(4)->get();
-
         $recomWhere=[
             ['del_id','=',1]
         ];
@@ -90,15 +91,26 @@ class IndexController extends Controller
 //        dd($brand_data);
         #猜你喜欢
 
+        //查询分类
+        $tao_data=CategoryModel::get();
+        //调用获取id的方法
+        $tao_info=$this->gatCate4($tao_data);
 
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2]);
+        $tao_2ji=[];
+        foreach($tao_info as $k=>$v){
+            $tao_2ji[$v->cate_id]=$v->son;
+        }
+//        dd($tao_2ji);
+//        dd($tao_data);
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji]);
+
 
  }
 
     // 无限极分类
     public function getCate($array,$pid=0){
         static $info=[];
-        $info[$pid]=$pidgatCate3;
+        $info[$pid]=$pid;
         foreach ($array as $key=>$value){
             if ($value['pid']==$pid) {
                 $this->getCate($array,$value['cate_id']);
@@ -119,6 +131,19 @@ class IndexController extends Controller
         }
         return $info;
     }
-   
+
+    // 父级id--子级分类
+    public function gatCate4($array,$pid=0){
+        $tao_info=[];
+        foreach ($array as $k =>$v) {
+            if ($v['pid']==$pid) {
+                $v['son']=$this->gatCate4($array,$v['cate_id']);
+                $tao_info[]=$v;
+            }
+        }
+        return $tao_info;
+    }
+
+
 
 }

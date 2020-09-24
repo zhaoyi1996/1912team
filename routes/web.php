@@ -255,7 +255,16 @@ Route::prefix('/index')->group(function(){
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
 
-	
+	//地址管理
+	Route::get("/homeSettingAddress","Index\AddressController@index");
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
+	//设置为默认收货地址
+	Route::get("/homeaddress/moren/{id}","Index\AddressController@moren");
+	//收货地会添加
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	//收货地址修改
+	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
 });
 
 
@@ -267,7 +276,7 @@ Route::prefix('/index')->group(function(){
 	
 
 //订单展示
-	Route::any("/index/order_info","Index\OrderController@index");
+	Route::any("/index/order_info","Index\OrderController@index")->middleware('SessionLogin');
 	//收银台
 	Route::any("/index/finall","Index\FinallController@index");
 	//支付页失败页面
@@ -300,9 +309,12 @@ Route::prefix('/index')->group(function(){
 
 //设置
 	//个人信息
-	Route::any("/index/homeSettingInfo","Index\HomeIndexController@homeSettingInfo");
-	//地址管理
-	Route::any("/index/homeSettingAddress","Index\HomeIndexController@homeSettingAddress");
+	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
+
+
+	
+
+
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页

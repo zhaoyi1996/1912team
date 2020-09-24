@@ -45,7 +45,7 @@
 					</div>
 					
 					<div class="control-group">
-						<label class="control-label">邮箱：</label>
+						<label class="control-label">邮箱/手机号：</label>
 						<div class="controls">
 							<input type="text" name="user_email" id="user_email" placeholder="请输入你的邮箱号" class="input-xfat input-xlarge">
 						</div>
@@ -59,12 +59,12 @@
 						</div>
 					</div>
 					
-					<div class="control-group">
+					<!-- <div class="control-group">
 						<label for="inputPassword" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<div class="controls">
 							<input name="m1" type="checkbox" value="2" checked=""><span>同意协议并注册《品优购用户协议》</span>
 						</div>
-					</div>
+					</div> -->
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls btn-reg">
@@ -113,13 +113,13 @@
 	$("#sendcode").click(function(){
 		var user_email = $("#user_email").val();
         var reg=/^[a-z0-9]{5,}@[a-z0-9]{2,5}\.com$/;
-        if(user_email==""){
-            alert("邮箱不可为空");
-            return false;
-        }else if(!reg.test(user_email)){
-            alert("邮箱格式不正确");
-            return false; 
-        }
+        // if(user_email==""){
+        //     alert("邮箱不可为空");
+        //     return false;
+        // }else if(!reg.test(user_email)){
+        //     alert("邮箱格式不正确");
+        //     return false; 
+        // }
         // 定时器
             $("#sendcode").text("60s");
             // 清除定时器
