@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
 
-use App\Model\BrandModel;
+
 use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
+use App\Model\BrandModel;
 use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
-
 use App\Model\CategoryModel;
-
 use Illuminate\Support\Facades\Redis;
 
 use App\Model\ShopSlideModel;
@@ -31,36 +30,7 @@ class IndexController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-        // dd($cate);
-
-
-        // $goods= Goods::all();
-        // $where = [];
-        // // dd($goods);
-        // // 根据商品表来查询品牌表 id
-        // $brand_id=$goods->where($where)->count("brand_id");
-        // // dd($brand_id);
-        // // 对品牌id去重
-        // $brand_id=array_unique($brand_id);
-        // $brand = New Brand;
-        // // 给品牌表一个where条件
-        // $Brandwhere=[
-        //    ['brand_id','in',$brand_id]
-        // ];
-        //    // 查询所有的品牌表id
-        // $brandInfo=$brand->where($Brandwhere)->select();
-        // dd($brandInfo);
-   
-        //    // print_r($where);
-        //    //3-- 获取价格区间
-        //    $max_price=$goods_model->where($where)->value('max(goods_price)');
-        //    // echo  $goods_model->getLastsql();die;
-        //    $priceInfo=$this->getPriceSection($max_price);
-   
-
-
-        //查询小广告信息
-        $cateInfo = Cate::all();
+        // dd($cate)
 
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
        $LadverWhere=[
@@ -84,6 +54,7 @@ class IndexController extends Controller
         $BrandWhere=[
             ['brand_del','=',1]
         ];
+        
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
@@ -94,7 +65,7 @@ class IndexController extends Controller
     // 无限极分类
     public function getCate($array,$pid=0){
         static $info=[];
-        $info[$pid]=$pidgatCate3;
+        $info[$pid]=$pid;
         foreach ($array as $key=>$value){
             if ($value['pid']==$pid) {
                 $this->getCate($array,$value['cate_id']);

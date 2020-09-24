@@ -107,9 +107,14 @@
 					</div>
 					
 					<div class="yui3-u Center navArea">
+					 
 					@foreach($cate as $v)
 						<ul class="nav">
-							<li class="f-item"><a href="{{url('/index/item/'.'?'.$v->cate_id)}}">{{$v->cate_name}}</a></li>	
+							<li class="f-item">
+
+								<a href="{{url('/index/search'.'?'.$v->cate_id)}}">{{$v->cate_name}}</a>
+							
+							</li>	
 							
 						</ul>
 					@endforeach
@@ -164,18 +169,18 @@
 						  <li data-target="#myCarousel" data-slide-to="3"></li>
 						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
-					  <div class="carousel-inner">
+					  <div class="carousel-inner"  style="width:720px;hight:800px"  >
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
-					    <div class="active item">
+					    <div class="active item"  style="width:720px;hight:800px"  >
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="500px;" />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px" />
 					      </a>
 					    </div>
 					    @else
-								  <div class="item">
+						<div class="item"  style="width:720px;hight:800px"  >
 						 <a href="{{$v->sl_url}}">
-						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="400px;" />
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px"   />
 					     </a>
 					    </div>
 							  @endif
