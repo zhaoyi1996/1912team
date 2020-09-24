@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 	<title>品优购，优质！优质！</title>
-	 <link rel="icon" href="assets//indexshop/img/favicon.ico">
+	 <link rel="icon" href="/indexshop/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-JD-index.css" />
@@ -674,117 +674,18 @@
 				<ul class="clearfix yui3-g Favourate picLB" id="picLBxxl">
 					<li class="yui3-u-1-6">
 						<dl class="picDl huozhe">
+							@foreach($goods as $v)
 							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
+								<a href="{{url('/index/item/'.$v->goods_id)}}" class="pic"><img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" width="200" height="200" alt="" /></a>
 								<div class="like-text">
-									<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-									<h3>¥116.00</h3>
+									<p>{{$v->goods_name}}</p>
+									<h3>¥{{$v->goods_price}}</h3>
 								</div>
 							</dd>
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
+							@endforeach
 						</dl>
 					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl jilu">
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_03.png" alt="" /></a>
-								<div class="like-text">
-									<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl tuhua">
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>捷波朗 </p>
-									<p>（jabra）BOOSI劲步</p>
-									<h3>¥236.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="" class="pic"><img nsrc="assets//indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>三星（G5500）</p>
-									<p>移动联通双网通</p>
-									<h3>¥566.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl huozhe">
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl jilu">
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img src="/indexshop/img/like_03.png" alt="" /></a>
-								<div class="like-text">
-									<p>捷波朗 </p>
-									<p>（jabra）BOOSI劲步</p>
-									<h3>¥236.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>欧普</p>
-									<p>JYLZ08面板灯平板灯铝</p>
-									<h3>¥456.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl tuhua">
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>三星（G5500）</p>
-									<p>移动联通双网通</p>
-									<h3>¥566.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img nsrc="assets//indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>韩国所望紧致湿润精华露400ml</p>
-									<h3>¥896.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
+
 				</ul>
 			</div>
 		</div>

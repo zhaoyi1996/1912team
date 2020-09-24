@@ -320,7 +320,7 @@ Route::prefix('/index')->group(function(){
 //首页
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
-	Route::any("/index/item","Index\ItemController@index");
+	Route::any("/index/item/{goods_id}","Index\ItemController@index");
 
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");

@@ -95,7 +95,11 @@ $goods_id=request()->goods_id;
         }
 //        dd($tao_2ji);
 //        dd($tao_data);
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji]);
+
+//        查询商品表
+        $goods=GoodsModel::all();
+//        dd($goods);die;
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
 
 
  }
