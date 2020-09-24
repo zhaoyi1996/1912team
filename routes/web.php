@@ -26,13 +26,13 @@ Route::get("/test",function(){
 ***/
 
 //后台品牌管理
-Route::any("/admin/brand","Admin\BrandController@index");
-Route::any("/admin/test","Admin\BrandController@test");
-Route::any("/admin/edit/{id}","Admin\BrandController@edit");
-Route::any("/admin/update/{id}","Admin\BrandController@update");
-Route::any("/admin/delete/{id}","Admin\BrandController@delete");
+Route::any("/admin/brand/brand","Admin\BrandController@index");
+Route::any("/admin/brand/test","Admin\BrandController@test");
+Route::any("/admin/brand/edit/{id}","Admin\BrandController@edit");
+Route::any("/admin/brand/update/{id}","Admin\BrandController@update");
+Route::any("/admin/brand/delete/{id}","Admin\BrandController@delete");
 Route::any("/admin/brand/img","Admin\BrandController@img");
-
+Route::any("/admin/brand/create","Admin\BrandController@create");
 //登录后台
 Route::get("/admin/login","Rbac\LoginController@login");
 Route::post("/admin/logindo","Rbac\LoginController@logindo");
@@ -254,6 +254,17 @@ Route::prefix('/index')->group(function(){
 	//前台注册
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
+
+	//地址管理
+	Route::get("/homeSettingAddress","Index\AddressController@index");
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
+	//设置为默认收货地址
+	Route::get("/homeaddress/moren/{id}","Index\AddressController@moren");
+	//收货地会添加
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	//收货地址修改
+	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
 });
 
 
@@ -265,15 +276,13 @@ Route::prefix('/index')->group(function(){
 	
 
 //订单展示
-	Route::any("/index/order_info","Index\OrderController@index");
+	Route::any("/index/order_info","Index\OrderController@index")->middleware('SessionLogin');
 	//收银台
 	Route::any("/index/finall","Index\FinallController@index");
 	//支付页失败页面
 	Route::any("/index/payfinall","Index\FinallController@payfinall");
 	//支付成功页面
 	Route::any("/index/paysuccess","Index\FinallController@paysuccess");
-	//购物车页面
-	Route::any("/index/cate","Index\CateController@index");
 	//招商合作页面
 	Route::any("/index/cooperation","Index\CooperationController@index");
 	Route::any("/index/sampling","Index\CooperationController@sampling");
@@ -298,9 +307,12 @@ Route::prefix('/index')->group(function(){
 
 //设置
 	//个人信息
-	Route::any("/index/homeSettingInfo","Index\HomeIndexController@homeSettingInfo");
-	//地址管理
-	Route::any("/index/homeSettingAddress","Index\HomeIndexController@homeSettingAddress");
+	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
+
+
+	
+
+
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
@@ -312,6 +324,9 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页
 	Route::any("/index/search","Index\SearchController@index");
+	Route::any("/index/goods_list","Index\SearchController@goods_list");
+	//收藏
+	Route::any("/index/collect","Index\SearchController@collect");
 //正品秒杀
     Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
 
@@ -319,4 +334,6 @@ Route::prefix('/index')->group(function(){
  	
 	Route::any("/index/shop","Index\ShopController@index");
 	
-
+//购物车页面
+Route::any("/index/cart","Index\CartController@index");
+Route::post("/index/cartAdd","Index\CartController@cartAdd");//添加购物车

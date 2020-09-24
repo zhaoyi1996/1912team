@@ -8,6 +8,10 @@ use App\Brand;
 
 class BrandController extends Controller
 {
+    public function create(){
+        return view('admin.brand.create');
+    }
+
     //商品品牌展示
     public function index(Request $request){
     	//$res=new Brand;
@@ -42,7 +46,34 @@ class BrandController extends Controller
         //     'brand_story' =>$brand_story
         // ];
     	$data=request()->all();
-    	dd($data);
+        //写一个网址正则规则
+        
+
+        //品牌名称唯一性验证
+        $brand_name=$data['brand_name'];
+        $where=[
+            ["brand_name","=",$brand_name]
+        ];
+        $name=Brand::where($where)->first();
+        if($name){
+            return['code'=>'1','msg'=>'名称已存在'];
+        }
+        $reg="/^[a-z]{2,5}\:\/\/[0-9a-zA-Z]{1,15}\.[0-9a-zA-Z]{1,15}\.[a-z]{2,5}$/";
+        if(!preg_match($reg,$data['brand_url'])){
+            return['code'=>'1','msg'=>'网址格式有误'];
+        }   
+        $brand_url=$data['brand_url'];
+        $wheres=[
+            ['brand_url',"=",$brand_url]
+        ];
+        $names=Brand::where($wheres)->first();
+        if($names){
+
+            return['code'=>'1','msg'=>'网址已存在'];
+        }
+
+
+    	//dd($data);
     	$res=new Brand;
 
           // 文件上传判断
@@ -94,7 +125,7 @@ class BrandController extends Controller
         $res=Brand::where('brand_id',$id)->update($all);
 
     	if($res!==false){
-    		return redirect('/admin/brand/');
+    		return redirect('/admin/brand/brand/');
     	}
     }
 
@@ -104,7 +135,7 @@ class BrandController extends Controller
         $data=Brand::find($id);
         $data->brand_del=2;
         $data->save();
-        return redirect('/admin/brand');
+        return redirect('/admin/brand/brand');
     }
 
     public function upload($img){
@@ -153,5 +184,7 @@ class BrandController extends Controller
         // // $newFilePath = trim($newFilePath,".");
         // echo $newFilePath;
     }
+
+
 
 }
