@@ -106,6 +106,24 @@
 						<h4>全部商品分类</h4>
 					</div>
 					<div class="yui3-u Center navArea">
+<<<<<<< HEAD
+					 
+					@foreach($cate as $v)
+						<ul class="nav">
+							<li class="f-item">
+
+								<a href="{{url('/index/search'.'?'.$v->cate_id)}}">{{$v->cate_name}}</a>
+							
+							</li>	
+							
+						</ul>
+					@endforeach
+						<ul class="nav">
+							 <a href=""><li class="f-item">团购</li></a>
+						</ul> 
+						<ul class="nav">
+						 	<li class="f-item"><a href="">秒杀</a></li>
+=======
 						<ul class="nav">
 							<li class="f-item">服装城</li>
 							<li class="f-item">美妆馆</li>
@@ -115,6 +133,7 @@
 							<li class="f-item">团购</li>
 							<li class="f-item">有趣</li>
 							<li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
+>>>>>>> d699fa837f0fae8e88afcfb9eea0d7a32af719c5
 						</ul>
 					</div>
 					<div class="yui3-u Right"></div>
@@ -527,18 +546,18 @@
 						  <li data-target="#myCarousel" data-slide-to="3"></li>
 						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
-					  <div class="carousel-inner">
+					  <div class="carousel-inner"  style="width:720px;hight:800px"  >
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
-					    <div class="active item">
+					    <div class="active item"  style="width:720px;hight:800px"  >
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="500px;" />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px" />
 					      </a>
 					    </div>
 					    @else
-								  <div class="item">
+						<div class="item"  style="width:720px;hight:800px"  >
 						 <a href="{{$v->sl_url}}">
-						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" width="700px;" height="400px;" />
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px"   />
 					     </a>
 					    </div>
 							  @endif

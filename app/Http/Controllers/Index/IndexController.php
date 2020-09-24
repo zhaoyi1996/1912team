@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
 
-use App\Model\BrandModel;
+
+use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
+use App\Model\BrandModel;
 use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
-
-use App\Model\AnnouModel;
 use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
 
@@ -19,7 +19,7 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
-$goods_id=request()->goods_id;
+        $goods_id=request()->goods_id;
         //公告
         $res2=AnnouModel::leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
         // 调用无限极分类
@@ -32,34 +32,15 @@ $goods_id=request()->goods_id;
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-        // dd($cate);
+    // dd($cate);
 
 
-        // $goods= Goods::all();
-        // $where = [];
-        // // dd($goods);
-        // // 根据商品表来查询品牌表 id
-        // $brand_id=$goods->where($where)->count("brand_id");
-        // // dd($brand_id);
-        // // 对品牌id去重
-        // $brand_id=array_unique($brand_id);
-        // $brand = New Brand;
-        // // 给品牌表一个where条件
-        // $Brandwhere=[
-        //    ['brand_id','in',$brand_id]
-        // ];
-        //    // 查询所有的品牌表id
-        // $brandInfo=$brand->where($Brandwhere)->select();
-        // dd($brandInfo);
-   
-        //    // print_r($where);
-        //    //3-- 获取价格区间
-        //    $max_price=$goods_model->where($where)->value('max(goods_price)');
-        //    // echo  $goods_model->getLastsql();die;
-        //    $priceInfo=$this->getPriceSection($max_price);
+
+        //查询小广告信息
 
         //   轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
+
         #查询小广告信息
        $LadverWhere=[
             ['la_del','=',1]
@@ -80,6 +61,7 @@ $goods_id=request()->goods_id;
         $BrandWhere=[
             ['brand_del','=',1]
         ];
+        
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
@@ -128,6 +110,7 @@ $goods_id=request()->goods_id;
         }
         return $info;
     }
+
     // 父级id--子级分类
     public function gatCate4($array,$pid=0){
         $tao_info=[];
@@ -139,6 +122,7 @@ $goods_id=request()->goods_id;
         }
         return $tao_info;
     }
+
 
 
 }

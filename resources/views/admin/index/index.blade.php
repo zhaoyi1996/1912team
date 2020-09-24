@@ -9,7 +9,7 @@
      <!-- <iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()"
              frameborder="0" src="home.html"></iframe> -->
 
-		<img src="/shop/img/XYLLWWF076M$5[80P9O8HJ2.jpg"  alt="User Image" width="1350px" height="900px">
+		<img src="/shop/img/user2-160x160.jpg"  alt="User Image" width="1350px" height="900px">
 
      </body>
  @endsection
