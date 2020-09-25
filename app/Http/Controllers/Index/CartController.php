@@ -19,7 +19,7 @@ class CartController extends Controller
             ['del_id','=',1]
         ];
         $goods_data=GoodsModel::where($goods_where)->first();
-        dd($goods_data);
+        // dd($goods_data);
         #获取用户id
         $session=session('User_Info');
         $user_id=$session->user_id;

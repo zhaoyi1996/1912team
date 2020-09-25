@@ -32,26 +32,21 @@ class SearchController extends Controller
 
     //收藏
     public function collect(){
-    	$goods_id=request()->post();
+    	$goods_id=request()->goods_id;
     	// dd($goods_id);
-    	// $session=session('');
-    	// dd($goods_id);
-       //user_id给固定的值   接收商品ID  时间
-       $array=[
-       		"user_id"=>5,
-       		"goods_id"=>request()->goods_id,
-       		"collect_time"=>time()
-       ];
-       //将数据入库
-       $goods=ShopCollectModel::inser($array);
-       if($goods){
-       		$arr=[
-       			"code"=>111,
-       			"message"=>"收藏成功",
-       		];
-       }	
-       //返回JSON串
-
-        return json_decode($arr);
+    	$session=session('User_Info');
+       	$collect=new ShopCollectModel();
+    	$collect->goods_id=$goods_id;
+    	$collect->user_id=$session->user_id;
+    	$collect->collect_time=time();
+    	// dd($collect);
+    	$res=$collect->save();
+    	// dd($res);
+    	if($res){
+    		return ['code'=>0000,'msg'=>'加入收藏成功'];
+    	}else{
+    		return ['code'=>0001,'msg'=>'加入收藏失败'];
+    	}
+       
     }
 }
