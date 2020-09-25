@@ -148,7 +148,7 @@
 					<div class="zoom">
 						<!--默认第一个预览-->
 						<div id="preview" class="spec-preview">
-							<span class="jqzoom"><img jqimg="/indexshop/img/_/b1.png" src="/indexshop/img/_/s1.png" /></span>
+							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}" /></span>
 						</div>
 						<!--下方的缩略图-->
 						<div class="spec-scroll">
@@ -156,26 +156,21 @@
 							<!--左右按钮-->
 							<div class="items">
 								<ul>
-									<li><img src="/indexshop/img/_/s1.png" bimg="/indexshop/img/_/b1.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s2.png" bimg="/indexshop/img/_/b2.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s3.png" bimg="/indexshop/img/_/b3.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s1.png" bimg="/indexshop/img/_/b1.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s2.png" bimg="/indexshop/img/_/b2.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s3.png" bimg="/indexshop/img/_/b3.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s1.png" bimg="/indexshop/img/_/b1.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s2.png" bimg="/indexshop/img/_/b2.png" onmousemove="preview(this)" /></li>
-									<li><img src="/indexshop/img/_/s3.png" bimg="/indexshop/img/_/b3.png" onmousemove="preview(this)" /></li>
+									@foreach($goods_imgs as $vv)
+									<li><img src="{{env('UPLOADS_URL')}}{{$vv}}" bimg="{{env('UPLOADS_URL')}}{{$vv}}" onmousemove="preview(this)" /></li>
+										@endforeach
 								</ul>
 							</div>
 							<a class="next">&gt;</a>
 						</div>
 					</div>
 				</div>
+
 				<div class="fr itemInfo-wrap">
 					<div class="sku-name">
-						<h4>Apple iPhone 6s（A1700）64G玫瑰金色 移动通信电信4G手机</h4>
+						<h4>{{$goods['goods_name']}}</h4>
 					</div>
-					<div class="news"><span>推荐选择下方[移动优惠购],手机套餐齐搞定,不用换号,每月还有花费返</span></div>
+					<div class="news"><span>{{$goods['goods_title']}}</span></div>
 					<div class="summary">
 						<div class="summary-wrap">
 							<div class="fl title">
@@ -183,7 +178,7 @@
 							</div>
 							<div class="fl price">
 								<i>¥</i>
-								<em>5299.00</em>
+								<em>{{$goods['goods_price']}}</em>
 								<span>降价通知</span>
 							</div>
 							<div class="fr remark">
@@ -207,7 +202,7 @@
 								<i>支　　持</i>
 							</div>
 							<div class="fl fix-width">
-								<em class="t-gray">以旧换新，闲置手机回收  4G套餐超值抢  礼品购</em>
+								<em class="t-gray">{{$goods['goods_packing']}}</em>
 							</div>
 						</div>
 						<div class="summary-wrap">
@@ -291,7 +286,7 @@
 							<div class="fl title">
 								<div class="control-group">
 									<div class="controls">
-										<input autocomplete="off" type="text" value="1" minnum="1" class="itxt" />
+										<input autocomplete="off" id="car_num" type="text" value="1" minnum="1" class="itxt" />
 										<a href="javascript:void(0)" class="increment plus">+</a>
 										<a href="javascript:void(0)" class="increment mins">-</a>
 									</div>
@@ -300,7 +295,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="/index/cate" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+										<a href="javascript:void(0)"  class="sui-btn  btn-danger addshopcar" goods_id="1" id="cartadd">加入购物车</a>
 									</li>
 								</ul>
 							</div>
@@ -308,6 +303,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!--product-detail-->
 			<div class="clearfix product-detail">
 				<div class="fl aside">
@@ -441,9 +437,9 @@
 							<div class="fl master">
 								<div class="list-wrap">
 									<div class="p-img">
-										<img src="/indexshop/img/_/l-m01.png" />
+										<img src="{{$goods->goods_img}}" width="150" height="150" />
 									</div>
-									<em>￥5299</em>
+									<em>{{$goods->goods_price}}</em>
 									<i>+</i>
 								</div>
 							</div>
@@ -975,7 +971,30 @@ $(function(){
 <script type="text/javascript" src="/indexshop/js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
 <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/zoom.js"></script>
-<script type="text/javascript" src="index/index.js"></script>
+<!-- <script type="text/javascript" src="/indexshop/js/index/index.js"></script> -->
+<script>
+	$(document).on('click','#cartadd',function(){
+		//获取商品id
+		let goods_id=$(this).attr('goods_id');
+		//获取购买数量
+		let car_num=$('#car_num').val();
+		//通过ajax将id传入控制器进行购物车的添加
+		$.ajax({
+			url:'/index/cartAdd',
+			type:'post',
+			data:{goods_id:goods_id,car_num:car_num},
+			success:function(res){
+				alert(res.msg);
+				if(res.code=='0000'){
+					if(window.confirm('您需要去查看您的购物车吗？')){
+						location.href="/index/cart";
+}
+				}
+				
+			}
+		});
+	})
+</script>
 </body>
 
 </html>

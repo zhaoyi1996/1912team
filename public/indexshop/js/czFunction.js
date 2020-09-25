@@ -72,7 +72,13 @@ String.format = function() {
     var str = arguments[0];
     for(var i=1;i<arguments.length;i++) {
         var re = new RegExp('\\{' + (i-1) + '\\}','gm');
-        str = str.replace(re, arguments[i]);
+        if(str!= null){
+            str = str.replace(re, arguments[i]);
+        }
+        // if(str!= null){
+        //     WxParse.wxParse('str', 'html', data, obj, 5);
+        // }       
+        
     }
     return str;
 };

@@ -6,12 +6,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <title>团队开发前台模板@yield('title')</title>
-     <link rel="icon" href="assets//indexshop/img/favicon.ico">
+    <link rel="icon" href="assets//indexshop/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-JD-index.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-jquery.autocomplete.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
+    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-cart.css" />
 </head>
 
 <body>
@@ -291,6 +292,7 @@
     <script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
+    <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
 </body>
 
 

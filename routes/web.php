@@ -40,7 +40,7 @@ Route::post("/admin/logindo","Rbac\LoginController@logindo");
 Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
-Route::prefix('/admin')->middleware("islogin")->group(function(){
+Route::prefix('/admin')->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
@@ -286,8 +286,6 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/payfinall","Index\FinallController@payfinall");
 	//支付成功页面
 	Route::any("/index/paysuccess","Index\FinallController@paysuccess");
-	//购物车页面
-	Route::any("/index/cate","Index\CateController@index");
 	//招商合作页面
 	Route::any("/index/cooperation","Index\CooperationController@index");
 	Route::any("/index/sampling","Index\CooperationController@sampling");
@@ -323,12 +321,15 @@ Route::prefix('/index')->group(function(){
 //首页
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
-	Route::any("/index/item","Index\ItemController@index");
+	Route::any("/index/item/{goods_id}","Index\ItemController@index");
 
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页
 	Route::any("/index/search","Index\SearchController@index");
+	Route::any("/index/goods_list","Index\SearchController@goods_list");
+	//收藏
+	Route::any("/index/collect","Index\SearchController@collect");
 //正品秒杀
     Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
 
@@ -336,4 +337,6 @@ Route::prefix('/index')->group(function(){
  	
 	Route::any("/index/shop","Index\ShopController@index");
 	
-
+//购物车页面
+Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
+Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
