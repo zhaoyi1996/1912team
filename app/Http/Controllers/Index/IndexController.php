@@ -14,6 +14,7 @@ use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
 
 use App\Model\ShopSlideModel;
+use App\Model\AnnouModel;
 class IndexController extends Controller
 {
 
