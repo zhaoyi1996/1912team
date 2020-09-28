@@ -1,3 +1,4 @@
+
 @extends("layouts.index")
 @section("title",'首页')
 @section('content')
@@ -408,7 +409,7 @@
 							  @if($k==0)
 					    <div class="active item"  style="width:720px;hight:800px"  >
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px" />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:520px;hight:520px" />
 					      </a>
 					    </div>
 					    @else
