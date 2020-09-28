@@ -107,20 +107,20 @@
 					</div>
 					<div class="yui3-u Center navArea">
 
-					 
+
 					@foreach($cate as $v)
 						<ul class="nav">
 							<li class="f-item">
 
 								<a href="{{url('/index/search'.'?'.$v->cate_id)}}">{{$v->cate_name}}</a>
-							
-							</li>	
-							
+
+							</li>
+
 						</ul>
 					@endforeach
 						<ul class="nav">
 							 <a href=""><li class="f-item">团购</li></a>
-						</ul> 
+						</ul>
 						<ul class="nav">
 						 	<li class="f-item"><a href="">秒杀</a></li>
 
@@ -772,10 +772,9 @@
 						</li>
                         @foreach($tao_2ji[$v->cate_id] as $vv)
 						<li>
-							<a href="{{url('-+	-+9')}}" data-toggle="tab">{{$vv->cate_name}}</a>
+							<a href="#tab2" data-toggle="tab">{{$vv->cate_name}}</a>
 						</li>
                         @endforeach
-
 					</ul>
 				</div>
 			</div>

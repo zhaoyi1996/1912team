@@ -28,9 +28,11 @@ $(function(){
 		"Scala",
 		"Scheme"
 	];
-	$( "#autocomplete" ).autocomplete({
-		source: availableTags
+	jQuery(function ($) {
+		$( "#autocomplete" ).autocomplete({
+			source: availableTags
 
+		});
 	});
 
 });
