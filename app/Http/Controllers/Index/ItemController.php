@@ -10,17 +10,18 @@ use App\Brand;
 class ItemController extends Controller
 {
  
-    public function index(Request $request){
+    public function index(Request $request,$id){
+        // dd($id);
      //  接收商品id
-        $goods_id=$request->goods_id;
+        // $goods_id=$request->goods_id;
         $where=[
-            'goods_id'=>$goods_id
+            'goods_id'=>$id
         ];
         $goods=GoodsModel::where($where)->first();
        $ddd= explode("|",$goods->goods_imgs);
 //        dd($ddd);
 //        dd($goods['goods_imgs']);
-    	return view("index.item",['goods'=>$goods,'goods_imgs'=>$ddd]);
+    	return view("index.item.item",['goods'=>$goods,'goods_imgs'=>$ddd]);
     }
 
 }

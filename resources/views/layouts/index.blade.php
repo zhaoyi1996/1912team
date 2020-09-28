@@ -93,7 +93,7 @@
                             <div class="fr shopcar">
                                 <div class="show-shopcar" id="shopcar">
                                     <span class="car"></span>
-                                    <a class="sui-btn btn-default btn-xlarge" href="/index/cate" target="_blank">
+                                    <a class="sui-btn btn-default btn-xlarge" href="/index/cart" target="_blank">
                                         <span>我的购物车</span>
                                         <i class="shopnum">0</i>
                                     </a>
@@ -112,11 +112,9 @@
                         </div>
                         <div class="yui3-u Center navArea">
                             <ul class="nav">
-                                <li class="f-item">服装城</li>
-                                <li class="f-item">美妆馆</li>
-                                <li class="f-item">品优超市</li>
-                                <li class="f-item">全球购</li>
-                                <li class="f-item">闪购</li>
+                               @foreach($cate as $v)
+                                <li class="f-item"><a href="{{url('/index/search'.$v['cate_id'])}}">{{$v->cate_name}}</a></li>
+                                @endforeach
                                 <li class="f-item">团购</li>
                                 <li class="f-item">有趣</li>
                                 <li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
@@ -292,7 +290,7 @@
     <script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
-    <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
+
 </body>
 
 
