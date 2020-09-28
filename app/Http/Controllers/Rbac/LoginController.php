@@ -40,19 +40,16 @@ class LoginController extends Controller
     		echo json_encode(['code'=>1,'msg'=>'管理员不存在']); die;
     	}
     	// dd(decrypt($user->user_pwd));
-<<<<<<< HEAD
     	// if($user_pwd!==decrypt($user->admin_pwd)){
     		// echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
 		// }
 		// dd($user_pwd);
 		// dd(decrypt($user->admin_pwd));
 			
-=======
 //    	if($user_pwd!==decrypt($user->admin_pwd)){
 //    		echo json_encode(['code'=>1,'msg'=>'密码错误']); die;
 //    	}
 
->>>>>>> d699fa837f0fae8e88afcfb9eea0d7a32af719c5
 		session(['userInfo'=>$user]);
 
     	echo json_encode(['code'=>0,'msg'=>'登陆成功']); 
