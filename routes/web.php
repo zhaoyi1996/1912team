@@ -268,6 +268,10 @@ Route::prefix('/index')->group(function(){
 	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
 	Route::post("/homeaddress/update/{id}","Index\AddressController@update");
 	// /index//update/7
+	// 个人中心收藏
+	Route::get("/home/collect","Index\CollectController@index");
+	//收藏逻辑删除
+	Route::get("/home/collect/del/{id}","Index\CollectController@del");
 });
 
 

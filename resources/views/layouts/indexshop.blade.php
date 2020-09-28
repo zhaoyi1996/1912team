@@ -25,8 +25,11 @@
                 <div class="shortcut">
                     <ul class="fl">
                         <li class="f-item">品优购欢迎您！</li>
-                        <li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
-                    </ul>
+                        @if(session()->has("User_Info"))
+                            欢迎<b><span style="color:red">{{session("User_Info")['user_name']}}</span></b>登录
+                            @else
+                            <li class="f-item">请<a href="{{url('/index/login')}}" target="_blank">登录</a>　<span><a href="{{url('/index/reg')}}" target="_blank">免费注册</a></span></li>
+                            @endif</ul>
                     <ul class="fr">
                         <li class="f-item">我的订单</li>
                         <li class="f-item space"></li>
