@@ -286,3 +286,7 @@ Route::prefix('/index')->group(function(){
 //购物车页面
 Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
+
+Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
+
+Route::get('/indexs/carts','Index\CartController@carts');
