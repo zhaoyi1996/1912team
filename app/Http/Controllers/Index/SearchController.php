@@ -41,7 +41,7 @@ class SearchController extends Controller
     	$collect->collect_time=time();
     	// dd($collect);
     	$res=$collect->save();
-    	// dd($res);
+    	// dd($res);	
     	if($res){
     		return ['code'=>0000,'msg'=>'加入收藏成功'];
     	}else{

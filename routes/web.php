@@ -40,7 +40,7 @@ Route::post("/admin/logindo","Rbac\LoginController@logindo");
 Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
-Route::prefix('/admin')->middleware("islogin")->group(function(){
+Route::prefix('/admin')->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
@@ -260,11 +260,14 @@ Route::prefix('/index')->group(function(){
 	Route::get("/homeaddress/create","Index\AddressController@create");
 	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
 	//设置为默认收货地址
-	Route::get("/homeaddress/moren/{id}","Index\AddressController@moren");
+	Route::get("/homeaddress/moren","Index\AddressController@moren");
 	//收货地会添加
 	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::post("/homeaddress/store","Index\AddressController@store");
 	//收货地址修改
 	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
+	Route::post("/homeaddress/update/{id}","Index\AddressController@update");
+	// /index//update/7
 });
 
 
@@ -318,7 +321,7 @@ Route::prefix('/index')->group(function(){
 //首页
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
-	Route::any("/index/item","Index\ItemController@index");
+	Route::any("/index/item/{goods_id}","Index\ItemController@index");
 
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
@@ -335,5 +338,5 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/shop","Index\ShopController@index");
 	
 //购物车页面
-Route::any("/index/cart","Index\CartController@index");
-Route::post("/index/cartAdd","Index\CartController@cartAdd");//添加购物车
+Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
+Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车

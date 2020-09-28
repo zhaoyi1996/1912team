@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
 
-use App\Model\BrandModel;
+
+use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
+use App\Model\BrandModel;
 use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
-
-use App\Model\AnnouModel;
 use App\Model\CategoryModel;
-
 use Illuminate\Support\Facades\Redis;
+use App\Model\AnnouModel;
 
 use App\Model\ShopSlideModel;
 class IndexController extends Controller
@@ -33,36 +33,11 @@ class IndexController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-        // dd($cate);
+    // dd($cate);
 
-
-        // $goods= Goods::all();
-        // $where = [];
-        // // dd($goods);
-        // // 根据商品表来查询品牌表 id
-        // $brand_id=$goods->where($where)->count("brand_id");
-        // // dd($brand_id);
-        // // 对品牌id去重
-        // $brand_id=array_unique($brand_id);
-        // $brand = New Brand;
-        // // 给品牌表一个where条件
-        // $Brandwhere=[
-        //    ['brand_id','in',$brand_id]
-        // ];
-        //    // 查询所有的品牌表id
-        // $brandInfo=$brand->where($Brandwhere)->select();
-        // dd($brandInfo);
-   
-        //    // print_r($where);
-        //    //3-- 获取价格区间
-        //    $max_price=$goods_model->where($where)->value('max(goods_price)');
-        //    // echo  $goods_model->getLastsql();die;
-        //    $priceInfo=$this->getPriceSection($max_price);
-   
 
 
         //查询小广告信息
-
 
         //   轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
@@ -87,6 +62,7 @@ class IndexController extends Controller
         $BrandWhere=[
             ['brand_del','=',1]
         ];
+        
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
         #猜你喜欢
@@ -102,7 +78,11 @@ class IndexController extends Controller
         }
 //        dd($tao_2ji);
 //        dd($tao_data);
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji]);
+
+//        查询商品表
+        $goods=GoodsModel::all();
+//        dd($goods);die;
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
 
 
  }

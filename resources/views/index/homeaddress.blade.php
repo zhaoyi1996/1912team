@@ -24,13 +24,13 @@
                                 	@foreach($info as $k=>$v)
                                     <tr>
                                         <td>{{$v->user_name}}</td>
-                                        <td>{{$v->province}} {{$v->city}} {{$v->area}}</td>
-                                        <td>{{$v->user_email}}</td>
+                                        <td>{{$v->province}} {{$v->city}} {{$v->area}} {{$v->minute}}</td>
+                                        <td>{{$v->user_tel}}</td>
                                         <td>
-                                            <button id="buttonupd" class="but" fef_id="{{$v->fef_id}}">编辑</button>
-                                            <button id="buttondel" class="but" fef_id="{{$v->fef_id}}">删除</button>
+                                            <a class="buttonupd" href="{{url('index/homeaddress/upd/'.$v->fef_id)}}"  fef_id="{{$v->fef_id}}">编辑</a>
+                                            <button class="buttondel"  fef_id="{{$v->fef_id}}">删除</button>
                                             @if($v->fef_is_more==2)
-                                            <button href="{{url('/index/homeaddress/moren/'.$v->fef_id)}}" style="color:blue" >设为默认收货地址</button>
+                                            <button class="moren" fef_id="{{$v->fef_id}}" style="color:blue" >设为默认收货地址</button>
                                         	@else
                                         	<button style="color:red">默认地址</button>
                                         	@endif
@@ -44,10 +44,11 @@
                    </div>
                 </div>
                 <script>
-                		$("#buttondel").click(function(){
+                		// $(document).ready(function(){
+                			$(".buttondel").click(function(){
                 		var fef_id = $(this).attr("fef_id");
-                		alert(fef_id);
-                		return false;
+                		// alert(fef_id);
+                		// return false;
                 		$.ajax({
                 			url:'/index/homeaddress/del/'+fef_id,
                 			type:'get',
@@ -64,10 +65,10 @@
                 		})
                 	
                 	})
-                	$("#moren").click(function(){
+                	$(".moren").click(function(){
                 		var fef_id = $(this).attr("fef_id");
-                		alert(fef_id);
-                		return false;
+                		// alert(fef_id);
+                		// return false;
                 		$.ajax({
                 			url:'/index/homeaddress/moren',
                 			type:'get',
@@ -83,17 +84,19 @@
                 			}
                 		})
                 	})	
-					$("#buttonupd").click(function(){
+					$(".buttonupd").click(function(){
                 		var fef_id = $(this).attr("fef_id");
-
-                		return false;
+                		// alert(fef_idq)
+                		// return false;
                 		$.ajax({
                 			url:'/index/homeaddress/upd',
                 			type:'get',
+                			data:{fef_id:fef_id},
                 			success:function(res){
-                				alert(res)
+                				console.log(res)
                 			}
                 		})
-                	})
+                	// })
+                		})
                 </script>
          @endsection

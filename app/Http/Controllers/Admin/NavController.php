@@ -22,6 +22,7 @@ class NavController extends Controller
            $category = New Cate();
         //    $pageSize =1($cate);
         //    // dd($cate);
+        // 两表联查
            $pagesize = config('app.pageSize');
            $data = Nav::leftjoin('shop_category','shop_category.cate_id','=','shop_nav.cate_id')
                         ->where($where)
