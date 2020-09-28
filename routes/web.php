@@ -40,18 +40,14 @@ Route::post("/admin/logindo","Rbac\LoginController@logindo");
 Route::get("/admin/loginout","Rbac\LoginController@loginout");
 
 //后台模块
-Route::prefix('/admin')->middleware("islogin")->group(function(){
+Route::prefix('/admin')->group(function(){
 			//后台品牌管理
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
 		Route::get("/specification","Admin\SpecificationController@index");
-
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
 		Route::post("/template/create","Admin\TemplateController@create");
-
-
-
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
 
