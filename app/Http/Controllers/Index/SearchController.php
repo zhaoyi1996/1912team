@@ -15,26 +15,35 @@ class SearchController extends Controller
     //产品列表页
     public function index(Request $request){
         // // 根据(商品)表来查询品牌表(brand_img,),分类表(goods_price,pid)
-        $GoodsCate =  GoodsModel::select('goods_id','brand_img','pid','goods_price')
+        $GoodsCate =  GoodsModel::select('is_hot','goods_id','brand_img','pid','goods_price')
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
                     ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
                     ->orderBy("goods_price","desc")
                     ->limit(1)
-                    ->first();
-                    // ->toArray();  
-         
-        // dd($GoodsCate['goods_price']);
-        $max=$GoodsCate['goods_price'];
+                    ->get()
+                    ->toArray();  
+        //  dd($GoodsCate);
 
+        $GoodsCateOne =  GoodsModel::select('is_hot','goods_id','brand_img','pid','goods_price')
+        ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
+        ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
+        ->orderBy("goods_price","desc")
+        ->limit(1)
+        ->first();
+        $max=$GoodsCateOne['goods_price'];
+        // dd($GoodsCate['goods_price']);
+        
         // 定义空数组
          $array = [];
          // 转为一维数组/去重
+        //  $GoodsCates = $GoodsCate->toArray();
          foreach($GoodsCate as $k=>$v){
-             // dd($v);
+            //  dd($k);
             $array[]= $v['brand_img'];
+            // dd($array);
              $array = array_unique($array);
          };
- 
+        //  dd($array);
          $cate_pid = [
             ['pid','=',0]
         ];
@@ -44,9 +53,12 @@ class SearchController extends Controller
         // $where =[];
        $price_qujian= $this->getPriceSection($max);
 
-        // dd($price_qujian);
+       $goods_hot = $GoodsCateOne['is_hot'];
+    //    dd($goods_hot);
 
-    	return view("index.search",['GoodsCate'=>$GoodsCate,'array'=>$array,'price_qujian'=>$price_qujian,'cate'=>$cate]);
+        // dd($price_qujian);
+        // dd($array);
+    	return view("index.search",['GoodsCate'=>$GoodsCate,'array'=>$array,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot]);
     }
 
     //正品秒杀
@@ -71,8 +83,6 @@ class SearchController extends Controller
         // print_r($priceInfo);
         return $priceInfo;
     }
-
-    
 
 
     // //循环商品 

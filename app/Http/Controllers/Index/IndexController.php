@@ -12,7 +12,7 @@ use App\Model\ShopLadverModel;
 use Illuminate\Http\Request;
 use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
-
+use App\Model\AnnouModel;
 use App\Model\ShopSlideModel;
 class IndexController extends Controller
 {
