@@ -292,7 +292,7 @@
     <script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
-    <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
+
 </body>
 
 

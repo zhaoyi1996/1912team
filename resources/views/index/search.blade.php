@@ -163,7 +163,6 @@
 					<div class="fl key brand">品牌</div>
 					@foreach($array as $v)
 					<div class="value logos">
-					
 						<ul class="logo-list">
 							<li><a href=""><img src="{{env('APP_URL')}}{{$v}}" style="{width:60px;hight:30px;}"></a> </li>
 						</ul>
@@ -199,15 +198,19 @@
 				<div class="sui-navbar">
 					<div class="navbar-inner filter">
 						<ul class="sui-nav">
+
 							<li class="active">
 								<a href="#">综合</a>
 							</li>
+				
 							<li>
 								<a href="#">销量</a>
 							</li>
+
 							<li>
 								<a href="#">新品</a>
 							</li>
+
 							<li>
 								<a href="#">评价</a>
 							</li>
