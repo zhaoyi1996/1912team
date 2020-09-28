@@ -12,7 +12,15 @@ class CartController extends Controller
 {
     //购物车展示
     public function index(Request $request){
-    
+        #获取商品信息
+        $goods_id=$request->goods_id;
+        $goods_where=[
+            ['goods_id','=',$goods_id],
+            ['del_id','=',1]
+        ];
+        $goods_data=GoodsModel::where($goods_where)->first();
+        // dd($goods_data);
+
         #获取用户id
         $session=session('User_Info');
         $user_id=$session->user_id;

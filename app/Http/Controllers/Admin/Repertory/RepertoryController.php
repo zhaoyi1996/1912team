@@ -38,7 +38,7 @@ class RepertoryController extends Controller
         $pinjie='';
         foreach($attrval_data as $k=>$v){
             $pinjie.=$v['attr_id'].":".$v['attrval_id'].',';
-            $rep_data['attr']=json_encode($pinjie,true);
+            $rep_data['attr']=json_encode([$pinjie],true);
 //            $pinjie='';
         }
         $rep_data['goods_id']=$goods_id;
