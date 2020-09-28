@@ -177,7 +177,7 @@ $(function(){
 						</dl>
 						<dl>
 							<dt><i>·</i> 我的中心</dt>
-							<dd><a href="{{url('/index/home/collect')}}" >我的收藏</a></dd>
+							<dd><a href="{{url('/index/home/collects')}}" >我的收藏</a></dd>
 							<dd><a href="{{url('/index/home/history')}}" >我的足迹</a></dd>
 						</dl>
 						<dl>
@@ -186,7 +186,7 @@ $(function(){
 						<dl>
 							<dt><i>·</i> 设置</dt>
 							<dd><a href="home-setting-info.html" >个人信息</a></dd>
-							<dd><a href="{{url('/index/homeSettingAddress')}}" class="list-active" >地址管理</a></dd>
+							<dd><a href="{{url('/index/home/dizhi')}}" class="list-active" >地址管理</a></dd>
 							<dd><a href="home-setting-safe.html" >安全管理</a></dd>
 						</dl>
                     </div>
