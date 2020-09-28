@@ -24,15 +24,15 @@ class CollectController extends Controller
 		$info = ShopCollectModel::where($where)
 								->leftjoin("shop_goods","shop_collect.goods_id","=","shop_goods.goods_id")
 								->get();
-		return view("index.home.collect",['collect'=>$info]);
+		return view("index.home.collect",['collects'=>$info]);
 	}
 	public function del($id){
 
 		$res = ShopCollectModel::where('collect_id',$id)->update(['is_del'=>2]);
 		if($res){
-			return redirect("/index/home/collect");
+			return redirect("/index/home/collects");
 		}else{
-			return redirect("/index/home/collect");
+			return redirect("/index/home/collects");
 		}
 
 	}
