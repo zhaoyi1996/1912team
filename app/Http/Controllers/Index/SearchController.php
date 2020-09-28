@@ -59,14 +59,20 @@ class SearchController extends Controller
         // dd($array);
     	return view("index.search",['GoodsCate'=>$GoodsCate,'array'=>$array,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot]);
 
-    	return view("index.search");
     }
 
     //正品秒杀
     public function seckillIndex(Request $request){
     	return view("index.seckill-index");
     }
-
+    // //循环商品 
+    // public function goods_list(){
+    // 	$cate=CateModel::where("pid","=",0)->limit(6)->get();//查询商品的顶级分类
+    // 	$brand=BrandModel::where(["brand_del"=>1])->limit(20)->get(); //仅展示逻辑删除的1
+    // 	$data = GoodsModel::where(["del_id"=>1])->limit(20)->get();
+    // 	// dd($data);
+    // 	return ['code'=>111,'cate'=>$cate,'brand'=>$brand,'data'=>$data]);
+    // }
 
      // 获取价格区间
      public function getPriceSection($max_price){
