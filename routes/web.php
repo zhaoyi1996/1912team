@@ -219,7 +219,6 @@ Route::prefix('/index')->group(function(){
 	//设置为默认收货地址
 	Route::get("/homeaddress/moren","Index\AddressController@moren");
 	//收货地会添加
-	Route::get("/homeaddress/create","Index\AddressController@create");
 	Route::post("/homeaddress/store","Index\AddressController@store");
 	//收货地址修改
 	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");

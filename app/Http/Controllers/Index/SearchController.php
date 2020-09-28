@@ -13,6 +13,7 @@ class SearchController extends Controller
 {
     //产品列表页
     public function index(Request $request){
+        
     	return view("index.search");
     }
 
@@ -29,7 +30,6 @@ class SearchController extends Controller
     // 	// dd($data);
     // 	return ['code'=>111,'cate'=>$cate,'brand'=>$brand,'data'=>$data]);
     // }
-
     //收藏
     public function collect(){
     	$goods_id=request()->goods_id;
