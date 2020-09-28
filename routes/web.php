@@ -267,11 +267,11 @@ Route::prefix('/index')->group(function(){
 //首页
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
-	Route::any("/index/item/{goods_id}","Index\ItemController@index");
+	Route::any("/index/item/{id}","Index\ItemController@index");
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页
-	Route::any("/index/search","Index\SearchController@index");
+	Route::any("/index/search/{id}","Index\SearchController@index");
 	Route::any("/index/goods_list","Index\SearchController@goods_list");
 	//收藏
 	Route::any("/index/collect","Index\SearchController@collect");

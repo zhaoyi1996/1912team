@@ -78,6 +78,15 @@ class IndexController extends Controller
     	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
  }
 
+    // 导航顶级分类
+    public function cateNav(){
+        $cate_pid = [
+            ['pid','=',0]
+        ];
+        $cate = CategoryModel::where($cate_pid)->get();
+        return view('index.layouts.index',['cate'=>$cate]);
+    }
+
     // 无限极分类
     public function getCate($array,$pid=0){
         static $info=[];
