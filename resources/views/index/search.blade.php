@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -678,15 +677,12 @@
 			url:"{{url('/index/collect')}}",
 			data:{goods_id:goods_id},
 			type:"post",
-			dataType:"json",
 			success:function(res){
-				alert(res);
-				// if(res.code=='111'){
-				// 	alert(res.msg);
-				// 	location.href=""
-				// }else{
-				// 	alert(res.msg);
-				// }
+				alert(res.msg);
+				if(res.code=='0000'){
+					// alert(111);
+					location.href="";
+				}
 			}
 		})
 

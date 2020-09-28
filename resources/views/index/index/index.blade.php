@@ -1,137 +1,8 @@
 
-<!DOCTYPE html>
-<html>
 
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<title>品优购，优质！优质！</title>
-	 <link rel="icon" href="assets//indexshop/img/favicon.ico">
-
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-JD-index.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-jquery.autocomplete.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
-</head>
-
-<body>
-	<!-- 头部栏位 -->
-	<!--页面顶部-->
-<div id="nav-bottom">
-	<!--顶部-->
-	<div class="nav-top">
-		<div class="top">
-			<div class="py-container">
-				<div class="shortcut">
-					<ul class="fl">
-						<li class="f-item">品优购欢迎您！</li>
-						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
-					</ul>
-					<ul class="fr">
-						<li class="f-item">我的订单</li>
-						<li class="f-item space"></li>
-						<li class="f-item"><a href="home.html" target="_blank">我的品优购</a></li>
-						<li class="f-item space"></li>
-						<li class="f-item">品优购会员</li>
-						<li class="f-item space"></li>
-						<li class="f-item">企业采购</li>
-						<li class="f-item space"></li>
-						<li class="f-item">关注品优购</li>
-						<li class="f-item space"></li>
-						<li class="f-item" id="service">
-							<span>客户服务</span>
-							<ul class="service">
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="shoplogin.html" target="_blank">商家后台</a></li>
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="#">商家后台</a></li>
-							</ul>
-						</li>
-						<li class="f-item space"></li>
-						<li class="f-item">网站导航</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!--头部-->
-		<div class="header">
-			<div class="py-container">
-				<div class="yui3-g Logo">
-					<div class="yui3-u Left logoArea">
-						<a class="logo-bd" title="品优购" href="JD-index.html" target="_blank"></a>
-					</div>
-					<div class="yui3-u Center searchArea">
-						<div class="search">
-							<form action="" class="sui-form form-inline">
-								<!--searchAutoComplete-->
-								<div class="input-append">
-									<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
-								</div>
-							</form>
-						</div>
-						<div class="hotwords">
-							<ul>
-								<li class="f-item">品优购首发</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">每满99减30</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">办公用品</li>
-
-							</ul>
-						</div>
-					</div>
-					<div class="yui3-u Right shopArea">
-						<div class="fr shopcar">
-							<div class="show-shopcar" id="shopcar">
-								<span class="car"></span>
-								<a class="sui-btn btn-default btn-xlarge" href="/index/cate" target="_blank">
-									<span>我的购物车</span>
-									<i class="shopnum">0</i>
-								</a>
-								<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="yui3-g NavList">
-					<div class="yui3-u Left all-sort">
-						<h4>全部商品分类</h4>
-					</div>
-					<div class="yui3-u Center navArea">
-					 
-					@foreach($cate as $v)
-						<ul class="nav">
-							<li class="f-item">
-
-								<a href="{{url('/index/search'.'?'.$v->cate_id)}}">{{$v->cate_name}}</a>
-							
-							</li>	
-							
-						</ul>
-					@endforeach
-						<ul class="nav">
-							 <a href=""><li class="f-item">团购</li></a>
-						</ul> 
-						<ul class="nav">
-						 	<li class="f-item"><a href="">秒杀</a></li>
-
-						</ul>
-					</div>
-					<div class="yui3-u Right"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+@extends("layouts.index")
+@section("title",'首页')
+@section('content')
 
 	<!--列表-->
 	<div class="sort">
@@ -193,7 +64,7 @@
 							  @if($k==0)
 					    <div class="active item"  style="width:720px;hight:800px"  >
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px" />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:520px;hight:520px" />
 					      </a>
 					    </div>
 					    @else
@@ -335,117 +206,18 @@
 				<ul class="clearfix yui3-g Favourate picLB" id="picLBxxl">
 					<li class="yui3-u-1-6">
 						<dl class="picDl huozhe">
+							@foreach($goods as $v)
 							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
+								<a href="{{url('/index/item/'.$v->goods_id)}}" class="pic"><img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" width="200" height="200" alt="" /></a>
 								<div class="like-text">
-									<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-									<h3>¥116.00</h3>
+									<p>{{$v->goods_name}}</p>
+									<h3>¥{{$v->goods_price}}</h3>
 								</div>
 							</dd>
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
+							@endforeach
 						</dl>
 					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl jilu">
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_03.png" alt="" /></a>
-								<div class="like-text">
-									<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl tuhua">
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>捷波朗 </p>
-									<p>（jabra）BOOSI劲步</p>
-									<h3>¥236.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="" class="pic"><img nsrc="assets//indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>三星（G5500）</p>
-									<p>移动联通双网通</p>
-									<h3>¥566.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl huozhe">
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-									<h3>¥116.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl jilu">
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img src="/indexshop/img/like_03.png" alt="" /></a>
-								<div class="like-text">
-									<p>捷波朗 </p>
-									<p>（jabra）BOOSI劲步</p>
-									<h3>¥236.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img src="/indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>欧普</p>
-									<p>JYLZ08面板灯平板灯铝</p>
-									<h3>¥456.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
-					<li class="yui3-u-1-6">
-						<dl class="picDl tuhua">
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img src="/indexshop/img/like_01.png" alt="" /></a>
-								<div class="like-text">
-									<p>三星（G5500）</p>
-									<p>移动联通双网通</p>
-									<h3>¥566.00</h3>
-								</div>
-							</dd>
-							<dd>
-								<a href="http://sc.chinaz.com/" class="pic"><img nsrc="assets//indexshop/img/like_02.png" alt="" /></a>
-								<div class="like-text">
-									<p>韩国所望紧致湿润精华露400ml</p>
-									<h3>¥896.00</h3>
-								</div>
-							</dd>
-						</dl>
-					</li>
+
 				</ul>
 			</div>
 		</div>
@@ -649,138 +421,7 @@
 		</div>
 	</div>
 	<!-- 底部栏位 -->
-	<!--页面底部-->
-<div class="clearfix footer">
-	<div class="py-container">
-		<div class="footlink">
-			<div class="Mod-service">
-				<ul class="Mod-Service-list">
-					<li class="grid-service-item intro  intro1">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item  intro intro2">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item intro  intro3">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item  intro intro4">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item intro intro5">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix Mod-list">
-				<div class="yui3-g">
-					<div class="yui3-u-1-6">
-						<h4>购物指南</h4>
-						<ul class="unstyled">
-							<li>购物流程</li>
-							<li>会员介绍</li>
-							<li>生活旅行/团购</li>
-							<li>常见问题</li>
-							<li>购物指南</li>
-						</ul>
-
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>配送方式</h4>
-						<ul class="unstyled">
-							<li>上门自提</li>
-							<li>211限时达</li>
-							<li>配送服务查询</li>
-							<li>配送费收取标准</li>
-							<li>海外配送</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>支付方式</h4>
-						<ul class="unstyled">
-							<li>货到付款</li>
-							<li>在线支付</li>
-							<li>分期付款</li>
-							<li>邮局汇款</li>
-							<li>公司转账</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>售后服务</h4>
-						<ul class="unstyled">
-							<li>售后政策</li>
-							<li>价格保护</li>
-							<li>退款说明</li>
-							<li>返修/退换货</li>
-							<li>取消订单</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>特色服务</h4>
-						<ul class="unstyled">
-							<li>夺宝岛</li>
-							<li>DIY装机</li>
-							<li>延保服务</li>
-							<li>品优购E卡</li>
-							<li>品优购通信</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>帮助中心</h4>
-						<img src="/indexshop/img/wx_cz.jpg">
-					</div>
-				</div>
-			</div>
-			<div class="Mod-copyright">
-				<ul class="helpLink">
-					<li>关于我们<span class="space"></span></li>
-					<li>联系我们<span class="space"></span></li>
-					<li>关于我们<span class="space"></span></li>
-					<li>商家入驻<span class="space"></span></li>
-					<li>营销中心<span class="space"></span></li>
-					<li>友情链接<span class="space"></span></li>
-					<li>关于我们<span class="space"></span></li>
-					<li>营销中心<span class="space"></span></li>
-					<li>友情链接<span class="space"></span></li>
-					<li>关于我们</li>
-				</ul>
-				<p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</p>
-				<p>京ICP备08001421号京公网安备110108007702</p>
-			</div>
-		</div>
-	</div>
-</div>
-<!--页面底部END-->
+	
 	<!-- 楼层位置 -->
 	{{--<div id="floor-index" class="floor-index">--}}
 		{{--<ul>--}}
@@ -923,49 +564,5 @@
 
 	</div>
 </div>
-<!--购物车单元格 模板-->
-<script type="text/template" id="tbar-cart-item-template">
-	<div class="tbar-cart-item" >
-		<div class="jtc-item-promo">
-			<em class="promo-tag promo-mz">满赠<i class="arrow"></i></em>
-			<div class="promo-text">已购满600元，您可领赠品</div>
-		</div>
-		<div class="jtc-item-goods">
-			<span class="p-img"><a href="#" target="_blank"><img src="{2}" alt="{1}" height="50" width="50" /></a></span>
-			<div class="p-name">
-				<a href="#">{1}</a>
-			</div>
-			<div class="p-price"><strong>¥{3}</strong>×{4} </div>
-			<a href="#none" class="p-del J-del">删除</a>
-		</div>
-	</div>
-</script>
-<!--侧栏面板结束-->
-<script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#service").hover(function(){
-		$(".service").show();
-	},function(){
-		$(".service").hide();
-	});
-	$("#shopcar").hover(function(){
-		$("#shopcarlist").show();
-	},function(){
-		$("#shopcarlist").hide();
-	});
 
-})
-</script>
-<script type="text/javascript" src="/indexshop/js/model/cartModel.js"></script>
-<script type="text/javascript" src="/indexshop/js/czFunction.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/jquery.easing/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="/indexshop/js/pages/index.js"></script>
-<script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
-<script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
-<script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
-</body>
-
-
-</html>
+@endsection

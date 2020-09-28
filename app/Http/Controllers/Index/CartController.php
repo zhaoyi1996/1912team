@@ -19,18 +19,23 @@ class CartController extends Controller
             ['del_id','=',1]
         ];
         $goods_data=GoodsModel::where($goods_where)->first();
-        dd($goods_data);
+        // dd($goods_data);
+
         #获取用户id
         $session=session('User_Info');
         $user_id=$session->user_id;
         #查询购物车表
         $cart_where=[
-            ['car_is_del','=',1]
+            ['user_id','=',$user_id],
+            ['car_is_del','=',1],
+            ['del_id','=',1]
         ];
-        $cart_data=CartModel::where($cart_where)->get();
-        dd($cart_data);
-
-    	return view("index.cart.cart");
+        $cart_data=CartModel::leftjoin('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')->where($cart_where)->get();
+        foreach($cart_data as $v){
+            $v->car_price=$v->goods_price*$v->car_num;
+        }
+        // dd($cart_data);
+    	return view("index.cart.cart",['cart_data'=>$cart_data]);
     }
     /**
      * 添加购物车

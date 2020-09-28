@@ -33,9 +33,6 @@ class IndexController extends Controller
         ];
         $cate = CategoryModel::where($cate_pid)->get();
     // dd($cate);
-
-
-
         //查询小广告信息
 
         //   轮播图
@@ -75,11 +72,10 @@ class IndexController extends Controller
         foreach($tao_info as $k=>$v){
             $tao_2ji[$v->cate_id]=$v->son;
         }
-//        dd($tao_2ji);
-//        dd($tao_data);
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji]);
-
-
+//        查询商品表
+        $goods=GoodsModel::all();
+//        dd($goods);die;
+    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
  }
 
     // 无限极分类
@@ -93,7 +89,6 @@ class IndexController extends Controller
         }
         return $info;
     }
-
 
     // 父级id--子级分类
     public function gatCate3($array,$pid=0){
@@ -118,7 +113,5 @@ class IndexController extends Controller
         }
         return $tao_info;
     }
-
-
 
 }
