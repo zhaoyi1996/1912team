@@ -256,11 +256,14 @@ Route::prefix('/index')->group(function(){
 	Route::get("/homeaddress/create","Index\AddressController@create");
 	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
 	//设置为默认收货地址
-	Route::get("/homeaddress/moren/{id}","Index\AddressController@moren");
+	Route::get("/homeaddress/moren","Index\AddressController@moren");
 	//收货地会添加
 	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::post("/homeaddress/store","Index\AddressController@store");
 	//收货地址修改
 	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
+	Route::post("/homeaddress/update/{id}","Index\AddressController@update");
+	// /index//update/7
 });
 
 
