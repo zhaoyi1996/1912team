@@ -252,7 +252,8 @@ Route::prefix('/index')->group(function(){
 
 
 	//订单展示
-	Route::any("/order_info","Index\OrderController@index")->middleware('SessionLogin');
+	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
+	Route::get("/order/del/{id}","Index\OrderController@del");
 });
 
 

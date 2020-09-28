@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -59,36 +60,25 @@
 			<div class="checkout-steps">
 				<!--收件人信息-->
 				<div class="step-tit">
-					<h5>收件人信息<span><a data-toggle="modal" data-target=".edit" data-keyboard="false" class="newadd">新增收货地址</a></span></h5>
+					<h5>收件人信息<span></h5>
 				</div>
 				<div class="step-cont">
 					<div class="addressInfo">
 						<ul class="addr-detail">
 							<li class="addr-item">
 							
-							  <div>
-								<div class="con name selected"><a href="javascript:;" >张默<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">张默 北京市海淀区三环内 中关村软件园9号楼 <span>159****3201</span>
-									<span class="base">默认地址</span>
-									<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
-								</div>
-								<div class="clearfix"></div>
-							  </div>
-							  <div>
-								<div class="con name"><a href="javascript:;">李煜<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">李煜 北京市海淀区三环内 中关村软件园8号楼 <span>187****4201</span>
-								<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
-								</div>
-								<div class="clearfix"></div>
-							  </div>
+							 
+							 @foreach($defaultinfo as $k=>$v)
 							  
 							  <div>
-								<div class="con name"><a href="javascript:;">王希<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">王希 北京市海淀区三环内 中关村软件园6号楼  <span>156****5681</span>
-								<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
+								<div class="con name"><a href="javascript:;">{{$v->user_name}}<span title="点击取消选择">&nbsp;</a></div>
+								<div class="con address">{{$v->user_name}} {{$v->province}}  {{$v->city}}  {{$v->area}} {{$v->minute}}  <span>{{$v->user_tel}}</span>
+								<span class="edittext"><a data-toggle="modal" data-target=".edit"  data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="{{url('/index/order/del/'.$v->fef_id)}}">删除</a></span>
 								</div>
 								<div class="clearfix"></div>
 							  </div>
+
+							  @endforeach
 							</li>
 							
 							
@@ -172,32 +162,36 @@
 					</div>
 					<div class="step-cont">
 						<ul class="send-detail">
+							@foreach($cartinfo as $k=>$v)
 							<li>
 								
 								<div class="sendGoods">
 									
 									<ul class="yui3-g">
 										<li class="yui3-u-1-6">
-											<span><img src="/indexshop/img/goods.png"/></span>
+											<span>`<img src="{{env('/APP_URL')}}{{$v->goods_img}}"/></span>
 										</li>
 										<li class="yui3-u-7-12">
-											<div class="desc">Apple iPhone 6s (A1700) 64G 玫瑰金色 移动联通电信4G手机硅胶透明防摔软壳 本色系列</div>
+											<div class="desc">{{$v->goods_name}}</div>
 											<div class="seven">7天无理由退货</div>
 										</li>
 										<li class="yui3-u-1-12">
-											<div class="price">￥5399.00</div>
+											<div class="price">￥{{$v->goods_price}}</div>
 										</li>
 										<li class="yui3-u-1-12">
-											<div class="num">X1</div>
+											<div class="num">X{{$v->car_num}}</div>
 										</li>
 										<li class="yui3-u-1-12">
+											@if($v->goods_store>0)
 											<div class="exit">有货</div>
+											@else
+											<div class="exit">无货</div>
+											@endif
 										</li>
 									</ul>
 								</div>
 							</li>
-							<li></li>
-							<li></li>
+							@endforeach
 						</ul>
 					</div>
 					<div class="hr"></div>
@@ -222,8 +216,8 @@
 		<div class="order-summary">
 			<div class="static fr">
 				<div class="list">
-					<span><i class="number">1</i>件商品，总商品金额</span>
-					<em class="allprice">¥5399.00</em>
+					<span><i class="number">{{$numbers}}</i>件商品，总商品金额</span>
+					<em class="allprice">¥{{$price}}</em>
 				</div>
 				<div class="list">
 					<span>返现：</span>
@@ -236,11 +230,11 @@
 			</div>
 		</div>
 		<div class="clearfix trade">
-			<div class="fc-price">应付金额:　<span class="price">¥5399.00</span></div>
-			<div class="fc-receiverInfo">寄送至:北京市海淀区三环内 中关村软件园9号楼 收货人：某某某 159****3201</div>
+			<div class="fc-price">应付金额:　<span class="price">¥{{$price}}</span></div>
+			<div class="fc-receiverInfo">寄送至:{{$defmo->province}} {{$defmo->city}} {{$defmo->area}} {{$defmo->minute}} 收货人 :{{$defmo->user_name}} {{$defmo->user_tel}}</div>
 		</div>
 		<div class="submit">
-			<a class="sui-btn btn-danger btn-xlarge" href="/index/finall">提交订单</a>
+			<a class="sui-btn btn-danger btn-xlarge" href="pay.html">提交订单</a>
 		</div>
 	</div>
 	<!-- 底部栏位 -->
@@ -380,7 +374,7 @@
 <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/indexshop/js/plugins/jquery.easing/jquery.easing.min.js"></script>
 <script type="text/javascript" src="/indexshop/js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="components/ui-modules/nav/nav-portal-top.js"></script>
+<script type="text/javascript" src="/indexshop/js/widget/nav-portal-top.js"></script>
 <script type="text/javascript" src="/indexshop/js/pages/getOrderInfo.js"></script>
 </body>
 
