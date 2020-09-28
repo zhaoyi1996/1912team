@@ -184,9 +184,9 @@
 			</div>
 			<div class="bd">
 				<ul class="clearfix yui3-g Favourate picLB" id="picLBxxl">
+					@foreach($goods as $k=>$v)
 					<li class="yui3-u-1-6">
 						<dl class="picDl huozhe">
-							@foreach($goods as $v)
 							<dd>
 								<a href="{{url('/index/item/'.$v->goods_id)}}" class="pic"><img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" width="200" height="200" alt="" /></a>
 								<div class="like-text">
@@ -194,10 +194,9 @@
 									<h3>¥{{$v->goods_price}}</h3>
 								</div>
 							</dd>
-							@endforeach
 						</dl>
 					</li>
-
+					@endforeach
 				</ul>
 			</div>
 		</div>
