@@ -178,7 +178,7 @@ $(function(){
 						<dl>
 							<dt><i>·</i> 我的中心</dt>
 							<dd><a href="{{url('/index/home/collect')}}" >我的收藏</a></dd>
-							<dd><a href="home-person-footmark.html" >我的足迹</a></dd>
+							<dd><a href="{{url('/index/home/history')}}" >我的足迹</a></dd>
 						</dl>
 						<dl>
 							<dt><i>·</i> 物流消息</dt>

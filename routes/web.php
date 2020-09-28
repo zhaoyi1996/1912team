@@ -199,6 +199,10 @@ Route::prefix('/goods')->group(function(){
 	//无限极分类
 	Route::any("/getres","Admins\GoodsController@getres");
 });
+
+
+
+
 Route::prefix('/index')->group(function(){
 	//前台登录
 	Route::get("/login","Index\LoginController@login");
@@ -212,6 +216,8 @@ Route::prefix('/index')->group(function(){
 	//前台注册
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
+
+
 	//地址管理
 	Route::get("/homeSettingAddress","Index\AddressController@index");
 	Route::get("/homeaddress/create","Index\AddressController@create");
@@ -228,7 +234,19 @@ Route::prefix('/index')->group(function(){
 	Route::get("/home/collect","Index\CollectController@index");
 	//收藏逻辑删除
 	Route::get("/home/collect/del/{id}","Index\CollectController@del");
+	//个人中心浏览历史
+	Route::get("/home/history","Index\HistioyController@index");
+	//个人中心浏览历史逻辑删除
+	Route::get("/home/history/{id}","Index\HistioyController@del");
+
+	//个人信息
+	Route::any("/home","Index\HomeIndexController@homeSettingInfo");
 });
+
+
+
+
+
 //前台展示
 	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
 	Route::any("/index/index","Index\IndexController@index");//全部商品
@@ -263,8 +281,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/homePersonFootmark","Index\HomeIndexController@homePersonFootmark");
 	//物理消息----
 //设置
-	//个人信息
-	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
+	
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 //首页
