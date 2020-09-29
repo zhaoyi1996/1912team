@@ -8,7 +8,7 @@
                             <h4>收藏的商品</h4>
                             <div class="goods-list">
                                 <ul class="yui3-g"  id="goods-list">
-                                    @foreach($collects as $k=>$v)
+                                    @foreach($history as $k=>$v)
                                     <li class="yui3-u-1-4">
                                         <div class="list-wrap">
                                             <div class="p-img"><a href="{{url('/index/item/'.$v->goods_id)}}"><img src="{{env('APP_URL')}}{{$v->goods_img}}" alt=''></a></div>
@@ -17,7 +17,7 @@
                                             <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
                                             <div class="operate">
                                                 <a href="{{url('/index/cart')}}" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                                                <a href="{{url('/index/home/collects/del/'.$v->collect_id)}}" class="sui-btn btn-bordered">删除</a>
+                                                <a href="{{url('/index/home/history/del/'.$v->collect_id)}}" class="sui-btn btn-bordered">删除</a>
                                                 <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
                                             </div>
                                         </div>

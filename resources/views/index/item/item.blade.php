@@ -133,7 +133,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="javascript:void(0)"  class="sui-btn  btn-danger addshopcar" goods_id="1" id="cartadd">加入购物车</a>
+										<a href="{{url('/index/cart')}}"  class="sui-btn  btn-danger addshopcar" goods_id={{$goods->goods_id}} id="cartadd">加入购物车</a>
 									</li>
 								</ul>
 							</div>
@@ -685,6 +685,18 @@ $(document).on('click','.attrval',function(){
 				$('#goods_attr').find('em').text(res.price);
 				$('#goods_attr').find('span').text('库存:'+res.num);
 			}else{
+	$(document).on('click','#cartadd',function(){
+		//获取商品id
+		let goods_id=$(this).attr('goods_id');
+//		alert(goods_id);
+		//获取购买数量
+		let car_num=$('#car_num').val();
+		//通过ajax将id传入控制器进行购物车的添加
+		$.ajax({
+			url:'/index/cartAdd',
+			type:'post',
+			data:{goods_id:goods_id,car_num:car_num},
+			success:function(res){
 				alert(res.msg);
 			}
 		}

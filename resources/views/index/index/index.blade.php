@@ -62,23 +62,13 @@
 					<div class="news">
 						<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
 						<div class="clearix"></div>
+						@foreach($res2 as $v)
 						<ul class="news-list unstyled">
 							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[公告]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[公告]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
+								<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
 							</li>
 						</ul>
+						@endforeach
 					</div>
 					<ul class="yui3-g Lifeservice">
 						<li class="yui3-u-1-4 life-item tab-item">
@@ -184,9 +174,9 @@
 			</div>
 			<div class="bd">
 				<ul class="clearfix yui3-g Favourate picLB" id="picLBxxl">
+					@foreach($goods as $k=>$v)
 					<li class="yui3-u-1-6">
 						<dl class="picDl huozhe">
-							@foreach($goods as $v)
 							<dd>
 								<a href="{{url('/index/item/'.$v->goods_id)}}" class="pic"><img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" width="200" height="200" alt="" /></a>
 								<div class="like-text">
@@ -194,10 +184,9 @@
 									<h3>¥{{$v->goods_price}}</h3>
 								</div>
 							</dd>
-							@endforeach
 						</dl>
 					</li>
-
+					@endforeach
 				</ul>
 			</div>
 		</div>
