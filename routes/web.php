@@ -218,19 +218,21 @@ Route::prefix('/index')->group(function(){
 	Route::post("/regdo","Index\RegController@regdo");
 
 
-	// //地址管理
-	// Route::get("/homeSettingAddress","Index\AddressController@index");
-	// Route::get("/homeaddress/create","Index\AddressController@create");
-	// Route::get("/homeaddress/del/{id}","Index\AddressController@del");
-	// //设置为默认收货地址
-	// Route::get("/homeaddress/moren","Index\AddressController@moren");
-	// //收货地会添加
-	// Route::post("/homeaddress/store","Index\AddressController@store");
-	// //收货地址修改
-	// Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
-	// Route::post("/homeaddress/update/{id}","Index\AddressController@update");
-	// /index//update/7
-	// 个人中心收藏
+	 //地址管理
+	 Route::get("/homeSettingAddress","Index\AddressController@index");
+	 Route::get("/homeaddress/create","Index\AddressController@create");
+	 Route::get("/homeaddress/del/{id}","Index\AddressController@del");
+	 //设置为默认收货地址
+	 Route::get("/homeaddress/moren","Index\AddressController@moren");
+	 //收货地会添加
+	 Route::post("/homeaddress/store","Index\AddressController@store");
+
+
+	 //收货地址修改
+	 Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
+	 Route::post("/homeaddress/update/{id}","Index\AddressController@update");
+//	 /index//update/7
+//	 个人中心收藏
 	Route::get("/home/collects","Index\CollectController@index");
 	//收藏逻辑删除
 	Route::get("/home/collects/del/{id}","Index\CollectController@del");
@@ -251,8 +253,13 @@ Route::prefix('/index')->group(function(){
 
 
 	//订单展示
-	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
+	Route::any("/orderinfo/{goods_id}","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
+
+
+	//秒杀
+	Route::get("/seckill","Index\SeckillController@index");
+	
 });
 
 
@@ -285,10 +292,19 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/homeOrderReceive","Index\HomeIndexController@homeOrderReceive");
 	//待评价
 	Route::any("/index/homeOrderEvaluate","Index\HomeIndexController@homeOrderEvaluate");
+	// 我的收藏
+	Route::any("index.home-person-collect","Index\HomeIndexController@homePersonCollect");
 	//物理消息----
 //设置
 	//个人信息
 	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
+
+	//我的收藏
+	Route::any("/index/homePerson","Index\HomeIndexController@homePerson");
+
+	//我的足迹
+	Route::any("/index/homePersonFootmark","Index\HomeIndexController@homePersonFootmark");
+
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 

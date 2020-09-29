@@ -19,12 +19,16 @@
 			<div class="shortcut">
 				<ul class="fl">
 					<li class="f-item">品优购欢迎您！</li>
-					<li class="f-item">请登录　<span><a href="#">免费注册</a></span></li>
+					@if(session()->has("User_Info"))
+                            欢迎<b><span style="color:red">{{session("User_Info")['user_name']}}</span></b>登录
+                            @else
+                            <li class="f-item">请<a href="{{url('/index/login')}}" target="_blank">登录</a>　<span><a href="{{url('/index/reg')}}" target="_blank">免费注册</a></span></li>
+                            @endif
 				</ul>
 				<ul class="fr">
 					<li class="f-item">我的订单</li>
 					<li class="f-item space"></li>
-					<li class="f-item">我的品优购</li>
+					<li class="f-item"><a href="{{url('/index/home')}}" target="_blank">我的品优购</a></li>
 					<li class="f-item space"></li>
 					<li class="f-item">品优购会员</li>
 					<li class="f-item space"></li>
@@ -71,11 +75,20 @@
 							 @foreach($defaultinfo as $k=>$v)
 							  
 							  <div>
+
 								<div class="con name"><a href="javascript:;">{{$v->user_name}}<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">{{$v->user_name}} {{$v->province}}  {{$v->city}}  {{$v->area}} {{$v->minute}}  <span>{{$v->user_tel}}</span>
-								<span class="edittext"><a data-toggle="modal" data-target=".edit"  data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="{{url('/index/order/del/'.$v->fef_id)}}">删除</a></span>
+								<div class="con address zbc" fef_id="{{$v->fef_id}}" >{{$v->user_name}} {{$v->province}}  {{$v->city}}  {{$v->area}} {{$v->minute}}  <span>{{$v->user_tel}}</span>
+								<span class="edittext"><a data-toggle="modal" data-target=".edit"  data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="{{url('/index/order/del/'.$v->fef_id)}}">删除</a>
+									@if($v->fef_is_more==1)
+										<a data-toggle="modal"   data-keyboard="false" >默认收货地址</a>
+									
+										
+									@endif
+								</span>
+								
 								</div>
 								<div class="clearfix"></div>
+
 							  </div>
 
 							  @endforeach
@@ -152,8 +165,9 @@
 					</div>
 					<div class="step-cont">
 						<ul class="payType">
-							<li class="selected">微信付款<span title="点击取消选择"></span></li>
-							<li>货到付款<span title="点击取消选择"></span></li>
+							<li class="selected">支付宝付款<span title="点击取消选择"></span></li>
+							<!-- <li class="selected">微信付款<span title="点击取消选择"></span></li>
+							<li>货到付款<span title="点击取消选择"></span></li> -->
 						</ul>
 					</div>
 					<div class="hr"></div>
@@ -220,17 +234,21 @@
 					<em class="allprice">¥{{$price}}</em>
 				</div>
 				<div class="list">
-					<span>返现：</span>
-					<em class="money">0.00</em>
+					<span>优惠券：</span>
+					<em class="money">-{{$coupon}}</em>
 				</div>
 				<div class="list">
-					<span>运费：</span>
-					<em class="transport">0.00</em>
+					<span>满减：</span>
+					<em class="transport">-{{$less_price}}</em>
+				</div>
+				<div class="list">
+					<span>积分：</span>
+					<em class="transport">{{$integral}}</em>
 				</div>
 			</div>
 		</div>
 		<div class="clearfix trade">
-			<div class="fc-price">应付金额:　<span class="price">¥{{$price}}</span></div>
+			<div class="fc-price">应付金额:　<span class="price">¥{{$yingfunumber}}</span></div>
 			<div class="fc-receiverInfo">寄送至:{{$defmo->province}} {{$defmo->city}} {{$defmo->area}} {{$defmo->minute}} 收货人 :{{$defmo->user_name}} {{$defmo->user_tel}}</div>
 		</div>
 		<div class="submit">
@@ -377,5 +395,21 @@
 <script type="text/javascript" src="/indexshop/js/widget/nav-portal-top.js"></script>
 <script type="text/javascript" src="/indexshop/js/pages/getOrderInfo.js"></script>
 </body>
-
+<script>
+	// $(document).on("click","#zbc",function(){
+	// 	var fef_id = $(this).attr("fef_id")
+	// 	alert(fef_id)
+	// })
+	$(".zbc").mousedown(function(){
+		var fef_id = $(this).attr("fef_id")
+		$.ajax({
+			type:'get',
+			url:"{{url('/index/orderinfo')}}",
+			data:{fef_id:fef_id},
+			success:function(res){
+				alert(res)
+			}
+		})
+	})
+</script>
 </html>

@@ -34,6 +34,7 @@ class DizhiController extends Controller
     public function upd($id){
     	// 根绝id获取单条数据
     	$info = DefaultModel::where('fef_id',$id)->first();
+        // dd($info);
     	return view("index.home.dizhiupd",['info'=>$info]);
     }
     //逻辑删除
