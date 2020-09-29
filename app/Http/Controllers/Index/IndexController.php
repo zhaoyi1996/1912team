@@ -19,6 +19,8 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
+
+
         $goods_id=request()->goods_id;
         $wheretao=[
             'is_del'=>1

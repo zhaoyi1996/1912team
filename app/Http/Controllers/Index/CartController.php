@@ -37,7 +37,7 @@ class CartController extends Controller
             $v->car_price=$v->goods_price*$v->car_num;
         }
 
-        // dd($cart_data);
+//         dd($cart_data);
         $cate_pid = [
             ['pid','=',0]
         ];

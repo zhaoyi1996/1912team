@@ -236,7 +236,7 @@
 						</li>
                         @foreach($tao_2ji[$v->cate_id] as $vv)
 						<li>
-							<a href="#tab2" data-toggle="tab">{{$vv->cate_name}}</a>
+							<a href="{{url('/index/search/'.$v['cate_id'])}}">{{$vv['cate_name']}}</a>
 						</li>
                         @endforeach
 					</ul>

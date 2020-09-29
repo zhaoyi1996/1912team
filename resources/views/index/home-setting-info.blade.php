@@ -184,8 +184,8 @@ $(function(){
                         </dl>
                         <dl>
                             <dt><i>·</i> 我的中心</dt>
-                            <dd><a href="/index/homePersonCollect"  >我的收藏</a></dd>
-                            <dd><a href="/index/homePersonFootmark">我的足迹</a></dd>
+                            <dd><a href="{{url('/index/homePerson')}}"  >我的收藏</a></dd>
+                            <dd><a href="{{url('/index/homePersonFootmark')}}">我的足迹</a></dd>
                         </dl>
                         <dl>
                             <dt><i>·</i> 物流消息</dt>
