@@ -254,6 +254,11 @@ Route::prefix('/index')->group(function(){
 	//订单展示
 	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
+
+
+	//秒杀
+	Route::get("/seckill","Index\SeckillController@index");
+	
 });
 
 
@@ -299,8 +304,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/goods_list","Index\SearchController@goods_list");
 	//收藏
 	Route::any("/index/collect","Index\SearchController@collect");
-//正品秒杀
-    Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+
  //我的店铺
 	Route::any("/index/shop","Index\ShopController@index");
 	
