@@ -202,27 +202,40 @@ $(function(){
                 <div class="yui3-u-5-6">
                     <div class="body userInfo">
                         <ul class="sui-nav nav-tabs nav-large nav-primary ">
-                            <li class="active"><a href="#one" data-toggle="tab">基本资料</a></li>
-                            <li><a href="#two" data-toggle="tab">头像照片</a></li>
+                            <li class="active"><a href="#one" data-toggle="tab">完善个人资料</a></li>
+                           <!--  <li><a href="#two" data-toggle="tab">展示个人基本资料</a></li> -->
                         </ul>
                         <div class="tab-content ">
                             <div id="one" class="tab-pane active">
-                                <form id="form-msg" class="sui-form form-horizontal">
+                                <form action="{{url('/index/add')}}" method="post" id="form-msg" class="sui-form form-horizontal">
                                     <div class="control-group">
                                         <label for="inputName" class="control-label">昵称：</label>
                                         <div class="controls">
-                                            <input type="text" id="inputName" name="email" placeholder="昵称">
+                                            <input type="text" value="{{$center['center_name']}}" id="inputName" name="center_name" placeholder="昵称">
                                         </div>
                                     </div>
-                                    <div class="control-group">
+                                        <div class="control-group">
+                                        <label for="inputName" class="control-label">电话：</label>
+                                        <div class="controls">
+                                            <input type="text" value="{{$center['center_tel']}}" id="inputName" name="center_tel" placeholder="电话">
+                                        </div>
+                                    </div>                                  
+                                   <!--  <div class="control-group">
                                         <label for="inputGender" class="control-label">性别：</label>
                                         <div class="controls">
                                             <label data-toggle="radio" class="radio-pretty inline">
-                                            <input type="radio" name="gender" value="1"><span>男</span>
+                                            <input type="radio" name="center_sex" {{$center['center_sex']==1?'checked':''}} value="1"><span>男</span>
                                         </label>
                                             <label data-toggle="radio" class="radio-pretty inline">
-                                            <input type="radio" name="gender" value="2"><span>女</span>
+                                            <input type="radio" name="center_sex" {{$center['center_sex']=='2'?'checked':''}} value="2"><span>女</span>
                                         </label>
+                                        </div>
+                                    </div> -->
+                                     </div>
+                                        <div class="control-group">
+                                        <label for="inputName" class="control-label">爱好：</label>
+                                        <div class="controls">
+                                            <input type="text" value="{{$center['center_dady']}}" id="inputName" name="center_dady" placeholder="爱好">
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -233,9 +246,7 @@ $(function(){
                                             <select id="select_day2" rel="3"></select>日
                                         </div>
                                     </div>
-
-
-                                    <div class="control-group">
+                                    <!-- <div class="control-group">
                                         <label for="inputPassword" class="control-label">所在地：</label>
                                         <div class="controls">
                                             <div data-toggle="distpicker">
@@ -250,36 +261,41 @@ $(function(){
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="control-group">
+                                    </div> -->
+                                    <div class="control-group bbb">
                                         <label for="inputJob" class="control-label">职业：</label>
-                                        <div class="controls"><span class="sui-dropdown dropdown-bordered select"><span class="dropdown-inner"><a role="button" data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                                <input name="job" type="hidden" data-rules="required"><i class="caret"></i><span>请选择</span></a>
-                                            <ul id="menu4" role="menu" aria-labelledby="drop4" class="sui-dropdown-menu">
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="bj">程序员</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="sb">产品经理</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="sb">UI设计师</a></li>
-                                            </ul>
+                                        <div class="controls">
+                                        	<span class="sui-dropdown dropdown-bordered select">
+                                        		<span class="dropdown-inner">
+                                        			<select name="chor_id">
+                                        				<option value="0">请输入...</option>
+                                        				@foreach($chor as $k=>$v)
+                                        				<option value="{{$v->chor_id}}" {{$center['chor_id']==$v->chor_id?'selected':''}}>{{$v->chor_name}}</option>
+                                        				@endforeach
+                                        			</select>
+                                            	</span>
                                             </span>
-                                            </span>
+                                        </div>
+                                    </div>
+
+                                     </div>
+                                        <div class="control-group">
+                                        <label for="inputName" class="control-label">个人介绍：</label>
+                                        <div class="controls">         
+                                            <textarea name="center_type" placeholder="个人介绍：">{{$center['center_type']}}</textarea>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label for="sanwei" class="control-label"></label>
                                         <div class="controls">
-                                            <button type="submit" class="sui-btn btn-primary">立即注册</button>
+                                            <button id="btn" class="sui-btn btn-primary">完善资料</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div id="two" class="tab-pane">
 
-                                <div class="new-photo">
-                                    <p>当前头像：</p>
-                                    <div class="upload">
-                                        <img id="imgShow_WU_FILE_0" width="100" height="100" src="/indexshop/img/_/photo_icon.png" alt="">
-                                        <input type="file" id="up_img_WU_FILE_0" />
-                                    </div>
+
+                            
 
                                 </div>
                             </div>

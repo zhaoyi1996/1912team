@@ -1,5 +1,3 @@
-
-
 @extends("layouts.index")
 @section("title",'首页')
 @section('content')

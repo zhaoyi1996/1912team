@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7d9cef74-7d19-4fe7-95d2-a50418a45b04" name="daima" url="http://39.107.25.60">
+        <fileTransfer host="39.107.25.60" port="22" rootFolder="/tmp/1909phpa3" accessType="SFTP" password="dfcbdfcedfc7dfc3dfc4df9bdf98df99df8e" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

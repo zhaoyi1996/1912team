@@ -10,6 +10,7 @@ class HomeIndexController extends Controller
 {
     //我的订单
     public function index(Request $request){
+        
     	return view("index.home-index");
     }
     //待付款
@@ -36,10 +37,10 @@ class HomeIndexController extends Controller
      public function homePersonFootmark(){
     	return view("index.home-person-footmark");
     }
-    //个人信息
-    public function homeSettingInfo(){
-    	return view("index.home-setting-info");
-    }
+    // //个人信息
+    // public function homeSettingInfo(){
+    // 	return view("index.home-setting-info");
+    // }
     //地址信息
     public function homeSettingAddress(){
     	return view("index.home-setting-address");
