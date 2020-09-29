@@ -61,7 +61,10 @@
                                             <div class="controls">
                                                 <div data-toggle="distpicker">
                                                 <div class="form-group area">
-                                                    <select class="form-control"  id="province1"></select>
+                                                    <option value="">请选择</option>
+                                                    <select class="form-control"  id="province1">
+                                                        
+                                                    </select>
                                                 </div>
                                                 <div class="form-group area">
                                                     <select class="form-control" id="city1"></select>

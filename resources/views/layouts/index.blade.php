@@ -120,7 +120,7 @@
                                 @endforeach
                                 <li class="f-item">团购</li>
                                 <li class="f-item">有趣</li>
-                                <li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
+                                <li class="f-item"><a href="{{url('/index/seckill')}}" target="_blank">秒杀</a></li>
                             </ul>
                         </div>
                         <div class="yui3-u Right"></div>
@@ -270,6 +270,7 @@
     </div>
             <!--侧栏面板结束-->
     <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/indexshop/js/pages/seckill-index.js"></script>
     <script type="text/javascript">
         $(function(){
             $("#service").hover(function(){
@@ -295,6 +296,7 @@
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
     <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
     <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/zoom.js"></script>
+
 </body>
 
 
