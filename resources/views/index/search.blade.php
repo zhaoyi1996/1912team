@@ -72,13 +72,13 @@
 							</div>
 							<div class="yui3-u Center searchArea">
 								<div class="search">
-									<form action="" class="sui-form form-inline">
+									<!-- <form action="" class="sui-form form-inline"> -->
 										<!--searchAutoComplete-->
 										<div class="input-append">
 											<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
 											<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
 										</div>
-									</form>
+									<!-- </form> -->
 								</div>
 								<div class="hotwords">
 									<ul>
@@ -113,13 +113,15 @@
 						<div class="yui3-g NavList">
 							<div class="yui3-u Left all-sort">
 								<h4>全部商品分类</h4>
+								
+						
 							</div>
 							<div class="yui3-u Center navArea">
 								<ul class="nav">
 									@foreach($cate as $v)
-									<li class="f-item">{{$v->cate_name}}</li>
+									<a href=""> <li class="f-item">{{$v->cate_name}}</li></a>
 									@endforeach
-									<li class="f-item">团购</li>
+									<a href=""><li class="f-item">团购</li></a> 
 									<li class="f-item">
 										<a href="seckill-index.html" target="_blank">秒杀</a>
 									</li>
@@ -127,6 +129,12 @@
 							</div>
 							<div class="yui3-u Right"></div>
 						</div>
+					</div>
+						<div class="yui3-u Left all-sort-list">
+					
+						
+
+						
 					</div>
 				</div>
 			</div>
@@ -148,27 +156,40 @@
 					<li class="tag">全网通<i class="sui-icon icon-tb-close"></i></li>
 					<li class="tag">63G<i class="sui-icon icon-tb-close"></i></li>
 				</ul>
-				<form class="fl sui-form form-dark">
+				<!-- <form class="fl sui-form form-dark"> -->
 					<div class="input-control control-right">
 						<input type="text" />
 						<i class="sui-icon icon-touch-magnifier"></i>
 					</div>
-				</form>
+				<!-- </form> -->
 				<div class="clearfix"></div>
 			</div>
 			<!--selector-->
+			
 			<div class="clearfix selector">
 				
 				<div class="type-wrap logo">
-					<div class="fl key brand">品牌</div>
-					@foreach($array as $v)
-					<div class="value logos">
-						<ul class="logo-list">
-							<li><a href=""><img src="{{env('APP_URL')}}{{$v}}" style="{width:60px;hight:30px;}"></a> </li>
-						</ul>
+					<div class="fl key brand" >品牌</div>
+
 					
-					</div>
+					<div class="value logos">
+					@foreach($array_img as $v)
+					<!-- <form action="" method="post"> -->
+						<ul class="logo-list">
+							<li brand_id="{{$v['brand_id']}}">
+								<button type="submit" href="javascript:;">
+								<input type="hidden" name="brand_id" value="{{$v['brand_id']}}">
+									<img id="brand" class="brandbutton"  brand_id="{{$v['brand_id']}}"  src="{{env('APP_URL')}}{{$v['brand_img']}}" 
+									style="{width:60px;hight:30px;}">
+								</button>
+							</li>
+						</ul>
+					<!-- </form> -->
 					@endforeach
+					</div>
+					
+					
+					
 					<div class="ext">
 						<a href="javascript:void(0);" class="sui-btn">多选</a>
 						<a href="javascript:void(0);">更多</a>
@@ -202,11 +223,13 @@
 							<li class="active">
 								<a href="#">综合</a>
 							</li>
-				
+							
 							<li>
-								<a href="#">销量</a>
-							</li>
 
+								<a href="">销量</a>
+							
+							</li>
+						
 							<li>
 								<a href="#">新品</a>
 							</li>
@@ -219,6 +242,119 @@
 							</li>
 						</ul>
 					</div>
+				</div>
+				<div class="goods-list">
+					<ul class="yui3-g">
+						<li class="yui3-u-1-5" id="1">
+							<div class="list-wrap">
+								<div class="p-img">
+									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i></i>
+										</strong>
+								</div>
+								<div class="attr">
+									<em>Apple苹果iPhone 6s (A1699)</em>
+								</div>
+								<div class="cu">
+									<em><span>促</span>满一件可参加超值换购</em>
+								</div>
+								<div class="commit">
+									<i class="command">已有2000人评价</i>
+								</div>
+								<div class="operate">
+									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
+								</div>
+							</div>
+						</li><li class="yui3-u-1-5" id="1">
+							<div class="list-wrap">
+								<div class="p-img">
+									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i></i>
+										</strong>
+								</div>
+								<div class="attr">
+									<em>Apple苹果iPhone 6s (A1699)</em>
+								</div>
+								<div class="cu">
+									<em><span>促</span>满一件可参加超值换购</em>
+								</div>
+								<div class="commit">
+									<i class="command">已有2000人评价</i>
+								</div>
+								<div class="operate">
+									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
+								</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-5" id="1">
+							<div class="list-wrap">
+								<div class="p-img">
+									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i></i>
+										</strong>
+								</div>
+								<div class="attr">
+									<em>Apple苹果iPhone 6s (A1699)</em>
+								</div>
+								<div class="cu">
+									<em><span>促</span>满一件可参加超值换购</em>
+								</div>
+								<div class="commit">
+									<i class="command">已有2000人评价</i>
+								</div>
+								<div class="operate">
+									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
+								</div>
+							</div>
+						</li>
+
+						<li class="yui3-u-1-5" id="1">
+							<div class="list-wrap">
+								<div class="p-img">
+									<a href="item.html" target="_blank"><img src="" width="80" hight="80" alt=""></a>
+								</div>
+								<div class="price">
+									<strong>
+											<em>¥</em>
+											<i></i>
+										</strong>
+								</div>
+								<div class="attr">
+									<em>Apple苹果iPhone 6s (A1699)</em>
+								</div>
+								<div class="cu">
+									<em><span>促</span>满一件可参加超值换购</em>
+								</div>
+								<div class="commit">
+									<i class="command">已有2000人评价</i>
+								</div>
+								<div class="operate">
+									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+					
 				</div>
 				<div class="goods-list">
 					<ul class="yui3-g">
@@ -251,7 +387,7 @@
 							</div>
 						</li>
 					</ul>
-				</div>
+				</div> 
 				<div class="fr page">
 					<div class="sui-pagination pagination-large">
 						<ul>
@@ -668,6 +804,18 @@
 
 </html>
 <script>
+$(".brandbutton").click(function(){
+		var brand_id = $(this).attr("brand_id")
+		$.ajax({
+			type:'post',
+			url:"{{url('/index/search/clicks')}}",
+			dataType: "json",
+			data:{brand_id:brand_id},
+			success:function(res){
+				console.log(res)
+			}
+		})
+	})
 	$(document).on("click","#collect",function(){
 		//获取当前祖先级li标签里的自定义属性id
 		var goods_id=$(this).parents("li").attr("id");
@@ -687,4 +835,7 @@
 		})
 
 	})
+	
+
+
 </script>

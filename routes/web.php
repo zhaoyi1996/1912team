@@ -261,21 +261,31 @@ Route::prefix('/index')->group(function(){
 //设置
 	//个人信息
 	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
+
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
+
 //首页
 	Route::any("/","Index\IndexController@index");
+
 	//商品详情页
 	Route::any("/index/item/{id}","Index\ItemController@index");
+
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
+
 //产品列表页
-	Route::any("/index/search/{id}","Index\SearchController@index");
+	Route::get("/index/search/{id}","Index\SearchController@index");
 	Route::any("/index/goods_list","Index\SearchController@goods_list");
+	Route::post("/index/search/clicks","Index\SearchController@clicks");
+
 	//收藏
 	Route::any("/index/collect","Index\SearchController@collect");
+
+
 //正品秒杀
-    Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+	Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+	
  //我的店铺
 	Route::any("/index/shop","Index\ShopController@index");
 	
