@@ -20,7 +20,6 @@ class SearchController extends Controller
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
                     ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
                     ->orderBy("goods_price","desc")
-                    ->limit(1)
                     ->get()
                     ->toArray();  
         //  dd($GoodsCate);
@@ -29,7 +28,6 @@ class SearchController extends Controller
         ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
         ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
         ->orderBy("goods_price","desc")
-        ->limit(1)
         ->first();
         $max=$GoodsCateOne['goods_price'];
         // dd($GoodsCate['goods_price']);
