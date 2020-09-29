@@ -16,18 +16,17 @@ class SearchController extends Controller
     //产品列表页
     public function index(Request $request){
         $brand_id = $request->brand_id;
-         // 根据商品查询品牌表，
-         $brand = BrandModel::leftjoin("shop_goods",'shop_brand.brand_id','=','shop_goods.brand_id')
-                    ->get();
-        //   dump($brand);
-        
-      
-        // // 根据(商品)表来查询品牌表(brand_img,),分类表(goods_price,pid)
+        $where=[];
+        if(!empty($brand_id)){
+            $where[]=['brand_id','=',$brand_id];
+        }
+        // 根据商品查询品牌表，
+        $brand_goods = GoodsModel::where($where)->get();
+        //根据(商品)表来查询品牌表(brand_img,),分类表(goods_price,pid)
         $GoodsCate =  GoodsModel::select('is_hot','goods_id','shop_brand.brand_id','brand_img','pid','goods_price')
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
                     ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
                     ->orderBy("goods_price","desc")
-                    // ->limit(1)
                     ->get()
                     ->toArray();  
         //  dd($GoodsCate);
@@ -37,7 +36,6 @@ class SearchController extends Controller
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
                     ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
                     ->orderBy("goods_price","desc")
-                    // ->limit(1)
                     ->first();
         // dd($GoodsCateOne);
 
@@ -54,7 +52,7 @@ class SearchController extends Controller
          };
         $array_img=BrandModel::whereIn('brand_id',$array)->get()->toArray();
        
-         $cate_pid = [
+        $cate_pid = [
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
@@ -64,15 +62,15 @@ class SearchController extends Controller
        $price_qujian= $this->getPriceSection($max);
 
        $goods_hot = $GoodsCateOne['is_hot'];
-    //    dd($goods_hot);
+        //dd($goods_hot);
       // 调用无限极分类
       $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // 调用分类
-         $res = $this->gatCate3($cateAll);
+        $res = $this->gatCate3($cateAll);
 
 
         
-    	return view("index.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img]);
+    	return view("index.search.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img,'brand'=>$brand]);
 
     }
 

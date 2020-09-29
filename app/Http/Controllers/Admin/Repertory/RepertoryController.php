@@ -30,10 +30,12 @@ class RepertoryController extends Controller
      */
     public function add(){
         $data=request()->post();
+        // dd($data);
         $goods_id=request()->goods_id;
 //        $goods_id=request()->goods_id;
         $data['attrval_id']=explode(',',$data['pinjie_id']);
         $attrval_data=AttrvalModel::whereIn('attrval_id',$data['attrval_id'])->leftjoin('shop_attr','shop_attrval.attr_id','=','shop_attr.attr_id')->get()->toArray();
+        // dd($attrval_data);
         $rep_data=[];
         $pinjie='';
         foreach($attrval_data as $k=>$v){
@@ -53,10 +55,13 @@ class RepertoryController extends Controller
             ['goods_id','=',$rep_data['goods_id']],
             ['attr','=',$rep_data['attr']]
         ];
-        $rep_data_one=RepModel::where($where)->first()->toArray();
+        $rep_data_one=RepModel::where($where)->first();
+        // dd($rep_data_one);
         if(!empty($rep_data_one)){
+            // dd(11112);
             //将数据库的价格进行更新   将库存进行累加
             // dd(intval($rep_data['goods_store']));
+            $rep_data_one=$rep_data_one->toArray();
             $rep_data_one['goods_price']=$rep_data['goods_price'];
             $rep_data_one['goods_store']=intval($rep_data['goods_store'])+intval($rep_data_one['goods_store']);
             $res=RepModel::where($where)->update($rep_data_one);
@@ -66,6 +71,7 @@ class RepertoryController extends Controller
                 return ['code'=>0001,'msg'=>'库存添加失败'];
             }
         }else{
+            // dd(1111);
             //数据入库
             $res=RepModel::insert($rep_data);
             if($res){
@@ -136,10 +142,11 @@ class RepertoryController extends Controller
                 ['goods_id','=',$rep_data['goods_id']],
                 ['attr','=',$rep_data['attr']]
             ];
-            $rep_data_one=RepModel::where($where)->first()->toArray();
+            $rep_data_one=RepModel::where($where)->first();
             if(!empty($rep_data_one)){
                 //将数据库的价格进行更新   将库存进行累加
                 // dd(intval($rep_data['goods_store']));
+                $rep_data_one=$rep_data_one->toArray();
                 $rep_data_one['goods_price']=$rep_data['goods_price'];
                 $rep_data_one['goods_store']=intval($rep_data['goods_store'])+intval($rep_data_one['goods_store']);
                 $res=RepModel::where($where)->update($rep_data_one);

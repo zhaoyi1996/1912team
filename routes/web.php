@@ -317,8 +317,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/item/{id}","Index\ItemController@index");
 
 //产品列表页
-	Route::get("/index/search/{id}","Index\SearchController@index");
-	Route::any("/index/goods_list","Index\SearchController@goods_list");
+	Route::get("/index/search","Index\SearchController@index");
 	Route::post("/index/search/clicks","Index\SearchController@clicks");
 
 	//收藏

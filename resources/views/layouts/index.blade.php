@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-JD-index.css" />
+    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-list.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-jquery.autocomplete.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-cart.css" />
@@ -292,7 +293,6 @@
     <script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
-
     <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
     <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/zoom.js"></script>
 </body>
