@@ -1,129 +1,6 @@
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<title>产品详情页</title>
-	 <link rel="icon" href="assets//indexshop/img/favicon.ico">
-
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-item.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-zoom.css" />
-    <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
-</head>
-
-<body>
-	<!-- 头部栏位 -->
-	<!--页面顶部-->
-<div id="nav-bottom">
-	<!--顶部-->
-	<div class="nav-top">
-		<div class="top">
-			<div class="py-container">
-				<div class="shortcut">
-					<ul class="fl">
-						<li class="f-item">品优购欢迎您！</li>
-						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
-					</ul>
-					<ul class="fr">
-						<li class="f-item">我的订单</li>
-						<li class="f-item space"></li>
-						<li class="f-item"><a href="home.html" target="_blank">我的品优购</a></li>
-						<li class="f-item space"></li>
-						<li class="f-item">品优购会员</li>
-						<li class="f-item space"></li>
-						<li class="f-item">企业采购</li>
-						<li class="f-item space"></li>
-						<li class="f-item">关注品优购</li>
-						<li class="f-item space"></li>
-						<li class="f-item" id="service">
-							<span>客户服务</span>
-							<ul class="service">
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="shoplogin.html" target="_blank">商家后台</a></li>
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="#">商家后台</a></li>
-							</ul>
-						</li>
-						<li class="f-item space"></li>
-						<li class="f-item">网站导航</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!--头部-->
-		<div class="header">
-			<div class="py-container">
-				<div class="yui3-g Logo">
-					<div class="yui3-u Left logoArea">
-						<a class="logo-bd" title="品优购" href="JD-index.html" target="_blank"></a>
-					</div>
-					<div class="yui3-u Center searchArea">
-						<div class="search">
-							<form action="" class="sui-form form-inline">
-								<!--searchAutoComplete-->
-								<div class="input-append">
-									<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-									<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
-								</div>
-							</form>
-						</div>
-						<div class="hotwords">
-							<ul>
-								<li class="f-item">品优购首发</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">每满99减30</li>
-								<li class="f-item">亿元优惠</li>
-								<li class="f-item">9.9元团购</li>
-								<li class="f-item">办公用品</li>
-
-							</ul>
-						</div>
-					</div>
-					<div class="yui3-u Right shopArea">
-						<div class="fr shopcar">
-							<div class="show-shopcar" id="shopcar">
-								<span class="car"></span>
-								<a class="sui-btn btn-default btn-xlarge" href="/index/cate" target="_blank">
-									<span>我的购物车</span>
-									<i class="shopnum">0</i>
-								</a>
-								<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="yui3-g NavList">
-					<div class="yui3-u Left all-sort">
-						<h4>全部商品分类</h4>
-					</div>
-					<div class="yui3-u Center navArea">
-						<ul class="nav">
-							<li class="f-item">服装城</li>
-							<li class="f-item">美妆馆</li>
-							<li class="f-item">品优超市</li>
-							<li class="f-item">全球购</li>
-							<li class="f-item">闪购</li>
-							<li class="f-item">团购</li>
-							<li class="f-item">有趣</li>
-							<li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
-						</ul>
-					</div>
-					<div class="yui3-u Right"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+@extends("layouts.index")
+@section("title",'详情页')
+@section('content')
 
 	<div class="py-container">
 		<div id="item">
@@ -176,10 +53,10 @@
 							<div class="fl title">
 								<i>价　　格</i>
 							</div>
-							<div class="fl price">
+							<div class="fl price" id="goods_attr">
 								<i>¥</i>
-								<em>{{$goods['goods_price']}}</em>
-								<span>降价通知</span>
+								<em>{{$min_price->goods_price}}~{{$max_price->goods_price}}</em>
+								<span></span>
 							</div>
 							<div class="fr remark">
 								<i>累计评价</i><em>612188</em>
@@ -216,62 +93,23 @@
 					</div>
 					<div class="clearfix choose">
 						<div id="specification" class="summary-wrap clearfix">
+						
+							@foreach($attr_name as $v)
 							<dl>
 								<dt>
 									<div class="fl title">
-									<i>选择颜色</i>
+									<i class="attr_name">{{$v->attr_name}}</i>
 								</div>
 								</dt>
-								<dd><a href="javascript:;" class="selected">金色<span title="点击取消选择">&nbsp;</span>
-</a></dd>
-								<dd><a href="javascript:;">银色</a></dd>
-								<dd><a href="javascript:;">黑色</a></dd>
+								@foreach($attrval_name as $vv)
+								@if($vv->attr_id==$v->attr_id)
+								<dd><a href="javascript:;" class="attrval" attr_id="{{$v->attr_id}}" attrval_id="{{$vv->attrval_id}}"> {{$vv->attrval_name}} <span title="点击取消选择">&nbsp;</span></a></dd>
+								@else
+									<div></div>
+								@endif
+								@endforeach
 							</dl>
-							<dl>
-								<dt>
-									<div class="fl title">
-									<i>内存容量</i>
-								</div>
-								</dt>
-								<dd><a href="javascript:;" class="selected">16G<span title="点击取消选择">&nbsp;</span>
-</a></dd>
-								<dd><a href="javascript:;">64G</a></dd>
-								<dd><a href="javascript:;" class="locked">128G</a></dd>
-							</dl>
-							<dl>
-								<dt>
-									<div class="fl title">
-									<i>选择版本</i>
-								</div>
-								</dt>
-								<dd><a href="javascript:;" class="selected">公开版<span title="点击取消选择">&nbsp;</span>
-</a></dd>
-								<dd><a href="javascript:;">移动版</a></dd>							
-							</dl>
-							<dl>
-								<dt>
-									<div class="fl title">
-									<i>购买方式</i>
-								</div>
-								</dt>
-								<dd><a href="javascript:;" class="selected">官方标配<span title="点击取消选择">&nbsp;</span>
-</a></dd>
-								<dd><a href="javascript:;">移动优惠版</a></dd>	
-								<dd><a href="javascript:;"  class="locked">电信优惠版</a></dd>
-							</dl>
-							<dl>
-								<dt>
-									<div class="fl title">
-									<i>套　　装</i>
-								</div>
-								</dt>
-								<dd><a href="javascript:;" class="selected">保护套装<span title="点击取消选择">&nbsp;</span>
-</a></dd>
-								<dd><a href="javascript:;"  class="locked">充电套装</a></dd>	
-								
-							</dl>
-							
-							
+							@endforeach
 						</div>
 						
 						
@@ -681,136 +519,7 @@
 	</div>
 	<!-- 底部栏位 -->
 	<!--页面底部-->
-<div class="clearfix footer">
-	<div class="py-container">
-		<div class="footlink">
-			<div class="Mod-service">
-				<ul class="Mod-Service-list">
-					<li class="grid-service-item intro  intro1">
 
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item  intro intro2">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item intro  intro3">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item  intro intro4">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-					<li class="grid-service-item intro intro5">
-
-						<i class="serivce-item fl"></i>
-						<div class="service-text">
-							<h4>正品保障</h4>
-							<p>正品保障，提供发票</p>
-						</div>
-
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix Mod-list">
-				<div class="yui3-g">
-					<div class="yui3-u-1-6">
-						<h4>购物指南</h4>
-						<ul class="unstyled">
-							<li>购物流程</li>
-							<li>会员介绍</li>
-							<li>生活旅行/团购</li>
-							<li>常见问题</li>
-							<li>购物指南</li>
-						</ul>
-
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>配送方式</h4>
-						<ul class="unstyled">
-							<li>上门自提</li>
-							<li>211限时达</li>
-							<li>配送服务查询</li>
-							<li>配送费收取标准</li>
-							<li>海外配送</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>支付方式</h4>
-						<ul class="unstyled">
-							<li>货到付款</li>
-							<li>在线支付</li>
-							<li>分期付款</li>
-							<li>邮局汇款</li>
-							<li>公司转账</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>售后服务</h4>
-						<ul class="unstyled">
-							<li>售后政策</li>
-							<li>价格保护</li>
-							<li>退款说明</li>
-							<li>返修/退换货</li>
-							<li>取消订单</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>特色服务</h4>
-						<ul class="unstyled">
-							<li>夺宝岛</li>
-							<li>DIY装机</li>
-							<li>延保服务</li>
-							<li>品优购E卡</li>
-							<li>品优购通信</li>
-						</ul>
-					</div>
-					<div class="yui3-u-1-6">
-						<h4>帮助中心</h4>
-						<img src="/indexshop/img/wx_cz.jpg">
-					</div>
-				</div>
-			</div>
-			<div class="Mod-copyright">
-				<ul class="helpLink">
-					<li>关于我们<span class="space"></span></li>
-					<li>联系我们<span class="space"></span></li>
-					<li>关于我们<span class="space"></span></li>
-					<li>商家入驻<span class="space"></span></li>
-					<li>营销中心<span class="space"></span></li>
-					<li>友情链接<span class="space"></span></li>
-					<li>关于我们<span class="space"></span></li>
-					<li>营销中心<span class="space"></span></li>
-					<li>友情链接<span class="space"></span></li>
-					<li>关于我们</li>
-				</ul>
-				<p>地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</p>
-				<p>京ICP备08001421号京公网安备110108007702</p>
-			</div>
-		</div>
-	</div>
-</div>
 <!--页面底部END-->
 	
 	<!--侧栏面板开始-->
@@ -948,53 +657,40 @@
 	</div>
 </script>
 <!--侧栏面板结束-->
-	
-
 <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#service").hover(function(){
-		$(".service").show();
-	},function(){
-		$(".service").hide();
-	});
-	$("#shopcar").hover(function(){
-		$("#shopcarlist").show();
-	},function(){
-		$("#shopcarlist").hide();
-	});
-
-})
-</script>
-<script type="text/javascript" src="/indexshop/js/model/cartModel.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/jquery.easing/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
-<script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/zoom.js"></script>
-<!-- <script type="text/javascript" src="/indexshop/js/index/index.js"></script> -->
 <script>
-	$(document).on('click','#cartadd',function(){
-		//获取商品id
-		let goods_id=$(this).attr('goods_id');
-		//获取购买数量
-		let car_num=$('#car_num').val();
-		//通过ajax将id传入控制器进行购物车的添加
-		$.ajax({
-			url:'/index/cartAdd',
-			type:'post',
-			data:{goods_id:goods_id,car_num:car_num},
-			success:function(res){
+$(document).on('click','.attrval',function(){
+	$(this).addClass("selected").append("<span title='点击取消选择'>&nbsp;</span>");
+	var add = $(this).parent().siblings().children().removeClass("selected");
+	//获取商品id
+	let goods_id={{$goods['goods_id']}};
+	//获取属性id
+	let attr_id =$(this).attr('attr_id');
+	let attrval_id =$(this).attr('attrval_id');
+	var str = new Array();
+	$(".selected").each(function(){
+        str.push($(this).attr("attr_id")+":"+$(this).attr("attrval_id"));
+    })
+	//计算长度是否全部选中
+	var selected = $(".selected").length;
+   var attr_name = $(".attr_name").length;
+//    return ;
+   if(selected==attr_name){
+	$.ajax({
+		url:"/index/item/price",
+		type:'post',
+		data:{attr_id:attr_id,attrval_id:attrval_id,goods_id:goods_id,str:str},
+		success:function(res){
+			if(res.code=='0'){
+				$('#goods_attr').find('em').text(res.price);
+				$('#goods_attr').find('span').text('库存:'+res.num);
+			}else{
 				alert(res.msg);
-				if(res.code=='0000'){
-					if(window.confirm('您需要去查看您的购物车吗？')){
-						location.href="/index/cart";
-}
-				}
-				
 			}
-		});
-	})
+		}
+	});
+   }
+	
+});
 </script>
-</body>
-
-</html>
+@endsection

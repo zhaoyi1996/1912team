@@ -270,7 +270,9 @@ Route::prefix('/index')->group(function(){
 //首页
 	Route::any("/","Index\IndexController@index");
 	//商品详情页
-	Route::any("/index/item/{id}","Index\ItemController@index");
+	Route::get("/index/item/{id}","Index\ItemController@index");
+	Route::post("/index/item/price","Index\ItemController@price");
+
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
 //产品列表页

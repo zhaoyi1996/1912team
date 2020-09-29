@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-jquery.autocomplete.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-cart.css" />
+    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-item.css" />
+    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-zoom.css" />
 </head>
 
 <body>
@@ -291,6 +293,8 @@
     <script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
 
+    <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
+    <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/zoom.js"></script>
 </body>
 
 
