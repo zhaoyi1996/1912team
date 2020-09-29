@@ -296,9 +296,15 @@ Route::prefix('/index')->group(function(){
 	Route::any("/","Index\IndexController@index");
 
 	//商品详情页
-	Route::any("/index/item/{id}","Index\ItemController@index");
+
+	Route::get("/index/item/{id}","Index\ItemController@index");
+	Route::post("/index/item/price","Index\ItemController@price");
+
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
+
+	Route::any("/index/item/{id}","Index\ItemController@index");
+
 //产品列表页
 	Route::get("/index/search/{id}","Index\SearchController@index");
 	Route::any("/index/goods_list","Index\SearchController@goods_list");

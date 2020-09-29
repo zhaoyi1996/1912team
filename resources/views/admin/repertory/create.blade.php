@@ -174,7 +174,7 @@
         $(document).on('click','.btn-primary',function(){
             //获取属性值
             var pinjie_id=_id;
-
+            
             //获取购买数量
             var num='';
             var name=document.getElementsByName('num');
@@ -199,6 +199,7 @@
                 }
 
             }
+            
             //获取商品id
             var goods_id=goods_id=$('.goods_id').attr('goods_id');
             price = price.substring(0,price.length-1);
