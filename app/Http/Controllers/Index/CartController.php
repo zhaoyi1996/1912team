@@ -106,6 +106,14 @@ class CartController extends Controller
         }
     }
 
+    public function deletes($goods_id){
+        $res = CartModel::where('goods_id',$goods_id)->delete();
+        if($res){
+            echo json_encode(['code'=>0,'msg'=>'删除成功']);
+        }
+    }
+
+
     public function carts(){
         if(request()->isMethod("get")){
             $users=session("User_Info");  //用户信息

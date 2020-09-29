@@ -239,8 +239,7 @@ Route::prefix('/index')->group(function(){
 	//个人中心浏览历史逻辑删除
 	Route::get("/home/history/{id}","Index\HistioyController@del");
 
-	//个人信息
-	Route::any("/home","Index\HomeIndexController@homeSettingInfo");
+
 
 	Route::get("/home/dizhi","Index\DizhiController@index");
 	Route::get("/home/dizhi/upd/{id}",'Index\DizhiController@upd');
@@ -288,10 +287,14 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/homeOrderEvaluate","Index\HomeIndexController@homeOrderEvaluate");
 	//物理消息----
 //设置
+	//个人信息
+	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
+
 //首页
 	Route::any("/","Index\IndexController@index");
+
 	//商品详情页
 
 	Route::get("/index/item/{id}","Index\ItemController@index");
@@ -304,11 +307,18 @@ Route::prefix('/index')->group(function(){
 
 //产品列表页
 	Route::get("/index/search","Index\SearchController@index");
+
+
 	Route::any("/index/goods_list","Index\SearchController@goods_list");
+	Route::post("/index/search/clicks","Index\SearchController@clicks");
+
 	//收藏
 	Route::any("/index/collect","Index\SearchController@collect");
+
+
 //正品秒杀
-    Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+	Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+	
  //我的店铺
 	Route::any("/index/shop","Index\ShopController@index");
 	
@@ -316,6 +326,8 @@ Route::prefix('/index')->group(function(){
 Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
 
+//删除
 Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
+Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 
 Route::get('/indexs/carts','Index\CartController@carts');

@@ -1,5 +1,4 @@
 
-
 @extends("layouts.index")
 @section("title",'首页')
 @section('content')
@@ -39,18 +38,18 @@
 						  <li data-target="#myCarousel" data-slide-to="3"></li>
 						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
-					  <div class="carousel-inner"  style="width:720px;hight:800px"  >
+					  <div class="carousel-inner"  style="width:800px;hight:800px"  >
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
-					    <div class="active item"  style="width:720px;hight:800px"  >
+					    <div class="active item"  style="width:800px;hight:800px"  >
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:520px;hight:520px" />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px" />
 					      </a>
 					    </div>
 					    @else
 						<div class="item"  style="width:720px;hight:800px"  >
 						 <a href="{{$v->sl_url}}">
-						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px"   />
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px"   />
 					     </a>
 					    </div>
 							  @endif
@@ -61,14 +60,13 @@
 				<div class="yui3-u Right">
 					<div class="news">
 						<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
-						<div class="clearix"></div>
-						@foreach($res2 as $v)
-						<ul class="news-list unstyled">
-							<li>
-								<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
-							</li>
-						</ul>
-						@endforeach
+						<div class="clearix">
+								<ul class="news-list unstyled">
+									@foreach($res2 as $v)
+									<span class="bold">[{{$v->an_name}}]</span><p style="color: red">{{$v->an_desc}}</p>
+									@endforeach
+								</ul>
+						</div>
 					</div>
 					<ul class="yui3-g Lifeservice">
 						<li class="yui3-u-1-4 life-item tab-item">
@@ -102,22 +100,6 @@
 						<li class="yui3-u-1-4 life-item notab-item">
 							<i class="list-item list-item-8"></i>
 							<span class="service-intro">火车票</span>
-						</li>
-						<li class="yui3-u-1-4 life-item  notab-item">
-							<i class="list-item list-item-9"></i>
-							<span class="service-intro">众筹</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-10"></i>
-							<span class="service-intro">理财</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-11"></i>
-							<span class="service-intro">礼品卡</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-12"></i>
-							<span class="service-intro">白条</span>
 						</li>
 					</ul>
 					<div class="life-item-content">
