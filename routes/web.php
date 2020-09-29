@@ -253,7 +253,6 @@ Route::prefix('/index')->group(function(){
 	//前台注册
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
-、
 	//地址管理
 	Route::get("/homeSettingAddress","Index\AddressController@index");
 	Route::get("/homeaddress/create","Index\AddressController@create");
