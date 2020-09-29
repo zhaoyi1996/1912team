@@ -38,27 +38,50 @@ class RepertoryController extends Controller
         $pinjie='';
         foreach($attrval_data as $k=>$v){
             $pinjie.=$v['attr_id'].":".$v['attrval_id'].',';
-            $rep_data['attr']=json_encode([$pinjie],true);
+            
 //            $pinjie='';
         }
+        $pinjie=rtrim($pinjie,',');
+        $rep_data['attr']=json_encode([$pinjie],true);
         $rep_data['goods_id']=$goods_id;
         $rep_data['add_time']=time();
         $rep_data['goods_store']=$data['num'];
         $rep_data['goods_price']=$data['price'];
-        //数据入库
-        $res=RepModel::insert($rep_data);
-       if($res){
-           return ['code'=>0000,'msg'=>'库存添加成功'];
-       }else{
-           return ['code'=>0001,'msg'=>'库存添加失败'];
-       }
+        // dd($rep_data);
+        #查询这条商品下是否已存在这个规格，如果有的话   改变价格   修改库存
+        $where=[
+            ['goods_id','=',$rep_data['goods_id']],
+            ['attr','=',$rep_data['attr']]
+        ];
+        $rep_data_one=RepModel::where($where)->first()->toArray();
+        if(!empty($rep_data_one)){
+            //将数据库的价格进行更新   将库存进行累加
+            // dd(intval($rep_data['goods_store']));
+            $rep_data_one['goods_price']=$rep_data['goods_price'];
+            $rep_data_one['goods_store']=intval($rep_data['goods_store'])+intval($rep_data_one['goods_store']);
+            $res=RepModel::where($where)->update($rep_data_one);
+            if($res){
+                return ['code'=>0000,'msg'=>'库存添加成功'];
+            }else{
+                return ['code'=>0001,'msg'=>'库存添加失败'];
+            }
+        }else{
+            //数据入库
+            $res=RepModel::insert($rep_data);
+            if($res){
+                return ['code'=>0000,'msg'=>'库存添加成功'];
+            }else{
+                return ['code'=>0001,'msg'=>'库存添加失败'];
+            }
+        }
+        
     }
     /**
      * 库存确认添加----多条数据
      */
     public function adds(){
         $data=request()->except('goods_id');
-//        dd($data);
+    //    dd($data);
         $goods_id=request()->goods_id;
         $attrval_id=[];
         $attrval_data=[];
@@ -68,6 +91,7 @@ class RepertoryController extends Controller
             if($k=='pinjie_id'){
                 $attrval_id=explode('/',$v);
                 array_pop($attrval_id);
+                
                 foreach($attrval_id as $key=>$vv){
                     $vv=trim($vv,',');
                     $attrval_id[$key]=explode(',',$vv);
@@ -89,6 +113,8 @@ class RepertoryController extends Controller
                 if($k==$i){
                     foreach($v as $kk=>$vv){
                         $pinjie_id.=$vv['attr_id'].":".$vv['attrval_id'].',';
+                        $pinjie_id=rtrim($pinjie_id,',');
+                        // dd($pinjie_id);
                         $id[$kk]=$pinjie_id;
                         $pinjie_id='';
                     }
@@ -96,7 +122,7 @@ class RepertoryController extends Controller
             }
 //            dd($goods_id);
             $time[$i]=time();
-            $attr=json_encode($id,true);
+            $attr=implode($id,',');
             $rep_data['goods_id']=$goods_id;
             $rep_data['attr']=$attr;
             $rep_data['add_time']=time();
@@ -104,15 +130,38 @@ class RepertoryController extends Controller
             $rep_data['goods_price']=$price[$i];
             $attr=[];
             $time=[];
-            $res=RepModel::insert($rep_data);
-            $rep_data=[];
-            if($i==count($attrval_data)-1){
+            $rep_data['attr']=json_encode([$rep_data['attr']]);
+            #查询这条商品下是否已存在这个规格，如果有的话   改变价格   修改库存
+            $where=[
+                ['goods_id','=',$rep_data['goods_id']],
+                ['attr','=',$rep_data['attr']]
+            ];
+            $rep_data_one=RepModel::where($where)->first()->toArray();
+            if(!empty($rep_data_one)){
+                //将数据库的价格进行更新   将库存进行累加
+                // dd(intval($rep_data['goods_store']));
+                $rep_data_one['goods_price']=$rep_data['goods_price'];
+                $rep_data_one['goods_store']=intval($rep_data['goods_store'])+intval($rep_data_one['goods_store']);
+                $res=RepModel::where($where)->update($rep_data_one);
+                $rep_data=[];
                 if($res){
                     return ['code'=>0000,'msg'=>'库存添加成功'];
                 }else{
                     return ['code'=>0001,'msg'=>'库存添加失败'];
                 }
+            }else{
+                $res=RepModel::insert($rep_data);
+                $rep_data=[];
+            
             }
+            if($i==count($attrval_data)-1){
+                if($res){
+                    return ['code'=>'0000','msg'=>'库存添加成功'];
+                }else{
+                    return ['code'=>0001,'msg'=>'库存添加失败'];
+                }
+            }
+            
         }
 
 //        foreach($attrval_data as $k=>$v){

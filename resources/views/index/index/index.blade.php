@@ -1,3 +1,4 @@
+
 @extends("layouts.index")
 @section("title",'首页')
 @section('content')
@@ -8,43 +9,23 @@
 			<div class="yui3-g SortList ">
 				<div class="yui3-u Left all-sort-list">
 					<div class="all-sort-list2">
+					@foreach($res as $v)
 						<div class="item bo">
-							<h3><a href="">图书、音像、数字商品</a></h3>
+							<h3><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$v['cate_name']}}</a></h3>
 							<div class="item-list clearfix">
 								<div class="subitem">
+									@foreach($v['son'] as $vv)
 									<dl class="fore1">
-										<dt><a href="">电子书</a></dt>
-										<dd><a href="">免费</a><a href="">小说</a></em><a href="">励志与成功</a><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
+										<dt><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$vv['cate_name']}}</a></dt>
+										@foreach($vv['son'] as $vvv)	
+										<dd><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$vvv['cate_name']}}</a></em></dd>
+										@endforeach
 									</dl>
-									<dl class="fore2">
-										<dt><a href="">数字音乐</a></dt>
-										<dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-									</dl>
-									<dl class="fore3">
-										<dt><a href="">音像</a></dt>
-										<dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-									</dl>
-									<dl class="fore4">
-										<dt>文艺</dt>
-										<dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-									</dl>
-									<dl class="fore5">
-										<dt>人文社科</dt>
-										<dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-									</dl>
-									<dl class="fore6">
-										<dt>经管励志</dt>
-										<dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-									</dl>
-									<dl class="fore7">
-										<dt>生活</dt>
-										<dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-									</dl>
+									@endforeach
 								</div>
 							</div>
 						</div>
-						
-						
+					@endforeach
 					</div>
 				</div>
 				<div class="yui3-u Center banerArea">
@@ -57,18 +38,18 @@
 						  <li data-target="#myCarousel" data-slide-to="3"></li>
 						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
-					  <div class="carousel-inner"  style="width:720px;hight:800px"  >
+					  <div class="carousel-inner"  style="width:800px;hight:800px"  >
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
-					    <div class="active item"  style="width:720px;hight:800px"  >
+					    <div class="active item"  style="width:800px;hight:800px"  >
 					    <a href="{{$v->sl_url}}">
-					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:520px;hight:520px" />
+					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px" />
 					      </a>
 					    </div>
 					    @else
 						<div class="item"  style="width:720px;hight:800px"  >
 						 <a href="{{$v->sl_url}}">
-						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:720px;hight:800px"   />
+						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px"   />
 					     </a>
 					    </div>
 							  @endif
@@ -79,24 +60,13 @@
 				<div class="yui3-u Right">
 					<div class="news">
 						<h4><em class="fl">品优购快报</em><span class="fr tip">更多 ></span></h4>
-						<div class="clearix"></div>
-						<ul class="news-list unstyled">
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[公告]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[公告]</span>备战开学季 全民半价购数码
-							</li>
-							<li>
-								<span class="bold">[特惠]</span>备战开学季 全民半价购数码
-							</li>
-						</ul>
+						<div class="clearix">
+								<ul class="news-list unstyled">
+									@foreach($res2 as $v)
+									<span class="bold">[{{$v->an_name}}]</span><p style="color: red">{{$v->an_desc}}</p>
+									@endforeach
+								</ul>
+						</div>
 					</div>
 					<ul class="yui3-g Lifeservice">
 						<li class="yui3-u-1-4 life-item tab-item">
@@ -130,22 +100,6 @@
 						<li class="yui3-u-1-4 life-item notab-item">
 							<i class="list-item list-item-8"></i>
 							<span class="service-intro">火车票</span>
-						</li>
-						<li class="yui3-u-1-4 life-item  notab-item">
-							<i class="list-item list-item-9"></i>
-							<span class="service-intro">众筹</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-10"></i>
-							<span class="service-intro">理财</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-11"></i>
-							<span class="service-intro">礼品卡</span>
-						</li>
-						<li class="yui3-u-1-4 life-item notab-item">
-							<i class="list-item list-item-12"></i>
-							<span class="service-intro">白条</span>
 						</li>
 					</ul>
 					<div class="life-item-content">
@@ -202,9 +156,9 @@
 			</div>
 			<div class="bd">
 				<ul class="clearfix yui3-g Favourate picLB" id="picLBxxl">
+					@foreach($goods as $k=>$v)
 					<li class="yui3-u-1-6">
 						<dl class="picDl huozhe">
-							@foreach($goods as $v)
 							<dd>
 								<a href="{{url('/index/item/'.$v->goods_id)}}" class="pic"><img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" width="200" height="200" alt="" /></a>
 								<div class="like-text">
@@ -212,10 +166,9 @@
 									<h3>¥{{$v->goods_price}}</h3>
 								</div>
 							</dd>
-							@endforeach
 						</dl>
 					</li>
-
+					@endforeach
 				</ul>
 			</div>
 		</div>

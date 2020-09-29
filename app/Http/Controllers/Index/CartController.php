@@ -7,6 +7,7 @@ use App\Model\CartModel;
 use App\Model\GoodsModel;
 use Illuminate\Http\Request;
 use App\Brand;
+use App\Model\CategoryModel;
 
 class CartController extends Controller
 {
@@ -14,12 +15,13 @@ class CartController extends Controller
     public function index(Request $request){
         #获取商品信息
         $goods_id=$request->goods_id;
+
         $goods_where=[
             ['goods_id','=',$goods_id],
             ['del_id','=',1]
         ];
         $goods_data=GoodsModel::where($goods_where)->first();
-        // dd($goods_data);
+//         dd($goods_data);
 
         #获取用户id
         $session=session('User_Info');
@@ -34,14 +36,24 @@ class CartController extends Controller
         foreach($cart_data as $v){
             $v->car_price=$v->goods_price*$v->car_num;
         }
+
         // dd($cart_data);
-    	return view("index.cart.cart",['cart_data'=>$cart_data]);
+        $cate_pid = [
+            ['pid','=',0]
+        ];
+        $cate = CategoryModel::where($cate_pid)->get();
+
+//        查询购物车表数据的条数
+        $count=CartModel::all()->count();
+//        dd($count);die;
+    	return view("index.cart.cart",['cart_data'=>$cart_data,'cate'=>$cate,'count'=>$count]);
     }
     /**
      * 添加购物车
      */
     public function cartAdd(Request $request){
         $goods_id=$request->goods_id;
+//        dd($goods_id);die;
         $car_num=$request->car_num;
         if(empty($goods_id)){
             return ['code'=>0002,'msg'=>'请选择加入购物车的商品'];
@@ -85,5 +97,36 @@ class CartController extends Controller
             }
         }
         
+    }
+
+    public function delete($goods_id){
+        $res = CartModel::where('goods_id',$goods_id)->delete();
+        if($res){
+            echo json_encode(['code'=>0,'msg'=>'删除成功']);
+        }
+    }
+
+    public function deletes($goods_id){
+        $res = CartModel::where('goods_id',$goods_id)->delete();
+        if($res){
+            echo json_encode(['code'=>0,'msg'=>'删除成功']);
+        }
+    }
+
+
+    public function carts(){
+        if(request()->isMethod("get")){
+            $users=session("User_Info");  //用户信息
+            if($users!==""){
+                $res=CartModel::leftjoin("shop_goods","shop_goods.goods_id","=","shop_cart.goods_id")->where("user_id",$users->user_id)->get();
+            }
+            return view('index.cart.cart',['res'=>$res]);
+
+        }
+        if(request()->isMethod("post")){
+            $data=request()->except(['cart_id']);
+            $id=request()->cart_id;
+            $res=CartModel::where("cart_id",$id)->update($data);
+        }
     }
 }

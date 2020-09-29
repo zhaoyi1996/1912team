@@ -8,27 +8,39 @@ use App\Model\ShopCollectModel;
 use App\Model\BrandModel;
 use App\Model\GoodsModel;
 use App\Model\CategoryModel;
+use Illuminate\Support\Facades\Redis;
+
 
 class SearchController extends Controller
 {
     //产品列表页
     public function index(Request $request){
+        $brand_id = $request->brand_id;
+         // 根据商品查询品牌表，
+         $brand = BrandModel::leftjoin("shop_goods",'shop_brand.brand_id','=','shop_goods.brand_id')
+                    ->get();
+        //   dump($brand);
+        
+      
         // // 根据(商品)表来查询品牌表(brand_img,),分类表(goods_price,pid)
-        $GoodsCate =  GoodsModel::select('is_hot','goods_id','brand_img','pid','goods_price')
+        $GoodsCate =  GoodsModel::select('is_hot','goods_id','shop_brand.brand_id','brand_img','pid','goods_price')
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
                     ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
                     ->orderBy("goods_price","desc")
-                    ->limit(1)
+                    // ->limit(1)
                     ->get()
                     ->toArray();  
         //  dd($GoodsCate);
 
+        // 查询所有数据
         $GoodsCateOne =  GoodsModel::select('is_hot','goods_id','brand_img','pid','goods_price')
-        ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
-        ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
-        ->orderBy("goods_price","desc")
-        ->limit(1)
-        ->first();
+                    ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
+                    ->leftjoin('shop_brand','shop_goods.brand_id','=','shop_brand.brand_id')
+                    ->orderBy("goods_price","desc")
+                    // ->limit(1)
+                    ->first();
+        // dd($GoodsCateOne);
+
         $max=$GoodsCateOne['goods_price'];
         // dd($GoodsCate['goods_price']);
         
@@ -37,12 +49,11 @@ class SearchController extends Controller
          // 转为一维数组/去重
         //  $GoodsCates = $GoodsCate->toArray();
          foreach($GoodsCate as $k=>$v){
-            //  dd($k);
-            $array[]= $v['brand_img'];
-            // dd($array);
-             $array = array_unique($array);
+            $array[]=$v['brand_id'];
+            $array=array_unique($array);
          };
-        //  dd($array);
+        $array_img=BrandModel::whereIn('brand_id',$array)->get()->toArray();
+       
          $cate_pid = [
             ['pid','=',0]
         ];
@@ -54,25 +65,32 @@ class SearchController extends Controller
 
        $goods_hot = $GoodsCateOne['is_hot'];
     //    dd($goods_hot);
+      // 调用无限极分类
+      $cateAll = CategoryModel::get()->Toarray();//转化为数组
+        // 调用分类
+         $res = $this->gatCate3($cateAll);
 
-        // dd($price_qujian);
-        // dd($array);
-    	return view("index.search",['GoodsCate'=>$GoodsCate,'array'=>$array,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot]);
+
+        
+    	return view("index.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img]);
 
     }
 
+    public function clicks(){
+        $brand_id = request()->post("brand_id");
+        $where = [
+            'brand_id'=>$brand_id
+        ];
+        $Goods = GoodsModel::where($where)->get();
+        return ['goods'=>$Goods];
+        // // dd($Goods);
+        // return view('index.search',['Goods'=>$Goods]);
+    }
     //正品秒杀
     public function seckillIndex(Request $request){
     	return view("index.seckill-index");
     }
-    // //循环商品 
-    // public function goods_list(){
-    // 	$cate=CateModel::where("pid","=",0)->limit(6)->get();//查询商品的顶级分类
-    // 	$brand=BrandModel::where(["brand_del"=>1])->limit(20)->get(); //仅展示逻辑删除的1
-    // 	$data = GoodsModel::where(["del_id"=>1])->limit(20)->get();
-    // 	// dd($data);
-    // 	return ['code'=>111,'cate'=>$cate,'brand'=>$brand,'data'=>$data]);
-    // }
+    
 
      // 获取价格区间
      public function getPriceSection($max_price){
@@ -97,6 +115,25 @@ class SearchController extends Controller
     public function collect(){
     	$goods_id=request()->goods_id;
     	// dd($goods_id);
+    	// $session=session('');
+    	// dd($goods_id);
+       //user_id给固定的值   接收商品ID  时间
+       $array=[
+       		"user_id"=>5,
+       		"goods_id"=>request()->goods_id,
+       		"collect_time"=>time()
+       ];
+       //将数据入库
+       $goods=ShopCollectModel::insert($array);
+       if($goods){
+       		$arr=[
+       			"code"=>111,
+       			"message"=>"收藏成功",
+       		];
+       }	
+       //返回JSON串
+
+        return json_decode($arr);
     	$session=session('User_Info');
        	$collect=new ShopCollectModel();
     	$collect->goods_id=$goods_id;
@@ -112,4 +149,31 @@ class SearchController extends Controller
     	}
        
     }
+
+
+      // 无限极分类
+      public function getCate($array,$pid=0){
+        static $info=[];
+        $info[$pid]=$pid;
+        foreach ($array as $key=>$value){
+            if ($value['pid']==$pid) {
+                $this->getCate($array,$value['cate_id']);
+            }
+        }
+        return $info;
+    }
+
+    // 父级id--子级分类
+    public function gatCate3($array,$pid=0){
+        $info=[];
+        foreach ($array as $k => $v) {
+            if ($v['pid']==$pid) {
+                $v['son']=$this->gatCate3($array,$v['cate_id']);
+                $info[]=$v;
+            }
+        }
+        return $info;
+    }
+
+
 }
