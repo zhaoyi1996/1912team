@@ -8,7 +8,7 @@ use App\Model\ShopCollectModel;
 use App\Model\BrandModel;
 use App\Model\GoodsModel;
 use App\Model\CategoryModel;
-use App\Model\ShopCollectModel;
+// use App\Model\ShopCollectModel;
 use Illuminate\Support\Facades\Redis;
 
 
