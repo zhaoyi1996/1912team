@@ -55,7 +55,9 @@
 							</div>
 							<div class="fl price" id="goods_attr">
 								<i>¥</i>
+								@if($min_price!='' || $max_price!='')
 								<em>{{$min_price->goods_price}}~{{$max_price->goods_price}}</em>
+								@endif
 								<span></span>
 							</div>
 							<div class="fr remark">
@@ -685,19 +687,7 @@ $(document).on('click','.attrval',function(){
 				$('#goods_attr').find('em').text(res.price);
 				$('#goods_attr').find('span').text('库存:'+res.num);
 			}else{
-	$(document).on('click','#cartadd',function(){
-		//获取商品id
-		let goods_id=$(this).attr('goods_id');
-//		alert(goods_id);
-		//获取购买数量
-		let car_num=$('#car_num').val();
-		//通过ajax将id传入控制器进行购物车的添加
-		$.ajax({
-			url:'/index/cartAdd',
-			type:'post',
-			data:{goods_id:goods_id,car_num:car_num},
-			success:function(res){
-				alert(res.msg);
+				alert(code.msg);
 			}
 		}
 	});

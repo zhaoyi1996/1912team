@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="/indexshop/css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-JD-index.css" />
+    <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-list.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-jquery.autocomplete.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/widget-cartPanelView.css" />
     <link rel="stylesheet" type="text/css" href="/indexshop/css/pages-cart.css" />
@@ -97,7 +98,7 @@
                                     <span class="car"></span>
                                     <a class="sui-btn btn-default btn-xlarge" href="/index/cart" target="_blank">
                                         <span>我的购物车</span>
-                                        <i class="shopnum">0</i>
+                                        <i class="shopnum">1</i>
                                     </a>
                                     <div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
                                         <p>"啊哦，你的购物车还没有商品哦！"</p>
@@ -119,7 +120,7 @@
                                 @endforeach
                                 <li class="f-item">团购</li>
                                 <li class="f-item">有趣</li>
-                                <li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
+                                <li class="f-item"><a href="{{url('/index/seckill')}}" target="_blank">秒杀</a></li>
                             </ul>
                         </div>
                         <div class="yui3-u Right"></div>
@@ -269,6 +270,7 @@
     </div>
             <!--侧栏面板结束-->
     <script type="text/javascript" src="/indexshop/js/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/indexshop/js/pages/seckill-index.js"></script>
     <script type="text/javascript">
         $(function(){
             $("#service").hover(function(){
@@ -292,9 +294,9 @@
     <script type="text/javascript" src="/indexshop/js/widget/cartPanelView.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="/indexshop/js/widget/nav.js"></script>
-
     <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
     <script type="text/javascript" src="/indexshop/js/plugins/jquery.jqzoom/zoom.js"></script>
+
 </body>
 
 

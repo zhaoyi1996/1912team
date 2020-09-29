@@ -37,7 +37,7 @@ class CartController extends Controller
             $v->car_price=$v->goods_price*$v->car_num;
         }
 
-        // dd($cart_data);
+//         dd($cart_data);
         $cate_pid = [
             ['pid','=',0]
         ];
@@ -105,6 +105,14 @@ class CartController extends Controller
             echo json_encode(['code'=>0,'msg'=>'删除成功']);
         }
     }
+
+    public function deletes($goods_id){
+        $res = CartModel::where('goods_id',$goods_id)->delete();
+        if($res){
+            echo json_encode(['code'=>0,'msg'=>'删除成功']);
+        }
+    }
+
 
     public function carts(){
         if(request()->isMethod("get")){

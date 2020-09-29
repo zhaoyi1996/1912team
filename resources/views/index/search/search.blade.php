@@ -23,8 +23,11 @@
 						<div class="shortcut">
 							<ul class="fl">
 								<li class="f-item">品优购欢迎您！</li>
-								<li class="f-item">请
-									<a href="/index/login" target="_blank">登录</a>　<span><a href="/index/register" target="_blank">免费注册</a></span></li>
+								@if(session()->has("User_Info"))
+								欢迎<b><span style="color:red">{{session("User_Info")['user_name']}}</span></b>登录
+								@else
+								<li class="f-item">请<a href="{{url('/index/login')}}" target="_blank">登录</a>　<span><a href="{{url('/index/reg')}}" target="_blank">免费注册</a></span></li>
+								@endif
 							</ul>
 							<ul class="fr">
 								<li class="f-item">我的订单</li>
@@ -72,13 +75,13 @@
 							</div>
 							<div class="yui3-u Center searchArea">
 								<div class="search">
-									<!-- <form action="" class="sui-form form-inline"> -->
+									<form action="" class="sui-form form-inline">
 										<!--searchAutoComplete-->
 										<div class="input-append">
 											<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
 											<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
 										</div>
-									<!-- </form> -->
+									</form>
 								</div>
 								<div class="hotwords">
 									<ul>
@@ -174,7 +177,7 @@
 					
 					<div class="value logos">
 					@foreach($array_img as $v)
-					<!-- <form action="" method="post"> -->
+					<form action="" method="get">
 						<ul class="logo-list">
 							<li brand_id="{{$v['brand_id']}}">
 								<button type="submit" href="javascript:;">
@@ -184,7 +187,7 @@
 								</button>
 							</li>
 						</ul>
-					<!-- </form> -->
+					</form>
 					@endforeach
 					</div>
 					
@@ -271,123 +274,12 @@
 									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
 								</div>
 							</div>
-						</li><li class="yui3-u-1-5" id="1">
-							<div class="list-wrap">
-								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i></i>
-										</strong>
-								</div>
-								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
-								</div>
-								<div class="cu">
-									<em><span>促</span>满一件可参加超值换购</em>
-								</div>
-								<div class="commit">
-									<i class="command">已有2000人评价</i>
-								</div>
-								<div class="operate">
-									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
-								</div>
-							</div>
 						</li>
-						<li class="yui3-u-1-5" id="1">
-							<div class="list-wrap">
-								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i></i>
-										</strong>
-								</div>
-								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
-								</div>
-								<div class="cu">
-									<em><span>促</span>满一件可参加超值换购</em>
-								</div>
-								<div class="commit">
-									<i class="command">已有2000人评价</i>
-								</div>
-								<div class="operate">
-									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
-								</div>
-							</div>
-						</li>
-
-						<li class="yui3-u-1-5" id="1">
-							<div class="list-wrap">
-								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="" width="80" hight="80" alt=""></a>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i></i>
-										</strong>
-								</div>
-								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
-								</div>
-								<div class="cu">
-									<em><span>促</span>满一件可参加超值换购</em>
-								</div>
-								<div class="commit">
-									<i class="command">已有2000人评价</i>
-								</div>
-								<div class="operate">
-									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
-								</div>
-							</div>
-						</li>
+						
 					</ul>
 					
 				</div>
-				<div class="goods-list">
-					<ul class="yui3-g">
-						
-						<li class="yui3-u-1-5" id="1">
-							<div class="list-wrap">
-								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i></i>
-										</strong>
-								</div>
-								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
-								</div>
-								<div class="cu">
-									<em><span>促</span>满一件可参加超值换购</em>
-								</div>
-								<div class="commit">
-									<i class="command">已有2000人评价</i>
-								</div>
-								<div class="operate">
-									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div> 
+				
 				<div class="fr page">
 					<div class="sui-pagination pagination-large">
 						<ul>
@@ -703,7 +595,7 @@
 							<div class="tbar-panel-content J-panel-content">
 								<div class="jt-history-wrap">
 									<ul>
-										<!--<li class="jth-item">
+										<li class="jth-item">
 										<a href="#" class="img-wrap"> <img src=".portal//indexshop/img/like_03.png" height="100" width="100" /> </a>
 										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
 										<a href="#" target="_blank" class="price">￥498.00</a>
@@ -712,7 +604,7 @@
 										<a href="#" class="img-wrap"> <img src="portal//indexshop/img/like_02.png" height="100" width="100" /></a>
 										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
 										<a href="#" target="_blank" class="price">￥498.00</a>
-									</li>-->
+									</li>
 									</ul>
 									<a href="#" class="history-bottom-more" target="_blank">查看更多足迹商品 &gt;&gt;</a>
 								</div>
@@ -803,7 +695,7 @@
 	</body>
 
 </html>
-<script>
+<!-- <script>
 $(".brandbutton").click(function(){
 		var brand_id = $(this).attr("brand_id")
 		$.ajax({
@@ -826,11 +718,7 @@ $(".brandbutton").click(function(){
 			data:{goods_id:goods_id},
 			type:"post",
 			success:function(res){
-				alert(res.msg);
-				if(res.code=='0000'){
-					// alert(111);
-					location.href="";
-				}
+				console.log(res);
 			}
 		})
 
@@ -838,4 +726,4 @@ $(".brandbutton").click(function(){
 	
 
 
-</script>
+</script> -->

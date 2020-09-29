@@ -19,6 +19,8 @@ class IndexController extends Controller
 
     // 首页
     public function index(){
+
+
         $goods_id=request()->goods_id;
         $wheretao=[
             'is_del'=>1
@@ -88,6 +90,7 @@ class IndexController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
+
         return view('index.layouts.index',['cate'=>$cate]);
     }
 

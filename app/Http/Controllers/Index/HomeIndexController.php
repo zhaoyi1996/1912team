@@ -29,7 +29,7 @@ class HomeIndexController extends Controller
     	return view("index.home-order-evaluate");
     }
     //我的收藏
-    public function homePersonCollect(){
+    public function homePerson(){
     	return view("index.home-person-collect");
     }
     //我的足迹
