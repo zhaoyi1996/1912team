@@ -41,12 +41,12 @@
 										</div>
 									</li>
 									<li class="yui3-u-1-8"><span class="price" id="{{$v->goods_price}}">{{$v->goods_price}}</span><font color='red'>.00</font></li>
-									<li class="yui3-u-1-8" id="{{$v->cary_id}}" ids="{{$v->goods_store}}">
+									<li class="yui3-u-1-8" id="{{$v->car_id}}" ids="{{$v->goods_store}}">
 										<a href="javascript:void(0)" class="increment mins">-</a>
 										<input autocomplete="off" type="text" value="{{$v->car_num}}" minnum="1" class="itxt" />
 										<a href="javascript:void(0)" class="increment plus">+</a>
 									</li>
-									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->goods_totall}}</span>.00</li>
+									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->goods_totall}}</span></li>
 									<li class="yui3-u-1-8">
 										<a href="javascript:void[0]" id="id" goods_id="{{$v->goods_id}}">删除</a><br />
 										<a href="#none">移到我的关注</a>
@@ -64,42 +64,43 @@
 					<span>全选</span>
 				</div>
 				<div class="option">
-					<a href="#none">删除选中的商品</a>
+					<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
 				<div class="toolbar">
-					<div class="chosed">已选择<span>0</span>件商品</div>
-					<div class="sumprice">
-						<span><em>总价（不含运费） ：</em><i class="summoney">¥16283.00</i></span>
-						<span><em>已节省：</em><i>-¥20.00</i></span>
-					</div>
+
 				</div>
 			</div>
+			{{--<div class="sumprice">--}}
+				{{--<span><em>总价（不含运费） ：</em><i class="summoney">¥16283.00</i></span>--}}
+				{{--<span><em>已节省：</em><i>-¥20.00</i></span>--}}
+			{{--</div>--}}
+			<div class="chosed">已选择<span>0</span>件商品</div>
 			<div class="sumbtn">
 				<a class="sum-btn" href="/index/order_info" target="_blank">结算</a>
 			</div>
 			<div class="clearfix"></div>
-			<div class="deled">
-				<span>已删除商品，您可以重新购买或加关注：</span>
-				<div class="cart-list del">
-					<ul class="goods-list yui3-g">
-						<li class="yui3-u-1-2">
-							<div class="good-item">
-								<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>
-							</div>
-						</li>
-						<li class="yui3-u-1-6"><span class="price">8848.00</span></li>
-						<li class="yui3-u-1-6">
-							<span class="number">1</span>
-						</li>
-						<li class="yui3-u-1-8">
-							<a href="#none">重新购买</a>
-							<a href="#none">移到我的关注</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+			{{--<div class="deled">--}}
+				{{--<span>已删除商品，您可以重新购买或加关注：</span>--}}
+				{{--<div class="cart-list del">--}}
+					{{--<ul class="goods-list yui3-g">--}}
+						{{--<li class="yui3-u-1-2">--}}
+							{{--<div class="good-item">--}}
+								{{--<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>--}}
+							{{--</div>--}}
+						{{--</li>--}}
+						{{--<li class="yui3-u-1-6"><span class="price">8848.00</span></li>--}}
+						{{--<li class="yui3-u-1-6">--}}
+							{{--<span class="number">1</span>--}}
+						{{--</li>--}}
+						{{--<li class="yui3-u-1-8">--}}
+							{{--<a href="#none">重新购买</a>--}}
+							{{--<a href="#none">移到我的关注</a>--}}
+						{{--</li>--}}
+					{{--</ul>--}}
+				{{--</div>--}}
+			{{--</div>--}}
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
 					<li class="active">
@@ -248,6 +249,21 @@
 	});
 </script>
 
+	<script>
+		{{--删除--}}
+         $(document).on("click","#tao",function(){
+			var goods_id=$(this).attr('goods_id');
+			var _this = $(this);
+			if(confirm("你确认要删除吗")){
+				$.get("/cart/deletes/"+goods_id,function(res){
+					if(res.code==0){
+						alert(res.msg);
+						window.location.href = '/index/cart';
+					}
+				},'json')
+			}
+		});
+	</script>
 
 	{{--加减号  全选  --}}
 	<script>

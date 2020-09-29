@@ -308,6 +308,8 @@ Route::prefix('/index')->group(function(){
 Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
 
+//删除
 Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
+Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 
 Route::get('/indexs/carts','Index\CartController@carts');
