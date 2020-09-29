@@ -20,8 +20,11 @@ class IndexController extends Controller
     // 首页
     public function index(){
         $goods_id=request()->goods_id;
+        $wheretao=[
+            'is_del'=>1
+        ];
         //公告
-        $res2=AnnouModel::leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
+        $res2=AnnouModel::where($wheretao)->leftjoin("shop_goods","shop_annou.goods_id","=","shop_goods.goods_id")->get();
         // 调用无限极分类
         $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // dd($cateAll);
@@ -75,6 +78,7 @@ class IndexController extends Controller
 //        查询商品表
         $goods=GoodsModel::all();
 //        dd($goods);die;
+
     	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
  }
 

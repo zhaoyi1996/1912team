@@ -21,7 +21,7 @@ class ItemController extends Controller
        $ddd= explode("|",$goods->goods_imgs);
 //        dd($ddd);
 //        dd($goods['goods_imgs']);
-    	return view("index.item",['goods'=>$goods,'goods_imgs'=>$ddd]);
+    	return view("index.item.item",['goods'=>$goods,'goods_imgs'=>$ddd]);
     }
 
 }

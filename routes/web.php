@@ -199,6 +199,10 @@ Route::prefix('/goods')->group(function(){
 	//无限极分类
 	Route::any("/getres","Admins\GoodsController@getres");
 });
+
+
+
+
 Route::prefix('/index')->group(function(){
 	//前台登录
 	Route::get("/login","Index\LoginController@login");
@@ -212,26 +216,55 @@ Route::prefix('/index')->group(function(){
 	//前台注册
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
-	//地址管理
-	Route::get("/homeSettingAddress","Index\AddressController@index");
-	Route::get("/homeaddress/create","Index\AddressController@create");
-	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
-	//设置为默认收货地址
-	Route::get("/homeaddress/moren","Index\AddressController@moren");
-	//收货地会添加
-	Route::post("/homeaddress/store","Index\AddressController@store");
-	//收货地址修改
-	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
-	Route::post("/homeaddress/update/{id}","Index\AddressController@update");
+
+
+	// //地址管理
+	// Route::get("/homeSettingAddress","Index\AddressController@index");
+	// Route::get("/homeaddress/create","Index\AddressController@create");
+	// Route::get("/homeaddress/del/{id}","Index\AddressController@del");
+	// //设置为默认收货地址
+	// Route::get("/homeaddress/moren","Index\AddressController@moren");
+	// //收货地会添加
+	// Route::post("/homeaddress/store","Index\AddressController@store");
+	// //收货地址修改
+	// Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
+	// Route::post("/homeaddress/update/{id}","Index\AddressController@update");
 	// /index//update/7
+	// 个人中心收藏
+	Route::get("/home/collects","Index\CollectController@index");
+	//收藏逻辑删除
+	Route::get("/home/collects/del/{id}","Index\CollectController@del");
+	//个人中心浏览历史
+	Route::get("/home/history","Index\HistioyController@index");
+	//个人中心浏览历史逻辑删除
+	Route::get("/home/history/{id}","Index\HistioyController@del");
+
+
+
+	Route::get("/home/dizhi","Index\DizhiController@index");
+	Route::get("/home/dizhi/upd/{id}",'Index\DizhiController@upd');
+	//软删除
+	Route::get("/home/dizhi/del/{id}","Index\DizhiController@del");
+	Route::post('/home/dizhi/create',"Index\DizhiController@create");
+	Route::get("/home/dizhi/shezhi/{id}","Index\DizhiController@shezhi");
+	Route::post("/home/dizhi/update/{id}","Index\DizhiController@update");
+
+
+	//订单展示
+	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
+	Route::get("/order/del/{id}","Index\OrderController@del");
 });
+
+
+
+
+
 //前台展示
 	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
 	Route::any("/index/index","Index\IndexController@index");//全部商品
 	Route::any("/index/cateInfo","Index\IndexController@cateInfo");
 	Route::any("/index/getIndexInfo","Index\IndexController@getIndexInfo");//接收上一个	
-	//订单展示
-	Route::any("/index/order_info","Index\OrderController@index")->middleware('SessionLogin');
+	
 	//收银台
 	Route::any("/index/finall","Index\FinallController@index");
 	//支付页失败页面
@@ -252,16 +285,10 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/homeOrderReceive","Index\HomeIndexController@homeOrderReceive");
 	//待评价
 	Route::any("/index/homeOrderEvaluate","Index\HomeIndexController@homeOrderEvaluate");
-	//我的中心
-	//我的收藏
-	Route::any("/index/homePersonCollect","Index\HomeIndexController@homePersonCollect");
-	//我的足迹
-	Route::any("/index/homePersonFootmark","Index\HomeIndexController@homePersonFootmark");
 	//物理消息----
 //设置
 	//个人信息
 	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
-
 	//安全管理
 	Route::any("/index/homeSettingSafe","Index\HomeIndexController@homeSettingSafe");
 
@@ -270,10 +297,8 @@ Route::prefix('/index')->group(function(){
 
 	//商品详情页
 	Route::any("/index/item/{id}","Index\ItemController@index");
-
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");
-
 //产品列表页
 	Route::get("/index/search/{id}","Index\SearchController@index");
 	Route::any("/index/goods_list","Index\SearchController@goods_list");
@@ -292,3 +317,7 @@ Route::prefix('/index')->group(function(){
 //购物车页面
 Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
+
+Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
+
+Route::get('/indexs/carts','Index\CartController@carts');

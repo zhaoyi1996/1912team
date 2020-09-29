@@ -8,6 +8,9 @@ use App\Model\ShopCollectModel;
 use App\Model\BrandModel;
 use App\Model\GoodsModel;
 use App\Model\CategoryModel;
+use App\Model\ShopCollectModel;
+use Illuminate\Support\Facades\Redis;
+
 
 class SearchController extends Controller
 {
@@ -113,6 +116,25 @@ class SearchController extends Controller
     public function collect(){
     	$goods_id=request()->goods_id;
     	// dd($goods_id);
+    	// $session=session('');
+    	// dd($goods_id);
+       //user_id给固定的值   接收商品ID  时间
+       $array=[
+       		"user_id"=>5,
+       		"goods_id"=>request()->goods_id,
+       		"collect_time"=>time()
+       ];
+       //将数据入库
+       $goods=ShopCollectModel::insert($array);
+       if($goods){
+       		$arr=[
+       			"code"=>111,
+       			"message"=>"收藏成功",
+       		];
+       }	
+       //返回JSON串
+
+        return json_decode($arr);
     	$session=session('User_Info');
        	$collect=new ShopCollectModel();
     	$collect->goods_id=$goods_id;
