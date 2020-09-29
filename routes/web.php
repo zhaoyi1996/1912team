@@ -253,6 +253,11 @@ Route::prefix('/index')->group(function(){
 	//订单展示
 	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
+
+
+	//秒杀
+	Route::get("/seckill","Index\SeckillController@index");
+	
 });
 
 
