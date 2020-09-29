@@ -372,9 +372,6 @@ Route::prefix('/index')->group(function(){
 
 //产品列表页
 	Route::get("/index/search","Index\SearchController@index");
-
-
-	Route::any("/index/goods_list","Index\SearchController@goods_list");
 	Route::post("/index/search/clicks","Index\SearchController@clicks");
 
 	//收藏
