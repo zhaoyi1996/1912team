@@ -15,13 +15,32 @@ class SearchController extends Controller
 {
     //产品列表页
     public function index(Request $request){
+        //商品条件搜索查询展示
         $brand_id = $request->brand_id;
+        $price=$request->price;
+        $prices=[];
+        $whereBetween=[];
         $where=[];
         if(!empty($brand_id)){
             $where[]=['brand_id','=',$brand_id];
         }
-        // 根据商品查询品牌表，
-        $brand_goods = GoodsModel::where($where)->get();
+        if(!empty($price)){
+            if(strstr($price,'及以上')){
+                $price=str_replace('及以上','',$price);
+                $where[]=['goods_price','>=',$price];
+                $brand_goods = GoodsModel::where($where)->get();
+            }else{
+                $price=str_replace(',','',$price);
+                $price=explode('-',$price);
+                foreach($price as $k=>$v){
+                    $prices[$k]=intval($v);
+                }
+                $brand_goods = GoodsModel::where($where)->whereBetween('goods_price',[$prices[0],$prices[1]])->get();
+            }
+        }else{
+            $brand_goods = GoodsModel::where($where)->get();
+        }
+
         //根据(商品)表来查询品牌表(brand_img,),分类表(goods_price,pid)
         $GoodsCate =  GoodsModel::select('is_hot','goods_id','shop_brand.brand_id','brand_img','pid','goods_price')
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
@@ -70,7 +89,7 @@ class SearchController extends Controller
 
 
         
-    	return view("index.search.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img,'brand'=>$brand]);
+    	return view("index.search.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img,'brand_goods'=>$brand_goods]);
 
     }
 
@@ -172,6 +191,12 @@ class SearchController extends Controller
         }
         return $info;
     }
+
+
+
+
+
+   
 
 
 }

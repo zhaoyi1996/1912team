@@ -45,12 +45,19 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/brand","Admin\BrandController@index");
 		//后台商品规格展示
 		Route::get("/specification","Admin\SpecificationController@index");
+
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
 		Route::post("/template/create","Admin\TemplateController@create");
+
+
+
 		//后台模板管理
 		Route::get("/template","Admin\TemplateController@index");
+
+
 		//后台模块分类管理
+
 		Route::any("/cate","Admin\CateController@index"); //展示视图
 		Route::get("/cate/create","Admin\CateController@create"); //添加视图
 		Route::post("/cate/getTree","Admin\CateController@getTree");//无限极分类
@@ -59,6 +66,7 @@ Route::prefix('/admin')->group(function(){
 		Route::any("/cate/destroy/{id}","Admin\CateController@destroy"); //逻辑删除
 		Route::post("/cate/update/{id}","Admin\CateController@update");//执行修改
 		Route::any("/cate/edit/{id}","Admin\CateController@edit"); //修改视图
+
 		//后台商品属性管理
 		Route::get("/template/attr/index","Admin\Specification\AttrController@index");
 		Route::get("/template/attr/create","Admin\Specification\AttrController@create");
@@ -66,6 +74,7 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attr/del/{id}","Admin\Specification\AttrController@del");
 		Route::get("/template/attr/edit/{id}","Admin\Specification\AttrController@edit");
 		Route::post("/template/attr/update/{id}","Admin\Specification\AttrController@update");
+
 		//后台商品属性值管理
 		Route::get("/template/attrval/index","Admin\Specification\AttrvalController@index");
 		Route::get("/template/attrval/create","Admin\Specification\AttrvalController@create");
@@ -74,16 +83,24 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/template/attrval/edit/{id}","Admin\Specification\AttrvalController@edit");
 		Route::post("/template/attrval/update/{id}","Admin\Specification\AttrvalController@update");
 		Route::get("/template/attrval/cartesian","Admin\Specification\AttrvalController@cartesian");
+
 		//后台商品规格管理
 		Route::get("/template/repertory/index","Admin\Repertory\RepertoryController@index");
 		Route::get("/template/repertory/create","Admin\Repertory\RepertoryController@create");
 		Route::post("/template/repertory/add","Admin\Repertory\RepertoryController@add");
 		Route::post("/template/repertory/adds","Admin\Repertory\RepertoryController@adds");
-		Route::post("/template/repertory/specification","Admin\Repertory\RepertoryController@specification");
-		//后台模块分类管理
+
+	Route::post("/template/repertory/specification","Admin\Repertory\RepertoryController@specification");
+
+
+
+	
+	//后台模块分类管理
+
 		Route::get("/cate","Admin\CateController@index");
 		//后台模块商品管理
 		Route::get("/goods","Admin\GoodsController@index");
+
 		//后台模块轮播图管理
 		Route::get("/category","Admin\CategoryController@index"); //轮播图展示
 		Route::any("/category/create","Admin\CategoryController@create"); //轮播图添加展示
@@ -92,6 +109,7 @@ Route::prefix('/admin')->group(function(){
 		Route::any("/category/destroy/{id}","Admin\CategoryController@destroy");	//逻辑删除
 		Route::any("/category/edit/{id}","Admin\CategoryController@edit");	//执行修改
 		Route::any("/category/update","Admin\CategoryController@update");	//执行修改
+
 		//后台模块公告管理
 		Route::get("/content","Admin\ContentController@index"); //公告展示
 		Route::any("/content/create","Admin\ContentController@create"); //公告添加展示
@@ -99,6 +117,7 @@ Route::prefix('/admin')->group(function(){
 		Route::any("/content/edit/{id}","Admin\ContentController@edit"); //修改视图
 		Route::any("/content/update","Admin\ContentController@update"); //执行修改
 		Route::any("/content/destroy/{id}","Admin\ContentController@destroy"); //逻辑删除
+
 		// 小广告模块
 		Route::get("/ladver","Admin\LadverController@index"); //小广告展示
 		Route::any("/ladver/create","Admin\LadverController@create"); //小广告添加视图
@@ -108,6 +127,7 @@ Route::prefix('/admin')->group(function(){
 		Route::any("/ladver/update","Admin\LadverController@update"); //执行修改
 		Route::any("/ladver/destroy/{id}","Admin\LadverController@destroy"); //逻辑删除
 		Route::any("/ladver/ajaxdel","Admin\LadverController@ajaxdel"); //ajax删除 -直接删除-
+
 		// 底部友情链接
 		Route::get("/foot","Admin\FootController@index"); //底部友情链接展示
 		Route::any("/foot/create","Admin\FootController@create"); //添加视图
@@ -115,6 +135,7 @@ Route::prefix('/admin')->group(function(){
 		Route::any("/foot/destroy/{id}","Admin\FootController@destroy");	//逻辑删除
 		Route::any("/foot/edit/{id}","Admin\FootController@edit");	//修改视图
 		Route::any("/foot/update","Admin\FootController@update");	//执行修改
+
 		// 导航
 		Route::get("/nav","Admin\NavController@index"); //导航展示
 		Route::any("/nav/create","Admin\NavController@create"); //添加视图
@@ -122,13 +143,21 @@ Route::prefix('/admin')->group(function(){
 		Route::any("/nav/destroy/{id}","Admin\NavController@destroy");	//逻辑删除
 		Route::any("/nav/edit/{id}","Admin\NavController@edit");	//修改视图
 		Route::any("/nav/update","Admin\NavController@update");	//执行修改
+
 		//后台模块商家审核
 		Route::get("/seller1","Admin\Seller1Controller@index");
+
 		//后台模块商家管理
 		Route::get("/seller","Admin\SellerController@index");
+
 		//后台首页
 		Route::get("/index","Admin\IndexController@index");
+
+
+
 		Route::get("/","Admin\IndexController@index");
+
+
 		/***
 		rbac  
 		***/
@@ -139,8 +168,10 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/rbac/pow/del/{id}","Rbac\PowController@del");
 		Route::get("/rbac/pow/upd/{id}","Rbac\PowController@upd");
 		Route::post("/rbac/pow/update/{id}","Rbac\PowController@update");
+
 		//权限列表
 		Route::get("/rbac/pow/list","Rbac\PowController@list");
+
 		//角色添加
 		Route::get("/rbac/role/create","Rbac\RoleController@create");
 		Route::post("/rbac/role/store","Rbac\RoleController@store");
@@ -150,8 +181,10 @@ Route::prefix('/admin')->group(function(){
 		Route::get("/rbac/role/upd/{id}","Rbac\RoleController@upd");
 		Route::post("/rbac/role/update/{id}","Rbac\RoleController@update");
 		Route::get("/rbac/role/fusdel/{id}","Rbac\RoleController@fusdel");
+		
 	 	//角色列表
 		Route::get("/rbac/role/list","Rbac\RoleController@list");
+
 		//管理员添加
 		Route::get("/rbac/admin/create","Rbac\AdminController@create");
 		Route::post("/rbac/admin/store","Rbac\AdminController@store");
@@ -163,6 +196,8 @@ Route::prefix('/admin')->group(function(){
 		Route::post("/rbac/admin/update/{id}","Rbac\AdminController@update");
 		//管理员列表
 		Route::get("/rbac/admin/list","Rbac\AdminController@list");
+
+
 });
 
 
@@ -177,12 +212,16 @@ Route::prefix('/admins')->group(function(){
 	Route::get("/goods","Admins\GoodsController@index");
 	//商品管理
 	Route::get("/goodslist","Admins\GoodsListController@index");
+
 	Route::get("/home","Admins\HomeController@index");
 	//商家入驻申请
 	Route::get("/register","Admins\RegisterController@index");
 	//后台商家登录
 	Route::get("/shoplogin","Admins\ShopLoginController@index");
 });
+
+
+
 Route::prefix('/goods')->group(function(){
 	//ajax删除
 	Route::get('/delete/{id}','Admins\GoodsController@delete');
@@ -200,9 +239,6 @@ Route::prefix('/goods')->group(function(){
 	Route::any("/getres","Admins\GoodsController@getres");
 });
 
-
-
-
 Route::prefix('/index')->group(function(){
 	//前台登录
 	Route::get("/login","Index\LoginController@login");
@@ -213,10 +249,22 @@ Route::prefix('/index')->group(function(){
 	// Route::post("/regdo","Index\LoginController@regdo");
 	//获取邮箱验证码
 	Route::post("/sendEmail","Index\LoginController@sendEmail");
+
 	//前台注册
 	Route::get("/reg","Index\RegController@reg");
 	Route::post("/regdo","Index\RegController@regdo");
-
+	//地址管理
+	Route::get("/homeSettingAddress","Index\AddressController@index");
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::get("/homeaddress/del/{id}","Index\AddressController@del");
+	//设置为默认收货地址
+	Route::get("/homeaddress/moren","Index\AddressController@moren");
+	//收货地会添加
+	Route::get("/homeaddress/create","Index\AddressController@create");
+	Route::post("/homeaddress/store","Index\AddressController@store");
+	//收货地址修改
+	Route::get("/homeaddress/upd/{id}","Index\AddressController@upd");
+	Route::post("/homeaddress/update/{id}","Index\AddressController@update");
 
 	 //地址管理
 	 Route::get("/homeSettingAddress","Index\AddressController@index");
@@ -265,13 +313,16 @@ Route::prefix('/index')->group(function(){
 
 
 
-
 //前台展示
 	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
 	Route::any("/index/index","Index\IndexController@index");//全部商品
 	Route::any("/index/cateInfo","Index\IndexController@cateInfo");
 	Route::any("/index/getIndexInfo","Index\IndexController@getIndexInfo");//接收上一个	
 	
+
+//订单展示
+	Route::any("/index/order_info","Index\OrderController@index")->middleware('SessionLogin');
+
 	//收银台
 	Route::any("/index/finall","Index\FinallController@index");
 	//支付页失败页面
@@ -281,7 +332,7 @@ Route::prefix('/index')->group(function(){
 	//招商合作页面
 	Route::any("/index/cooperation","Index\CooperationController@index");
 	Route::any("/index/sampling","Index\CooperationController@sampling");
-	//订单中心
+//订单中心
 	//我的订单
 	Route::any("/index/homeIndex","Index\HomeIndexController@index");
 	//待付款
@@ -292,6 +343,23 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/homeOrderReceive","Index\HomeIndexController@homeOrderReceive");
 	//待评价
 	Route::any("/index/homeOrderEvaluate","Index\HomeIndexController@homeOrderEvaluate");
+//我的中心
+	//我的收藏
+	Route::any("/index/homePersonCollect","Index\HomeIndexController@homePersonCollect");
+	//我的足迹
+	Route::any("/index/homePersonFootmark","Index\HomeIndexController@homePersonFootmark");
+
+//物理消息----
+
+	//物理消息----
+//设置
+	//个人信息
+	Route::any("/index/homeSettingInfo","Index\CenterController@homeSettingInfo");
+	Route::any("/index/add","Index\CenterController@add");
+
+	
+
+
 	// 我的收藏
 	Route::any("index.home-person-collect","Index\HomeIndexController@homePersonCollect");
 	//物理消息----
@@ -312,6 +380,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/","Index\IndexController@index");
 
 	//商品详情页
+	Route::any("/index/item/{goods_id}","Index\ItemController@index");
 
 	Route::get("/index/item/{id}","Index\ItemController@index");
 	Route::post("/index/item/price","Index\ItemController@price");
@@ -325,18 +394,23 @@ Route::prefix('/index')->group(function(){
 	Route::get("/index/search","Index\SearchController@index");
 	Route::post("/index/search/clicks","Index\SearchController@clicks");
 
+
 	//收藏
 	Route::any("/index/collect","Index\SearchController@collect");
 
 
 //正品秒杀
+
+    Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
+
 	Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
 	
  //我的店铺
+ 	
 	Route::any("/index/shop","Index\ShopController@index");
 	
 //购物车页面
-Route::any("/index/cart","Index\CartController@index")->middleware('SessionLogin');
+Route::get("/index/cart","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
 
 //删除
