@@ -41,7 +41,7 @@
 										</div>
 									</li>
 									<li class="yui3-u-1-8"><span class="price" id="{{$v->goods_price}}">{{$v->goods_price}}</span><font color='red'>.00</font></li>
-									<li class="yui3-u-1-8" id="{{$v->car_id}}" ids="{{$v->goods_store}}">
+									<li class="yui3-u-1-8" id="{{$v->cary_id}}" ids="{{$v->goods_store}}">
 										<a href="javascript:void(0)" class="increment mins">-</a>
 										<input autocomplete="off" type="text" value="{{$v->car_num}}" minnum="1" class="itxt" />
 										<a href="javascript:void(0)" class="increment plus">+</a>
@@ -69,38 +69,34 @@
 					<a href="#none">清除下柜商品</a>
 				</div>
 				<div class="toolbar">
-
+					<div class="chosed">已选择<span>0</span>件商品</div>
 				</div>
 			</div>
-			{{--<div class="sumprice">--}}
-				{{--<span><em>总价（不含运费） ：</em><i class="summoney">¥16283.00</i></span>--}}
-				{{--<span><em>已节省：</em><i>-¥20.00</i></span>--}}
-			{{--</div>--}}
-			<div class="chosed">已选择<span>0</span>件商品</div>
+
 			<div class="sumbtn">
-				<a class="sum-btn" href="/index/order_info" target="_blank">结算</a>
+				<a class="sum-btn" id="orders" target="_blank">结算</a>
 			</div>
 			<div class="clearfix"></div>
-			{{--<div class="deled">--}}
-				{{--<span>已删除商品，您可以重新购买或加关注：</span>--}}
-				{{--<div class="cart-list del">--}}
-					{{--<ul class="goods-list yui3-g">--}}
-						{{--<li class="yui3-u-1-2">--}}
-							{{--<div class="good-item">--}}
-								{{--<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>--}}
-							{{--</div>--}}
-						{{--</li>--}}
-						{{--<li class="yui3-u-1-6"><span class="price">8848.00</span></li>--}}
-						{{--<li class="yui3-u-1-6">--}}
-							{{--<span class="number">1</span>--}}
-						{{--</li>--}}
-						{{--<li class="yui3-u-1-8">--}}
-							{{--<a href="#none">重新购买</a>--}}
-							{{--<a href="#none">移到我的关注</a>--}}
-						{{--</li>--}}
-					{{--</ul>--}}
-				{{--</div>--}}
-			{{--</div>--}}
+			<div class="deled">
+				<span>已删除商品，您可以重新购买或加关注：</span>
+				<div class="cart-list del">
+					<ul class="goods-list yui3-g">
+						<li class="yui3-u-1-2">
+							<div class="good-item">
+								<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6"><span class="price">8848.00</span></li>
+						<li class="yui3-u-1-6">
+							<span class="number">1</span>
+						</li>
+						<li class="yui3-u-1-8">
+							<a href="#none">重新购买</a>
+							<a href="#none">移到我的关注</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
 					<li class="active">
@@ -366,6 +362,9 @@
 
 
 			})
+
+
+
 			$(document).on("click",".sum-btn",function(){
 				var   box=  $(".box:checked");
 				if(box.length==0){
@@ -373,8 +372,8 @@
 					return false;
 				}
 				var str="";//上一个兄弟的子的下一个的子
-				// var ss=$(this).parents('div').attr("ids");
-				// alert(ss);
+//				 var ss=$(this).parents('div').attr("ids");
+//				 alert(ss);
 				// return false;
 				box.each(function(index){
 					//str+=$(".box:checked").attr("ids")+',';
@@ -392,7 +391,7 @@
 			function  ajax(car_id,car_num,goods_totall){
 				$.ajax({
 					url:"{{url('indexs/carts')}}",
-					data:{car_id:car_id,buy_number:buy_number,goods_totall:goods_totall},
+					data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},
 					type:"post",
 					success:function(res){
 						console.log(res);

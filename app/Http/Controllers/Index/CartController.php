@@ -12,10 +12,9 @@ use App\Model\CategoryModel;
 class CartController extends Controller
 {
     //购物车展示
-    public function index(Request $request){
+    public function index(Request $request,$id){
         #获取商品信息
         $goods_id=$request->goods_id;
-
         $goods_where=[
             ['goods_id','=',$goods_id],
             ['del_id','=',1]
@@ -37,7 +36,7 @@ class CartController extends Controller
             $v->car_price=$v->goods_price*$v->car_num;
         }
 
-        // dd($cart_data);
+//         dd($cart_data);
         $cate_pid = [
             ['pid','=',0]
         ];
