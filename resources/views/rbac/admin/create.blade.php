@@ -17,6 +17,7 @@
                          <td><input  class="form-control" id="admin_name" name="admin_name" placeholder="管理员名称" >
                          </td>
                      </tr>
+                     
                      <tr>
                          <td>管理员密码</td>
                          <td><input  class="form-control" id="admin_pwd" name="admin_pwd" placeholder="管理员密码" ></td>

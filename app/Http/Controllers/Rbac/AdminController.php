@@ -12,7 +12,6 @@ class AdminController extends Controller
 {
     // 管理员列表
     public function list(){
-
         //接受搜索的值
         $admin_name = request()->admin_name;
         // echo $admin_name;

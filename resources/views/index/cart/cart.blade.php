@@ -2,19 +2,7 @@
 @section("title",'购物车')
 @section('content')
 	<div class="cart py-container">
-		<!--logoArea-->
-		<div class="logoArea">
-			<div class="fl logo"><span class="title">购物车</span></div>
-			<div class="fr search">
-				<form class="sui-form form-inline">
-					<div class="input-append">
-						<input type="text" type="text" class="input-error input-xxlarge" placeholder="品优购自营" />
-						<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!--All goods-->
+		
 		<div class="allgoods">
 			<h4>全部商品<span>{{$count}}</span></h4>
 			<div class="cart-main">
@@ -28,8 +16,10 @@
 				</div>
 				<div class="cart-item-list">
 					<div class="cart-body">
-						@foreach($cart_data as $k=>$v)
+					
 							<div class="cart-list">
+							@foreach($cart_data as $k=>$v)
+							<!-- <template> -->
 								<ul class="goods-list yui3-g">
 									<li class="yui3-u-1-24">
 										<input type="checkbox" name=""  class="box" value="" ids="{{$v->car_id}}" />
@@ -46,14 +36,16 @@
 										<input autocomplete="off" type="text" value="{{$v->car_num}}" minnum="1" class="itxt" />
 										<a href="javascript:void(0)" class="increment plus">+</a>
 									</li>
-									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->goods_totall}}</span></li>
+									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->car_price}}</span></li>
 									<li class="yui3-u-1-8">
-										<a href="javascript:void[0]" id="id" goods_id="{{$v->goods_id}}">删除</a><br />
+										<a href="javascript:void[0]" id="id" class="del" goods_id="{{$v->goods_id}}">删除</a><br />
 										<a href="#none">移到我的关注</a>
 									</li>
 								</ul>
+							<!-- </template> -->
+							@endforeach
 							</div>
-						@endforeach
+							
 					</div>
 				</div>
 
@@ -64,13 +56,11 @@
 					<span>全选</span>
 				</div>
 				<div class="option">
-					<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>
+					<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
-				<div class="toolbar">
-					<div class="chosed">已选择<span>0</span>件商品</div>
-				</div>
+				
 			</div>
 
 			<div class="sumbtn">
@@ -79,23 +69,27 @@
 			<div class="clearfix"></div>
 			<div class="deled">
 				<span>已删除商品，您可以重新购买或加关注：</span>
+				
 				<div class="cart-list del">
+				@foreach($del_data as $v)
 					<ul class="goods-list yui3-g">
 						<li class="yui3-u-1-2">
 							<div class="good-item">
-								<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>
+								<div class="item-msg">{{$v->goods_name}}</div>
 							</div>
 						</li>
-						<li class="yui3-u-1-6"><span class="price">8848.00</span></li>
+						<li class="yui3-u-1-6"><span class="price">{{$v->goods_price}}</span></li>
 						<li class="yui3-u-1-6">
-							<span class="number">1</span>
+							<span class="number">{{$v->car_num}}</span>
 						</li>
 						<li class="yui3-u-1-8">
 							<a href="#none">重新购买</a>
 							<a href="#none">移到我的关注</a>
 						</li>
 					</ul>
+					@endforeach
 				</div>
+				
 			</div>
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
@@ -229,32 +223,16 @@
 	</div>
 	<!-- 底部栏位 -->
 	<script src="/js/jquery.js"></script>
-<script>
-	{{--删除--}}
-	 $(document).on("click","#id",function(){
-		var goods_id=$(this).attr('goods_id');
-		var _this = $(this);
-		if(confirm("你确认要删除吗")){
-			$.get("/cart/delete/"+goods_id,function(res){
-				if(res.code==0){
-					alert(res.msg);
-					window.location.href = '/index/cart';
-				}
-			},'json')
-		}
-	});
-</script>
-
 	<script>
 		{{--删除--}}
-         $(document).on("click","#tao",function(){
+         $(document).on("click",".del",function(){
 			var goods_id=$(this).attr('goods_id');
 			var _this = $(this);
 			if(confirm("你确认要删除吗")){
 				$.get("/cart/deletes/"+goods_id,function(res){
 					if(res.code==0){
 						alert(res.msg);
-						window.location.href = '/index/cart';
+						$('.del').parents('ul').hide();
 					}
 				},'json')
 			}
