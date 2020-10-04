@@ -22,7 +22,6 @@ class CartController extends Controller
         ];
         $goods_data=GoodsModel::where($goods_where)->first();
 //         dd($goods_data);
-
         #获取用户id
         $session=session('User_Info');
         $user_id=$session->user_id;
@@ -36,17 +35,19 @@ class CartController extends Controller
         foreach($cart_data as $v){
             $v->car_price=$v->goods_price*$v->car_num;
         }
-
-//         dd($cart_data);
         $cate_pid = [
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-
 //        查询购物车表数据的条数
         $count=CartModel::all()->count();
-//        dd($count);die;
-    	return view("index.cart.cart",['cart_data'=>$cart_data,'cate'=>$cate,'count'=>$count]);
+        #查询购物车已删除数据
+        $del_where=[
+            ['car_is_del','=',2],
+            ['user_id','=',$user_id]
+        ];
+        $del_data=CartModel::leftjoin('shop_goods','shop_cart.goods_id','=','shop_goods.goods_id')->where($del_where)->limit(3)->get();
+    	return view("index.cart.cart",['cart_data'=>$cart_data,'cate'=>$cate,'count'=>$count,'del_data'=>$del_data]);
     }
     /**
      * 添加购物车
@@ -100,7 +101,7 @@ class CartController extends Controller
     }
 
     public function delete($goods_id){
-        $res = CartModel::where('goods_id',$goods_id)->delete();
+        $res = CartModel::where('goods_id',$goods_id)->update(['car_is_del'=>2]);
         if($res){
             echo json_encode(['code'=>0,'msg'=>'删除成功']);
         }
