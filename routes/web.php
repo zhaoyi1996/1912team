@@ -410,7 +410,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/shop","Index\ShopController@index");
 	
 //购物车页面
-Route::get("/index/cart","Index\CartController@index")->middleware('SessionLogin');
+Route::get("/index/cart/{goods_id}","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
 
 //删除
