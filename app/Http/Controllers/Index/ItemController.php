@@ -26,7 +26,10 @@ class ItemController extends Controller
             'goods_id'=>$id
         ];
         $goods=GoodsModel::where($where)->first();
-        $ddd= explode("|",$goods->goods_imgs);
+        $ddd='';
+        if(!empty($goods)){
+            $ddd= explode("|",$goods->goods_imgs);
+        }
         #查询商品sku库存
         #先查询这件商品有多少种类，以及每个种类有多少个库存
         $attr_ids=[];

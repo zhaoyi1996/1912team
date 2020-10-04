@@ -116,8 +116,6 @@
 						<div class="yui3-g NavList">
 							<div class="yui3-u Left all-sort">
 								<h4>全部商品分类</h4>
-								
-						
 							</div>
 							<div class="yui3-u Center navArea">
 								<ul class="nav">
@@ -248,6 +246,7 @@
 				</div>
 				<div class="goods-list">
 					<ul class="yui3-g">
+					@if(isset($brand_goods))
 					@foreach($brand_goods as $v)
 						<li class="yui3-u-1-5" id="1">
 							<div class="list-wrap">
@@ -277,6 +276,9 @@
 							</div>
 						</li>
 						@endforeach
+						@else
+						<span>未搜索到商品</span>
+						@endif
 					</ul>
 					
 				</div>
@@ -319,18 +321,19 @@
 				<h4 class="title">热卖商品</h4>
 				<div class="hot-list">
 					<ul class="yui3-g">
+					@foreach($hot_data as $v)
 						<li class="yui3-u-1-4">
 							<div class="list-wrap">
 								<div class="p-img">
-									<img src="/indexshop/img/like_01.png" />
+									<img src="{{env('APP_URL')}}{{$v->goods_img}}" />
 								</div>
 								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
+									<em>{{$v->goods_name}}</em>
 								</div>
 								<div class="price">
 									<strong>
 											<em>¥</em>
-											<i>4088.00</i>
+											<i>{{$v->goods_price}}</i>
 										</strong>
 								</div>
 								<div class="commit">
@@ -338,63 +341,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="yui3-u-1-4">
-							<div class="list-wrap">
-								<div class="p-img">
-									<img src="/indexshop/img/like_03.png" />
-								</div>
-								<div class="attr">
-									<em>金属A面，360°翻转，APP下单省300！</em>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i>4088.00</i>
-										</strong>
-								</div>
-								<div class="commit">
-									<i class="command">已有700人评价</i>
-								</div>
-							</div>
-						</li>
-						<li class="yui3-u-1-4">
-							<div class="list-wrap">
-								<div class="p-img">
-									<img src="/indexshop/img/like_04.png" />
-								</div>
-								<div class="attr">
-									<em>256SSD商务大咖，完爆职场，APP下单立减200</em>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i>4068.00</i>
-										</strong>
-								</div>
-								<div class="commit">
-									<i class="command">已有20人评价</i>
-								</div>
-							</div>
-						</li>
-						<li class="yui3-u-1-4">
-							<div class="list-wrap">
-								<div class="p-img">
-									<img src="/indexshop/img/like_02.png" />
-								</div>
-								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i>4088.00</i>
-										</strong>
-								</div>
-								<div class="commit">
-									<i class="command">已有700人评价</i>
-								</div>
-							</div>
-						</li>
+						@endforeach
 					</ul>
 				</div>
 			</div>
