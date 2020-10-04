@@ -257,6 +257,9 @@ Route::prefix('/index')->group(function(){
 
 	//秒杀
 	Route::get("/seckill","Index\SeckillController@index");
+	Route::get("/seckill/seckilldo/{id}","Index\SeckillController@seckilldo");
+	
+	
 	
 });
 
