@@ -3,6 +3,7 @@
 @section("title",'首页')
 @section('content')
 
+
 	<!--列表-->
 	<div class="sort">
 		<div class="py-container">

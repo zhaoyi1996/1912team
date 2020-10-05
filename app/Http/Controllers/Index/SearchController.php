@@ -85,7 +85,7 @@ class SearchController extends Controller
       $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // 调用分类
         $res = $this->gatCate3($cateAll);
-
+            
 
         
     	return view("index.search.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img,'brand_goods'=>$brand_goods]);
