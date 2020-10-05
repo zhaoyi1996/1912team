@@ -45,6 +45,7 @@ class AliPayController extends Controller
 
     public function test()
     {
+//        dd(111);
         Factory::setOptions($this->getOptions());
 
         try {
