@@ -82,7 +82,7 @@ class OrderController extends Controller
             $less_price=150;
         }else if($price>=8000&&$price<10000){
             $less_price=200;
-        }else if($less_price>10000){
+        }else if($price>10000){
             $less_price=300;
         }else{
             $less_price=0;

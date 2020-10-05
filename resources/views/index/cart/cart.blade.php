@@ -21,7 +21,7 @@
 							@foreach($cart_data as $k=>$v)
 
 							<!-- <template> -->
-								<ul class="goods-list yui3-g">
+								<ul class="goods-list yui3-g" goods_id="{{$v->goods_id}}" car_id="{{$v->car_id}}">
 									<li class="yui3-u-1-24">
 										<input type="checkbox" name=""  class="box" value="" ids="{{$v->car_id}}" />
 									</li>
@@ -354,26 +354,24 @@
 					alert("请至少选择一样商品进行结算");
 					return false;
 				}
-				var str="";//上一个兄弟的子的下一个的子
-//				 var ss=$(this).parents('div').attr("ids");
-//				 alert(ss);
-				// return false;
+				//购物车id
+				var car_id='';
+				//获取商品id
+				var str="";
 				box.each(function(index){
 					//str+=$(".box:checked").attr("ids")+',';
-					str+=$(this).parents('.cart-tool').prev().find(".cart-item-list").find("div").find("div").find("ul").find("li").attr("ids")+',';
-
-				})
+					str+=$(".box:checked").parents('ul').attr('goods_id')+',';
+					car_id=$(".box:checked").parents('ul').attr('car_id')+',';
+				});
 				var goods_id=str.substr(0,str.length-1);
-				console.log(goods_id);
-
-
+				car_id=car_id.substr(0,car_id.length-1);
 			})
 
 
 
 			function  ajax(car_id,car_num,goods_totall){
 				$.ajax({
-					url:"{{url('/indexs/carts')}}",
+					url:"{{url('/index/ali')}}",
 					data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},
 					type:"post",
 					success:function(res){
