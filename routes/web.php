@@ -294,7 +294,7 @@ Route::prefix('/index')->group(function(){
 	//待评价
 	Route::any("/index/homeOrderEvaluate","Index\HomeIndexController@homeOrderEvaluate");
 	//物理消息----
-//设置
+	//设置
 	//个人信息
 	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
 	//安全管理
