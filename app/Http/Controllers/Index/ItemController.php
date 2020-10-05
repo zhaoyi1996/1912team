@@ -21,7 +21,8 @@ class ItemController extends Controller
         $cate = CategoryModel::where($cate_pid)->get();
 //         dd($id);
      //  接收商品id
-//         $goods_id=$request->goods_id;
+        $goods_id=$request->goods_id;
+        // dump($goods_id);
         $where=[
             'goods_id'=>$id
         ];
