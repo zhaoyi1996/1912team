@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 //测试
 Route::get("/test",function(){
 	return view("admins.home.index");
@@ -418,3 +416,9 @@ Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
 Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 
 Route::get('/indexs/carts','Index\CartController@carts');
+
+
+// Route::get('/', function () {
+// 	phpinfo();
+//     // return view('welcome');
+// });
