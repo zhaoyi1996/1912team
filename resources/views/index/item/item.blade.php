@@ -33,9 +33,11 @@
 							<!--左右按钮-->
 							<div class="items">
 								<ul>
+								@if(!empty($goods_imgs))
 									@foreach($goods_imgs as $vv)
 									<li><img src="{{env('UPLOADS_URL')}}{{$vv}}" bimg="{{env('UPLOADS_URL')}}{{$vv}}" onmousemove="preview(this)" /></li>
 										@endforeach
+								@endif
 								</ul>
 							</div>
 							<a class="next">&gt;</a>

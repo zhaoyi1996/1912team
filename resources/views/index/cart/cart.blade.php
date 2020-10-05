@@ -16,8 +16,9 @@
 				</div>
 				<div class="cart-item-list">
 					<div class="cart-body">
-						@foreach($cart_data as $k=>$v)
 							<div class="cart-list">
+							@if(!empty($cart_data))
+							@foreach($cart_data as $k=>$v)
 
 							<!-- <template> -->
 								<ul class="goods-list yui3-g">
@@ -43,9 +44,10 @@
 									</li>
 								</ul>
 							<!-- </template> -->
+							@endforeach
+							@endif
 
 							</div>
-						@endforeach
 					</div>
 				</div>
 

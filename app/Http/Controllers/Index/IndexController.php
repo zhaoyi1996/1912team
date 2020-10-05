@@ -82,7 +82,7 @@ class IndexController extends Controller
         $goods=GoodsModel::all();
 //        dd($goods);die;
 
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
+    	return view("index.index.index",compact('ladver_data','recom_data','cate','res','brand_data','slide','res2','tao_2ji','goods'));
  }
 
     // 导航顶级分类
