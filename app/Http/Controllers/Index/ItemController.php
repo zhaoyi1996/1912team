@@ -88,14 +88,6 @@ class ItemController extends Controller
 
 
 
-
-
-
-
-
-
-
-
     //接收详情页的sku
     public function ajaxitem(){
         $res = request()->all();

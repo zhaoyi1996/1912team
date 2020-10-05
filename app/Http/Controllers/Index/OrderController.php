@@ -272,7 +272,7 @@ class OrderController extends Controller
                 session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
                 return ['code'=>1];
             }else{
-                echo "提交失败"
+                echo "提交失败";
                  $wheress = [
                 'goods_id'=>$v->goods_id,
                 'user_id'=>$user_id,
@@ -354,4 +354,5 @@ class OrderController extends Controller
         }
 
     
+}
 }
