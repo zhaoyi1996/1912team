@@ -199,7 +199,7 @@ Route::prefix('/admin')->group(function(){
 });
 
 
-Route::prefix('/admins')->group(function(){
+Route::prefix('/')->group(function(){
 	//商家后台管理首页
 	Route::get("/index","Admins\IndexController@index");
 	//基本管理  修改资料
