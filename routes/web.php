@@ -299,7 +299,7 @@ Route::prefix('/index')->group(function(){
 
 
 	//订单展示
-	Route::any("/orderinfo/{goods_id}","Index\OrderController@index")->middleware('SessionLogin');
+	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
 
 
