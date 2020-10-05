@@ -264,6 +264,7 @@ $(function(){
                                     </div> -->
                                     <div class="control-group bbb">
                                         <label for="inputJob" class="control-label">职业：</label>
+
                                         <div class="controls">
                                         	<span class="sui-dropdown dropdown-bordered select">
                                         		<span class="dropdown-inner">
@@ -277,7 +278,6 @@ $(function(){
                                             </span>
                                         </div>
                                     </div>
-
                                      </div>
                                         <div class="control-group">
                                         <label for="inputName" class="control-label">个人介绍：</label>

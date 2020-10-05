@@ -91,8 +91,8 @@ class IndexController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-
-        return view('index.layouts.index',['cate'=>$cate]);
+        $goods=GoodsModel::all();
+        return view('index.layouts.index',['cate'=>$cate,'goods'=>$goods]);
     }
 
     // 无限极分类
