@@ -63,7 +63,9 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
-									<span class="bold">[{{$v->an_name}}]</span><p style="color: red">{{$v->an_desc}}</p>
+										<li>
+									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
+										</li>
 									@endforeach
 								</ul>
 						</div>
@@ -100,6 +102,22 @@
 						<li class="yui3-u-1-4 life-item notab-item">
 							<i class="list-item list-item-8"></i>
 							<span class="service-intro">火车票</span>
+						</li>
+						<li class="yui3-u-1-4 life-item  notab-item">
+							<i class="list-item list-item-9"></i>
+							<span class="service-intro">众筹</span>
+						</li>
+						<li class="yui3-u-1-4 life-item notab-item">
+							<i class="list-item list-item-10"></i>
+							<span class="service-intro">理财</span>
+						</li>
+						<li class="yui3-u-1-4 life-item notab-item">
+							<i class="list-item list-item-11"></i>
+							<span class="service-intro">礼品卡</span>
+						</li>
+						<li class="yui3-u-1-4 life-item notab-item">
+							<i class="list-item list-item-12"></i>
+							<span class="service-intro">白条</span>
 						</li>
 					</ul>
 					<div class="life-item-content">

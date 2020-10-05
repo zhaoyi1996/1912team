@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShopPowerModel extends Model
 {
-    //// // 指定表明 权限表
+   // 指定表明 权限表
     protected $table="shop_power";
     // 指定主键id
     protected $primaryKey="pow_id";
