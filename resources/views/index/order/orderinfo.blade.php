@@ -252,7 +252,7 @@
 			<div class="fc-receiverInfo">寄送至:{{$defmo->province}} {{$defmo->city}} {{$defmo->area}} {{$defmo->minute}} 收货人 :{{$defmo->user_name}} {{$defmo->user_tel}}</div>
 		</div>
 		<div class="submit">
-			<a class="sui-btn btn-danger btn-xlarge" href="pay.html">提交订单</a>
+			<button class="sui-btn btn-danger tijiaobutton  btn-xlarge" car_id="{{$car_id}}">提交订单</button>
 		</div>
 	</div>
 	<!-- 底部栏位 -->
@@ -400,6 +400,22 @@
 	// 	var fef_id = $(this).attr("fef_id")
 	// 	alert(fef_id)
 	// })
+	$(".tijiaobutton").click(function(){
+		//点击提交订单按钮
+		var car_id = $(this).attr('car_id');
+		
+		// $.get("/orderinfo/tijiao",{car_id:car_id},function(){
+		// 	alert(res)
+		// });
+		$.ajax({
+			url:"{{url('index/orderinfo/tijiao')}}",
+			type:"post",
+			data:{car_id:car_id},
+			success:function(res){
+				alert(res)
+			}
+		})
+	})
 	$(".zbc").mousedown(function(){
 		var fef_id = $(this).attr("fef_id")
 		$.ajax({

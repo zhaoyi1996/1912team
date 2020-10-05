@@ -259,7 +259,7 @@ Route::prefix('/index')->group(function(){
 	Route::get("/seckill","Index\SeckillController@index");
 	Route::get("/seckill/seckilldo/{id}","Index\SeckillController@seckilldo");
 	
-	
+	Route::post("/orderinfo/tijiao","Index\OrderController@tijiao");
 	
 });
 

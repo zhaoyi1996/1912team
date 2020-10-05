@@ -167,7 +167,7 @@ $(function(){
 			<img src="/indexshop/img/_/banner.png" class="img-responsive" alt="">
 		</div>
 		<!--秒杀时间-->
-		<div class="sectime">
+		<!-- <div class="sectime">
 			<div class="item-time active">
 				<div class="time-clock">12:00</div>
 				<div class="time-state-on">
@@ -199,7 +199,7 @@ $(function(){
 					<span>即将开始</span>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!--商品列表-->
 		<div class="goods-list">
 			<ul class="seckill" id="seckill">
