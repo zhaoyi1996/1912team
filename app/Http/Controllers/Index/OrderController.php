@@ -274,10 +274,9 @@ class OrderController extends Controller
             $res = $order->save();
                 
             $id =$order->order_id;
-            // dd($id);
-
             if($res){
-                return redirect("/index/ali/".$id);
+                session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
+                return ['code'=>1];
             }else{
                 echo "提交失败";
             }

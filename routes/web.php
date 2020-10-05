@@ -299,7 +299,7 @@ Route::prefix('/index')->group(function(){
 
 
 	//订单展示
-	Route::any("/orderinfo/{goods_id}","Index\OrderController@index")->middleware('SessionLogin');
+	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
 
 
@@ -421,7 +421,7 @@ Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 Route::post('/indexs/carts','Index\CartController@carts');
 
 
-Route::get('/index/ali','Index\AliPayController@test');//支付宝支付测试
+Route::get('/index/ali','Index\AliPayController@ali');//支付宝支付测试
 
 
 Route::get('/index/alipay','Index\IndexController@getAliPayjieguo');//支付宝支付测试
