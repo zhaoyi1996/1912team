@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
-
-
+use AopClient;
+use AlipayOpenPublicTemplateMessageIndustryModifyRequest;
 use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\BrandModel;
@@ -14,6 +14,7 @@ use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
 use App\Model\AnnouModel;
 use App\Model\ShopSlideModel;
+
 class IndexController extends Controller
 {
 
@@ -79,7 +80,7 @@ class IndexController extends Controller
         $goods=GoodsModel::all();
 //        dd($goods);die;
 
-    	return view("index.index.index",['ladver_data'=>$ladver_data,'recom_data'=>$recom_data,'cate'=>$cate,'res'=>$res,'brand_data'=>$brand_data,'slide'=>$slide,'res2'=>$res2,'tao_2ji'=>$tao_2ji,'goods'=>$goods]);
+    	return view("index.index.index",compact('ladver_data','recom_data','cate','res','brand_data','slide','res2','tao_2ji','goods'));
  }
 
     // 导航顶级分类
@@ -88,8 +89,8 @@ class IndexController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-
-        return view('index.layouts.index',['cate'=>$cate]);
+        $goods=GoodsModel::all();
+        return view('index.layouts.index',['cate'=>$cate,'goods'=>$goods]);
     }
 
     // 无限极分类
@@ -128,4 +129,21 @@ class IndexController extends Controller
         return $tao_info;
     }
 
+
+
+
+    /**
+     * 支付宝支付测试
+     */
+    public function getAliPay(){
+        $data='';
+        dd($data);
+    }
+    /**
+     * 接受支付异步
+     */
+    public function getAliPayjieguo(){
+        $data=request()->post();
+        dd($data);
+    }
 }

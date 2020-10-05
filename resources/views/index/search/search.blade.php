@@ -116,7 +116,7 @@
 						<div class="yui3-g NavList">
 							<div class="yui3-u Left all-sort">
 								<h4>全部商品分类</h4>
-								
+							
 						
 							</div>
 							<div class="yui3-u Center navArea">
@@ -132,11 +132,9 @@
 							</div>
 							<div class="yui3-u Right"></div>
 						</div>
-					</div>
-						<div class="yui3-u Left all-sort-list">
+					<!-- 无限极分类--递归 -->
 					
-						
-
+	
 						
 					</div>
 				</div>
@@ -145,7 +143,12 @@
 
 	
 	<!--list-content-->
+	
+	
+	
+	
 	<div class="main">
+	
 		<div class="py-container">
 			<!--bread-->
 			<div class="bread">
@@ -202,15 +205,15 @@
 					<div class="fl key">价格</div>
 					@foreach($price_qujian as $vv)
 					<div class="fl value">
-					
+					<form action="" method="get">
 						<ul class="type-list">
-					    
+						<input type="hidden" name="price" value="{{$vv}}">
 							<li>
-								<a>{{$vv}}</a>
+								<button class="price_search" price="{{$vv}}">{{$vv}}</button>
 							</li>
 
 						</ul>
-					
+					</form>
 					</div>
 					@endforeach
 					<div class="fl ext"></div>
@@ -248,34 +251,39 @@
 				</div>
 				<div class="goods-list">
 					<ul class="yui3-g">
+					@if(isset($brand_goods))
+					@foreach($brand_goods as $v)
 						<li class="yui3-u-1-5" id="1">
 							<div class="list-wrap">
 								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="/indexshop/img/_/mobile01.png" /></a>
+									<a href="item.html" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}" /></a>
 								</div>
 								<div class="price">
 									<strong>
 											<em>¥</em>
-											<i></i>
+											<i>{{$v->goods_price}}</i>
 										</strong>
 								</div>
 								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
+									<em>{{$v->goods_title}}</em>
 								</div>
 								<div class="cu">
-									<em><span>促</span>满一件可参加超值换购</em>
+									<!-- <em><span>促</span>满一件可参加超值换购</em> -->
 								</div>
 								<div class="commit">
 									<i class="command">已有2000人评价</i>
 								</div>
 								<div class="operate">
-									<a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+									<button  target="_blank" class="sui-btn btn-bordered btn-danger addCart" goods_id="{{$v->goods_id}}" >加入购物车</button>
 									<a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-									<a href="javascript:void(0);" class="sui-btn btn-bordered" id="collect">收藏</a>
+									<button class="sui-btn btn-bordered" id="collect">收藏</button>
 								</div>
 							</div>
 						</li>
-						
+						@endforeach
+						@else
+						<span>未搜索到商品</span>
+						@endif
 					</ul>
 					
 				</div>
@@ -318,18 +326,19 @@
 				<h4 class="title">热卖商品</h4>
 				<div class="hot-list">
 					<ul class="yui3-g">
+					@foreach($hot_data as $v)
 						<li class="yui3-u-1-4">
 							<div class="list-wrap">
 								<div class="p-img">
-									<img src="/indexshop/img/like_01.png" />
+									<img src="{{env('APP_URL')}}{{$v->goods_img}}" />
 								</div>
 								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
+									<em>{{$v->goods_name}}</em>
 								</div>
 								<div class="price">
 									<strong>
 											<em>¥</em>
-											<i>4088.00</i>
+											<i>{{$v->goods_price}}</i>
 										</strong>
 								</div>
 								<div class="commit">
@@ -337,63 +346,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="yui3-u-1-4">
-							<div class="list-wrap">
-								<div class="p-img">
-									<img src="/indexshop/img/like_03.png" />
-								</div>
-								<div class="attr">
-									<em>金属A面，360°翻转，APP下单省300！</em>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i>4088.00</i>
-										</strong>
-								</div>
-								<div class="commit">
-									<i class="command">已有700人评价</i>
-								</div>
-							</div>
-						</li>
-						<li class="yui3-u-1-4">
-							<div class="list-wrap">
-								<div class="p-img">
-									<img src="/indexshop/img/like_04.png" />
-								</div>
-								<div class="attr">
-									<em>256SSD商务大咖，完爆职场，APP下单立减200</em>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i>4068.00</i>
-										</strong>
-								</div>
-								<div class="commit">
-									<i class="command">已有20人评价</i>
-								</div>
-							</div>
-						</li>
-						<li class="yui3-u-1-4">
-							<div class="list-wrap">
-								<div class="p-img">
-									<img src="/indexshop/img/like_02.png" />
-								</div>
-								<div class="attr">
-									<em>Apple苹果iPhone 6s (A1699)</em>
-								</div>
-								<div class="price">
-									<strong>
-											<em>¥</em>
-											<i>4088.00</i>
-										</strong>
-								</div>
-								<div class="commit">
-									<i class="command">已有700人评价</i>
-								</div>
-							</div>
-						</li>
+						@endforeach
 					</ul>
 				</div>
 			</div>
@@ -695,35 +648,35 @@
 	</body>
 
 </html>
-<!-- <script>
-$(".brandbutton").click(function(){
-		var brand_id = $(this).attr("brand_id")
+<script>
+// 加入购物车
+	$(document).on('click','.addCart',function(){
+		//获取商品的id
+		let goods_id=$(this).attr('goods_id');
+		let car_num=1;
 		$.ajax({
+			url:'/index/cartAdd',
 			type:'post',
-			url:"{{url('/index/search/clicks')}}",
-			dataType: "json",
-			data:{brand_id:brand_id},
+			data:{goods_id:goods_id,car_num:car_num},
 			success:function(res){
-				console.log(res)
+				alert(res.msg);
 			}
-		})
-	})
-	$(document).on("click","#collect",function(){
-		//获取当前祖先级li标签里的自定义属性id
-		var goods_id=$(this).parents("li").attr("id");
+		});
 		// console.log(goods_id);
-		//ajax 跳转地址 数据类型 数据值.接值方式
-		$.ajax({
-			url:"{{url('/index/collect')}}",
-			data:{goods_id:goods_id},
-			type:"post",
-			success:function(res){
-				console.log(res);
-			}
-		})
+	});
+	// //价格区间查询
+	// $(document).on('click','.price_search',function(){
+	// 	//获取点击的价格区间
+	// 	let price = $(this).attr('price');
+	// 	$.ajax({
+	// 		url:'/index/search/prices',
+	// 		type:'post',
+	// 		data:{price:price},
+	// 		success:function(res){
+	// 			console.log(res);
+	// 		}
+	// 	});
+	// });
 
-	})
-	
 
-
-</script> -->
+</script>

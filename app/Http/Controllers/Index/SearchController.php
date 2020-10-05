@@ -7,21 +7,58 @@ use Illuminate\Http\Request;
 use App\Model\ShopCollectModel;
 use App\Model\BrandModel;
 use App\Model\GoodsModel;
-use App\Model\CategoryModel;
-use Illuminate\Support\Facades\Redis;
+use App\Model\CategoryModel;use Illuminate\Support\Facades\Redis;
 
 
 class SearchController extends Controller
 {
     //产品列表页
     public function index(Request $request){
+        //商品条件搜索查询展示
         $brand_id = $request->brand_id;
+        $cate_id=$request->cate_id;
+        $price=$request->price;
+        $prices=[];
+        $whereBetween=[];
         $where=[];
+        $brand_goods=[];
         if(!empty($brand_id)){
             $where[]=['brand_id','=',$brand_id];
         }
-        // 根据商品查询品牌表，
-        $brand_goods = GoodsModel::where($where)->get();
+        if(!empty($price)){
+            if(strstr($price,'及以上')){
+                $price=str_replace('及以上','',$price);
+                $where[]=['goods_price','>=',$price];
+                $brand_goods = GoodsModel::where($where)->get();
+            }else{
+                $price=str_replace(',','',$price);
+                $price=explode('-',$price);
+                foreach($price as $k=>$v){
+                    $prices[$k]=intval($v);
+                }
+                $brand_goods = GoodsModel::where($where)->whereBetween('goods_price',[$prices[0],$prices[1]])->get();
+            }
+        }else{
+            $brand_goods = GoodsModel::where($where)->get();
+        }
+        
+        if(!empty($cate_id)){
+            //根据分类id查询数据
+            $cate_where=[['cate_id','=',$cate_id],['is_del','=',1]];
+            $cate_info=CategoryModel::where($cate_where)->first();
+            if(!empty($cate_info)){
+                $cate_ids=CategoryModel::select('cate_id')->where('pid',$cate_info->cate_id)->get()->toArray();
+                if(!empty($cate_ids)){
+                    foreach($cate_ids as $k=>$v){
+                        foreach($v as $vv){
+                            $ids[$k]=$vv;
+                            $ids[$k+1]=$cate_info->cate_id;
+                        }
+                    }
+                    $brand_goods=GoodsModel::whereIn('cate_id',$ids)->get();
+                }            
+            }
+        }
         //根据(商品)表来查询品牌表(brand_img,),分类表(goods_price,pid)
         $GoodsCate =  GoodsModel::select('is_hot','goods_id','shop_brand.brand_id','brand_img','pid','goods_price')
                     ->leftjoin('shop_category','shop_goods.cate_id','=','shop_category.cate_id')
@@ -63,14 +100,16 @@ class SearchController extends Controller
 
        $goods_hot = $GoodsCateOne['is_hot'];
         //dd($goods_hot);
-      // 调用无限极分类
-      $cateAll = CategoryModel::get()->Toarray();//转化为数组
+        // 调用无限极分类
+        $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // 调用分类
         $res = $this->gatCate3($cateAll);
-
+                    #查询热卖商品    目前是做简单一点的（将所有商品数据中销量最高的展示出来）10.3
+        $hot_data=GoodsModel::orderBy('shop_sales','desc')->limit(4)->get();
+        
 
         
-    	return view("index.search.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img,'brand'=>$brand]);
+    	return view("index.search.search",['GoodsCate'=>$GoodsCate,'res'=>$res,'price_qujian'=>$price_qujian,'cate'=>$cate,'goods_hot'=>$goods_hot,'array_img'=>$array_img,'brand_goods'=>$brand_goods,'hot_data'=>$hot_data]);
 
     }
 
@@ -172,6 +211,12 @@ class SearchController extends Controller
         }
         return $info;
     }
+
+
+
+
+
+   
 
 
 }

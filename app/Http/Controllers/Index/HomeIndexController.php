@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Brand;
-
+use App\Model\CenterModel;
 class HomeIndexController extends Controller
 {
     //我的订单
     public function index(Request $request){
+        
     	return view("index.home-index");
     }
     //待付款
@@ -29,17 +30,19 @@ class HomeIndexController extends Controller
     	return view("index.home-order-evaluate");
     }
     //我的收藏
-    public function homePersonCollect(){
+    public function homePerson(){
     	return view("index.home-person-collect");
     }
     //我的足迹
      public function homePersonFootmark(){
     	return view("index.home-person-footmark");
     }
-    //个人信息
-    public function homeSettingInfo(){
-    	return view("index.home-setting-info");
-    }
+     //个人信息
+     public function homeSettingInfo(){
+//         $center=CenterModel::first();
+//         dd($center);
+     	return view("index.home-setting-info");
+     }
     //地址信息
     public function homeSettingAddress(){
     	return view("index.home-setting-address");

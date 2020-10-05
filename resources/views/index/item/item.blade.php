@@ -33,9 +33,11 @@
 							<!--左右按钮-->
 							<div class="items">
 								<ul>
+								@if(!empty($goods_imgs))
 									@foreach($goods_imgs as $vv)
 									<li><img src="{{env('UPLOADS_URL')}}{{$vv}}" bimg="{{env('UPLOADS_URL')}}{{$vv}}" onmousemove="preview(this)" /></li>
 										@endforeach
+								@endif
 								</ul>
 							</div>
 							<a class="next">&gt;</a>
@@ -135,7 +137,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="{{url('/index/cart')}}"  class="sui-btn  btn-danger addshopcar" goods_id={{$goods->goods_id}} id="cartadd">加入购物车</a>
+										<a href="{{url('/index/cart/'.$goods['goods_id'])}}"  class="sui-btn  btn-danger addshopcar"  id="cartadd">加入购物车</a>
 									</li>
 								</ul>
 							</div>

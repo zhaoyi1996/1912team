@@ -2,19 +2,7 @@
 @section("title",'购物车')
 @section('content')
 	<div class="cart py-container">
-		<!--logoArea-->
-		<div class="logoArea">
-			<div class="fl logo"><span class="title">购物车</span></div>
-			<div class="fr search">
-				<form class="sui-form form-inline">
-					<div class="input-append">
-						<input type="text" type="text" class="input-error input-xxlarge" placeholder="品优购自营" />
-						<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!--All goods-->
+		
 		<div class="allgoods">
 			<h4>全部商品<span>{{$count}}</span></h4>
 			<div class="cart-main">
@@ -28,9 +16,12 @@
 				</div>
 				<div class="cart-item-list">
 					<div class="cart-body">
-						@foreach($cart_data as $k=>$v)
 							<div class="cart-list">
-								<ul class="goods-list yui3-g">
+							@if(!empty($cart_data))
+							@foreach($cart_data as $k=>$v)
+
+							<!-- <template> -->
+								<ul class="goods-list yui3-g" goods_id="{{$v->goods_id}}" car_id="{{$v->car_id}}">
 									<li class="yui3-u-1-24">
 										<input type="checkbox" name=""  class="box" value="" ids="{{$v->car_id}}" />
 									</li>
@@ -41,19 +32,22 @@
 										</div>
 									</li>
 									<li class="yui3-u-1-8"><span class="price" id="{{$v->goods_price}}">{{$v->goods_price}}</span><font color='red'>.00</font></li>
-									<li class="yui3-u-1-8" id="{{$v->car_id}}" ids="{{$v->goods_store}}">
+									<li class="yui3-u-1-8" id="{{$v->cary_id}}" ids="{{$v->goods_store}}">
 										<a href="javascript:void(0)" class="increment mins">-</a>
 										<input autocomplete="off" type="text" value="{{$v->car_num}}" minnum="1" class="itxt" />
 										<a href="javascript:void(0)" class="increment plus">+</a>
 									</li>
-									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->goods_totall}}</span></li>
+									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->car_price}}</span></li>
 									<li class="yui3-u-1-8">
-										<a href="javascript:void[0]" id="id" goods_id="{{$v->goods_id}}">删除</a><br />
+										<a href="javascript:void[0]" id="id" class="del" goods_id="{{$v->goods_id}}">删除</a><br />
 										<a href="#none">移到我的关注</a>
 									</li>
 								</ul>
+							<!-- </template> -->
+							@endforeach
+							@endif
+
 							</div>
-						@endforeach
 					</div>
 				</div>
 
@@ -64,43 +58,44 @@
 					<span>全选</span>
 				</div>
 				<div class="option">
-					<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>
+					{{--<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
+
+					{{--<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
+
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
-				<div class="toolbar">
-
-				</div>
+				
 			</div>
-			{{--<div class="sumprice">--}}
-				{{--<span><em>总价（不含运费） ：</em><i class="summoney">¥16283.00</i></span>--}}
-				{{--<span><em>已节省：</em><i>-¥20.00</i></span>--}}
-			{{--</div>--}}
-			<div class="chosed">已选择<span>0</span>件商品</div>
+
 			<div class="sumbtn">
-				<a class="sum-btn" href="/index/order_info" target="_blank">结算</a>
+				<a class="sum-btn" id="orders" target="_blank">结算</a>
 			</div>
 			<div class="clearfix"></div>
-			{{--<div class="deled">--}}
-				{{--<span>已删除商品，您可以重新购买或加关注：</span>--}}
-				{{--<div class="cart-list del">--}}
-					{{--<ul class="goods-list yui3-g">--}}
-						{{--<li class="yui3-u-1-2">--}}
-							{{--<div class="good-item">--}}
-								{{--<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>--}}
-							{{--</div>--}}
-						{{--</li>--}}
-						{{--<li class="yui3-u-1-6"><span class="price">8848.00</span></li>--}}
-						{{--<li class="yui3-u-1-6">--}}
-							{{--<span class="number">1</span>--}}
-						{{--</li>--}}
-						{{--<li class="yui3-u-1-8">--}}
-							{{--<a href="#none">重新购买</a>--}}
-							{{--<a href="#none">移到我的关注</a>--}}
-						{{--</li>--}}
-					{{--</ul>--}}
-				{{--</div>--}}
-			{{--</div>--}}
+			<div class="deled">
+				<span>已删除商品，您可以重新购买或加关注：</span>
+				
+				<div class="cart-list del">
+				@foreach($del_data as $v)
+					<ul class="goods-list yui3-g">
+						<li class="yui3-u-1-2">
+							<div class="good-item">
+								<div class="item-msg">{{$v->goods_name}}</div>
+							</div>
+						</li>
+						<li class="yui3-u-1-6"><span class="price">{{$v->goods_price}}</span></li>
+						<li class="yui3-u-1-6">
+							<span class="number">{{$v->car_num}}</span>
+						</li>
+						<li class="yui3-u-1-8">
+							<a href="#none">重新购买</a>
+							<a href="#none">移到我的关注</a>
+						</li>
+					</ul>
+					@endforeach
+				</div>
+				
+			</div>
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
 					<li class="active">
@@ -233,32 +228,16 @@
 	</div>
 	<!-- 底部栏位 -->
 	<script src="/js/jquery.js"></script>
-<script>
-	{{--删除--}}
-	 $(document).on("click","#id",function(){
-		var goods_id=$(this).attr('goods_id');
-		var _this = $(this);
-		if(confirm("你确认要删除吗")){
-			$.get("/cart/delete/"+goods_id,function(res){
-				if(res.code==0){
-					alert(res.msg);
-					window.location.href = '/index/cart';
-				}
-			},'json')
-		}
-	});
-</script>
-
 	<script>
 		{{--删除--}}
-         $(document).on("click","#tao",function(){
+         $(document).on("click",".del",function(){
 			var goods_id=$(this).attr('goods_id');
 			var _this = $(this);
 			if(confirm("你确认要删除吗")){
 				$.get("/cart/deletes/"+goods_id,function(res){
 					if(res.code==0){
 						alert(res.msg);
-						window.location.href = '/index/cart';
+						$('.del').parents('ul').hide();
 					}
 				},'json')
 			}
@@ -295,7 +274,7 @@
 				var _this=$(this);
 				var wenben=parseInt(_this.prev().val());//文本框的值
 				var goods_price=parseInt(_this.parent().prev().find("span").prop("id"));//单价
-				var cary_id=_this.parent().prop("id");
+				var car_id=_this.parent().prop("id");
 				var goods_store=_this.parent().attr("ids");
 				if((wenben+1)>goods_store)
 				{
@@ -366,36 +345,37 @@
 
 
 			})
-			$(document).on("click",".sum-btn",function(){
+
+
+
+			$(document).on("click","#orders",function(){
 				var   box=  $(".box:checked");
 				if(box.length==0){
 					alert("请至少选择一样商品进行结算");
 					return false;
 				}
-				var str="";//上一个兄弟的子的下一个的子
-				// var ss=$(this).parents('div').attr("ids");
-				// alert(ss);
-				// return false;
+				//购物车id
+				var car_id='';
+				//获取商品id
+				var str="";
 				box.each(function(index){
 					//str+=$(".box:checked").attr("ids")+',';
-					str+=$(this).parents('.cart-tool').prev().find(".cart-item-list").find("div").find("div").find("ul").find("li").attr("ids")+',';
-
-				})
+					str+=$(".box:checked").parents('ul').attr('goods_id')+',';
+					car_id=$(".box:checked").parents('ul').attr('car_id')+',';
+				});
 				var goods_id=str.substr(0,str.length-1);
-				console.log(goods_id);
-
-
+				car_id=car_id.substr(0,car_id.length-1);
 			})
 
 
 
 			function  ajax(car_id,car_num,goods_totall){
 				$.ajax({
-					url:"{{url('indexs/carts')}}",
-					data:{car_id:car_id,buy_number:buy_number,goods_totall:goods_totall},
+					url:"{{url('/index/ali')}}",
+					data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},
 					type:"post",
 					success:function(res){
-						console.log(res);
+//						console.log(res);
 					}
 
 				});

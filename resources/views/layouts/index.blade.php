@@ -96,7 +96,7 @@
                             <div class="fr shopcar">
                                 <div class="show-shopcar" id="shopcar">
                                     <span class="car"></span>
-                                    <a class="sui-btn btn-default btn-xlarge" href="/index/cart" target="_blank">
+                                    <a class="sui-btn btn-default btn-xlarge" href="/index/cart/.$goods->goods_id" target="_blank">
                                         <span>我的购物车</span>
                                         <i class="shopnum">1</i>
                                     </a>
@@ -116,10 +116,10 @@
                         <div class="yui3-u Center navArea">
                             <ul class="nav">
                                @foreach($cate as $v)
-                                <li class="f-item"><a href="{{url('/index/search'.$v['cate_id'])}}">{{$v->cate_name}}</a></li>
+                                <li class="f-item"><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$v->cate_name}}</a></li>
                                 @endforeach
-                                <li class="f-item">团购</li>
-                                <li class="f-item">有趣</li>
+                                <li class="f-item"><a href=""> 团购</li></a>
+                                <li class="f-item"><a href=""> 有趣</li></a>
                                 <li class="f-item"><a href="{{url('/index/seckill')}}" target="_blank">秒杀</a></li>
                             </ul>
                         </div>

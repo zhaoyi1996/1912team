@@ -3,6 +3,7 @@
 @section("title",'首页')
 @section('content')
 
+
 	<!--列表-->
 	<div class="sort">
 		<div class="py-container">
@@ -11,7 +12,7 @@
 					<div class="all-sort-list2">
 					@foreach($res as $v)
 						<div class="item bo">
-							<h3><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$v['cate_name']}}</a></h3>
+							<h3><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$v['cate_name']}}</a></h3>
 							<div class="item-list clearfix">
 								<div class="subitem">
 									@foreach($v['son'] as $vv)
@@ -63,7 +64,9 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
-									<span class="bold">[{{$v->an_name}}]</span><p style="color: red">{{$v->an_desc}}</p>
+										<li>
+									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
+										</li>
 									@endforeach
 								</ul>
 						</div>
@@ -100,6 +103,22 @@
 						<li class="yui3-u-1-4 life-item notab-item">
 							<i class="list-item list-item-8"></i>
 							<span class="service-intro">火车票</span>
+						</li>
+						<li class="yui3-u-1-4 life-item  notab-item">
+							<i class="list-item list-item-9"></i>
+							<span class="service-intro">众筹</span>
+						</li>
+						<li class="yui3-u-1-4 life-item notab-item">
+							<i class="list-item list-item-10"></i>
+							<span class="service-intro">理财</span>
+						</li>
+						<li class="yui3-u-1-4 life-item notab-item">
+							<i class="list-item list-item-11"></i>
+							<span class="service-intro">礼品卡</span>
+						</li>
+						<li class="yui3-u-1-4 life-item notab-item">
+							<i class="list-item list-item-12"></i>
+							<span class="service-intro">白条</span>
 						</li>
 					</ul>
 					<div class="life-item-content">
@@ -236,7 +255,7 @@
 						</li>
                         @foreach($tao_2ji[$v->cate_id] as $vv)
 						<li>
-							<a href="#tab2" data-toggle="tab">{{$vv->cate_name}}</a>
+							<a href="{{url('/index/search/'.$v['cate_id'])}}">{{$vv['cate_name']}}</a>
 						</li>
                         @endforeach
 					</ul>
@@ -430,7 +449,7 @@
 						<div class="tbar-checkout">
 							<div class="jtc-number"> <strong class="J-count" id="cart-number">0</strong>件商品 </div>
 							<div class="jtc-sum"> 共计：<strong class="J-total" id="cart-sum">¥0</strong> </div>
-							<a class="jtc-btn J-btn" href="/index/cate" target="_blank">去购物车结算</a>
+							<a class="jtc-btn J-btn" href="/index/cart" target="_blank">去购物车结算</a>
 						</div>
 					</div>
 				</div>
