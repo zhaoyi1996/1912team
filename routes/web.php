@@ -299,7 +299,7 @@ Route::prefix('/index')->group(function(){
 
 
 	//订单展示
-	Route::any("/orderinfo/{goods_id}","Index\OrderController@index")->middleware('SessionLogin');
+	Route::any("/orderinfo/{id}","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
 
 
@@ -389,7 +389,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/item/{id}","Index\ItemController@index");
 
 //产品列表页
-	Route::get("/index/search","Index\SearchController@index");
+	Route::get("/index/search/{id}","Index\SearchController@index");
 	Route::post("/index/search/clicks","Index\SearchController@clicks");
 
 
@@ -408,15 +408,16 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/shop","Index\ShopController@index");
 	
 //购物车页面
-Route::get("/index/cart","Index\CartController@index")->middleware('SessionLogin');
+Route::get("/index/cart/{goods_id}","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车
+Route::post('/index/nuns',"Index\CartController@nums");  //购物车点击+号修改购物车表的购买的数量
+Route::post('/index/jian',"Index\CartController@jian");  //购物车点击-号修改购物车表的购买的数量
 
 //删除
 Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
 Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 
 Route::post('/indexs/carts','Index\CartController@carts');
-
 
 Route::get('/index/ali','Index\AliPayController@test');//支付宝支付测试
 

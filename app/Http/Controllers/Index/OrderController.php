@@ -14,11 +14,12 @@ use App\Model\DefaultModel;
 class OrderController extends Controller
 {
     
-    public function index(Request $request){
+    public function index(Request $request,$id){
 
         // 接受传过来的值
         $fef_id = $request->get("fef_id");
 
+        $cart_id = explode(',',$id);
         //根绝传过来的收货地址id获取到一条数据 来进行用那条收货地址进行下单
         $fefinfo = DefaultModel::where('fef_id',$fef_id)->first();
         // dd($fefinfo);
@@ -38,11 +39,13 @@ class OrderController extends Controller
 
     	// 查询购物车数据   接受购物车传过来的值
     	// $cart_id = request()->post("cart_id");
-    	$cart_id = ['8','11','12','13'];
+//    	$cart_id =request()->get('car_id');
+//
+//        dd($cart_id);
 
    		 	
     	// dd($cartwhere);
-    	$cartinfo = CartModel::where('user_id',$user_id)->wherein('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
+    	$cartinfo = CartModel::where('user_id',$user_id)->whereIn('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
     	// dd($cartinfo);
 
 
@@ -82,7 +85,7 @@ class OrderController extends Controller
             $less_price=150;
         }else if($price>=8000&&$price<10000){
             $less_price=200;
-        }else if($less_price>10000){
+        }else if($price>10000){
             $less_price=300;
         }else{
             $less_price=0;
