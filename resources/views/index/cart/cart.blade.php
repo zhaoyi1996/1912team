@@ -16,10 +16,10 @@
 				</div>
 				<div class="cart-item-list">
 					<div class="cart-body">
-					
 							<div class="cart-list">
 							@if(!empty($cart_data))
 							@foreach($cart_data as $k=>$v)
+
 							<!-- <template> -->
 								<ul class="goods-list yui3-g">
 									<li class="yui3-u-1-24">
@@ -46,8 +46,8 @@
 							<!-- </template> -->
 							@endforeach
 							@endif
+
 							</div>
-							
 					</div>
 				</div>
 
@@ -60,7 +60,7 @@
 				<div class="option">
 					{{--<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
 
-					<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>
+					{{--<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
 
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
@@ -274,7 +274,7 @@
 				var _this=$(this);
 				var wenben=parseInt(_this.prev().val());//文本框的值
 				var goods_price=parseInt(_this.parent().prev().find("span").prop("id"));//单价
-				var cary_id=_this.parent().prop("id");
+				var car_id=_this.parent().prop("id");
 				var goods_store=_this.parent().attr("ids");
 				if((wenben+1)>goods_store)
 				{
@@ -348,7 +348,7 @@
 
 
 
-			$(document).on("click",".sum-btn",function(){
+			$(document).on("click","#orders",function(){
 				var   box=  $(".box:checked");
 				if(box.length==0){
 					alert("请至少选择一样商品进行结算");
@@ -373,11 +373,11 @@
 
 			function  ajax(car_id,car_num,goods_totall){
 				$.ajax({
-					url:"{{url('indexs/carts')}}",
+					url:"{{url('/indexs/carts')}}",
 					data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},
 					type:"post",
 					success:function(res){
-						console.log(res);
+//						console.log(res);
 					}
 
 				});
