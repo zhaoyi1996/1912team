@@ -199,7 +199,7 @@ Route::prefix('/admin')->group(function(){
 });
 
 
-Route::prefix('/admins')->group(function(){
+Route::prefix('/')->group(function(){
 	//商家后台管理首页
 	Route::get("/index","Admins\IndexController@index");
 	//基本管理  修改资料
@@ -270,7 +270,7 @@ Route::prefix('/index')->group(function(){
 	 Route::get("/homeaddress/del/{id}","Index\AddressController@del");
 	 //设置为默认收货地址
 	 Route::get("/homeaddress/moren","Index\AddressController@moren");
-	 //收货地会添加
+	 //收货地址添加
 	 Route::post("/homeaddress/store","Index\AddressController@store");
 
 
@@ -415,10 +415,16 @@ Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('Sessio
 Route::get('/cart/delete/{goods_id}','Index\CartController@delete');
 Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 
-Route::get('/indexs/carts','Index\CartController@carts');
-
 
 // Route::get('/', function () {
 // 	phpinfo();
 //     // return view('welcome');
 // });
+Route::post('/indexs/carts','Index\CartController@carts');
+
+
+Route::get('/index/ali','Index\AliPayController@test');//支付宝支付测试
+
+
+Route::get('/index/alipay','Index\IndexController@getAliPayjieguo');//支付宝支付测试
+

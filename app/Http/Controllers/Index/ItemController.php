@@ -19,7 +19,7 @@ class ItemController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-        // dd($id);
+//         dd($id);
      //  接收商品id
         // $goods_id=$request->goods_id;
         $where=[

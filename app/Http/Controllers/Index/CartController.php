@@ -15,6 +15,7 @@ class CartController extends Controller
     public function index(Request $request){
         #获取商品信息
         $goods_id=$request->goods_id;
+        dd($goods_id);die;
         $goods_where=[
             ['goods_id','=',$goods_id],
             ['del_id','=',1]

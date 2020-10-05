@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\ShopCollectModel;
 use App\Model\BrandModel;
 use App\Model\GoodsModel;
-use App\Model\CategoryModel;
-use Illuminate\Support\Facades\Redis;
+use App\Model\CategoryModel;use Illuminate\Support\Facades\Redis;
 
 
 class SearchController extends Controller

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
-
-
+use AopClient;
+use AlipayOpenPublicTemplateMessageIndustryModifyRequest;
 use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\BrandModel;
@@ -14,6 +14,7 @@ use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
 use App\Model\AnnouModel;
 use App\Model\ShopSlideModel;
+
 class IndexController extends Controller
 {
 
@@ -130,4 +131,21 @@ class IndexController extends Controller
         return $tao_info;
     }
 
+
+
+
+    /**
+     * 支付宝支付测试
+     */
+    public function getAliPay(){
+        $data='';
+        dd($data);
+    }
+    /**
+     * 接受支付异步
+     */
+    public function getAliPayjieguo(){
+        $data=request()->post();
+        dd($data);
+    }
 }
