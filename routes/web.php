@@ -299,12 +299,15 @@ Route::prefix('/index')->group(function(){
 
 
 	//订单展示
-	Route::any("/orderinfo/{goods_id}","Index\OrderController@index")->middleware('SessionLogin');
+	Route::any("/orderinfo","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
 
 
 	//秒杀
 	Route::get("/seckill","Index\SeckillController@index");
+	Route::get("/seckill/seckilldo/{id}","Index\SeckillController@seckilldo");
+	
+	Route::post("/orderinfo/tijiao","Index\OrderController@tijiao");
 	
 });
 
@@ -361,7 +364,7 @@ Route::prefix('/index')->group(function(){
 	// 我的收藏
 	Route::any("index.home-person-collect","Index\HomeIndexController@homePersonCollect");
 	//物理消息----
-//设置
+	//设置
 	//个人信息
 	Route::any("/index/home","Index\HomeIndexController@homeSettingInfo");
 
@@ -418,7 +421,7 @@ Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 Route::post('/indexs/carts','Index\CartController@carts');
 
 
-Route::get('/index/ali','Index\AliPayController@test');//支付宝支付测试
+Route::get('/index/ali','Index\AliPayController@ali');//支付宝支付测试
 
 
 Route::get('/index/alipay','Index\IndexController@getAliPayjieguo');//支付宝支付测试
