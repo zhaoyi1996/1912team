@@ -13,7 +13,7 @@ use App\Model\OrderGoodsModel;
 
 class OrderController extends Controller
 {
-         const EPOCH_OFFSET = 0;  //偏移时间戳,该时间一定要小于第一个id生成的时间,且尽量大(影响算法的有效可用时间)
+    const EPOCH_OFFSET = 0;  //偏移时间戳,该时间一定要小于第一个id生成的时间,且尽量大(影响算法的有效可用时间)
 
     const SIGN_BITS = 1;        //最高位(符号位)位数，始终为0，不可用
     const TIMESTAMP_BITS = 41;  //时间戳位数(算法默认41位,可以使用69年)
@@ -252,15 +252,9 @@ class OrderController extends Controller
                 $coupon += $v['goods_coupon']*$v['car_num'];                
             }
             // dd($price);
-            foreach($cartinfo as $k=>$v){
-                $ordergoods = new OrderGoodsModel();
-                $ordergoods->user_id = $user_id;
-                $ordergoods->buy_number = $numbers;
-                $ordergoods->goods_id=$v->goods_id;
-                $ordergoods->order_number=$order_number;
-                $ordergoods->save();
-            }
+          
 
+            foreach($cartinfo as $k=>$v){
             // 将数据存入订单商品表
             // $ordergoods = new OrderModel();
             $order = new OrderModel();
@@ -278,9 +272,85 @@ class OrderController extends Controller
                 session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
                 return ['code'=>1];
             }else{
-                echo "提交失败";
+                echo "提交失败"
+                 $wheress = [
+                'goods_id'=>$v->goods_id,
+                'user_id'=>$user_id,
+                ];
+
+                $order_goods_info = OrderGoodsModel::where($wheress)->get();
+                // dd($order_goods_info);  
+                if($order_goods_info){
+                    if(time()-$v->ordergoodstime>3000){
+                        foreach($order_goods_info as $kkk=>$vvv){
+                            $orderinfo = OrderModel::where('order_number',$vvv->order_number)->get();
+                            // return redirect("/index/ali/".$orderinfo->order_id);
+                            foreach($orderinfo as $k=>$v){
+                                return redirect("/index/ali/".$v->order_id);
+                            }
+                        }
+                    }else{
+                        // 已过期重新添加数据
+                        $ordergoods = new OrderGoodsModel();
+                        $ordergoods->user_id = $user_id;
+                        $ordergoods->buy_number = $numbers;
+                        $ordergoods->goods_id=$v->goods_id;
+                        $ordergoods->ordergoodstime=time();
+                        $ordergoods->order_number=$order_number;
+                        $ordergoods->save();
+
+                         // 将数据存入订单商品表
+                        // $ordergoods = new OrderModel();
+                        $order = new OrderModel();
+                        $order->user_id = $user_id;
+                        $order->order_status=0;
+                        $order->order_time=time();
+                        $order->order_number=$order_number;
+                        $order->order_num = $numbers;
+                        $order->order_url=$defmo->fef_id;
+                        $order->goods_price = $price;
+                        $res = $order->save();
+                            
+                        $id =$order->order_id;
+                        // dd($id);
+                        if($res){
+			    session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
+                	    return ['code'=>1];
+                        }else{
+                            echo "提交失败";
+                        }
+                    }
+                }else{
+                    $ordergoods = new OrderGoodsModel();
+                    $ordergoods->user_id = $user_id;
+                    $ordergoods->buy_number = $numbers;
+                    $ordergoods->goods_id=$v->goods_id;
+                    $ordergoods->ordergoodstime=time();
+                    $ordergoods->order_number=$order_number;
+                    $ordergoods->save();
+
+                     // 将数据存入订单商品表
+                    // $ordergoods = new OrderModel();
+                    $order = new OrderModel();
+                    $order->user_id = $user_id;
+                    $order->order_status=0;
+                    $order->order_time=time();
+                    $order->order_number=$order_number;
+                    $order->order_num = $numbers;
+                    $order->order_url=$defmo->fef_id;
+                    $order->goods_price = $price;
+                    $res = $order->save();
+                        
+                    $id =$order->order_id;
+                    // dd($id);
+                    if($res){
+			session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
+                	return ['code'=>1];
+                    }else{
+                        echo "提交失败";
+                    }
+                }
             }
-        
         }
 
     
