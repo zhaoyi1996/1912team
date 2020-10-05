@@ -199,7 +199,7 @@ Route::prefix('/admin')->group(function(){
 });
 
 
-Route::prefix('/')->group(function(){
+Route::prefix('admins')->group(function(){
 	//商家后台管理首页
 	Route::get("/index","Admins\IndexController@index");
 	//基本管理  修改资料
@@ -424,7 +424,11 @@ Route::get('/index/ali','Index\AliPayController@test');//支付宝支付测试
 Route::get('/index/alipay','Index\IndexController@getAliPayjieguo');//支付宝支付测试
 
 
-//Route::get('/', function () {
-//	phpinfo();
-////    return view('welcome');
-//});
+// Route::get('/', function () {
+// 	phpinfo();
+//     // return view('welcome');
+// });
+
+
+
+

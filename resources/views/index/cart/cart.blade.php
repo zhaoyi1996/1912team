@@ -16,11 +16,12 @@
 				</div>
 				<div class="cart-item-list">
 					<div class="cart-body">
-					
 							<div class="cart-list">
+							@if(!empty($cart_data))
 							@foreach($cart_data as $k=>$v)
+
 							<!-- <template> -->
-								<ul class="goods-list yui3-g">
+								<ul class="goods-list yui3-g" goods_id="{{$v->goods_id}}" car_id="{{$v->car_id}}">
 									<li class="yui3-u-1-24">
 										<input type="checkbox" name=""  class="box" value="" ids="{{$v->car_id}}" />
 									</li>
@@ -44,8 +45,9 @@
 								</ul>
 							<!-- </template> -->
 							@endforeach
+							@endif
+
 							</div>
-							
 					</div>
 				</div>
 
@@ -58,7 +60,7 @@
 				<div class="option">
 					{{--<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
 
-					<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>
+					{{--<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
 
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
@@ -272,7 +274,7 @@
 				var _this=$(this);
 				var wenben=parseInt(_this.prev().val());//文本框的值
 				var goods_price=parseInt(_this.parent().prev().find("span").prop("id"));//单价
-				var cary_id=_this.parent().prop("id");
+				var car_id=_this.parent().prop("id");
 				var goods_store=_this.parent().attr("ids");
 				if((wenben+1)>goods_store)
 				{
@@ -346,36 +348,34 @@
 
 
 
-			$(document).on("click",".sum-btn",function(){
+			$(document).on("click","#orders",function(){
 				var   box=  $(".box:checked");
 				if(box.length==0){
 					alert("请至少选择一样商品进行结算");
 					return false;
 				}
-				var str="";//上一个兄弟的子的下一个的子
-//				 var ss=$(this).parents('div').attr("ids");
-//				 alert(ss);
-				// return false;
+				//购物车id
+				var car_id='';
+				//获取商品id
+				var str="";
 				box.each(function(index){
 					//str+=$(".box:checked").attr("ids")+',';
-					str+=$(this).parents('.cart-tool').prev().find(".cart-item-list").find("div").find("div").find("ul").find("li").attr("ids")+',';
-
-				})
+					str+=$(".box:checked").parents('ul').attr('goods_id')+',';
+					car_id=$(".box:checked").parents('ul').attr('car_id')+',';
+				});
 				var goods_id=str.substr(0,str.length-1);
-				console.log(goods_id);
-
-
+				car_id=car_id.substr(0,car_id.length-1);
 			})
 
 
 
 			function  ajax(car_id,car_num,goods_totall){
 				$.ajax({
-					url:"{{url('indexs/carts')}}",
+					url:"{{url('/index/ali')}}",
 					data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},
 					type:"post",
 					success:function(res){
-						console.log(res);
+//						console.log(res);
 					}
 
 				});

@@ -12,7 +12,7 @@
 					<div class="all-sort-list2">
 					@foreach($res as $v)
 						<div class="item bo">
-							<h3><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$v['cate_name']}}</a></h3>
+							<h3><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$v['cate_name']}}</a></h3>
 							<div class="item-list clearfix">
 								<div class="subitem">
 									@foreach($v['son'] as $vv)
@@ -449,7 +449,7 @@
 						<div class="tbar-checkout">
 							<div class="jtc-number"> <strong class="J-count" id="cart-number">0</strong>件商品 </div>
 							<div class="jtc-sum"> 共计：<strong class="J-total" id="cart-sum">¥0</strong> </div>
-							<a class="jtc-btn J-btn" href="/index/cate" target="_blank">去购物车结算</a>
+							<a class="jtc-btn J-btn" href="/index/cart" target="_blank">去购物车结算</a>
 						</div>
 					</div>
 				</div>

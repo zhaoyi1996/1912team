@@ -21,13 +21,16 @@ class ItemController extends Controller
         $cate = CategoryModel::where($cate_pid)->get();
 //         dd($id);
      //  接收商品id
-        // $goods_id=$request->goods_id;
+//         $goods_id=$request->goods_id;
         $where=[
             'goods_id'=>$id
         ];
+
         $goods=GoodsModel::where($where)->first();
-//        dd($goods);die;
-        $ddd= explode("|",$goods->goods_imgs);
+        $ddd='';
+        if(!empty($goods)){
+            $ddd= explode("|",$goods->goods_imgs);
+        }
         #查询商品sku库存
         #先查询这件商品有多少种类，以及每个种类有多少个库存
         $attr_ids=[];
