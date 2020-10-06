@@ -131,23 +131,17 @@ class OrderController extends Controller
     	$defaultwhere = [
     		'user_id'=>$user_id,
     		'is_del'=>1,
-
     	];
     	$defaultinfo = DefaultModel::where($defaultwhere)->get();
-    	// dd($defaultinfo);
-
-
+//        dd($defaultinfo);
     	// 查询购物车数据   接受购物车传过来的值
     	// $cart_id = request()->post("cart_id");
 //    	$cart_id =request()->get('car_id');
 //
 //        dd($cart_id);
-
-
     	// dd($cartwhere);
     	$cartinfo = CartModel::where('user_id',$user_id)->whereIn('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
-    	// dd($cartinfo);
-
+//        dd($cartinfo);
 
     	//循环获取总价
     	$price = 0;
@@ -226,41 +220,38 @@ class OrderController extends Controller
 
 
 
-    public function tijiao($car_id){
+    public function tijiao(){
         // dd("123");
-        // $car_id = request()->post('car_id');
-
-
-        // $car_id = explode($car_id);
+        $car_id = request()->post('car_id');
+//        dd($car_id);
         $cart_id = json_decode($car_id);
-
-        // dd($cart_id);
+//         dd($cart_id);
         $order_number = $this->generateID();
         // dd($order_number);
             // 取出登录的用户
-            $user_id = session("User_Info")['user_id'];
-            $cartinfo = CartModel::where('user_id',$user_id)->wherein('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
-            // dd($cartinfo);
-            //收货地址飙获取到默认收货地址数据、
-            $defwhere = [
-                'user_id'=>$user_id,
-                'fef_is_more'=>1
-            ];
-            $defmo = DefaultModel::where($defwhere)->first();
-            //循环获取总价
-            // dd($defmo);
-            $price = 0;
-            //总商品数量
-            $numbers = 0;
-            //求总共多少积分 + 总共优惠多少
-            $integral=0;
-            $coupon = 0;
-            foreach($cartinfo as $k=>$v){
-                $price += $v['car_num']*$v['goods_price'];
-                $numbers += $v['car_num'];
-                $integral += $v['goods_integral']*$v['car_num'];
-                $coupon += $v['goods_coupon']*$v['car_num'];                
-            }
+        $user_id = session("User_Info")['user_id'];
+        $cartinfo = CartModel::where('user_id',$user_id)->wherein('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
+        // dd($cartinfo);
+        //收货地址飙获取到默认收货地址数据、
+        $defwhere = [
+            'user_id'=>$user_id,
+            'fef_is_more'=>1
+        ];
+        $defmo = DefaultModel::where($defwhere)->first();
+        //循环获取总价
+        // dd($defmo);
+        $price = 0;
+        //总商品数量
+        $numbers = 0;
+        //求总共多少积分 + 总共优惠多少
+        $integral=0;
+        $coupon = 0;
+        foreach($cartinfo as $k=>$v){
+            $price += $v['car_num']*$v['goods_price'];
+            $numbers += $v['car_num'];
+            $integral += $v['goods_integral']*$v['car_num'];
+            $coupon += $v['goods_coupon']*$v['car_num'];
+        }
             // dd($price);
           
             foreach ($cartinfo as $k => $v) {
@@ -270,9 +261,10 @@ class OrderController extends Controller
                 'goods_id' => $v->goods_id,
                 'user_id' => $user_id,
             ];
+//                dd($wheress);
             // dd($v->$ordergoodstime);
             $order_goods_info = OrderGoodsModel::where($wheress)->get();
-             dd($order_goods_info);
+//                dd($order_goods_info);
             if (!empty($order_goods_info)) {
                 if (time()-$v->ordergoodstime < 3000) {
 
@@ -337,7 +329,7 @@ class OrderController extends Controller
                 $res = $order->save();
 
                 $id = $order->order_id;
-                // dd($id);
+//                 dd($id);
                 if ($res) {
                     session(['order_id' => ['order_id' => $id, 'user_id' => $user_id]]);
                     return ['code' => 1];
