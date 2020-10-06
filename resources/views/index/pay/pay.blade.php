@@ -228,7 +228,7 @@
 //    new QRCode(document.getElementById('qrcode'), "$AliCode['alipay_trade_precreate_response']['qr_code']}}}");
     // 设置参数方式
     var qrcode = new QRCode('qrcode', {
-        text: "$AliCode['alipay_trade_precreate_response']['qr_code']}}}",
+        text: "{{$AliCode['alipay_trade_precreate_response']['qr_code']}}",
         width: 300,
         height: 300,
         colorDark : '#000000',

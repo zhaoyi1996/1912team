@@ -119,8 +119,32 @@ class CartController extends Controller
         }
         if(request()->isMethod("post")){
             $data=request()->except(['car_id']);
+            dd($data);
             $id=request()->car_id;
             $res=CartModel::where("car_id",$id)->update($data);
         }
+    }
+
+
+    //购物车点击+号修改购物车表的购买的数量
+    public function nums(Request $request){
+    $wenben=$request->wenben;
+    $car_id=$request->car_id;
+    $where=[
+        'car_id'=>$car_id
+    ];
+    $cart=CartModel::where($where)->update(['car_num'=>$wenben]);
+
+}
+
+    //购物车点击-号修改购物车表的购买的数量
+    public function jian(Request $request){
+        $wenben=$request->wenben;
+        $car_id=$request->car_id;
+        $where=[
+            'car_id'=>$car_id
+        ];
+        $cart=CartModel::where($where)->update(['car_num'=>$wenben]);
+
     }
 }

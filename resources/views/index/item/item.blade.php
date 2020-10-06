@@ -25,7 +25,7 @@
 					<div class="zoom">
 						<!--默认第一个预览-->
 						<div id="preview" class="spec-preview">
-							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}" /></span>
+							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}" ></span>
 						</div>
 						<!--下方的缩略图-->
 						<div class="spec-scroll">
@@ -667,24 +667,29 @@ $(document).on('click','.attrval',function(){
 	$(this).addClass("selected").append("<span title='点击取消选择'>&nbsp;</span>");
 	var add = $(this).parent().siblings().children().removeClass("selected");
 	//获取商品id
-	let goods_id={{$goods['goods_id']}};
+	let goods_id="{{$goods['goods_id']}}";
 	//获取属性id
 	let attr_id =$(this).attr('attr_id');
-	let attrval_id =$(this).attr('attrval_id');
+    let attrval_id =$(this).attr('attrval_id');
 	var str = new Array();
 	$(".selected").each(function(){
         str.push($(this).attr("attr_id")+":"+$(this).attr("attrval_id"));
-    })
+    });
+//    console.log(str);
 	//计算长度是否全部选中
 	var selected = $(".selected").length;
-   var attr_name = $(".attr_name").length;
-//    return ;
+    var attr_name = $(".attr_name").length;
+    var url = "{{url('/item/price')}}";
+    var data = {str:str};
+//    var data={};
    if(selected==attr_name){
 	$.ajax({
-		url:"/index/item/price",
+		url:url,
 		type:'post',
-		data:{attr_id:attr_id,attrval_id:attrval_id,goods_id:goods_id,str:str},
+		data:data,
+        dataType : "json",
 		success:function(res){
+//			console.log(res);
 			if(res.code=='0'){
 				$('#goods_attr').find('em').text(res.price);
 				$('#goods_attr').find('span').text('库存:'+res.num);
