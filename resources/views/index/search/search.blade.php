@@ -100,7 +100,7 @@
 								<div class="fr shopcar">
 									<div class="show-shopcar" id="shopcar">
 										<span class="car"></span>
-										<a class="sui-btn btn-default btn-xlarge" href="/index/cate" target="_blank">
+										<a class="sui-btn btn-default btn-xlarge" href="/index/cart" target="_blank">
 											<span>我的购物车</span>
 											<i class="shopnum">0</i>
 										</a>
@@ -122,11 +122,11 @@
 							<div class="yui3-u Center navArea">
 								<ul class="nav">
 									@foreach($cate as $v)
-									<a href=""> <li class="f-item">{{$v->cate_name}}</li></a>
+									<a href="{{url('/index/search?cate_id='.$v['cate_id'])}}"> <li class="f-item">{{$v->cate_name}}</li></a>
 									@endforeach
 									<a href=""><li class="f-item">团购</li></a> 
 									<li class="f-item">
-										<a href="seckill-index.html" target="_blank">秒杀</a>
+										<a href="{{url('/index/seckill')}}" target="_blank">秒杀</a>
 									</li>
 								</ul>
 							</div>
@@ -255,8 +255,10 @@
 					@foreach($brand_goods as $v)
 						<li class="yui3-u-1-5" id="1">
 							<div class="list-wrap">
-								<div class="p-img">
-									<a href="item.html" target="_blank"><img src="{{env('APP_URL')}}{{$v->goods_img}}" /></a>
+								<div class="p-img" id="{{$v->goods_id}}">
+									<a href="{{url('/index/item/'.$v->goods_id)}}" target="_blank">
+										<img src="{{env('APP_URL')}}{{$v->goods_img}}" />
+									</a>
 								</div>
 								<div class="price">
 									<strong>
