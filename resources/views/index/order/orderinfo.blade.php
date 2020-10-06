@@ -76,11 +76,11 @@
 							  
 							  <div>
 
-								<div class="con name"><a href="javascript:;">{{$v->user_name}}<span title="点击取消选择">&nbsp;</a></div>
+								<div class="con name" value="{{$v->fef_is_more}}"><a href="javascript:;">{{$v->user_name}}<span title="点击取消选择">&nbsp;</a></div>
 								<div class="con address zbc" fef_id="{{$v->fef_id}}" >{{$v->user_name}} {{$v->province}}  {{$v->city}}  {{$v->area}} {{$v->minute}}  <span>{{$v->user_tel}}</span>
 								<span class="edittext"><a data-toggle="modal" data-target=".edit"  data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="{{url('/index/order/del/'.$v->fef_id)}}">删除</a>
-									@if($v->fef_is_more==1)
-										<a data-toggle="modal"   data-keyboard="false" >默认收货地址</a>
+									@if($v->fef_is_more==2)
+										<a data-toggle="modal"   data-keyboard="false" >设为默认收货地址</a>
 									
 										
 									@endif
@@ -396,6 +396,15 @@
 <script type="text/javascript" src="/indexshop/js/pages/getOrderInfo.js"></script>
 </body>
 <script>
+	$(document).ready(function(){
+//        let _val=$('div[class="con name"]').attr('value');
+////        console.log(_val);
+//        if(_val==1){
+//            $('div[class="con name"]').prop('class="con name selected"');
+//        }
+	});
+</script>
+<script>
 	// $(document).on("click","#zbc",function(){
 	// 	var fef_id = $(this).attr("fef_id")
 	// 	alert(fef_id)
@@ -408,10 +417,11 @@
 		// 	alert(res)
 		// });
 		$.ajax({
-			url:"{{url('index/orderinfo/tijiao')}}",
+			url:"/orderInfo/tijiao",
 			type:"post",
 			data:{car_id:car_id},
 			success:function(res){
+                
 				if(res.code=1){
 					location.href="/index/ali";
 				}else{
@@ -419,8 +429,8 @@
 				}
 
 			}
-		})
-	})
+		});
+	});
 	$(".zbc").mousedown(function(){
 		var fef_id = $(this).attr("fef_id")
 		$.ajax({

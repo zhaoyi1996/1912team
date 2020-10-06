@@ -301,12 +301,12 @@ Route::prefix('/index')->group(function(){
 	//订单展示
 	Route::any("/orderinfo/{id}","Index\OrderController@index")->middleware('SessionLogin');
 	Route::get("/order/del/{id}","Index\OrderController@del");
-	Route::get("/orderinfo/tijiao/{id}","Index\OrderController@tijiao");
-
 	//秒杀
 	Route::get("/seckill","Index\SeckillController@index");
 
 });
+	Route::post('/orderInfo/tijiao',"Index\OrderController@tijiao");
+
 
 
 

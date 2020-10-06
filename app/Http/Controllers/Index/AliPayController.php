@@ -15,11 +15,11 @@ class AliPayController extends Controller
     public function ali()
     {
         $data=session('order_id');
-        dd($data);
+//        dd($data);
         if(!empty($data)){
             //查询订单和订单商品信息
             $order_data=OrderModel::where('order_id',$data['order_id'])->first();
-            dd($order_data);
+//            dd($order_data);
             $goods_order_data=OrderGoodsModel::where('order_number',$order_data->order_number)->get();
 //            $goods_name='';
 //            foreach($goods_order_data as $v){
