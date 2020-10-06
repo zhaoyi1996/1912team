@@ -70,7 +70,7 @@
 						<span><em>已节省：</em><i>-¥00.00</i></span>
 					</div>
 					<div class="sumbtn">
-						<a class="sum-btn account" href="javascript:;" id="msg-button">结算</a>
+						<a class="sum-btn account" href="javascript:;" id="orders">结算</a>
 					</div>
 				</div>
 
@@ -304,11 +304,7 @@
 					var goods_totall= goods_price*car_num;
 					_this.prev().val(car_num);
 					_this.parent().next().find("span").text(goods_price*car_num);
-
-
 					//alert(goods_totall);return false;
-
-//					ajax(car_id,car_num,goods_totall);
 				}
 
 				$.ajax({
@@ -370,7 +366,7 @@
 				//alert(boxs);
 
 
-			})
+			});
 
 
 			$(document).on("click","#orders",function(){
@@ -379,34 +375,18 @@
 					alert("请至少选择一样商品进行结算");
 					return false;
 				}
-				//购物车id
-				var car_id='';
 				//获取商品id
 				var str="";
 				box.each(function(index){
 					str+=$(this).parents('ul').attr('car_id')+',';
 				});
 
-			}
-
 				var car_id=str.substring(0,str.length-1);
 				location.href="/index/orderinfo/"+car_id;
-
-
 			});
 
-			{{--function  ajax(car_id,car_num,goods_totall){--}}
-				{{--$.ajax({--}}
-					{{--url:"{{url('/indexs/carts')}}",--}}
-					{{--data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},--}}
-					{{--type:"post",--}}
-					{{--success:function(res){--}}
-						{{--console.log(res);--}}
-					{{--}--}}
 
-				{{--});--}}
-			{{--}--}}
 
-		})
+ 
 	</script>
 @endsection

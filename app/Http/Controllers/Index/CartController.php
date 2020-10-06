@@ -48,6 +48,8 @@ class CartController extends Controller
         $goods_id=$request->goods_id;
 //        dd($goods_id);die;
         $car_num=$request->car_num;
+        $str=$request->str;
+
         if(empty($goods_id)){
             return ['code'=>0002,'msg'=>'请选择加入购物车的商品'];
         }
@@ -61,17 +63,17 @@ class CartController extends Controller
         $goods_where=[
             ['car_is_del','=',1],
             ['goods_id','=',$goods_id],
-            ['user_id','=',$session->user_id]
+            ['user_id','=',$session->user_id],
+            ['str','=',json_encode($str)]
         ];
         $car_data=CartModel::where($goods_where)->first();
-//        dd($car_data);die;
         if(!empty($car_data)){
             //如果商品已存在于数据库，就将购买数量进行相加
             $car_data->car_num=intval($car_data->car_num)+intval($car_num);
             // dd($car_data);
             $res=$car_data->save();
             if($res){
-                return ['code'=>'0000','msg'=>'添加购物车成功'];
+                return ['code'=>'0100','msg'=>'添加购物车成功'];
             }else{
                 return ['code'=>0001,'msg'=>'添加购物车失败'];
             }
@@ -82,10 +84,11 @@ class CartController extends Controller
             $data->user_id=$session->user_id;
             $data->goods_id=$goods_id;
             $data->car_num=$car_num;
+            $data->str=json_encode($str);
             $data->car_add_time=time();
             $res=$data->save();
             if($res){
-                return ['code'=>'0000','msg'=>'添加购物车成功'];
+                return ['code'=>'0100','msg'=>'添加购物车成功'];
             }else{
                 return ['code'=>0001,'msg'=>'添加购物车失败'];
             }
