@@ -39,9 +39,9 @@ class HomeIndexController extends Controller
     }
      //个人信息
      public function homeSettingInfo(){
-//         $center=CenterModel::first();
+        // $center=CenterModel::first();
 //         dd($center);
-     	return view("index.home-setting-info");
+     	return view("/index/home");
      }
     //地址信息
     public function homeSettingAddress(){

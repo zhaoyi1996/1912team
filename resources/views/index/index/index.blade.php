@@ -66,9 +66,17 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
+<<<<<<< HEAD
 										<li>
 									<span class="bold">[{{$v->an_name}}]</span><a href="#">{{$v->an_desc}}</a>
 										</li>
+=======
+										<a href="{{$v->an_url}}">
+											<li>
+									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
+											</li>
+										</a>
+>>>>>>> 3ac760634ccdc983a0959eb6cabbac9d654de85d
 									@endforeach
 								</ul>
 						</div>

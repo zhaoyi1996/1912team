@@ -402,18 +402,6 @@
 
 
 
-			{{--function  ajax(car_id,car_num,goods_totall){--}}
-				{{--$.ajax({--}}
-					{{--url:"{{url('/indexs/carts')}}",--}}
-					{{--data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},--}}
-					{{--type:"post",--}}
-					{{--success:function(res){--}}
-						{{--console.log(res);--}}
-					{{--}--}}
-
-				{{--});--}}
-			{{--}--}}
-
-		})
+ 
 	</script>
 @endsection
