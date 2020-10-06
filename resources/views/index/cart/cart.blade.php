@@ -386,9 +386,9 @@
 				box.each(function(index){
 					str+=$(this).parents('ul').attr('car_id')+',';
 				});
-<<<<<<< HEAD
+
 			}
-=======
+
 				var car_id=str.substring(0,str.length-1);
 				location.href="/index/orderinfo/"+car_id;
 
@@ -407,10 +407,6 @@
 				{{--});--}}
 			{{--}--}}
 
-
-
-
->>>>>>> 5190b0aa128d87bd59b93d21008638264b13300b
 		})
 	</script>
 @endsection

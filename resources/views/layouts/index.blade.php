@@ -36,10 +36,10 @@
                             @endif
                         </ul>
                         <ul class="fr">
-                            <li class="f-item">我的订单</li>
+                           <a href="/index/homeIndex"><li class="f-item">我的订单</li></a> 
                             <li class="f-item space"></li>
-                            <li class="f-item"><a href="{{url('/index/home')}}" target="_blank">我的品优购</a></li>
-                            <li class="f-item space"></li>
+                            <a href="/index/homeSettingInfo"><li class="f-item">我的品优购</li></a>
+                            <li class="f-item space"></li>  
                             <li class="f-item">品优购会员</li>
                             <li class="f-item space"></li>
                             <li class="f-item">企业采购</li>

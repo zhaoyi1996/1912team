@@ -66,9 +66,11 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
-										<li>
+										<a href="{{$v->an_url}}">
+											<li>
 									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
-										</li>
+											</li>
+										</a>
 									@endforeach
 								</ul>
 						</div>

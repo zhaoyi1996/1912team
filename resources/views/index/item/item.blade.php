@@ -137,7 +137,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="{{url('/index/cart/'.$goods['goods_id'])}}"  class="sui-btn  btn-danger addshopcar"  id="cartadd">加入购物车</a>
+										<a href="{{url('/index/cart')}}"  class="sui-btn  btn-danger addshopcar"  id="cartadd">加入购物车</a>
 									</li>
 								</ul>
 							</div>
