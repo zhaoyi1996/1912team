@@ -221,137 +221,122 @@ class OrderController extends Controller
     }
 
 
-    public function tijiao(){
+    public function tijiao()
+    {
         // dd();
         $car_id = request()->post('car_id');
         // $car_id = explode($car_id);
         $cart_id = json_decode($car_id);
         $order_number = $this->generateID();
         // dd($order_number);
-            // 取出登录的用户
-            $user_id = session("User_Info")['user_id'];
-            $cartinfo = CartModel::where('user_id',$user_id)->wherein('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
-            // dd($cartinfo);
-            //收货地址飙获取到默认收货地址数据、
-            $defwhere = [
-                'user_id'=>$user_id,
-                'fef_is_more'=>1
-            ];
-            $defmo = DefaultModel::where($defwhere)->first();
-            //循环获取总价
-            $price = 0;
-            //总商品数量
-            $numbers = 0;
-            //求总共多少积分 + 总共优惠多少
-            $integral=0;
-            $coupon = 0;
-            foreach($cartinfo as $k=>$v){
-                $price += $v['car_num']*$v['goods_price'];
-                $numbers += $v['car_num'];
-                $integral += $v['goods_integral']*$v['car_num'];
-                $coupon += $v['goods_coupon']*$v['car_num'];                
-            }
-            // dd($price);
-          
+        // 取出登录的用户
+        $user_id = session("User_Info")['user_id'];
+        $cartinfo = CartModel::where('user_id', $user_id)->wherein('car_id', $cart_id)->leftjoin("shop_goods", "shop_cart.goods_id", "=", "shop_goods.goods_id")->get();
+        // dd($cartinfo);
+        //收货地址飙获取到默认收货地址数据、
+        $defwhere = [
+            'user_id' => $user_id,
+            'fef_is_more' => 1
+        ];
+        $defmo = DefaultModel::where($defwhere)->first();
+        //循环获取总价
+        $price = 0;
+        //总商品数量
+        $numbers = 0;
+        //求总共多少积分 + 总共优惠多少
+        $integral = 0;
+        $coupon = 0;
+        foreach ($cartinfo as $k => $v) {
+            $price += $v['car_num'] * $v['goods_price'];
+            $numbers += $v['car_num'];
+            $integral += $v['goods_integral'] * $v['car_num'];
+            $coupon += $v['goods_coupon'] * $v['car_num'];
+        }
+        // dd($price);
 
-            foreach($cartinfo as $k=>$v){
+
+        foreach ($cartinfo as $k => $v) {
             // 将数据存入订单商品表
-            // $ordergoods = new OrderModel();
-            $order = new OrderModel();
-            $order->user_id = $user_id;
-            $order->order_status=0;
-            $order->order_time=time();
-            $order->order_number=$order_number;
-            $order->order_num = $numbers;
-            $order->order_url=$defmo->fef_id;
-            $order->goods_price = $price;
-            $res = $order->save();
-                
-            $id =$order->order_id;
-            if($res){
-                session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
-                return ['code'=>1];
-            }else{
-                echo "提交失败"
-                 $wheress = [
-                'goods_id'=>$v->goods_id,
-                'user_id'=>$user_id,
-                ];
+            $wheress = [
+                'goods_id' => $v->goods_id,
+                'user_id' => $user_id,
+            ];
 
-                $order_goods_info = OrderGoodsModel::where($wheress)->get();
-                // dd($order_goods_info);  
-                if($order_goods_info){
-                    if(time()-$v->ordergoodstime>3000){
-                        foreach($order_goods_info as $kkk=>$vvv){
-                            $orderinfo = OrderModel::where('order_number',$vvv->order_number)->get();
-                            // return redirect("/index/ali/".$orderinfo->order_id);
-                            foreach($orderinfo as $k=>$v){
-                                return redirect("/index/ali/".$v->order_id);
-                            }
-                        }
-                    }else{
-                        // 已过期重新添加数据
-                        $ordergoods = new OrderGoodsModel();
-                        $ordergoods->user_id = $user_id;
-                        $ordergoods->buy_number = $numbers;
-                        $ordergoods->goods_id=$v->goods_id;
-                        $ordergoods->ordergoodstime=time();
-                        $ordergoods->order_number=$order_number;
-                        $ordergoods->save();
-
-                         // 将数据存入订单商品表
-                        // $ordergoods = new OrderModel();
-                        $order = new OrderModel();
-                        $order->user_id = $user_id;
-                        $order->order_status=0;
-                        $order->order_time=time();
-                        $order->order_number=$order_number;
-                        $order->order_num = $numbers;
-                        $order->order_url=$defmo->fef_id;
-                        $order->goods_price = $price;
-                        $res = $order->save();
-                            
-                        $id =$order->order_id;
-                        // dd($id);
-                        if($res){
-			    session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
-                	    return ['code'=>1];
-                        }else{
-                            echo "提交失败";
+            $order_goods_info = OrderGoodsModel::where($wheress)->get();
+//             dd($order_goods_info);
+            if (!empty($order_goods_info)) {
+                if (time() - $v->ordergoodstime < 3000) {
+                    foreach ($order_goods_info as $kkk => $vvv) {
+                        $orderinfo = OrderModel::where('order_number', $vvv->order_number)->get();
+                        // return redirect("/index/ali/".$orderinfo->order_id);
+                        foreach ($orderinfo as $k => $v) {
+                            session(['order_id' => ['order_id' => $v->order_id, 'user_id' => $user_id]]);
+                            return ['code' => 1];
                         }
                     }
-                }else{
+                } else {
+                    // 已过期重新添加数据
                     $ordergoods = new OrderGoodsModel();
                     $ordergoods->user_id = $user_id;
                     $ordergoods->buy_number = $numbers;
-                    $ordergoods->goods_id=$v->goods_id;
-                    $ordergoods->ordergoodstime=time();
-                    $ordergoods->order_number=$order_number;
+                    $ordergoods->goods_id = $v->goods_id;
+                    $ordergoods->ordergoodstime = time();
+                    $ordergoods->order_number = $order_number;
                     $ordergoods->save();
 
-                     // 将数据存入订单商品表
+                    // 将数据存入订单商品表
                     // $ordergoods = new OrderModel();
                     $order = new OrderModel();
                     $order->user_id = $user_id;
-                    $order->order_status=0;
-                    $order->order_time=time();
-                    $order->order_number=$order_number;
+                    $order->order_status = 0;
+                    $order->order_time = time();
+                    $order->order_number = $order_number;
                     $order->order_num = $numbers;
-                    $order->order_url=$defmo->fef_id;
+                    $order->order_url = $defmo->fef_id;
                     $order->goods_price = $price;
                     $res = $order->save();
-                        
-                    $id =$order->order_id;
+
+                    $id = $order->order_id;
                     // dd($id);
-                    if($res){
-			session(['order_id'=>['order_id'=>$id,'user_id'=>$user_id]]);
-                	return ['code'=>1];
-                    }else{
+                    if ($res) {
+                        session(['order_id' => ['order_id' => $id, 'user_id' => $user_id]]);
+                        return ['code' => 1];
+                    } else {
                         echo "提交失败";
                     }
                 }
+            } else {
+                $ordergoods = new OrderGoodsModel();
+                $ordergoods->user_id = $user_id;
+                $ordergoods->buy_number = $numbers;
+                $ordergoods->goods_id = $v->goods_id;
+                $ordergoods->ordergoodstime = time();
+                $ordergoods->order_number = $order_number;
+                $ordergoods->save();
+
+                // 将数据存入订单商品表
+                // $ordergoods = new OrderModel();
+                $order = new OrderModel();
+                $order->user_id = $user_id;
+                $order->order_status = 0;
+                $order->order_time = time();
+                $order->order_number = $order_number;
+                $order->order_num = $numbers;
+                $order->order_url = $defmo->fef_id;
+                $order->goods_price = $price;
+                $res = $order->save();
+
+                $id = $order->order_id;
+                // dd($id);
+                if ($res) {
+                    session(['order_id' => ['order_id' => $id, 'user_id' => $user_id]]);
+                    return ['code' => 1];
+                } else {
+                    echo "提交失败";
+                }
             }
         }
+    }
 
     
 }

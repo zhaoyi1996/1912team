@@ -400,13 +400,10 @@
 	// 	var fef_id = $(this).attr("fef_id")
 	// 	alert(fef_id)
 	// })
-	$('form').submit(function() {
-        $('button[type=submit]').attr('disabled', true);
-    });
 	$(".tijiaobutton").click(function(){
 		//点击提交订单按钮
 		var car_id = $(this).attr('car_id');
-
+		
 		// $.get("/orderinfo/tijiao",{car_id:car_id},function(){
 		// 	alert(res)
 		// });
