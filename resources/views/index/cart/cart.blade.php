@@ -57,6 +57,7 @@
 					<input type="checkbox" name="" id="boxs" value="" />
 					<span>全选</span>
 				</div>
+
 				<div class="option">
 					{{--<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
 
@@ -66,11 +67,17 @@
 					<a href="#none">清除下柜商品</a>
 				</div>
 
+
+				<div class="toolbar">
+					<div class="chosed">已选择<span>0</span>件商品</div>
+
 			</div>
+
 
 			<div class="sumbtn">
 				<a class="sum-btn" id="orders" target="_blank">结算</a>
 			</div>
+
 			<div class="clearfix"></div>
 			<div class="deled">
 				<span>已删除商品，您可以重新购买或加关注：</span>

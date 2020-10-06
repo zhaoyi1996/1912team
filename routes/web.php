@@ -419,7 +419,7 @@ Route::get('/cart/deletes/{goods_id}','Index\CartController@deletes');
 
 Route::post('/indexs/carts','Index\CartController@carts');
 
-Route::get('/index/ali','Index\AliPayController@test');//支付宝支付测试
+Route::get('/index/ali','Index\AliPayController@ali');//支付宝支付测试
 
 
 Route::get('/index/alipay','Index\IndexController@getAliPayjieguo');//支付宝支付测试

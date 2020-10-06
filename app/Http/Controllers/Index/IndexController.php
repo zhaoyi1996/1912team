@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 use AopClient;
 use AlipayOpenPublicTemplateMessageIndustryModifyRequest;
+use App\Model\CartModel;
 use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\BrandModel;
@@ -41,6 +42,7 @@ class IndexController extends Controller
 
         //   轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
+
 
         #查询小广告信息
        $LadverWhere=[
@@ -90,7 +92,9 @@ class IndexController extends Controller
         ];
         $cate = CategoryModel::where($cate_pid)->get();
         $goods=GoodsModel::all();
-        return view('index.layouts.index',['cate'=>$cate,'goods'=>$goods]);
+        $count=CartModel::count();
+
+        return view('index.layouts.index',['cate'=>$cate,'goods'=>$goods,'count'=>$count]);
     }
 
     // 无限极分类

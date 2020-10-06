@@ -103,8 +103,8 @@ class OrderController extends Controller
         //重新计算应付金额
         $yingfunumber = $manjianprice-$coupon;
         // dd($yingfunumber);
-
-    	return view("index.order.orderinfo",["less_price"=>$less_price,"manjianprice"=>$manjianprice,"yingfunumber"=>$yingfunumber,"integral"=>$integral,'coupon'=>$coupon,'fefinfo'=>$fefinfo,'defaultinfo'=>$defaultinfo,'cartinfo'=>$cartinfo,'price'=>$price,'numbers'=>$numbers,'defmo'=>$defmo]);
+        $car_id=json_encode($cart_id);
+    	return view("index.order.orderinfo",['car_id'=>$car_id,"less_price"=>$less_price,"manjianprice"=>$manjianprice,"yingfunumber"=>$yingfunumber,"integral"=>$integral,'coupon'=>$coupon,'fefinfo'=>$fefinfo,'defaultinfo'=>$defaultinfo,'cartinfo'=>$cartinfo,'price'=>$price,'numbers'=>$numbers,'defmo'=>$defmo]);
     }
     //逻辑删除
     public function del($id){

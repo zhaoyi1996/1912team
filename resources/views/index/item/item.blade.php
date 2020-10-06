@@ -25,7 +25,7 @@
 					<div class="zoom">
 						<!--默认第一个预览-->
 						<div id="preview" class="spec-preview">
-							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}" /></span>
+							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"/></span>
 						</div>
 						<!--下方的缩略图-->
 						<div class="spec-scroll">

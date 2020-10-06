@@ -96,9 +96,9 @@
                             <div class="fr shopcar">
                                 <div class="show-shopcar" id="shopcar">
                                     <span class="car"></span>
-                                    <a class="sui-btn btn-default btn-xlarge" href="/index/cart" target="_blank">
+                                    <a class="sui-btn btn-default btn-xlarge" href="/index/cart/.$goods->goods_id" target="_blank">
                                         <span>我的购物车</span>
-                                        <i class="shopnum">1</i>
+                                        <i class="shopnum">3</i>
                                     </a>
                                     
                                 </div>
