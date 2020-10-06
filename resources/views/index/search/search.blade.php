@@ -104,10 +104,7 @@
 											<span>我的购物车</span>
 											<i class="shopnum">0</i>
 										</a>
-										<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
-											<p>"啊哦，你的购物车还没有商品哦！"</p>
-											<p>"啊哦，你的购物车还没有商品哦！"</p>
-										</div>
+									
 									</div>
 								</div>
 							</div>
