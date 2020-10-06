@@ -659,6 +659,9 @@
 			data:{goods_id:goods_id,car_num:car_num},
 			success:function(res){
 				alert(res.msg);
+				if(res.code=='0100'){
+					location.href="/index/cart";
+				}
 			}
 		});
 		// console.log(goods_id);

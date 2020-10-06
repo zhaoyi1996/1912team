@@ -115,12 +115,10 @@ class OrderController extends Controller
     }   
 
     public function index(Request $request,$id){
-
         // 接受传过来的值
         $fef_id = $request->get("fef_id");
 
         $cart_id = explode(',',$id);
-        // dd($cart_id);
 
         //根绝传过来的收货地址id获取到一条数据 来进行用那条收货地址进行下单
         $fefinfo = DefaultModel::where('fef_id',$fef_id)->first();
@@ -274,7 +272,7 @@ class OrderController extends Controller
             ];
             // dd($v->$ordergoodstime);
             $order_goods_info = OrderGoodsModel::where($wheress)->get();
-//             dd($order_goods_info);
+             dd($order_goods_info);
             if (!empty($order_goods_info)) {
                 if (time()-$v->ordergoodstime < 3000) {
 
@@ -308,9 +306,7 @@ class OrderController extends Controller
                     $order->order_url = $defmo->fef_id;
                     $order->goods_price = $price;
                     $res = $order->save();
-
                     $id = $order->order_id;
-                    // dd($id);
                     if ($res) {
                         session(['order_id' => ['order_id' => $id, 'user_id' => $user_id]]);
                         return ['code' => 1];
