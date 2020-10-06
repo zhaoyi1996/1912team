@@ -17,6 +17,9 @@ class SearchController extends Controller
         //商品条件搜索查询展示
         $brand_id = $request->brand_id;
         $cate_id=$request->cate_id;
+        // dump($cate_id);
+        $goods_id=Request()->goods_id;
+        // dump($goods_id);
         $price=$request->price;
         $prices=[];
         $whereBetween=[];

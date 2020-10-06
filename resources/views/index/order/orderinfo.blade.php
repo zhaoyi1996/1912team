@@ -400,10 +400,13 @@
 	// 	var fef_id = $(this).attr("fef_id")
 	// 	alert(fef_id)
 	// })
+	$('form').submit(function() {
+        $('button[type=submit]').attr('disabled', true);
+    });
 	$(".tijiaobutton").click(function(){
 		//点击提交订单按钮
 		var car_id = $(this).attr('car_id');
-		
+
 		// $.get("/orderinfo/tijiao",{car_id:car_id},function(){
 		// 	alert(res)
 		// });
@@ -412,7 +415,12 @@
 			type:"post",
 			data:{car_id:car_id},
 			success:function(res){
-				alert(res)
+				if(res.code=1){
+					location.href="/index/ali";
+				}else{
+					alert('提交错误，请稍后再试');
+				}
+
 			}
 		})
 	})
@@ -423,7 +431,7 @@
 			url:"{{url('/index/orderinfo')}}",
 			data:{fef_id:fef_id},
 			success:function(res){
-				alert(res)
+				alert(res);
 			}
 		})
 	})
