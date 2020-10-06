@@ -14,16 +14,18 @@
 						<div class="item bo">
 							<h3><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$v['cate_name']}}</a></h3>
 							<div class="item-list clearfix">
+							
 								<div class="subitem">
 									@foreach($v['son'] as $vv)
 									<dl class="fore1">
-										<dt><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$vv['cate_name']}}</a></dt>
+										<dt><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$vv['cate_name']}}</a></dt>
 										@foreach($vv['son'] as $vvv)	
-										<dd><a href="{{url('/index/search/'.$v['cate_id'])}}">{{$vvv['cate_name']}}</a></em></dd>
+										<dd><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$vvv['cate_name']}}</a></em></dd>
 										@endforeach
 									</dl>
-									@endforeach
+								    @endforeach
 								</div>
+								
 							</div>
 						</div>
 					@endforeach

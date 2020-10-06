@@ -19,14 +19,12 @@ class ItemController extends Controller
             ['pid','=',0]
         ];
         $cate = CategoryModel::where($cate_pid)->get();
-//         dd($id);
      //  接收商品id
         $goods_id=$request->goods_id;
         // dump($goods_id);
         $where=[
             'goods_id'=>$id
         ];
-
         $goods=GoodsModel::where($where)->first();
         $ddd='';
         if(!empty($goods)){
@@ -36,7 +34,7 @@ class ItemController extends Controller
         #先查询这件商品有多少种类，以及每个种类有多少个库存
         $attr_ids=[];
         $val_data=[];
-        $rep_data=RepModel::where('goods_id',$id)->get();
+        $rep_data=RepModel::where('goods_id',$goods_id)->get();
         foreach($rep_data as $k=>$v){
             $v->attr=json_decode($v->attr);
             foreach($v->attr as $vv){
@@ -62,10 +60,24 @@ class ItemController extends Controller
         $min_price=RepModel::where('goods_id',$id)->orderBy('goods_price')->first();
         #获取商品最大价格
         $max_price=RepModel::where('goods_id',$id)->orderBy('goods_price','desc')->first();
-    	return view("index.item.item",['goods'=>$goods,'goods_imgs'=>$ddd,'cate'=>$cate,'attr_name'=>$attr_name,'val_data'=>$val_data,'attrval_name'=>$attrval_name,'min_price'=>$min_price,'max_price'=>$max_price]);
+//        dump($ddd);
+//        dump($goods);
+//        dump($cate);
+//        dump($attr_name);
+//        dump($val_data);
+//        dump($attrval_name);
+//        dump($min_price);
+//        dd($max_price);
+
+
+        return view("index.item.item",['goods'=>$goods,'goods_imgs'=>$ddd,'cate'=>$cate,'attr_name'=>$attr_name,'val_data'=>$val_data,'attrval_name'=>$attrval_name,'min_price'=>$min_price,'max_price'=>$max_price]);
     }
-    public function price(){
+
+
+
+    public function price(Request $request){
        $attr=request()->str;
+//        dd($attr);
        $attr=json_encode([implode(',',$attr)]);
        $attr_data=RepModel::where('attr',$attr)->first();
         if(!empty($attr_data)){
@@ -73,7 +85,7 @@ class ItemController extends Controller
         }else{
             return ['code'=>0001,'msg'=>'不存在此sku，请重新选择'];
         }
-        
+
 
 
 

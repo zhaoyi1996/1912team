@@ -15,6 +15,7 @@ use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
 use App\Model\AnnouModel;
 use App\Model\ShopSlideModel;
+use App\Model\HistoryModel;
 
 class IndexController extends Controller
 {
@@ -67,7 +68,7 @@ class IndexController extends Controller
         
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
-        #猜你喜欢
+
 
         //查询分类
         $tao_data=CategoryModel::get();
@@ -78,10 +79,10 @@ class IndexController extends Controller
         foreach($tao_info as $k=>$v){
             $tao_2ji[$v->cate_id]=$v->son;
         }
-//        查询商品表
-        $goods=GoodsModel::all();
-//        dd($goods);die;
-
+        #查询商品表
+        #猜你喜欢
+        $goods=HistoryModel::leftjoin('shop_goods','shop_history.goods_id','=','shop_goods.goods_id')->limit(6)->get();
+//        dd($goods);
     	return view("index.index.index",compact('ladver_data','recom_data','cate','res','brand_data','slide','res2','tao_2ji','goods'));
  }
 

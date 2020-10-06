@@ -52,20 +52,18 @@
 				</div>
 
 			</div>
-			<div class="cart-tool">
+			<div class="cart-tool" style="position:relative;height:52px;">
 				<div class="select-all">
-					<input type="checkbox" name="" id="boxs" value="" />
+					<input type="checkbox" name="" id="" value=""/>
 					<span>全选</span>
 				</div>
 
 				<div class="option">
-					{{--<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
-
-					{{--<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
-
+					<a href="#none">删除选中的商品</a>
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
+
 
 
 				<div class="toolbar">
@@ -77,6 +75,23 @@
 			<div class="sumbtn">
 				<a class="sum-btn" id="orders" target="_blank">结算</a>
 			</div>
+
+
+				<div class="toolbar">
+					<div class="chosed">已选择<span>0</span>件商品</div>
+					<div class="sumprice">
+						<span><em>总价（不含运费） ：</em><i class="summoney" id="money">0￥</i></span>
+						<span><em>已节省：</em><i>-¥00.00</i></span>
+					</div>
+					<div class="sumbtn">
+						<a class="sum-btn account" href="javascript:;" id="orders">结算</a>
+					</div>
+				</div>
+
+
+			</div>
+
+			
 
 			<div class="clearfix"></div>
 			<div class="deled">
@@ -304,11 +319,7 @@
 					var goods_totall= goods_price*car_num;
 					_this.prev().val(car_num);
 					_this.parent().next().find("span").text(goods_price*car_num);
-
-
 					//alert(goods_totall);return false;
-
-//					ajax(car_id,car_num,goods_totall);
 				}
 
 				$.ajax({
@@ -370,7 +381,7 @@
 				//alert(boxs);
 
 
-			})
+			});
 
 
 			$(document).on("click","#orders",function(){
@@ -379,18 +390,17 @@
 					alert("请至少选择一样商品进行结算");
 					return false;
 				}
-				//购物车id
-				var car_id='';
 				//获取商品id
 				var str="";
 				box.each(function(index){
 					str+=$(this).parents('ul').attr('car_id')+',';
 				});
+
 				var car_id=str.substring(0,str.length-1);
 				location.href="/index/orderinfo/"+car_id;
-
-
 			});
+
+
 
 			{{--function  ajax(car_id,car_num,goods_totall){--}}
 				{{--$.ajax({--}}
@@ -404,14 +414,6 @@
 				{{--});--}}
 			{{--}--}}
 
-
-
-
 		})
-
-
-
-
-
 	</script>
 @endsection
