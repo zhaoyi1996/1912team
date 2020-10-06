@@ -21,7 +21,7 @@
 							@foreach($cart_data as $k=>$v)
 
 							<!-- <template> -->
-								<ul class="goods-list yui3-g" goods_id="{{$v->goods_id}}" car_id="{{$v->car_id}}">
+								<ul class="goods-list yui3-g" car_id="{{$v->car_id}}">
 									<li class="yui3-u-1-24">
 										<input type="checkbox" name=""  class="box" value="" ids="{{$v->car_id}}" />
 									</li>
@@ -32,9 +32,9 @@
 										</div>
 									</li>
 									<li class="yui3-u-1-8"><span class="price" id="{{$v->goods_price}}">{{$v->goods_price}}</span><font color='red'>.00</font></li>
-									<li class="yui3-u-1-8" id="{{$v->cary_id}}" ids="{{$v->goods_store}}">
+									<li class="yui3-u-1-8" id="{{$v->car_id}}" ids="{{$v->goods_store}}">
 										<a href="javascript:void(0)" class="increment mins">-</a>
-										<input autocomplete="off" type="text" value="{{$v->car_num}}" minnum="1" class="itxt" />
+										<input autocomplete="off" type="text" id="num" value="{{$v->car_num}}" minnum="1" class="itxt" />
 										<a href="javascript:void(0)" class="increment plus">+</a>
 									</li>
 									<li class="yui3-u-1-8"><span class="sum" id="">{{$v->car_price}}</span></li>
@@ -65,7 +65,7 @@
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
-				
+
 			</div>
 
 			<div class="sumbtn">
@@ -74,7 +74,7 @@
 			<div class="clearfix"></div>
 			<div class="deled">
 				<span>已删除商品，您可以重新购买或加关注：</span>
-				
+
 				<div class="cart-list del">
 				@foreach($del_data as $v)
 					<ul class="goods-list yui3-g">
@@ -94,7 +94,7 @@
 					</ul>
 					@endforeach
 				</div>
-				
+
 			</div>
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
@@ -254,7 +254,8 @@
 				var goods_price=parseInt(_this.parent().prev().find("span").prop("id"));//单价
 				var car_id=_this.parent().prop("id");
 
-				// alert(cary_id);return false;
+//				 alert(car_id);return false;
+
 				if((wenben-1)<1)
 				{
 					alert("不能再减了..."); return false;
@@ -266,8 +267,18 @@
 					var goods_totall= goods_price*(wenben-1);
 					//alert(goods_totall);return false;
 
-					ajax(car_id,buy_number,goods_totall);
+//					ajax(car_id,car_num,goods_totall);
 				}
+
+
+				$.ajax({
+					url:"/index/jian",
+					type:'post',
+					data:{wenben:wenben,car_id:car_id},
+					success:function(res){
+						console.log(res);
+					}
+				})
 
 			})
 			$(document).on("click",".plus",function(){	//加
@@ -290,9 +301,17 @@
 
 					//alert(goods_totall);return false;
 
-					ajax(car_id,car_num,goods_totall);
+//					ajax(car_id,car_num,goods_totall);
 				}
 
+				$.ajax({
+					url:"/index/nuns",
+					type:'post',
+					data:{wenben:wenben,car_id:car_id},
+					success:function(res){
+						console.log(res);
+					}
+				})
 			})
 			$(document).on("blur",".itxt",function(){  //文本框
 				var _this=$(this);
@@ -347,7 +366,6 @@
 			})
 
 
-
 			$(document).on("click","#orders",function(){
 				var   box=  $(".box:checked");
 				if(box.length==0){
@@ -359,30 +377,25 @@
 				//获取商品id
 				var str="";
 				box.each(function(index){
-					//str+=$(".box:checked").attr("ids")+',';
-					str+=$(".box:checked").parents('ul').attr('goods_id')+',';
-					car_id=$(".box:checked").parents('ul').attr('car_id')+',';
+					str+=$(this).parents('ul').attr('car_id')+',';
 				});
-				var goods_id=str.substr(0,str.length-1);
-				car_id=car_id.substr(0,car_id.length-1);
-			})
+				var car_id=str.substring(0,str.length-1);
+				location.href="/index/orderinfo/"+car_id;
 
 
+			});
 
-			function  ajax(car_id,car_num,goods_totall){
-				$.ajax({
-					url:"{{url('/index/ali')}}",
-					data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},
-					type:"post",
-					success:function(res){
-//						console.log(res);
-					}
+			{{--function  ajax(car_id,car_num,goods_totall){--}}
+				{{--$.ajax({--}}
+					{{--url:"{{url('/indexs/carts')}}",--}}
+					{{--data:{car_id:car_id,car_num:car_num,goods_totall:goods_totall},--}}
+					{{--type:"post",--}}
+					{{--success:function(res){--}}
+						{{--console.log(res);--}}
+					{{--}--}}
 
-				});
-
-
-
-			}
+				{{--});--}}
+			{{--}--}}
 
 
 
