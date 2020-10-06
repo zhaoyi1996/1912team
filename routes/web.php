@@ -381,7 +381,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/item/{goods_id}","Index\ItemController@index");
 
 	Route::get("/index/item/{id}","Index\ItemController@index");
-	Route::post("/index/item/price","Index\ItemController@price");
+	Route::any("/item/price","Index\ItemController@price");
 
 	//个人注册
 	Route::any("/index/register","Index\RegisterController@index");

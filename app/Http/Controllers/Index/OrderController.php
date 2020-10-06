@@ -232,12 +232,12 @@ class OrderController extends Controller
         // dd("123");
         // $car_id = request()->post('car_id');
 
+
         // $car_id = explode($car_id);
         $cart_id = json_decode($car_id);
 
         // dd($cart_id);
         $order_number = $this->generateID();
-        // dd($order_number);
         // dd($order_number);
             // 取出登录的用户
             $user_id = session("User_Info")['user_id'];
@@ -266,6 +266,7 @@ class OrderController extends Controller
             // dd($price);
           
             foreach ($cartinfo as $k => $v) {
+
             // 将数据存入订单商品表
             $wheress = [
                 'goods_id' => $v->goods_id,
@@ -276,6 +277,7 @@ class OrderController extends Controller
 //             dd($order_goods_info);
             if (!empty($order_goods_info)) {
                 if (time()-$v->ordergoodstime < 3000) {
+
                     foreach ($order_goods_info as $kkk => $vvv) {
                         $orderinfo = OrderModel::where('order_number', $vvv->order_number)->get();
                         // return redirect("/index/ali/".$orderinfo->order_id);
