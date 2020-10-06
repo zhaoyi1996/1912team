@@ -305,7 +305,7 @@ Route::prefix('/index')->group(function(){
 
 	//秒杀
 	Route::get("/seckill","Index\SeckillController@index");
-	
+
 });
 
 
@@ -315,8 +315,8 @@ Route::prefix('/index')->group(function(){
 	Route::any("/goods/index","Index\GoodsController@index"); //全部商品分类
 	Route::any("/index/index","Index\IndexController@index");//全部商品
 	Route::any("/index/cateInfo","Index\IndexController@cateInfo");
-	Route::any("/index/getIndexInfo","Index\IndexController@getIndexInfo");//接收上一个	
-	
+	Route::any("/index/getIndexInfo","Index\IndexController@getIndexInfo");//接收上一个
+
 
 //订单展示
 	Route::any("/index/order_info","Index\OrderController@index")->middleware('SessionLogin');
@@ -355,7 +355,7 @@ Route::prefix('/index')->group(function(){
 	Route::any("/index/homeSettingInfo","Index\CenterController@homeSettingInfo");
 	Route::any("/index/add","Index\CenterController@add");
 
-	
+
 
 
 	// 我的收藏
@@ -402,11 +402,11 @@ Route::prefix('/index')->group(function(){
     Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
 
 	Route::any("/index/seckillIndex","Index\SearchController@seckillIndex");
-	
+
  //我的店铺
- 	
+
 	Route::any("/index/shop","Index\ShopController@index");
-	
+
 //购物车页面
 Route::get("/index/cart/{goods_id}","Index\CartController@index")->middleware('SessionLogin');
 Route::post("/index/cartAdd","Index\CartController@cartAdd")->middleware('SessionLogin');//添加购物车

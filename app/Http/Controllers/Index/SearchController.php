@@ -104,7 +104,7 @@ class SearchController extends Controller
         $cateAll = CategoryModel::get()->Toarray();//转化为数组
         // 调用分类
         $res = $this->gatCate3($cateAll);
-        #查询热卖商品    目前是做简单一点的（将所有商品数据中销量最高的展示出来）10.3
+                    #查询热卖商品    目前是做简单一点的（将所有商品数据中销量最高的展示出来）10.3
         $hot_data=GoodsModel::orderBy('shop_sales','desc')->limit(4)->get();
         
 

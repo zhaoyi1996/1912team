@@ -116,6 +116,8 @@
 						<div class="yui3-g NavList">
 							<div class="yui3-u Left all-sort">
 								<h4>全部商品分类</h4>
+							
+						
 							</div>
 							<div class="yui3-u Center navArea">
 								<ul class="nav">
@@ -130,11 +132,9 @@
 							</div>
 							<div class="yui3-u Right"></div>
 						</div>
-					</div>
-						<div class="yui3-u Left all-sort-list">
+					<!-- 无限极分类--递归 -->
 					
-						
-
+	
 						
 					</div>
 				</div>
@@ -143,7 +143,12 @@
 
 	
 	<!--list-content-->
+	
+	
+	
+	
 	<div class="main">
+	
 		<div class="py-container">
 			<!--bread-->
 			<div class="bread">

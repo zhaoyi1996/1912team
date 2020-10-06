@@ -65,7 +65,7 @@
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
-				
+
 			</div>
 
 			<div class="sumbtn">
@@ -74,7 +74,7 @@
 			<div class="clearfix"></div>
 			<div class="deled">
 				<span>已删除商品，您可以重新购买或加关注：</span>
-				
+
 				<div class="cart-list del">
 				@foreach($del_data as $v)
 					<ul class="goods-list yui3-g">
@@ -94,7 +94,7 @@
 					</ul>
 					@endforeach
 				</div>
-				
+
 			</div>
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">

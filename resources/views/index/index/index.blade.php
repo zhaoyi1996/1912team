@@ -3,6 +3,7 @@
 @section("title",'首页')
 @section('content')
 
+
 	<!--列表-->
 	<div class="sort">
 		<div class="py-container">
@@ -448,7 +449,7 @@
 						<div class="tbar-checkout">
 							<div class="jtc-number"> <strong class="J-count" id="cart-number">0</strong>件商品 </div>
 							<div class="jtc-sum"> 共计：<strong class="J-total" id="cart-sum">¥0</strong> </div>
-							<a class="jtc-btn J-btn" href="/index/cate" target="_blank">去购物车结算</a>
+							<a class="jtc-btn J-btn" href="/index/cart" target="_blank">去购物车结算</a>
 						</div>
 					</div>
 				</div>

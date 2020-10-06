@@ -13,7 +13,7 @@ use App\Model\DefaultModel;
 
 class OrderController extends Controller
 {
-    
+
     public function index(Request $request,$id){
 
         // 接受传过来的值
@@ -43,7 +43,7 @@ class OrderController extends Controller
 //
 //        dd($cart_id);
 
-   		 	
+
     	// dd($cartwhere);
     	$cartinfo = CartModel::where('user_id',$user_id)->whereIn('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
     	// dd($cartinfo);
@@ -67,7 +67,7 @@ class OrderController extends Controller
 
 
         // 满减
-        // 重新获取满减 
+        // 重新获取满减
         //满减规则
         if($price>=100&&$price<200){
             $less_price = 10;
@@ -90,7 +90,7 @@ class OrderController extends Controller
         }else{
             $less_price=0;
         }
-        
+
     	//收货地址飙获取到默认收货地址数据、
     	$defwhere = [
     		'user_id'=>$user_id,
