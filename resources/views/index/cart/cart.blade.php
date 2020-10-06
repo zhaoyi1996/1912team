@@ -52,24 +52,26 @@
 				</div>
 
 			</div>
-			<div class="cart-tool">
+			<div class="cart-tool" style="position:relative;height:52px;">
 				<div class="select-all">
-					<input type="checkbox" name="" id="boxs" value="" />
+					<input type="checkbox" name="" id="" value=""/>
 					<span>全选</span>
 				</div>
 				<div class="option">
-					{{--<a href="javascript:void[0]" id="tao" goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
-
-					{{--<a href="javascript:void[0]"  goods_id="{{$v->goods_id}}">删除选中的商品</a>--}}
-
+					<a href="#none">删除选中的商品</a>
 					<a href="#none">移到我的关注</a>
 					<a href="#none">清除下柜商品</a>
 				</div>
-				
-			</div>
-
-			<div class="sumbtn">
-				<a class="sum-btn" id="orders" target="_blank">结算</a>
+				<div class="toolbar">
+					<div class="chosed">已选择<span>0</span>件商品</div>
+					<div class="sumprice">
+						<span><em>总价（不含运费） ：</em><i class="summoney" id="money">0￥</i></span>
+						<span><em>已节省：</em><i>-¥00.00</i></span>
+					</div>
+					<div class="sumbtn">
+						<a class="sum-btn account" href="javascript:;" id="msg-button">结算</a>
+					</div>
+				</div>
 			</div>
 			<div class="clearfix"></div>
 			<div class="deled">
@@ -379,19 +381,7 @@
 					}
 
 				});
-
-
-
 			}
-
-
-
-
 		})
-
-
-
-
-
 	</script>
 @endsection
