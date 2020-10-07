@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 use AopClient;
 use AlipayOpenPublicTemplateMessageIndustryModifyRequest;
+use App\Model\CartModel;
 use App\Model\ShopLtdModdel;
 use App\Model\GoodsModel;
 use App\Model\BrandModel;
@@ -14,6 +15,7 @@ use App\Model\CategoryModel;
 use Illuminate\Support\Facades\Redis;
 use App\Model\AnnouModel;
 use App\Model\ShopSlideModel;
+use App\Model\HistoryModel;
 
 class IndexController extends Controller
 {
@@ -42,6 +44,7 @@ class IndexController extends Controller
         //   轮播图
         $slide=ShopSlideModel::where('is_del','1')->limit(5)->get();
 
+
         #查询小广告信息
        $LadverWhere=[
             ['la_del','=',1]
@@ -65,7 +68,7 @@ class IndexController extends Controller
         
         $brand_data=BrandModel::where($BrandWhere)->limit(10)->get();
 //        dd($brand_data);
-        #猜你喜欢
+
 
         //查询分类
         $tao_data=CategoryModel::get();
@@ -76,10 +79,10 @@ class IndexController extends Controller
         foreach($tao_info as $k=>$v){
             $tao_2ji[$v->cate_id]=$v->son;
         }
-//        查询商品表
-        $goods=GoodsModel::all();
-//        dd($goods);die;
-
+        #查询商品表
+        #猜你喜欢
+        $goods=HistoryModel::leftjoin('shop_goods','shop_history.goods_id','=','shop_goods.goods_id')->limit(6)->get();
+//        dd($goods);
     	return view("index.index.index",compact('ladver_data','recom_data','cate','res','brand_data','slide','res2','tao_2ji','goods'));
  }
 
@@ -90,7 +93,9 @@ class IndexController extends Controller
         ];
         $cate = CategoryModel::where($cate_pid)->get();
         $goods=GoodsModel::all();
-        return view('index.layouts.index',['cate'=>$cate,'goods'=>$goods]);
+        $count=CartModel::count();
+
+        return view('index.layouts.index',['cate'=>$cate,'goods'=>$goods,'count'=>$count]);
     }
 
     // 无限极分类

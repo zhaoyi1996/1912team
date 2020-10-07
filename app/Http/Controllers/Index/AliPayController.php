@@ -19,6 +19,7 @@ class AliPayController extends Controller
         if(!empty($data)){
             //查询订单和订单商品信息
             $order_data=OrderModel::where('order_id',$data['order_id'])->first();
+//            dd($order_data);
             $goods_order_data=OrderGoodsModel::where('order_number',$order_data->order_number)->get();
 //            $goods_name='';
 //            foreach($goods_order_data as $v){

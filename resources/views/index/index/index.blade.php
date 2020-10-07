@@ -45,13 +45,13 @@
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
 					    <div class="active item"  style="width:800px;hight:800px"  >
-					    <a href="{{$v->sl_url}}">
+					    <a href="{{url('/index/item/1/')}}">
 					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px" />
 					      </a>
 					    </div>
 					    @else
-						<div class="item"  style="width:720px;hight:800px"  >
-						 <a href="{{$v->sl_url}}">
+						<div class="item"  style="width:720px;hight:800px">
+						 <a href="{{url('index/item/16/')}}">
 						<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px"   />
 					     </a>
 					    </div>
@@ -66,9 +66,17 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
+<<<<<<< HEAD
 										<li>
-									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
+									<span class="bold">[{{$v->an_name}}]</span><a href="#">{{$v->an_desc}}</a>
 										</li>
+=======
+										<a href="{{$v->an_url}}">
+											<li>
+									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
+											</li>
+										</a>
+>>>>>>> 3ac760634ccdc983a0959eb6cabbac9d654de85d
 									@endforeach
 								</ul>
 						</div>

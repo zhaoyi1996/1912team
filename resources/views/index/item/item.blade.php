@@ -25,7 +25,11 @@
 					<div class="zoom">
 						<!--默认第一个预览-->
 						<div id="preview" class="spec-preview">
+
+							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"/></span>
+
 							<span class="jqzoom"><img src="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}"   jqimg="{{env('UPLOADS_URL')}}{{$goods['goods_img']}}" ></span>
+
 						</div>
 						<!--下方的缩略图-->
 						<div class="spec-scroll">
@@ -115,15 +119,6 @@
 							</dl>
 							@endforeach
 						</div>
-						
-						
-						
-						
-						
-						
-						
-						
-						
 						<div class="summary-wrap">
 							<div class="fl title">
 								<div class="control-group">
@@ -137,7 +132,9 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="{{url('/index/cart/'.$goods['goods_id'])}}"  class="sui-btn  btn-danger addshopcar"  id="cartadd">加入购物车</a>
+
+										<a href="#" goods_id="{{$goods['goods_id']}}"  class="sui-btn  btn-danger addshopcar"  id="cartadd">加入购物车</a>
+
 									</li>
 								</ul>
 							</div>
@@ -323,7 +320,7 @@
 								<div class="num">已选购0件商品</div>
 								<div class="price-tit"><strong>套餐价</strong></div>
 								<div class="price">￥5299</div>
-								<button class="sui-btn  btn-danger addshopcar">加入购物车</button>
+								{{--<button class="sui-btn  btn-danger addshopcar">加入购物车</button>--}}
 							</div>
 						</div>
 					</div>
@@ -702,4 +699,38 @@ $(document).on('click','.attrval',function(){
 	
 });
 </script>
+	<script>
+		//加入购物车
+		$(document).on('click','.addshopcar',function(){
+			//获取商品信息
+            var goods_id=$(this).attr('goods_id');
+            //获取购物车购买数量
+            var car_num=$('#car_num').val();
+            //计算长度是否全部选中
+            var selected = $(".selected").length;
+            var attr_name = $(".attr_name").length;
+            if(selected==attr_name){
+                //获取sku信息
+                var str = new Array();
+                $(".selected").each(function(){
+                    str.push($(this).attr("attr_id")+":"+$(this).attr("attrval_id"));
+                });
+                $.ajax({
+                   url:'/index/cartAdd',
+                    type:"post",
+                    data:{goods_id:goods_id,str:str,car_num:car_num},
+                    success:function(res){
+                        alert(res.msg);
+                        if(res.code=='0100'){
+                            location.href="/index/cart";
+                        }
+                    }
+                });
+            }else{
+                alert('请选择商品规格');
+            }
+
+
+		});
+	</script>
 @endsection
