@@ -50,11 +50,13 @@ class IndexController extends Controller
             ['la_del','=',1]
         ];
         $ladver_data=ShopLadverModel::where($LadverWhere)->first();
+//        dd($ladver_data);
         #查询今日推荐     ----排序方法是最近存入库的几件商品
         $recomWhere=[
             ['del_id','=',1]
         ];
         $recom_data=GoodsModel::where($recomWhere)->orderBy('goods_add_time','desc')->limit(4)->get();
+//        dd($recom_data);
         #将数据存入redis
 //        $recom_key="recom_data";
 //        Redis::set($recom_key,json_encode($recom_data,true));
@@ -83,6 +85,9 @@ class IndexController extends Controller
         #猜你喜欢
         $goods=HistoryModel::leftjoin('shop_goods','shop_history.goods_id','=','shop_goods.goods_id')->limit(6)->get();
 //        dd($goods);
+
+        #查询分类下销售数量比较多的商品
+
     	return view("index.index.index",compact('ladver_data','recom_data','cate','res','brand_data','slide','res2','tao_2ji','goods'));
  }
 
