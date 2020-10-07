@@ -302,7 +302,7 @@
 					}
 				})
 
-			})
+			});
 			$(document).on("click",".plus",function(){	//加
 				var _this=$(this);
 				var wenben=parseInt(_this.prev().val());//文本框的值
@@ -330,7 +330,7 @@
 						console.log(res);
 					}
 				})
-			})
+			});
 			$(document).on("blur",".itxt",function(){  //文本框
 				var _this=$(this);
 				var car_num= _this.val();
@@ -395,11 +395,10 @@
 				box.each(function(index){
 					str+=$(this).parents('ul').attr('car_id')+',';
 				});
-
 				var car_id=str.substring(0,str.length-1);
 				location.href="/index/orderinfo/"+car_id;
 			});
-
+		});
 
 
  
