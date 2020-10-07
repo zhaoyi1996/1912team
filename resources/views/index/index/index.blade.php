@@ -41,10 +41,10 @@
 						  <li data-target="#myCarousel" data-slide-to="3"></li>
 						  <li data-target="#myCarousel" data-slide-to="4"></li>
 					  </ol>
-					  <div class="carousel-inner"  style="width:800px;hight:800px"  >
+					  <div class="carousel-inner"  style="position:relative;height:450px;width:600px" >
 						  @foreach($slide as $k=>$v)
 							  @if($k==0)
-					    <div class="active item"  style="width:800px;hight:800px"  >
+					    <div class="active item"  style="position:relative;height:450px;width:600px">
 					    <a href="{{url('/index/item/1/')}}">
 					    	<img src="{{env('UPLOADS_URL')}}{{$v->sl_log}}" style="width:600px;hight:500px" />
 					      </a>
@@ -66,17 +66,13 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
-<<<<<<< HEAD
-										<li>
-									<span class="bold">[{{$v->an_name}}]</span><a href="#">{{$v->an_desc}}</a>
-										</li>
-=======
+
 										<a href="{{$v->an_url}}">
 											<li>
 									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
 											</li>
 										</a>
->>>>>>> 3ac760634ccdc983a0959eb6cabbac9d654de85d
+
 									@endforeach
 								</ul>
 						</div>
