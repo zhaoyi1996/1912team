@@ -76,11 +76,12 @@
 							  
 							  <div>
 
-								<div class="con name" value="{{$v->fef_is_more}}"><a href="javascript:;">{{$v->user_name}}<span title="点击取消选择">&nbsp;</a></div>
+								<div class="con name" name="dizhi" value="{{$v->fef_is_more}}" ><a href="javascript:;">{{$v->user_name}}<span title="点击取消选择">&nbsp;</a></div>
 								<div class="con address zbc" fef_id="{{$v->fef_id}}" >{{$v->user_name}} {{$v->province}}  {{$v->city}}  {{$v->area}} {{$v->minute}}  <span>{{$v->user_tel}}</span>
 								<span class="edittext"><a data-toggle="modal" data-target=".edit"  data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="{{url('/index/order/del/'.$v->fef_id)}}">删除</a>
 									@if($v->fef_is_more==2)
-										<a data-toggle="modal"   data-keyboard="false" >设为默认收货地址</a>
+										<a data-toggle="modal"   data-keyboard="fuck" >使用该地址</a>
+                                        <a data-toggle="modal"   data-keyboard="false" >设为默认地址</a>
 									
 										
 									@endif
@@ -400,7 +401,8 @@
 //        let _val=$('div[class="con name"]').attr('value');
 ////        console.log(_val);
 //        if(_val==1){
-//            $('div[class="con name"]').prop('class="con name selected"');
+//            $('div[name="dizhi"]').attr('value="1"').prop('class="con name selected"');
+//
 //        }
 	});
 </script>
@@ -421,7 +423,7 @@
 			type:"post",
 			data:{car_id:car_id},
 			success:function(res){
-                
+                return ;
 				if(res.code=1){
 					location.href="/index/ali";
 				}else{

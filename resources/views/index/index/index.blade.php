@@ -270,7 +270,7 @@
 			<div class="clearfix  tab-content floor-content">
 				<div id="tab8" class="tab-pane active">
 					<div class="yui3-g Floor-1">
-						
+
 						<div class="yui3-u row-330 floorBanner">
 							<div id="floorCarousell" data-ride="carousel" data-interval="4000" class="sui-carousel slide">
 								<ol class="carousel-indicators">

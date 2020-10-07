@@ -10,6 +10,7 @@ use App\Model\DefaultModel;
 use App\Model\OrderGoodsModel;
 // use App\Model\CartModel;
 use App\Model\OrderModel;
+use App\Model\SiteModel;
 
 class OrderController extends Controller
 {
@@ -123,7 +124,6 @@ class OrderController extends Controller
         //根绝传过来的收货地址id获取到一条数据 来进行用那条收货地址进行下单
         $fefinfo = DefaultModel::where('fef_id',$fef_id)->first();
         // dd($fefinfo);
-
     	// 取出登录的用户
     	$user_id = session("User_Info")['user_id'];
 
@@ -224,23 +224,35 @@ class OrderController extends Controller
 
 
     public function tijiao(){
-        // dd("123");
         $car_id = request()->post('car_id');
-//        dd($car_id);
         $cart_id = json_decode($car_id);
-//         dd($cart_id);
         $order_number = $this->generateID();
-        // dd($order_number);
-            // 取出登录的用户
+        // 取出登录的用户
         $user_id = session("User_Info")['user_id'];
+        $user_name=session("User_Info")['user_name'];
         $cartinfo = CartModel::where('user_id',$user_id)->wherein('car_id',$cart_id)->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->get();
         // dd($cartinfo);
-        //收货地址飙获取到默认收货地址数据、
+        //收货地址飙获取到默认收货地址数据
         $defwhere = [
             'user_id'=>$user_id,
             'fef_is_more'=>1
         ];
         $defmo = DefaultModel::where($defwhere)->first();
+//        dd($defmo);
+        #将订单地址信息入订单地址表
+        $site=new SiteModel();
+        $site->user_id=$user_id;
+        $site->order_number=$order_number;
+        $site->province=$defmo->province;
+        $site->city=$defmo->city;
+        $site->area=$defmo->area;
+        $site->minute=$defmo->minute;
+        $site->user_name=$user_name;
+        $site->user_tel=$defmo->user_tel;
+        $site->add_time=time();
+        $res=$site->save();
+        $site_id=$site->site_id;
+        dd($site_id);
         //循环获取总价
         // dd($defmo);
         $price = 0;
@@ -250,7 +262,7 @@ class OrderController extends Controller
         $integral=0;
         $coupon = 0;
         foreach($cartinfo as $k=>$v){
-            $price += $v['car_num']*$v['goods_price'];
+            $price = $v['car_num']*$v['goods_price'];
             $numbers += $v['car_num'];
             $integral += $v['goods_integral']*$v['car_num'];
             $coupon += $v['goods_coupon']*$v['car_num'];
@@ -270,12 +282,38 @@ class OrderController extends Controller
 //                dd($order_goods_info);
             if (!empty($order_goods_info)) {
                 if (time()-$v->ordergoodstime < 3000) {
-
                     foreach ($order_goods_info as $kkk => $vvv) {
+                        #查询订单地址表是否已经存在该订单的收货地址
+                        $site_where=[
+                            ['order_number','=',$order_goods_info],
+                            ['is_del','=',1]
+                        ];
+                        $site_data=SiteModel::where($site_where)->first();
+                        if(!empty($site_data)){
+                            $site_id=$site_data->site_id;
+                        }else{
+                            #将订单地址信息入订单地址表
+                            $site=new SiteModel();
+                            $site->user_id=$user_id;
+                            $site->order_number=$order_number;
+                            $site->province=$defmo->province;
+                            $site->city=$defmo->city;
+                            $site->area=$defmo->area;
+                            $site->minute=$defmo->minute;
+                            $site->user_name=$user_name;
+                            $site->user_tel=$defmo->user_tel;
+                            $site->add_time=time();
+                            $res=$site->save();
+                            $site_id=$site->site_id;
+                            dd($site_id);
+
+
+
+                        }
                         $orderinfo = OrderModel::where('order_number', $vvv->order_number)->get();
                         // return redirect("/index/ali/".$orderinfo->order_id);
                         foreach ($orderinfo as $k => $v) {
-                            session(['order_id' => ['order_id' => $v->order_id, 'user_id' => $user_id]]);
+                            session(['order_id' => ['order_id' => $v->order_id, 'user_id' => $user_id,'site_id'=>$site_id]]);
                             return ['code' => 1];
                         }
                     }

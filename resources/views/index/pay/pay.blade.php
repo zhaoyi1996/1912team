@@ -62,7 +62,7 @@
                 <div class="fl code">
                     <div id="qrcode" style="width:300px; height:300px; margin-top:15px;"></div>
                     <div class="saosao">
-                        <p>请使用微信扫一扫</p>
+                        <p>请使用沙箱扫一扫</p>
                         <p>扫描二维码支付</p>
                     </div>
                 </div>
