@@ -19,7 +19,7 @@
 									@foreach($v['son'] as $vv)
 									<dl class="fore1">
 										<dt><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$vv['cate_name']}}</a></dt>
-										@foreach($vv['son'] as $vvv)	
+										@foreach($vv['son'] as $vvv)
 										<dd><a href="{{url('/index/search?cate_id='.$v['cate_id'])}}">{{$vvv['cate_name']}}</a></em></dd>
 										@endforeach
 									</dl>
@@ -66,17 +66,17 @@
 						<div class="clearix">
 								<ul class="news-list unstyled">
 									@foreach($res2 as $v)
-<<<<<<< HEAD
+
 										<li>
 									<span class="bold">[{{$v->an_name}}]</span><a href="#">{{$v->an_desc}}</a>
 										</li>
-=======
+
 										<a href="{{$v->an_url}}">
 											<li>
 									<span class="bold">[{{$v->an_name}}]</span>{{$v->an_desc}}
 											</li>
 										</a>
->>>>>>> 3ac760634ccdc983a0959eb6cabbac9d654de85d
+
 									@endforeach
 								</ul>
 						</div>
