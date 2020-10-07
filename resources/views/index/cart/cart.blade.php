@@ -251,7 +251,7 @@
 	<!-- 底部栏位 -->
 	<script src="/js/jquery.js"></script>
 	<script>
-		{{--删除--}}
+		// {{--删除--}}
          $(document).on("click",".del",function(){
 			var goods_id=$(this).attr('goods_id');
 			var _this = $(this);
@@ -266,7 +266,7 @@
 		});
 	</script>
 
-	{{--加减号  全选  --}}
+	<!-- {{--加减号  全选  --}} -->
 	<script>
 		$(document).ready(function(){
 
@@ -398,8 +398,10 @@
 				var car_id=str.substring(0,str.length-1);
 				location.href="/index/orderinfo/"+car_id;
 			});
-		});
 
+		})
+
+	
 
  
 	</script>

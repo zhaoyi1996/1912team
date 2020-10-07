@@ -27,28 +27,28 @@
 						<li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
 					</ul>
 					<ul class="fr">
-						<li class="f-item">我的订单</li>
-						<li class="f-item space"></li>
-						<li class="f-item"><a href="home.html" target="_blank">我的品优购</a></li>
-						<li class="f-item space"></li>
-						<li class="f-item">品优购会员</li>
-						<li class="f-item space"></li>
-						<li class="f-item">企业采购</li>
-						<li class="f-item space"></li>
-						<li class="f-item">关注品优购</li>
-						<li class="f-item space"></li>
-						<li class="f-item" id="service">
-							<span>客户服务</span>
-							<ul class="service">
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="shoplogin.html" target="_blank">商家后台</a></li>
-								<li><a href="cooperation.html" target="_blank">合作招商</a></li>
-								<li><a href="#">商家后台</a></li>
-							</ul>
-						</li>
-						<li class="f-item space"></li>
-						<li class="f-item">网站导航</li>
-					</ul>
+                           <a href="/index/homeIndex"><li class="f-item">我的订单</li></a> 
+                            <li class="f-item space"></li>
+                            <a href="/index/homeSettingInfo"><li class="f-item">我的品优购</li></a>
+                            <li class="f-item space"></li>  
+                            <li class="f-item">品优购会员</li>
+                            <li class="f-item space"></li>
+                            <li class="f-item">企业采购</li>
+                            <li class="f-item space"></li>
+                            <li class="f-item">关注品优购</li>
+                            <li class="f-item space"></li>
+                            <li class="f-item" id="service">
+                                <span>客户服务</span>
+                                <ul class="service">
+                                    <li><a href="cooperation.html" target="_blank">合作招商</a></li>
+                                    <li><a href="shoplogin.html" target="_blank">商家后台</a></li>
+                                    <li><a href="cooperation.html" target="_blank">合作招商</a></li>
+                                    <li><a href="#">商家后台</a></li>
+                                </ul>
+                            </li>
+                            <li class="f-item space"></li>
+                            <li class="f-item">网站导航</li>
+                        </ul>
 				</div>
 			</div>
 		</div>
@@ -91,10 +91,7 @@
 									<span>我的购物车</span>
 									<i class="shopnum">0</i>
 								</a>
-								<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-									<p>"啊哦，你的购物车还没有商品哦！"</p>
-								</div>
+								
 							</div>
 						</div>
 					</div>
