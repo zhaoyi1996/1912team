@@ -128,7 +128,9 @@ class RepertoryController extends Controller
             }
 //            dd($goods_id);
             $time[$i]=time();
-            $attr=implode($id,',');
+//            dd($id);
+            $attr=implode(',',$id);
+//            dd($attr);
             $rep_data['goods_id']=$goods_id;
             $rep_data['attr']=$attr;
             $rep_data['add_time']=time();
