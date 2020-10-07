@@ -158,6 +158,12 @@
                             <input type="radio" name="is_hot" value="1" checked>是
                             <input type="radio" name="is_hot" value="2">否
                         </div>
+
+                        <div class="col-md-2 title rowHeight2x">是否轮播图展示</div>
+                        <div class="col-md-10 data rowHeight2x">
+                            <input type="radio" name="is_lun" value="1">是
+                            <input type="radio" name="is_lun" value="2">否
+                        </div>
                     </div>
                 </div>
     <div class="btn-toolbar list-toolbar">
@@ -271,6 +277,8 @@
 
         var is_show= $("input[name='is_show']").val();
         var is_hot= $("input[name='is_hot']").val();
+        var is_lun= $("input[name='is_lun']").val();
+
 
         var data={};
         data.cate_id=cate_id;
@@ -285,6 +293,7 @@
         data.goods_store=goods_store;
         data.is_show=is_show;
         data.is_hot=is_hot;
+        data.is_lun=is_lun;
         data.goods_img=goods_img;
         data.goods_imgs=goods_imgs;
 

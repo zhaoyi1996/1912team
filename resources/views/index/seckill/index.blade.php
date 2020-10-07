@@ -215,6 +215,7 @@ $(function(){
 						
 						<div>剩余<b class='owned'>{{$v->goods_store}}</b>件</div>
 					</div>
+					{{--@php  dump($v); @endphp--}}
 					<form action="{{url('/index/seckill/seckilldo/'.$v->seckill_id)}}" method="get">
 						<!-- <a >立即抢购</a> -->
 						<input type="submit" class='sui-btn btn-block btn-buy'   target='_blank' value="立即抢购">
